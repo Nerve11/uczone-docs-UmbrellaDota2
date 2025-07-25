@@ -1,0 +1,13 @@
+# Rune
+
+Table to work with `CRune`.<mark style="color:purple;">**`CRune`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
+
+## <sub>GetRuneType</sub>
+
+`Rune.GetRuneType(rune):` [<mark style="color:purple;">**`Enum.RuneType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.runetype)
+
+| Name     | Type                                                   | Description |
+| -------- | ------------------------------------------------------ | ----------- |
+| **rune** | [<mark style="color:purple;">**`CRune`**</mark>](rune) |             |
+
+Returns `Enum.RuneType` the rune type.

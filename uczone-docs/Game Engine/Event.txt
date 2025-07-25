@@ -1,0 +1,103 @@
+# Event
+
+Table to work with game events.
+
+When you install events, you send the subscribe message to the server, which is potentially unsafe.\
+Therefore, you won't be able to install new listeners when you have unsafe features disabled in the Settings -> Security tab.
+
+The list of events can be found in the "pak01\_dir.vpk" under "resource/game.gameevents."
+
+## <sub>AddListener</sub>
+
+`Event.AddListener(name):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name     | Type                                            | Description |
+| -------- | ----------------------------------------------- | ----------- |
+| **name** | <mark style="color:purple;">**`string`**</mark> | Event name  |
+
+Installs an event listener for the desired event.
+
+## <sub>IsReliable</sub>
+
+`Event.IsReliable(event):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+
+Checks if the event is reliable.
+
+## <sub>IsLocal</sub>
+
+`Event.IsLocal(event):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+
+Checks if the event is local or networked.
+
+## <sub>IsEmpty</sub>
+
+`Event.IsEmpty(event):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+
+Checks if the event is empty.
+
+## <sub>GetBool</sub>
+
+`Event.GetBool(event, field):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+| **field** | <mark style="color:purple;">**`string`**</mark>          | Field name  |
+
+Returns the boolean value of the specified event field.
+
+## <sub>GetInt</sub>
+
+`Event.GetInt(event, field):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+| **field** | <mark style="color:purple;">**`string`**</mark>          | Field name  |
+
+Returns the integer value of the specified event field.
+
+## <sub>GetUint64</sub>
+
+`Event.GetUint64(event, field):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+| **field** | <mark style="color:purple;">**`string`**</mark>          | Field name  |
+
+Returns the uint64 value of the specified event field.
+
+## <sub>GetFloat</sub>
+
+`Event.GetFloat(event, field):` <mark style="color:purple;">**`number`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+| **field** | <mark style="color:purple;">**`string`**</mark>          | Field name  |
+
+Returns the floating value of the specified event field.
+
+## <sub>GetString</sub>
+
+`Event.GetString(event, field):` <mark style="color:purple;">**`string`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **event** | [<mark style="color:purple;">**`CEvent`**</mark>](event) |             |
+| **field** | <mark style="color:purple;">**`string`**</mark>          | Field name  |
+
+Returns the string value of the specified event field.

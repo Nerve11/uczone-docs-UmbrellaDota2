@@ -1,0 +1,111 @@
+# Vec2
+
+Vec2 metatable
+
+### Fields
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y** | <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>Vec2</sub>
+
+`Vec2(x, y):` [<mark style="color:purple;">**`Vec2`**</mark>](vec2)
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Create a new Vec2.
+
+## <sub>Vec2</sub>
+
+`Vec2():` [<mark style="color:purple;">**`Vec2`**</mark>](vec2)
+
+Create a new Vec2(0,0).
+
+## <sub>\_\_tostring</sub>
+
+`:__tostring():` <mark style="color:purple;">**`string`**</mark>
+
+## <sub>\_\_add</sub>
+
+{% hint style="info" %}
+Overload for operator +
+{% endhint %}
+
+`:__add(other):` [<mark style="color:purple;">**`Vec2`**</mark>](vec2)
+
+| Name      | Type                                                                                                     | Description |
+| --------- | -------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>\_\_sub</sub>
+
+{% hint style="info" %}
+Overload for operator -
+{% endhint %}
+
+`:__sub(other):` [<mark style="color:purple;">**`Vec2`**</mark>](vec2)
+
+| Name      | Type                                                                                                     | Description |
+| --------- | -------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>\_\_div</sub>
+
+{% hint style="info" %}
+Overload for operator /
+{% endhint %}
+
+\`:\_\_div(other):\` \[<mark style="color:purple;">\*\*\`Vec2\`\*\*</mark>]\(Vec2.md)
+
+| Name      | Type                                                                                                     | Description |
+| --------- | -------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>Length</sub>
+
+`:Length():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the length of the vector.
+
+## <sub>Get</sub>
+
+`:Get():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns x, y of this vector.
+
+## <sub>GetX</sub>
+
+`:GetX():` <mark style="color:purple;">**`number`**</mark>
+
+Returns x of this vector. The same as Vec2.x.
+
+## <sub>GetY</sub>
+
+`:GetY():` <mark style="color:purple;">**`number`**</mark>
+
+Returns y of this vector. The same as Vec2.y.
+
+## <sub>SetX</sub>
+
+`:SetX(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **value** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets x. The same as Vec2.x = value.
+
+## <sub>SetY</sub>
+
+`:SetY(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **value** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets y. The same as Vec2.y = value.

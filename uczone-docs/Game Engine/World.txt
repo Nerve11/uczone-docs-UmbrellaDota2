@@ -1,0 +1,14 @@
+# World
+
+Table containing functions for interacting with the world.
+
+## <sub>GetGroundZ</sub>
+
+`World.GetGroundZ(x, y):` <mark style="color:purple;">**`number`**</mark>
+
+| Name  | Type                                            | Description                              |
+| ----- | ----------------------------------------------- | ---------------------------------------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> | The X position to get the ground Z from. |
+| **y** | <mark style="color:purple;">**`number`**</mark> | The Y position to get the ground Z from. |
+
+Returns the ground Z at the given position.

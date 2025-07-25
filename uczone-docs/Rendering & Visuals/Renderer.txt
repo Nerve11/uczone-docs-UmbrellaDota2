@@ -1,0 +1,360 @@
+# Renderer
+
+Table to work with renderer.
+
+## <sub>SetDrawColor</sub>
+
+`Renderer.SetDrawColor([r], [g], [b], [a]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                    | Type                                             | Description                   |
+| ------------------------------------------------------- | ------------------------------------------------ | ----------------------------- |
+| **r&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Red color. `(default: 255)`   |
+| **g&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Green color. `(default: 255)` |
+| **b&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Blue color. `(default: 255)`  |
+| **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Alpha color. `(default: 255)` |
+
+Sets the color of the renderer.
+
+## <sub>DrawLine</sub>
+
+`Renderer.DrawLine(x0, y0, x1, y1):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name   | Type                                             | Description                       |
+| ------ | ------------------------------------------------ | --------------------------------- |
+| **x0** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the first point.  |
+| **y0** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the first point.  |
+| **x1** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the second point. |
+| **y1** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the second point. |
+
+Draws a line.
+
+## <sub>DrawPolyLine</sub>
+
+`Renderer.DrawPolyLine(points):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                           | Description      |
+| ---------- | ---------------------------------------------- | ---------------- |
+| **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
+
+Draws a polyline.
+
+## <sub>DrawPolyLineFilled</sub>
+
+`Renderer.DrawPolyLineFilled(points):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                           | Description      |
+| ---------- | ---------------------------------------------- | ---------------- |
+| **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
+
+Draws a filled polyline.
+
+## <sub>DrawFilledRect</sub>
+
+`Renderer.DrawFilledRect(x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name  | Type                                             | Description                    |
+| ----- | ------------------------------------------------ | ------------------------------ |
+| **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **w** | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
+| **h** | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
+
+Draws a filled rectangle.
+
+## <sub>DrawOutlineRect</sub>
+
+`Renderer.DrawOutlineRect(x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name  | Type                                             | Description                    |
+| ----- | ------------------------------------------------ | ------------------------------ |
+| **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **w** | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
+| **h** | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
+
+Draws an outlined rectangle.
+
+## <sub>DrawOutlineCircle</sub>
+
+`Renderer.DrawOutlineCircle(x, y, r, s):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name  | Type                                             | Description                 |
+| ----- | ------------------------------------------------ | --------------------------- |
+| **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the circle. |
+| **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the circle. |
+| **r** | <mark style="color:purple;">**`integer`**</mark> | Radius of the circle.       |
+| **s** | <mark style="color:purple;">**`integer`**</mark> | Segments of the circle.     |
+
+Draws an outlined circle.
+
+## <sub>DrawFilledCircle</sub>
+
+`Renderer.DrawFilledCircle(x, y, r):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name  | Type                                             | Description                 |
+| ----- | ------------------------------------------------ | --------------------------- |
+| **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the circle. |
+| **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the circle. |
+| **r** | <mark style="color:purple;">**`integer`**</mark> | Radius of the circle.       |
+
+Draws a filled circle.
+
+## <sub>DrawOutlineRoundedRect</sub>
+
+`Renderer.DrawOutlineRoundedRect(x, y, w, h, radius):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description                    |
+| ---------- | ------------------------------------------------ | ------------------------------ |
+| **x**      | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y**      | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
+| **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
+| **radius** | <mark style="color:purple;">**`integer`**</mark> | Radius of the rectangle.       |
+
+Draws an outlined rounded rectangle.
+
+## <sub>DrawFilledRoundedRect</sub>
+
+`Renderer.DrawFilledRoundedRect(x, y, w, h, radius):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description                    |
+| ---------- | ------------------------------------------------ | ------------------------------ |
+| **x**      | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y**      | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
+| **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
+| **radius** | <mark style="color:purple;">**`integer`**</mark> | Radius of the rectangle.       |
+
+Draws a filled rounded rectangle.
+
+## <sub>DrawOutlineTriangle</sub>
+
+`Renderer.DrawOutlineTriangle(points):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                           | Description      |
+| ---------- | ---------------------------------------------- | ---------------- |
+| **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
+
+Draws an outlined triangle.
+
+## <sub>DrawFilledTriangle</sub>
+
+`Renderer.DrawFilledTriangle(points):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                           | Description      |
+| ---------- | ---------------------------------------------- | ---------------- |
+| **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
+
+Draws a filled triangle.
+
+## <sub>DrawTexturedPolygon</sub>
+
+`Renderer.DrawTexturedPolygon(points, texture):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name        | Type                                             | Description      |
+| ----------- | ------------------------------------------------ | ---------------- |
+| **points**  | <mark style="color:purple;">**`table`**</mark>   | Table of points. |
+| **texture** | <mark style="color:purple;">**`integer`**</mark> | Texture handle.  |
+
+Draws a textured polygon.
+
+## <sub>LoadFont</sub>
+
+`Renderer.LoadFont(name, size, flags, weight):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name       | Type                                             | Description       |
+| ---------- | ------------------------------------------------ | ----------------- |
+| **name**   | <mark style="color:purple;">**`string`**</mark>  | Name of the font. |
+| **size**   | <mark style="color:purple;">**`integer`**</mark> | Size of the font. |
+| **flags**  | <mark style="color:purple;">**`integer`**</mark> | Font flags.       |
+| **weight** | <mark style="color:purple;">**`integer`**</mark> | Font weight.      |
+
+Loads a font.
+
+## <sub>DrawText</sub>
+
+`Renderer.DrawText(font, x, y, text):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name     | Type                                             | Description               |
+| -------- | ------------------------------------------------ | ------------------------- |
+| **font** | <mark style="color:purple;">**`integer`**</mark> | Font handle.              |
+| **x**    | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the text. |
+| **y**    | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the text. |
+| **text** | <mark style="color:purple;">**`string`**</mark>  | Text to draw.             |
+
+Draws a text.
+
+## <sub>WorldToScreen</sub>
+
+`Renderer.WorldToScreen(pos):` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`boolean`**</mark>
+
+| Name    | Type                                                                                                    | Description        |
+| ------- | ------------------------------------------------------------------------------------------------------- | ------------------ |
+| **pos** | [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector) | World coordinates. |
+
+Converts world coordinates to screen coordinates. Returns x, y and visible.
+
+## <sub>GetScreenSize</sub>
+
+`Renderer.GetScreenSize():` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>
+
+Returns screen size.
+
+## <sub>GetTextSize</sub>
+
+`Renderer.GetTextSize(font, text):` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>
+
+| Name     | Type                                             | Description      |
+| -------- | ------------------------------------------------ | ---------------- |
+| **font** | <mark style="color:purple;">**`integer`**</mark> | Font handle.     |
+| **text** | <mark style="color:purple;">**`string`**</mark>  | Text to measure. |
+
+Returns text size.
+
+## <sub>LoadImage</sub>
+
+`Renderer.LoadImage(path):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name     | Type                                            | Description        |
+| -------- | ----------------------------------------------- | ------------------ |
+| **path** | <mark style="color:purple;">**`string`**</mark> | Path to the image. |
+
+Loads an image. Returns image handle.
+
+## <sub>DrawImage</sub>
+
+`Renderer.DrawImage(handle, x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description                |
+| ---------- | ------------------------------------------------ | -------------------------- |
+| **handle** | <mark style="color:purple;">**`integer`**</mark> | Image handle.              |
+| **x**      | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the image. |
+| **y**      | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the image. |
+| **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the image.        |
+| **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the image.       |
+
+Draws an image.
+
+## <sub>DrawImageCentered</sub>
+
+`Renderer.DrawImageCentered(handle, x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description                |
+| ---------- | ------------------------------------------------ | -------------------------- |
+| **handle** | <mark style="color:purple;">**`integer`**</mark> | Image handle.              |
+| **x**      | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the image. |
+| **y**      | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the image. |
+| **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the image.        |
+| **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the image.       |
+
+Draws an image centered.
+
+## <sub>GetImageSize</sub>
+
+`Renderer.GetImageSize(handle):` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>
+
+| Name       | Type                                             | Description   |
+| ---------- | ------------------------------------------------ | ------------- |
+| **handle** | <mark style="color:purple;">**`integer`**</mark> | Image handle. |
+
+Returns image size.
+
+## <sub>DrawFilledRectFade</sub>
+
+`Renderer.DrawFilledRectFade(x0, y0, x1, y1, alpha0, alpha1, bHorizontal):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name            | Type                                             | Description                    |
+| --------------- | ------------------------------------------------ | ------------------------------ |
+| **x0**          | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y0**          | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **x1**          | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y1**          | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **alpha0**      | <mark style="color:purple;">**`integer`**</mark> | Alpha of the first point.      |
+| **alpha1**      | <mark style="color:purple;">**`integer`**</mark> | Alpha of the second point.     |
+| **bHorizontal** | <mark style="color:purple;">**`boolean`**</mark> | Horizontal fade.               |
+
+Draws a filled rectangle with fade.
+
+## <sub>DrawFilledGradRect</sub>
+
+`Renderer.DrawFilledGradRect(x0, y0, x1, y1, r, g, b, a, r2, g2, b2, a2, bHorizontal):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name            | Type                                             | Description                      |
+| --------------- | ------------------------------------------------ | -------------------------------- |
+| **x0**          | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle.   |
+| **y0**          | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle.   |
+| **x1**          | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle.   |
+| **y1**          | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle.   |
+| **r**           | <mark style="color:purple;">**`integer`**</mark> | Red color of the first point.    |
+| **g**           | <mark style="color:purple;">**`integer`**</mark> | Green color of the first point.  |
+| **b**           | <mark style="color:purple;">**`integer`**</mark> | Blue color of the first point.   |
+| **a**           | <mark style="color:purple;">**`integer`**</mark> | Alpha color of the first point.  |
+| **r2**          | <mark style="color:purple;">**`integer`**</mark> | Red color of the second point.   |
+| **g2**          | <mark style="color:purple;">**`integer`**</mark> | Green color of the second point. |
+| **b2**          | <mark style="color:purple;">**`integer`**</mark> | Blue color of the second point.  |
+| **a2**          | <mark style="color:purple;">**`integer`**</mark> | Alpha color of the second point. |
+| **bHorizontal** | <mark style="color:purple;">**`boolean`**</mark> | Horizontal gradient.             |
+
+Draws a filled gradient rectangle.
+
+## <sub>DrawGlow</sub>
+
+`Renderer.DrawGlow(x0, y0, w, h, thickness, obj_rounding):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name              | Type                                             | Description                    |
+| ----------------- | ------------------------------------------------ | ------------------------------ |
+| **x0**            | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
+| **y0**            | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
+| **w**             | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
+| **h**             | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
+| **thickness**     | <mark style="color:purple;">**`integer`**</mark> | Thickness of the glow.         |
+| **obj\_rounding** | <mark style="color:purple;">**`integer`**</mark> | Rounding of the glow.          |
+
+Draws a glow.
+
+## <sub>DrawBlur</sub>
+
+`Renderer.DrawBlur(x0, y0, w, h, strength, rounding, alpha):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                            | Description                    |
+| ------------ | ----------------------------------------------- | ------------------------------ |
+| **x0**       | <mark style="color:purple;">**`number`**</mark> | X coordinate of the rectangle. |
+| **y0**       | <mark style="color:purple;">**`number`**</mark> | Y coordinate of the rectangle. |
+| **w**        | <mark style="color:purple;">**`number`**</mark> | Width of the rectangle.        |
+| **h**        | <mark style="color:purple;">**`number`**</mark> | Height of the rectangle.       |
+| **strength** | <mark style="color:purple;">**`number`**</mark> | Strength of the blur.          |
+| **rounding** | <mark style="color:purple;">**`number`**</mark> | Rounding of the blur.          |
+| **alpha**    | <mark style="color:purple;">**`number`**</mark> | Alpha of the blur.             |
+
+Draws a blur.
+
+## <sub>PushClip</sub>
+
+`Renderer.PushClip(x, y, w, h, intersect):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name          | Type                                             | Description                       |
+| ------------- | ------------------------------------------------ | --------------------------------- |
+| **x**         | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle.    |
+| **y**         | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle.    |
+| **w**         | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.           |
+| **h**         | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.          |
+| **intersect** | <mark style="color:purple;">**`boolean`**</mark> | Intersect with the previous clip. |
+
+Pushes a clip rect.
+
+## <sub>PopClip</sub>
+
+`Renderer.PopClip():` <mark style="color:purple;">**`nil`**</mark>
+
+Pops a clip rect.
+
+## <sub>DrawCenteredNotification</sub>
+
+`Renderer.DrawCenteredNotification(text, duration):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                            | Description                   |
+| ------------ | ----------------------------------------------- | ----------------------------- |
+| **text**     | <mark style="color:purple;">**`string`**</mark> | Text to draw.                 |
+| **duration** | <mark style="color:purple;">**`number`**</mark> | Duration of the notification. |
+
+Draws a centered notification.

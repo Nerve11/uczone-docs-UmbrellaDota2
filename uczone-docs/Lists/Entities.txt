@@ -1,0 +1,19 @@
+# Entities
+
+Table to work with entity list.
+
+## <sub>GetAll</sub>
+
+`Entities.GetAll():` [<mark style="color:purple;">**`CEntity[]`**</mark>](../core/entity)
+
+Get all entities on the map.
+
+## <sub>Contains</sub>
+
+`Entities.Contains(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                               | Description      |
+| ---------- | ------------------------------------------------------------------ | ---------------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](../core/entity) | Entity to check. |
+
+Check entity in cheat list.

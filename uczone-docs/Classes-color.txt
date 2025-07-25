@@ -1,0 +1,166 @@
+# Color
+
+Color metatable
+
+### Fields
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **r** | <mark style="color:purple;">**`number`**</mark> | red         |
+| **g** | <mark style="color:purple;">**`number`**</mark> | green       |
+| **b** | <mark style="color:purple;">**`number`**</mark> | blue        |
+| **a** | <mark style="color:purple;">**`number`**</mark> | alpha       |
+
+## <sub>Color</sub>
+
+`Color([r], [g], [b], [a]):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name                                                    | Type                                            | Description      |
+| ------------------------------------------------------- | ----------------------------------------------- | ---------------- |
+| **r&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
+| **g&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
+| **b&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
+| **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
+
+Create a new Color.
+
+## <sub>Color</sub>
+
+`Color(hex):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name    | Type                                            | Description                        |
+| ------- | ----------------------------------------------- | ---------------------------------- |
+| **hex** | <mark style="color:purple;">**`string`**</mark> | Hex string. Do not use "#" symbol. |
+
+Create a new Color from hex string.
+
+## <sub>AsFraction</sub>
+
+`:AsFraction(r, g, b, a):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name  | Type                                            | Description                                                |
+| ----- | ----------------------------------------------- | ---------------------------------------------------------- |
+| **r** | <mark style="color:purple;">**`number`**</mark> | New R color range as a percentage in the range \[0.0, 1.0] |
+| **g** | <mark style="color:purple;">**`number`**</mark> | New G color range as a percentage in the range \[0.0, 1.0] |
+| **b** | <mark style="color:purple;">**`number`**</mark> | New B color range as a percentage in the range \[0.0, 1.0] |
+| **a** | <mark style="color:purple;">**`number`**</mark> | New A color range as a percentage in the range \[0.0, 1.0] |
+
+Overwrites the color's ranges using the fraction values. Returns itself.
+
+## <sub>AsInt</sub>
+
+`:AsInt(value):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name      | Type                                            | Description     |
+| --------- | ----------------------------------------------- | --------------- |
+| **value** | <mark style="color:purple;">**`number`**</mark> | int color value |
+
+Overwrites the color's ranges converting the int value to RGBA values. Returns\
+itself.
+
+## <sub>AsHsv</sub>
+
+`:AsHsv(h, s, v, a):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name  | Type                                            | Description                        |
+| ----- | ----------------------------------------------- | ---------------------------------- |
+| **h** | <mark style="color:purple;">**`number`**</mark> | Hue color range \[0.0, 1.0]        |
+| **s** | <mark style="color:purple;">**`number`**</mark> | Saturation color range \[0.0, 1.0] |
+| **v** | <mark style="color:purple;">**`number`**</mark> | Value color range \[0.0, 1.0]      |
+| **a** | <mark style="color:purple;">**`number`**</mark> | Alpha color range \[0.0, 1.0]      |
+
+Overwrites the color's ranges converting the HSV to RGBA values. Returns itself.
+
+## <sub>AsHsl</sub>
+
+`:AsHsl(h, s, l, a):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name  | Type                                            | Description                        |
+| ----- | ----------------------------------------------- | ---------------------------------- |
+| **h** | <mark style="color:purple;">**`number`**</mark> | Hue color range \[0.0, 1.0]        |
+| **s** | <mark style="color:purple;">**`number`**</mark> | Saturation color range \[0.0, 1.0] |
+| **l** | <mark style="color:purple;">**`number`**</mark> | Lightness color range \[0.0, 1.0]  |
+| **a** | <mark style="color:purple;">**`number`**</mark> | Alpha color range \[0.0, 1.0]      |
+
+Overwrites the color's ranges converting the HSL to RGBA values. Returns itself.
+
+## <sub>ToFraction</sub>
+
+`:ToFraction():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns the r, g, b, and a ranges of the color as a percentage in the range of\
+\[0.0, 1.0].
+
+## <sub>ToInt</sub>
+
+`:ToInt():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the int value representing the color.
+
+## <sub>ToHsv</sub>
+
+`:ToHsv():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns the HSV representation of the color.
+
+## <sub>ToHsl</sub>
+
+`:ToHsl():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns the ToHsl representation of the color.
+
+## <sub>ToHex</sub>
+
+`:ToHex():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the hex string representing the color.
+
+## <sub>Lerp</sub>
+
+`:Lerp(other, weight):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name       | Type                                                    | Description                                                    |
+| ---------- | ------------------------------------------------------- | -------------------------------------------------------------- |
+| **other**  | [<mark style="color:purple;">**`Color`**</mark>](color) | The color to interpolate to                                    |
+| **weight** | <mark style="color:purple;">**`number`**</mark>         | A value between 0 and 1 that indicates the weight of **other** |
+
+Returns the linearly interpolated color between two colors by the specified weight.
+
+## <sub>Grayscale</sub>
+
+`:Grayscale(weight):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name       | Type                                            | Description                                                        |
+| ---------- | ----------------------------------------------- | ------------------------------------------------------------------ |
+| **weight** | <mark style="color:purple;">**`number`**</mark> | A value between 0 and 1 that indicates the weight of **grayscale** |
+
+Returns the grayscaled color.
+
+## <sub>AlphaModulate</sub>
+
+`:AlphaModulate(alpha):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name      | Type                                            | Description                   |
+| --------- | ----------------------------------------------- | ----------------------------- |
+| **alpha** | <mark style="color:purple;">**`number`**</mark> | Alpha color range \[0.0, 1.0] |
+
+Returns the alpha modulated color.
+
+## <sub>Clone</sub>
+
+`:Clone():` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+Creates and returns a copy of the color object.
+
+## <sub>Unpack</sub>
+
+`:Unpack():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns the r, g, b, and a values of the color. Note that these fields can be\
+accessed by indexing r, g, b, and a.
+
+## <sub>\_\_tostring</sub>
+
+`:__tostring():` <mark style="color:purple;">**`string`**</mark>
+
+Returns hex string representing the color.

@@ -1,0 +1,41 @@
+# Couriers
+
+Table to work with courier list.
+
+## <sub>Count</sub>
+
+`Couriers.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of courier list.
+
+## <sub>Get</sub>
+
+`Couriers.Get(index):` [<mark style="color:purple;">**`CCourier`**</mark>](../core/courier) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                     |
+| --------- | ------------------------------------------------ | ------------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of courier in cheat list. |
+
+Return courier by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`Couriers.GetAll():` [<mark style="color:purple;">**`CCourier[]`**</mark>](../core/courier)
+
+Return all couriers in cheat list.
+
+## <sub>Contains</sub>
+
+`Couriers.Contains(courier):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name        | Type                                                                 | Description       |
+| ----------- | -------------------------------------------------------------------- | ----------------- |
+| **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](../core/courier) | Courier to check. |
+
+Check courier in cheat list.
+
+## <sub>GetLocal</sub>
+
+`Couriers.GetLocal():` [<mark style="color:purple;">**`CCourier`**</mark>](../core/courier) | <mark style="color:purple;">**`nil`**</mark>
+
+Return local courier.

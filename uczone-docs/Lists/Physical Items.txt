@@ -1,0 +1,35 @@
+# Physical Items
+
+Table to work with list of phisical items.
+
+## <sub>Count</sub>
+
+`PhysicalItems.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of physical item list.
+
+## <sub>Get</sub>
+
+`PhysicalItems.Get(index):` [<mark style="color:purple;">**`CPhysicalItem`**</mark>](../core/physicalitem) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                           |
+| --------- | ------------------------------------------------ | ------------------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of physical item in cheat list. |
+
+Return physical item by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`PhysicalItems.GetAll():` [<mark style="color:purple;">**`CPhysicalItem[]`**</mark>](../core/physicalitem)
+
+Return all physical items in cheat list.
+
+## <sub>Contains</sub>
+
+`PhysicalItems.Contains(physical):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name         | Type                                                                           | Description                  |
+| ------------ | ------------------------------------------------------------------------------ | ---------------------------- |
+| **physical** | [<mark style="color:purple;">**`CPhysicalItem`**</mark>](../core/physicalitem) | item Physical item to check. |
+
+Check physical item in cheat list.

@@ -1,0 +1,81 @@
+# Menu
+
+Table to work with Menu.
+
+## <sub>Find</sub>
+
+`Menu.Find(firstTabName, sectionName, secondTabName, thirdTabName, groupTabName, widgetName, attachmentName, widgetInGearName):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](widgets/cmenuswitch) | [<mark style="color:purple;">**`CMenuBind`**</mark>](widgets/cmenubind) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](widgets/cmenusliderfloat) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](widgets/cmenusliderint) | [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](widgets/cmenucolorpicker) | [<mark style="color:purple;">**`CMenuComboBox`**</mark>](widgets/cmenucombobox) | [<mark style="color:purple;">**`CMenuButton`**</mark>](widgets/cmenubutton) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](widgets/cmenumulticombobox) | [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](widgets/cmenumultiselect) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](widgets/cmenuinputbox) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/menu/CMenuLabel.md) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name                 | Type                                            | Description |
+| -------------------- | ----------------------------------------------- | ----------- |
+| **firstTabName**     | <mark style="color:purple;">**`string`**</mark> |             |
+| **sectionName**      | <mark style="color:purple;">**`string`**</mark> |             |
+| **secondTabName**    | <mark style="color:purple;">**`string`**</mark> |             |
+| **thirdTabName**     | <mark style="color:purple;">**`string`**</mark> |             |
+| **groupTabName**     | <mark style="color:purple;">**`string`**</mark> |             |
+| **widgetName**       | <mark style="color:purple;">**`string`**</mark> |             |
+| **attachmentName**   | <mark style="color:purple;">**`string`**</mark> |             |
+| **widgetInGearName** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Returns menu item.
+
+## <sub>Create</sub>
+
+`Menu.Create(firstTabName, sectionName, secondTabName, thirdTabName, groupTabName):` [<mark style="color:purple;">**`CMenuGroup`**</mark>](menu/cmenugroup)
+
+| Name              | Type                                            | Description |
+| ----------------- | ----------------------------------------------- | ----------- |
+| **firstTabName**  | <mark style="color:purple;">**`string`**</mark> |             |
+| **sectionName**   | <mark style="color:purple;">**`string`**</mark> |             |
+| **secondTabName** | <mark style="color:purple;">**`string`**</mark> |             |
+| **thirdTabName**  | <mark style="color:purple;">**`string`**</mark> |             |
+| **groupTabName**  | <mark style="color:purple;">**`string`**</mark> |             |
+
+Creates tab/section/group. Returns menu item.
+
+## <sub>Style</sub>
+
+`Menu.Style(styleColor):` [<mark style="color:purple;">**`Color`**</mark>](color)
+
+| Name           | Type                                            | Description |
+| -------------- | ----------------------------------------------- | ----------- |
+| **styleColor** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Creates tab/section/group. Returns color of specified style var or table of all style colors\
+depends on param.
+
+## <sub>Opened</sub>
+
+`Menu.Opened():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns current menu open state.
+
+## <sub>Alpha</sub>
+
+`Menu.Alpha():` <mark style="color:purple;">**`number`**</mark>
+
+Returns current menu alpha.
+
+## <sub>Pos</sub>
+
+`Menu.Pos():` [<mark style="color:purple;">**`Vec2`**</mark>](math/vec2)
+
+Returns current menu pos.
+
+## <sub>Size</sub>
+
+`Menu.Size():` [<mark style="color:purple;">**`Vec2`**</mark>](math/vec2)
+
+Returns current menu size.
+
+## <sub>Scale</sub>
+
+`Menu.Scale():` <mark style="color:purple;">**`integer`**</mark>
+
+Returns current menu scale percentage.
+
+## <sub>AnimDuration</sub>
+
+`Menu.AnimDuration():` <mark style="color:purple;">**`number`**</mark>
+
+Returns current menu animation duration.

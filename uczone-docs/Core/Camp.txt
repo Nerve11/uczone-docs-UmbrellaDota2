@@ -1,0 +1,23 @@
+# Camp
+
+Table to work with `CCamp`.<mark style="color:purple;">**`CCamp`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
+
+## <sub>GetType</sub>
+
+`Camp.GetType(camp):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name     | Type                                                   | Description        |
+| -------- | ------------------------------------------------------ | ------------------ |
+| **camp** | [<mark style="color:purple;">**`CCamp`**</mark>](camp) | The camp to check. |
+
+Returns the camp type.
+
+## <sub>GetCampBox</sub>
+
+`Camp.GetCampBox(camp):` <mark style="color:purple;">**`{min:Vector, max:Vector}`**</mark>
+
+| Name     | Type                                                   | Description        |
+| -------- | ------------------------------------------------------ | ------------------ |
+| **camp** | [<mark style="color:purple;">**`CCamp`**</mark>](camp) | The camp to check. |
+
+Returns camp box as a table with **min** and **max** fields(**Vector**).

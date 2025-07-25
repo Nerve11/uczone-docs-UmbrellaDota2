@@ -1,0 +1,56 @@
+# Steam
+
+Table to with Steam API functions
+
+## <sub>SetPersonaName</sub>
+
+`Steam.SetPersonaName(name):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name     | Type                                            | Description     |
+| -------- | ----------------------------------------------- | --------------- |
+| **name** | <mark style="color:purple;">**`string`**</mark> | The name to set |
+
+Sets the player name, stores it on the server and publishes the changes to all friends who\
+are online.
+
+## <sub>GetPersonaName</sub>
+
+`Steam.GetPersonaName():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the local players name. This is the same name as on the users community profile page.
+
+## <sub>GetGameLanguage</sub>
+
+`Steam.GetGameLanguage():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the current game language.
+
+## <sub>GetProfilePictureBySteamId</sub>
+
+{% hint style="info" %}
+This function works only if you already got player's user information (EMsg\_ClientRequestFriendData). That means you should be in the same game with the player or he should be in your friend list.
+{% endhint %}
+
+`Steam.GetProfilePictureBySteamId(steamID64, [large]):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name                                                        | Type                                             | Description                                                 |
+| ----------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------- |
+| **steamID64**                                               | <mark style="color:purple;">**`integer`**</mark> | The Steam ID of the player                                  |
+| **large&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Whether to get the large profile picture `(default: false)` |
+
+Returns the handle of the profile picture of the given Steam ID.
+
+## <sub>GetProfilePictureByAccountId</sub>
+
+{% hint style="info" %}
+This function works only if you already got player's user information (EMsg\_ClientRequestFriendData). That means you should be in the same game with the player or he should be in your friend list.
+{% endhint %}
+
+\`Steam.GetProfilePictureByAccountId(steamID64, \[large]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
+
+| Name                                                        | Type                                             | Description                                                 |
+| ----------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------- |
+| **steamID64**                                               | <mark style="color:purple;">**`integer`**</mark> | The account id of the player                                |
+| **large&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Whether to get the large profile picture `(default: false)` |
+
+Returns the handle of the profile picture of the given account id.

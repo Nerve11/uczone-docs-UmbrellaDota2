@@ -1,0 +1,13 @@
+# TierToken
+
+Table to work with `CTierToken`.<mark style="color:purple;">**`CTierToken`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
+
+## <sub>GetChoices</sub>
+
+`TierToken.GetChoices(tier_token):` <mark style="color:purple;">**`integer[]`**</mark>
+
+| Name            | Type                                                             | Description                              |
+| --------------- | ---------------------------------------------------------------- | ---------------------------------------- |
+| **tier\_token** | [<mark style="color:purple;">**`CTierToken`**</mark>](tiertoken) | The `TierToken` to get the choices from. |
+
+Returns the choices (ability ids) of the `CTierToken`.

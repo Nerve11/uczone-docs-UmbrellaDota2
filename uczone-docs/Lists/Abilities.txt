@@ -1,0 +1,35 @@
+# Abilities
+
+Table to work with ability list.
+
+## <sub>Count</sub>
+
+`Abilities.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of ability list.
+
+## <sub>Get</sub>
+
+`Abilities.Get(index):` [<mark style="color:purple;">**`CAbility`**</mark>](../core/ability) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                     |
+| --------- | ------------------------------------------------ | ------------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of ability in cheat list. |
+
+Return ability by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`Abilities.GetAll():` [<mark style="color:purple;">**`CAbility[]`**</mark>](../core/ability)
+
+Return all abilities in cheat list.
+
+## <sub>Contains</sub>
+
+`Abilities.Contains(ability):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name        | Type                                                                 | Description       |
+| ----------- | -------------------------------------------------------------------- | ----------------- |
+| **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](../core/ability) | Ability to check. |
+
+Check ability in cheat list.

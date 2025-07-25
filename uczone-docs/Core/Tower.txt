@@ -1,0 +1,13 @@
+# Tower
+
+Table to work with `CTower`.<mark style="color:purple;">**`CTower`**</mark> extends <mark style="color:purple;">**`CNPC`**</mark>
+
+## <sub>GetAttackTarget</sub>
+
+`Tower.GetAttackTarget(tower):` [<mark style="color:purple;">**`CNPC`**</mark>](npc) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                                     | Description |
+| --------- | -------------------------------------------------------- | ----------- |
+| **tower** | [<mark style="color:purple;">**`CTower`**</mark>](tower) |             |
+
+Returns `CNPC` that is attacked by the tower now.

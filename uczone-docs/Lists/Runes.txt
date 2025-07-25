@@ -1,0 +1,35 @@
+# Runes
+
+Table to work with rune list.
+
+## <sub>Count</sub>
+
+`Runes.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of rune list.
+
+## <sub>Get</sub>
+
+`Runes.Get(index):` [<mark style="color:purple;">**`CRune`**</mark>](../core/rune) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                  |
+| --------- | ------------------------------------------------ | ---------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of rune in cheat list. |
+
+Return rune by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`Runes.GetAll():` [<mark style="color:purple;">**`CRune[]`**</mark>](../core/rune)
+
+Return all runes in cheat list.
+
+## <sub>Contains</sub>
+
+`Runes.Contains(rune):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name     | Type                                                           | Description    |
+| -------- | -------------------------------------------------------------- | -------------- |
+| **rune** | [<mark style="color:purple;">**`CRune`**</mark>](../core/rune) | Rune to check. |
+
+Check rune in cheat list.

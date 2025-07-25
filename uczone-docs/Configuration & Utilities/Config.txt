@@ -1,0 +1,75 @@
+# Config
+
+Table to work with configs that are stored in the `configs` folder with the `.ini` extention.
+
+## <sub>ReadInt</sub>
+
+`Config.ReadInt(config, key, [def]):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name                                                      | Type                                             | Description                                                         |
+| --------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------- |
+| **config**                                                | <mark style="color:purple;">**`string`**</mark>  | The config file name.                                               |
+| **key**                                                   | <mark style="color:purple;">**`string`**</mark>  | The key to read.                                                    |
+| **def&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | The default value to return if the key is not found. `(default: 0)` |
+
+Read an integer from a config file.
+
+## <sub>ReadFloat</sub>
+
+`Config.ReadFloat(config, key, [def]):` <mark style="color:purple;">**`number`**</mark>
+
+| Name                                                      | Type                                            | Description                                                           |
+| --------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------- |
+| **config**                                                | <mark style="color:purple;">**`string`**</mark> | The config file name.                                                 |
+| **key**                                                   | <mark style="color:purple;">**`string`**</mark> | The key to read.                                                      |
+| **def&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The default value to return if the key is not found. `(default: 0.0)` |
+
+Read a float from a config file.
+
+## <sub>ReadString</sub>
+
+`Config.ReadString(config, key, [def]):` <mark style="color:purple;">**`string`**</mark>
+
+| Name                                                      | Type                                            | Description                                                          |
+| --------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------- |
+| **config**                                                | <mark style="color:purple;">**`string`**</mark> | The config file name.                                                |
+| **key**                                                   | <mark style="color:purple;">**`string`**</mark> | The key to read.                                                     |
+| **def&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | The default value to return if the key is not found. `(default: "")` |
+
+Read a string from a config file.
+
+## <sub>WriteInt</sub>
+
+`Config.WriteInt(config, key, value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description           |
+| ---------- | ------------------------------------------------ | --------------------- |
+| **config** | <mark style="color:purple;">**`string`**</mark>  | The config file name. |
+| **key**    | <mark style="color:purple;">**`string`**</mark>  | The key to write.     |
+| **value**  | <mark style="color:purple;">**`integer`**</mark> | The value to write.   |
+
+Write an integer to a config file.
+
+## <sub>WriteFloat</sub>
+
+`Config.WriteFloat(config, key, value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                            | Description           |
+| ---------- | ----------------------------------------------- | --------------------- |
+| **config** | <mark style="color:purple;">**`string`**</mark> | The config file name. |
+| **key**    | <mark style="color:purple;">**`string`**</mark> | The key to write.     |
+| **value**  | <mark style="color:purple;">**`number`**</mark> | The value to write.   |
+
+Write a float to a config file.
+
+## <sub>WriteString</sub>
+
+`Config.WriteString(config, key, value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                            | Description           |
+| ---------- | ----------------------------------------------- | --------------------- |
+| **config** | <mark style="color:purple;">**`string`**</mark> | The config file name. |
+| **key**    | <mark style="color:purple;">**`string`**</mark> | The key to write.     |
+| **value**  | <mark style="color:purple;">**`string`**</mark> | The value to write.   |
+
+Write a string to a config file.

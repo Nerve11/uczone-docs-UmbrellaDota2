@@ -1,0 +1,99 @@
+# Panorama
+
+Table to work with Dota Panorama system.
+
+## <sub>GetPanelInfo</sub>
+
+`Panorama.GetPanelInfo(path, [bLogError], [useJsFunc]):` <mark style="color:purple;">**`{x:number, y:number, w:number, h:number}`**</mark>
+
+| Name                                                            | Type                                                                                             | Description                                                                 |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
+| **path**                                                        | <mark style="color:purple;">**`string[]`**</mark>                                                | Path to the panel.                                                          |
+| **bLogError&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | `(default: false)`                                                          |
+| **useJsFunc&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | Use js GetPositionWithinWindow function to get position. `(default: false)` |
+
+Get panel info. GetPanelByName for first argument then FindChild others and accumulate x and y.
+
+## <sub>GetPanelByPath</sub>
+
+`Panorama.GetPanelByPath(path, [bLogError]):` [<mark style="color:purple;">**`UIPanel`**</mark>](uipanel) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                            | Type                                              | Description                                      |
+| --------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
+| **path**                                                        | <mark style="color:purple;">**`string[]`**</mark> | Path to the panel.                               |
+| **bLogError&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>  | Log error if panel not found. `(default: false)` |
+
+Get panel by path.
+
+## <sub>GetPanelByName</sub>
+
+`Panorama.GetPanelByName(id, is_type_name):` [<mark style="color:purple;">**`UIPanel`**</mark>](uipanel) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name               | Type                                             | Description                       |
+| ------------------ | ------------------------------------------------ | --------------------------------- |
+| **id**             | <mark style="color:purple;">**`string`**</mark>  | Id of the panel.                  |
+| **is\_type\_name** | <mark style="color:purple;">**`boolean`**</mark> | Check type name instead of names. |
+
+Get panel by id.
+
+## <sub>CreatePanel</sub>
+
+`Panorama.CreatePanel(type, id, parent, classes, styles):` [<mark style="color:purple;">**`UIPanel`**</mark>](uipanel)
+
+| Name        | Type                                                                                            | Description                    |
+| ----------- | ----------------------------------------------------------------------------------------------- | ------------------------------ |
+| **type**    | <mark style="color:purple;">**`string`**</mark>                                                 | panel type to create           |
+| **id**      | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | id of the panel                |
+| **parent**  | [<mark style="color:purple;">**`UIPanel`**</mark>](uipanel)                                     | parent panel                   |
+| **classes** | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | space separated classes to add |
+| **styles**  | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | styles to set                  |
+
+Creates a new panorama panel
+
+#### Example
+
+```lua
+-- create_panel.lua
+function create_category()
+	local panel = Panorama.GetPanelByPath({"DOTAHeroesPage", "HeroGrid", "Footer", "ViewModeControls", "Filters"}, true);
+	if (not panel) then 
+		print("not on hero grid page");
+		return
+	end;
+
+	local filter_category = Panorama.CreatePanel("Panel", nil, panel, "FilterCategory")
+	local filter_category_title = Panorama.CreatePanel("Label", nil, filter_category, "FilterCategoryTitle");
+	filter_category_title:SetText("Filter");
+	local items_panel = Panorama.CreatePanel("Panel", nil, filter_category, "FilterCategoryItems")
+	items_panel:AddClasses("FilterCategoryItems")
+
+	local button_styles = {
+		["CrossButton"] = 'background-image: url("s2r://panorama/images/control_icons/purgatory_png.vtex");',
+		["GearButton"] = 'background-image: url("s2r://panorama/images/control_icons/settings_png.vtex");',
+	};
+	local buttons = {}
+	for id, style in pairs(button_styles) do
+		buttons[id] = Panorama.CreatePanel("Button", id, items_panel, "FilterButton", style)
+	end
+	local button_id, button = next(buttons);
+
+    -- set up the button events
+	Engine.RunScript(([[
+		(function(){
+			let ctx = $.GetContextPanel();
+			let button = ctx.FindChildTraverse("%s")
+			let items_panel = button.GetParent();
+
+			let children = items_panel.Children();
+			let children_count = children.length;
+			for (let i = 0; i < children_count; i++) {
+				let item = children[i];
+				item.SetPanelEvent("onmouseover", () => $.DispatchEvent("UIShowTextTooltipStyled", item, ("Button Id: " + item.id), "GameModeTooltip"));
+				item.SetPanelEvent("onmouseout", () => $.DispatchEvent("UIHideTextTooltip", item));
+				item.SetPanelEvent("onactivate", () => $.Msg(item.id + " was clicked!"));
+			}
+		})()
+	]]):format(button_id), button)
+end
+create_category();
+```

@@ -1,0 +1,13 @@
+# Log
+
+Table to log.
+
+## <sub>Write</sub>
+
+`Log.Write(arg):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name    | Type                                         | Description      |
+| ------- | -------------------------------------------- | ---------------- |
+| **arg** | <mark style="color:purple;">**`any`**</mark> | Message to write |
+
+Writes a message to the console.

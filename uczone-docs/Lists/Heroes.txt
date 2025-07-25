@@ -1,0 +1,56 @@
+# Heroes
+
+Table to work with hero list.
+
+## <sub>Count</sub>
+
+`Heroes.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of hero list.
+
+## <sub>Get</sub>
+
+`Heroes.Get(index):` [<mark style="color:purple;">**`CHero`**</mark>](../core/hero) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                  |
+| --------- | ------------------------------------------------ | ---------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of hero in cheat list. |
+
+Return hero by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`Heroes.GetAll():` [<mark style="color:purple;">**`CHero[]`**</mark>](../core/hero)
+
+Return all heroes in cheat list.
+
+## <sub>Contains</sub>
+
+`Heroes.Contains(hero):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name     | Type                                                           | Description    |
+| -------- | -------------------------------------------------------------- | -------------- |
+| **hero** | [<mark style="color:purple;">**`CHero`**</mark>](../core/hero) | Hero to check. |
+
+Check hero in cheat list.
+
+## <sub>InRadius</sub>
+
+`Heroes.InRadius(pos, radius, teamNum, teamType, [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CHero[]`**</mark>](../core/hero)
+
+| Name                                                                | Type                                                                                                              | Description                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **pos**                                                             | [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)           | Position to check.                                                      |
+| **radius**                                                          | <mark style="color:purple;">**`number`**</mark>                                                                   | Radius to check.                                                        |
+| **teamNum**                                                         | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamnum)   | Team number to check.                                                   |
+| **teamType**                                                        | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamtype) | Team type to filter by. Relative to teamNum param.                      |
+| **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                  | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                  | `true` if you want to get table without dormant units `(default: true)` |
+
+Return all heroes in radius.
+
+## <sub>GetLocal</sub>
+
+`Heroes.GetLocal():` [<mark style="color:purple;">**`CHero`**</mark>](../core/hero) | <mark style="color:purple;">**`nil`**</mark>
+
+Return local hero.

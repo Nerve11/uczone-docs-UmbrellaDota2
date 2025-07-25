@@ -1,0 +1,48 @@
+# Towers
+
+Table to work with tower list.
+
+## <sub>Count</sub>
+
+`Towers.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of tower list.
+
+## <sub>Get</sub>
+
+`Towers.Get(index):` [<mark style="color:purple;">**`CTower`**</mark>](../core/tower) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                   |
+| --------- | ------------------------------------------------ | ----------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of tower in cheat list. |
+
+Return tower by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`Towers.GetAll():` [<mark style="color:purple;">**`CTower[]`**</mark>](../core/tower)
+
+Return all towers in cheat list.
+
+## <sub>InRadius</sub>
+
+`Towers.InRadius(pos, radius, teamNum, [teamType]):` [<mark style="color:purple;">**`CTower[]`**</mark>](../core/tower)
+
+| Name                                                           | Type                                                                                                              | Description                                                 |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **pos**                                                        | [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)           | Position to check.                                          |
+| **radius**                                                     | <mark style="color:purple;">**`number`**</mark>                                                                   | Radius to check.                                            |
+| **teamNum**                                                    | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamnum)   | Team number to check.                                       |
+| **teamType&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamtype) | Team number to check. `(default: Enum.TeamType.TEAM_ENEMY)` |
+
+Return all towers in radius.
+
+## <sub>Contains</sub>
+
+`Towers.Contains(tower):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                             | Description     |
+| --------- | ---------------------------------------------------------------- | --------------- |
+| **tower** | [<mark style="color:purple;">**`CTower`**</mark>](../core/tower) | Tower to check. |
+
+Check tower in cheat list.

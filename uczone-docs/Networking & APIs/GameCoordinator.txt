@@ -1,0 +1,35 @@
+# Game Coordinator
+
+Table to work with Game Coordinator (GC).
+
+Possible message types and message bodies could be found at [here](https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs)\
+Message type id starts with `k_E` prefix, for example `k_EMsgGCMatchmakingStatsRequest = 7197;`.\
+Message body starts with with `C` prefix instead of "k\_E", for example `message CMsgDOTAMatchmakingStatsRequest {}`.
+
+## <sub>SendMessage</sub>
+
+`GC.SendMessage(msg, msg_type, msg_size):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name          | Type                                              | Description                         |
+| ------------- | ------------------------------------------------- | ----------------------------------- |
+| **msg**       | <mark style="color:purple;">**`userdata`**</mark> | Pointer to protobuf message buffer. |
+| **msg\_type** | <mark style="color:purple;">**`integer`**</mark>  | Protobuf message type ID.           |
+| **msg\_size** | <mark style="color:purple;">**`integer`**</mark>  | Size of the protobuf message.       |
+
+Sends protobuff message to game coordinator. Response will be received in `OnGCMessage` callback.
+
+#### Example
+
+```lua
+local protobuf = require('protobuf')
+local JSON = require('assets.JSON')
+local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest',
+	                JSON:encode({}));
+GC.SendMessage( request.binary, 7197, request.size )
+```
+
+## <sub>GetSteamID</sub>
+
+`GC.GetSteamID():` <mark style="color:purple;">**`string`**</mark>
+
+Returns local player Steam ID as string.

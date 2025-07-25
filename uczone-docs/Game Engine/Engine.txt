@@ -1,0 +1,284 @@
+# Engine
+
+Table to work with game engine.
+
+## <sub>IsInGame</sub>
+
+`Engine.IsInGame():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if the game is in progress.
+
+## <sub>IsShopOpen</sub>
+
+`Engine.IsShopOpen():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if the shop is open.
+
+## <sub>SetQuickBuy</sub>
+
+`Engine.SetQuickBuy(item_name, [reset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                        | Type                                             | Description                                                |
+| ----------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------- |
+| **item\_name**                                              | <mark style="color:purple;">**`string`**</mark>  | The name of the item to quick buy. (e.g. `blink`, `relic`) |
+| **reset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Reset the quick buy list. `(default: true)`                |
+
+Add item to quick buy list.
+
+## <sub>RunScript</sub>
+
+`Engine.RunScript(script, [contextPanel]):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name                                                               | Type                                                                                                                                             | Description                                                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| **script**                                                         | <mark style="color:purple;">**`string`**</mark>                                                                                                  | The script to run.                                                                     |
+| **contextPanel&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| [<mark style="color:purple;">**`UIPanel`**</mark>](../rendering-and-visuals/panorama/uipanel) | The id of the panel or the panel itself to run the script in. `(default: "Dashboard")` |
+
+Run a JS script in the panorama context. Return `true` if the script was executed\
+successfully. [JS\
+documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Panorama/Javascript)
+
+#### Example
+
+```lua
+-- in dota console, you should see "Hello from Lua!"
+Engine.RunScript("$.Msg('Hello from Lua!')");
+```
+
+## <sub>ExecuteCommand</sub>
+
+`Engine.ExecuteCommand(command):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name        | Type                                            | Description             |
+| ----------- | ----------------------------------------------- | ----------------------- |
+| **command** | <mark style="color:purple;">**`string`**</mark> | The command to execute. |
+
+Execute a console command.
+
+#### Example
+
+```lua
+-- in dota chat, you should see "Hello from Lua!"
+Engine.ExecuteCommand("say \"Hello from Lua!\"");
+```
+
+## <sub>PlayVol</sub>
+
+`Engine.PlayVol(sound, [volume]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                            | Description                                                               |
+| ------------------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------------------------- |
+| **sound**                                                    | <mark style="color:purple;">**`string`**</mark> | The sound to play. Could find in `sounds` folder in `pak01_dir.vpk` file. |
+| **volume&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The volume of the sound. `(default: 0.1)`                                 |
+
+Play a sound with a specific volume.
+
+#### Example
+
+```lua
+-- play a sound with a volume of 0.5 (very loud)
+Engine.PlayVol("sounds/npc/courier/courier_acknowledge.vsnd_c", 0.5);
+```
+
+## <sub>CreateConfig</sub>
+
+`Engine.CreateConfig(config_name, categories):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name             | Type                                                                                                                                | Description             |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **config\_name** | <mark style="color:purple;">**`string`**</mark>                                                                                     | The name of the config. |
+| **categories**   | <mark style="color:purple;">**`{name: string, hero_ids: integer[], x: number, y: number, width: number, height: number}[]`**</mark> |                         |
+
+Creates a new hero grid config.
+
+#### Example
+
+```lua
+Engine.CreateConfig("From lua", {
+{
+	name = "55%+",
+	hero_ids = {1, 2, 3, 4},
+	x = 0.0,
+	y = 0.0,
+	width = 300.0,
+	height = 200.0
+},
+{
+	name = "52%+",
+	hero_ids = {5, 6},
+	x = 350.0,
+	y = 0.0,
+	width = 300.0,
+	height = 200.0
+}
+});
+```
+
+## <sub>GetCurrentConfigName</sub>
+
+`Engine.GetCurrentConfigName():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the current hero grid config name
+
+## <sub>SetNewGridConfig</sub>
+
+`Engine.SetNewGridConfig(config_name):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name             | Type                                            | Description                   |
+| ---------------- | ----------------------------------------------- | ----------------------------- |
+| **config\_name** | <mark style="color:purple;">**`string`**</mark> | The name of the config to set |
+
+Set the new hero grid config by name
+
+## <sub>LookAt</sub>
+
+`Engine.LookAt(x, y):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Move camera to a specific position.
+
+## <sub>CanAcceptMatch</sub>
+
+`Engine.CanAcceptMatch():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if the player can accept the match.
+
+## <sub>GetGameDirectory</sub>
+
+`Engine.GetGameDirectory():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the current game directory. (e.g. `dota 2 beta`)
+
+## <sub>GetCheatDirectory</sub>
+
+`Engine.GetCheatDirectory():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the current cheat directory.
+
+## <sub>GetLevelName</sub>
+
+`Engine.GetLevelName():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the current level name. (e.g. `maps/hero_demo_main.vpk`)
+
+## <sub>GetLevelNameShort</sub>
+
+`Engine.GetLevelNameShort():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the current level name without the extension and folder. (e.g. `hero_demo_main`)
+
+## <sub>AcceptMatch</sub>
+
+`Engine.AcceptMatch(state):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description         |
+| --------- | ------------------------------------------------ | ------------------- |
+| **state** | <mark style="color:purple;">**`integer`**</mark> | DOTALobbyReadyState |
+
+Accept match.
+
+## <sub>ConsoleColorPrintf</sub>
+
+`Engine.ConsoleColorPrintf(r, g, b, [a], text):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                    | Type                                             | Description                   |
+| ------------------------------------------------------- | ------------------------------------------------ | ----------------------------- |
+| **r**                                                   | <mark style="color:purple;">**`integer`**</mark> | Red value.                    |
+| **g**                                                   | <mark style="color:purple;">**`integer`**</mark> | Green value.                  |
+| **b**                                                   | <mark style="color:purple;">**`integer`**</mark> | Blue value.                   |
+| **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Alpha value. `(default: 255)` |
+| **text**                                                | <mark style="color:purple;">**`string`**</mark>  | Text to print.                |
+
+Print a message to the dota console.
+
+## <sub>GetMMR</sub>
+
+`Engine.GetMMR():` <mark style="color:purple;">**`integer`**</mark>
+
+Returns the current MMR.
+
+## <sub>GetMMRV2</sub>
+
+`Engine.GetMMRV2():` <mark style="color:purple;">**`integer`**</mark>
+
+Returns the current MMR. Works better than `Engine.GetMMR`.\
+Must be called from the game thread. Ex: OnNetUpdateEx, OnGCMessage, not OnFrame or on\
+initialization.
+
+## <sub>ReloadScriptSystem</sub>
+
+`Engine.ReloadScriptSystem():` <mark style="color:purple;">**`nil`**</mark>
+
+Executes script system reload.
+
+## <sub>ShowDotaWindow</sub>
+
+`Engine.ShowDotaWindow():` <mark style="color:purple;">**`nil`**</mark>
+
+Brings the game window to the forefront if it is minimized.\
+Use this function to make the game window the topmost window.
+
+## <sub>IsInLobby</sub>
+
+`Engine.IsInLobby():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if the player is in a lobby.
+
+## <sub>GetBuildVersion</sub>
+
+`Engine.GetBuildVersion():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the cheat version.
+
+## <sub>GetHeroIDByName</sub>
+
+`Engine.GetHeroIDByName(unitName):` <mark style="color:purple;">**`integer`**</mark> | <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                            | Description                             |
+| ------------ | ----------------------------------------------- | --------------------------------------- |
+| **unitName** | <mark style="color:purple;">**`string`**</mark> | Can be retrieved from `NPC.GetUnitName` |
+
+Returns hero ID by unit name.
+
+#### Example
+
+```lua
+local abaddonId = Engine.GetHeroIDByName( "npc_dota_hero_abaddon" )
+```
+
+## <sub>GetDisplayNameByUnitName</sub>
+
+`Engine.GetDisplayNameByUnitName(unitName):` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                            | Description                             |
+| ------------ | ----------------------------------------------- | --------------------------------------- |
+| **unitName** | <mark style="color:purple;">**`string`**</mark> | Can be retrieved from `NPC.GetUnitName` |
+
+Returns hero display name by unit name.
+
+#### Example
+
+```lua
+local nevermore_name = Engine.GetDisplayNameByUnitName( "npc_dota_hero_nevermore" )
+-- nevermore_name == "Shadow Fiend"
+```
+
+## <sub>GetHeroNameByID</sub>
+
+`Engine.GetHeroNameByID(heroID):` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description |
+| ---------- | ------------------------------------------------ | ----------- |
+| **heroID** | <mark style="color:purple;">**`integer`**</mark> |             |
+
+Returns hero name by ID.
+
+## <sub>GetUIState</sub>
+
+`Engine.GetUIState():` [<mark style="color:purple;">**`Enum.UIState`**</mark>](../../../cheats-types-and-callbacks/enums#enum.uistate)
+
+Returns current UI state.

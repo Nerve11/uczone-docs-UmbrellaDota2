@@ -1,0 +1,53 @@
+# Humanizer
+
+Table to work with humanizer.
+
+## <sub>IsInServerCameraBounds</sub>
+
+`Humanizer.IsInServerCameraBounds(pos):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name    | Type                                                                                                    | Description       |
+| ------- | ------------------------------------------------------------------------------------------------------- | ----------------- |
+| **pos** | [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector) | position to check |
+
+Returns `true` if the world position is in server camera bounds.
+
+## <sub>GetServerCameraPos</sub>
+
+`Humanizer.GetServerCameraPos():` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+Returns server camera position.
+
+## <sub>GetClientCameraPos</sub>
+
+`Humanizer.GetClientCameraPos():` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+Returns client camera position.
+
+## <sub>GetServerCursorPos</sub>
+
+`Humanizer.GetServerCursorPos():` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+Returns the server cursor position.
+
+## <sub>GetOrderQueue</sub>
+
+`Humanizer.GetOrderQueue():` <mark style="color:purple;">**`{player: CPlayer, orderType: Enum.UnitOrder, targetIndex: integer, position: Vector, abilityIndex: integer, orderIssuer: Enum.PlayerOrderIssuer, unit: CNPC, orderQueueBehavior: integer, showEffects: boolean, triggerCallBack: boolean, isByMiniMap: boolean, addTime: number }[]`**</mark>
+
+Returns information about the current humanizer order queue.
+
+## <sub>IsSafeTarget</sub>
+
+`Humanizer.IsSafeTarget(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                               | Description |
+| ---------- | ------------------------------------------------------------------ | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](../core/entity) |             |
+
+Returns information about the current humanizer order queue.
+
+## <sub>ForceUserOrderByMinimap</sub>
+
+`Humanizer.ForceUserOrderByMinimap():` <mark style="color:purple;">**`nil`**</mark>
+
+Forces current user order by minimap. Must be called in OnPrepareUnitOrder

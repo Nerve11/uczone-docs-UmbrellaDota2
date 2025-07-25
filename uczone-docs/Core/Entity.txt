@@ -1,0 +1,436 @@
+# Entity
+
+Table to work with `CEntity`.
+
+<mark style="color:purple;">**`CEntity`**</mark> is base class for all entities in the game e.g. <mark style="color:purple;">**`CNPC`**</mark>, <mark style="color:purple;">**`Hero`**</mark>, <mark style="color:purple;">**`CPlayer`**</mark>, <mark style="color:purple;">**`CAbility`**</mark>
+
+## <sub>IsEntity</sub>
+
+`Entity.IsEntity(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is in entity list. Search in unordered set.
+
+## <sub>IsNPC</sub>
+
+`Entity.IsNPC(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is in NPC list. Search in unordered set.
+
+## <sub>IsHero</sub>
+
+`Entity.IsHero(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is in hero list. Search in unordered set.
+
+## <sub>IsPlayer</sub>
+
+`Entity.IsPlayer(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is in player list. Search in unordered set.
+
+## <sub>IsAbility</sub>
+
+`Entity.IsAbility(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is in ability list. Search in unordered set. Item is ability.
+
+## <sub>Get</sub>
+
+{% hint style="info" %}
+Not the same as Entities.Get(index). See example.
+{% endhint %}
+
+`Entity.Get(index):` [<mark style="color:purple;">**`CEntity`**</mark>](entity) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> |             |
+
+Returns entity by game index.
+
+#### Example
+
+```lua
+-- get_by_index.lua
+local hero = Heroes.GetLocal();
+local index = Entity.GetIndex(hero);
+local entity_by_index = Entity.Get(index);
+assert(hero == entity_by_index, "Entity.Get() is broken!"); -- true
+```
+
+## <sub>GetIndex</sub>
+
+`Entity.GetIndex(entity):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns game index of entity.
+
+## <sub>GetClassName</sub>
+
+`Entity.GetClassName(entity):` <mark style="color:purple;">**`string`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's class name.
+
+## <sub>GetUnitName</sub>
+
+`Entity.GetUnitName(entity):` <mark style="color:purple;">**`string`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's name.
+
+## <sub>GetUnitDesignerName</sub>
+
+`Entity.GetUnitDesignerName(entity):` <mark style="color:purple;">**`string`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's designerName field.
+
+## <sub>GetTeamNum</sub>
+
+`Entity.GetTeamNum(entity):` [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamnum)
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's team number.
+
+## <sub>IsSameTeam</sub>
+
+`Entity.IsSameTeam(entity1, entity2):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name        | Type                                                       | Description |
+| ----------- | ---------------------------------------------------------- | ----------- |
+| **entity1** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+| **entity2** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entities are in the same team.
+
+## <sub>GetAbsOrigin</sub>
+
+`Entity.GetAbsOrigin(entity):` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's position.
+
+## <sub>GetNetOrigin</sub>
+
+`Entity.GetNetOrigin(entity):` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's net position.
+
+## <sub>GetRotation</sub>
+
+`Entity.GetRotation(entity):` [<mark style="color:purple;">**`Angle`**</mark>](../../cheats-types-and-callbacks/classes/math/angle)
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's rotation.
+
+#### Example
+
+```lua
+-- forward_pos.lua
+return {
+    -- get local hero's forward position and draw a circle around it
+    OnUpdate = function ()
+        local hero = Heroes.GetLocal();
+        local rotation = Entity.GetRotation(hero);
+        -- forward_direction is a vector that points 100 units in direction of my hero's rotation
+        local forward_direction = rotation:GetForward():Normalized():Scaled(100);
+        -- add forward_direction to my hero's position to get the forward position
+        local forward_pos = Entity.GetAbsOrigin(hero) + forward_direction;
+        -- screen_x and screen_y are the coordinates of forward_pos on the screen
+        local screen_x, screen_y, is_on_screen = Renderer.WorldToScreen(forward_pos);
+        if is_on_screen then
+            -- draw a circle around the position
+            Renderer.SetDrawColor(255, 255, 255, 255);
+            Renderer.DrawFilledCircle(screen_x, screen_y, 10, 10);
+            -- result: https://i.imgur.com/ERf1Pxk.png
+        end
+    end
+}
+```
+
+## <sub>IsAlive</sub>
+
+`Entity.IsAlive(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is alive.
+
+## <sub>IsDormant</sub>
+
+`Entity.IsDormant(entity):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns `true` if the entity is not visible to the local player.
+
+## <sub>GetHealth</sub>
+
+`Entity.GetHealth(entity):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's health.
+
+## <sub>GetMaxHealth</sub>
+
+`Entity.GetMaxHealth(entity):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's max health.
+
+## <sub>GetOwner</sub>
+
+`Entity.GetOwner(entity):` [<mark style="color:purple;">**`CEntity`**</mark>](entity) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's owner or `nil` if the entity has no owner.\ e.g. for <mark style="color:purple;">**`CPlayer`**</mark> -> `npc_dota_hero_ember_spirit` -> `npc_dota_hero_ember_spirit_fire_remnant`\
+ownership chain `Entity.GetOwner(remnant)` will return Ember Spirit's entity.
+
+## <sub>OwnedBy</sub>
+
+`Entity.OwnedBy(entity, owner):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description            |
+| ---------- | ---------------------------------------------------------- | ---------------------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | - entity to check      |
+| **owner**  | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | - owner for comparison |
+
+Returns `true` if the entity is owned by another entity-owner. It will check the first owner only.
+
+## <sub>RecursiveGetOwner</sub>
+
+`Entity.RecursiveGetOwner(entity):` [<mark style="color:purple;">**`CEntity`**</mark>](entity) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                                       | Description |
+| ---------- | ---------------------------------------------------------- | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) |             |
+
+Returns the entity's last owner.\ e.g. for <mark style="color:purple;">**`CPlayer`**</mark> -> `npc_dota_hero_ember_spirit` -> `npc_dota_hero_ember_spirit_fire_remnant`\
+ownership chain `Entity.GetOwner(remnant)` will return <mark style="color:purple;">**`CPlayer`**</mark>.
+
+## <sub>RecursiveOwnedBy</sub>
+
+`Entity.RecursiveOwnedBy(entity, owner):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                                       | Description          |
+| ---------- | ---------------------------------------------------------- | -------------------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to check      |
+| **owner**  | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | owner for comparison |
+
+Returns `true` if the entity is owned by another entity-owner. It will check the whole ownership chain.
+
+## <sub>GetHeroesInRadius</sub>
+
+`Entity.GetHeroesInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CHero[]`**</mark>](hero)
+
+| Name                                                                | Type                                                                                                              | Description                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **entity**                                                          | [<mark style="color:purple;">**`CEntity`**</mark>](entity)                                                        | entity to get position                                                  |
+| **radius**                                                          | <mark style="color:purple;">**`number`**</mark>                                                                   | radius to search around                                                 |
+| **teamType&#x20;**<mark style="color:orange;">**`[?]`**</mark>      | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
+| **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                  | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                  | `true` if you want to get table without dormant units `(default: true)` |
+
+Returns an array of all alive and visible heroes in radius of the entity. Exclude illusion.
+
+#### Example
+
+```lua
+local hero = Heroes.GetLocal()
+-- get all enemy heroes in 1200 radius
+local heroes_around = Entity.GetHeroesInRadius(hero, 1200)
+for i = 1, #heroes_around do
+	local hero = heroes_around[i];
+	Log.Write(NPC.GetUnitName(hero) .. " is near!");
+end
+```
+
+## <sub>GetUnitsInRadius</sub>
+
+`Entity.GetUnitsInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CNPC[]`**</mark>](npc)
+
+| Name                                                                | Type                                                                                                              | Description                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **entity**                                                          | [<mark style="color:purple;">**`CEntity`**</mark>](entity)                                                        | entity to get position                                                  |
+| **radius**                                                          | <mark style="color:purple;">**`number`**</mark>                                                                   | radius to search around                                                 |
+| **teamType&#x20;**<mark style="color:orange;">**`[?]`**</mark>      | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
+| **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                  | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                  | `true` if you want to get table without dormant units `(default: true)` |
+
+Returns an array of all alive and visible NPCs in radius of the entity.
+
+#### Example
+
+```lua
+local hero = Heroes.GetLocal()
+-- get all ally NPCs in 1200 radius
+local units_around = Entity.GetUnitsInRadius(hero, 1200, Enum.TeamType.TEAM_FRIEND)
+for i = 1, #units_around do
+	local unit = units_around[i];
+	Log.Write(NPC.GetUnitName(unit) .. " is near!");
+end
+```
+
+## <sub>GetTreesInRadius</sub>
+
+{% hint style="info" %}
+Active means that tree is not destroyed.
+{% endhint %}
+
+`Entity.GetTreesInRadius(entity, radius, [active]):` [<mark style="color:purple;">**`CTree[]`**</mark>](tree)
+
+| Name                                                         | Type                                                       | Description                                                                                            |
+| ------------------------------------------------------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **entity**                                                   | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to get position                                                                                 |
+| **radius**                                                   | <mark style="color:purple;">**`number`**</mark>            | radius to search around                                                                                |
+| **active&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>           | `true` if you want to get table with active trees only, otherwise for inactive trees `(default: true)` |
+
+Returns an array of all not temporary trees in radius of the entity.
+
+#### Example
+
+```lua
+local hero = Heroes.GetLocal()
+-- get all trees in 400 radius
+local trees_around = Entity.GetTreesInRadius(hero, 400, true)
+for i = 1, #trees_around do
+	local tree = trees_around[i];
+	Log.Write(Entity.GetClassName(tree) .. " is near!");
+end
+```
+
+## <sub>GetTempTreesInRadius</sub>
+
+{% hint style="info" %}
+Temporary trees are trees planted by abilities or items.
+{% endhint %}
+
+\`Entity.GetTempTreesInRadius(entity, radius):\` \[<mark style="color:purple;">\*\*\`CTree\[]\`\*\*</mark>]\(Tree.md)
+
+| Name       | Type                                                       | Description             |
+| ---------- | ---------------------------------------------------------- | ----------------------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to get position  |
+| **radius** | <mark style="color:purple;">**`number`**</mark>            | radius to search around |
+
+Returns an array of all temporary trees in radius of the entity.
+
+#### Example
+
+```lua
+local hero = Heroes.GetLocal()
+-- get all trees in 400 radius
+local trees_around = Entity.GetTempTreesInRadius(hero, 400)
+for i = 1, #trees_around do
+	local tree = trees_around[i];
+	Log.Write(Entity.GetClassName(tree) .. " is near!");
+end
+```
+
+## <sub>IsControllableByPlayer</sub>
+
+`Entity.IsControllableByPlayer(entity, playerId):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name         | Type                                                       | Description     |
+| ------------ | ---------------------------------------------------------- | --------------- |
+| **entity**   | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to check |
+| **playerId** | <mark style="color:purple;">**`integer`**</mark>           | player id       |
+
+Returns `true` if entity is controllable by player.
+
+## <sub>GetRoshanHealth</sub>
+
+`Entity.GetRoshanHealth():` <mark style="color:purple;">**`integer`**</mark>
+
+Returns Roshan's health. Onyly works in unsafe mode.
+
+## <sub>GetForwardPosition</sub>
+
+`Entity.GetForwardPosition(entity, distance):` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+| Name         | Type                                                       | Description              |
+| ------------ | ---------------------------------------------------------- | ------------------------ |
+| **entity**   | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to get position   |
+| **distance** | <mark style="color:purple;">**`number`**</mark>            | distance to move forward |
+
+Returns position in front of entity or (0,0,0) if entity is invalid.
+
+## <sub>GetClassID</sub>
+
+`Entity.GetClassID(entity):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name       | Type                                                       | Description            |
+| ---------- | ---------------------------------------------------------- | ---------------------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to get class id |
+
+Returns entity class id. Could be as a optimized way to check entity type.
+
+## <sub>GetField</sub>
+
+`Entity.GetField(entity, fieldName, [dbgPrint]):` <mark style="color:purple;">**`any`**</mark>
+
+| Name                                                           | Type                                                       | Description                              |
+| -------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------- |
+| **entity**                                                     | [<mark style="color:purple;">**`CEntity`**</mark>](entity) | entity to get field from                 |
+| **fieldName**                                                  | <mark style="color:purple;">**`string`**</mark>            | field name                               |
+| **dbgPrint&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>           | print possible errors `(default: false)` |
+
+Returns value of the field.

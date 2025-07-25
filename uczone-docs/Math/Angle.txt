@@ -1,0 +1,87 @@
+# Angle
+
+Angle metatable
+
+### Fields
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **pitch** | <mark style="color:purple;">**`number`**</mark> |             |
+| **yaw**   | <mark style="color:purple;">**`number`**</mark> |             |
+| **roll**  | <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>Angle</sub>
+
+`Angle([pitch], [yaw], [roll]):` [<mark style="color:purple;">**`Angle`**</mark>](angle)
+
+| Name                                                        | Type                                            | Description      |
+| ----------------------------------------------------------- | ----------------------------------------------- | ---------------- |
+| **pitch&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
+| **yaw&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
+| **roll&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
+
+Create a new Angle.
+
+## <sub>\_\_tostring</sub>
+
+`:__tostring():` <mark style="color:purple;">**`string`**</mark>
+
+## <sub>GetForward</sub>
+
+`:GetForward():` [<mark style="color:purple;">**`Vector`**</mark>](vector)
+
+Returns the forward vector from a given Angle.
+
+## <sub>GetVectors</sub>
+
+`:GetVectors():` [<mark style="color:purple;">**`Vector`**</mark>](vector), [<mark style="color:purple;">**`Vector`**</mark>](vector), [<mark style="color:purple;">**`Vector`**</mark>](vector)
+
+Returns the forward, right and up.
+
+## <sub>GetYaw</sub>
+
+`:GetYaw():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the yaw. The same as Angle.yaw.
+
+## <sub>GetRoll</sub>
+
+`:GetRoll():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the roll. The same as Angle.roll.
+
+## <sub>GetPitch</sub>
+
+`:GetPitch():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the pitch. The same as Angle.pitch.
+
+## <sub>SetYaw</sub>
+
+`:SetYaw(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **value** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets the yaw. The same as Angle.yaw = value.
+
+## <sub>SetRoll</sub>
+
+`:SetRoll(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **value** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets the roll. The same as Angle.roll = value.
+
+## <sub>SetPitch</sub>
+
+`:SetPitch(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **value** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets the pitch. The same as Angle.pitch = value.

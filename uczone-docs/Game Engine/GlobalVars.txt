@@ -1,0 +1,51 @@
+# GlobalVars
+
+Talbe to work with game's global variables.
+
+## <sub>GetFrameCount</sub>
+
+`GlobalVars.GetFrameCount():` <mark style="color:purple;">**`integer`**</mark>
+
+Returns absolute frame counter. Continues to increase even if game is paused.
+
+## <sub>GetAbsFrameTime</sub>
+
+`GlobalVars.GetAbsFrameTime():` <mark style="color:purple;">**`number`**</mark>
+
+Returns absolute frame time.
+
+## <sub>GetAbsFrameTimeDev</sub>
+
+`GlobalVars.GetAbsFrameTimeDev():` <mark style="color:purple;">**`number`**</mark>
+
+Returns absolute frame time. No idea what's the difference between this and `GetAbsFrameTime`.
+
+## <sub>GetMapName</sub>
+
+`GlobalVars.GetMapName():` <mark style="color:purple;">**`string`**</mark>
+
+Returns full name of the current map. For example, "maps/dota.vpk" or "maps/hero\_demo\_main.vpk".
+
+## <sub>GetMapGroupName</sub>
+
+`GlobalVars.GetMapGroupName():` <mark style="color:purple;">**`string`**</mark>
+
+Returns short name of the current map. For example, "dota" or "hero\_demo\_main".
+
+## <sub>GetCurTime</sub>
+
+`GlobalVars.GetCurTime():` <mark style="color:purple;">**`number`**</mark>
+
+TODO
+
+## <sub>GetServerTick</sub>
+
+`GlobalVars.GetServerTick():` <mark style="color:purple;">**`integer`**</mark>
+
+TODO
+
+## <sub>GetIntervalPerTick</sub>
+
+`GlobalVars.GetIntervalPerTick():` <mark style="color:purple;">**`number`**</mark>
+
+TODO

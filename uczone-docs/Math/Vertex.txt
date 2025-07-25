@@ -1,0 +1,62 @@
+# Vertex
+
+Vertex metatable
+
+### Fields
+
+| Name    | Type                                                  | Description |
+| ------- | ----------------------------------------------------- | ----------- |
+| **pos** | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) | screen pos  |
+| **uv**  | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) | texture uv  |
+
+## <sub>Vertex</sub>
+
+`Vertex(pos, uv):` [<mark style="color:purple;">**`Vertex`**</mark>](vertex)
+
+| Name    | Type                                                  | Description |
+| ------- | ----------------------------------------------------- | ----------- |
+| **pos** | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) |             |
+| **uv**  | [<mark style="color:purple;">**`Vec2`**</mark>](vec2) |             |
+
+Create a new Vertex.
+
+## <sub>Vertex</sub>
+
+`Vertex(posx, posy, uvx, uvy):` [<mark style="color:purple;">**`Vertex`**</mark>](vertex)
+
+| Name     | Type                                            | Description |
+| -------- | ----------------------------------------------- | ----------- |
+| **posx** | <mark style="color:purple;">**`number`**</mark> |             |
+| **posy** | <mark style="color:purple;">**`number`**</mark> |             |
+| **uvx**  | <mark style="color:purple;">**`number`**</mark> |             |
+| **uvy**  | <mark style="color:purple;">**`number`**</mark> |             |
+
+Create a new Vertex(0,0).
+
+## <sub>\_\_tostring</sub>
+
+`:__tostring():` <mark style="color:purple;">**`string`**</mark>
+
+## <sub>\_\_add</sub>
+
+{% hint style="info" %}
+Overload for operator +
+{% endhint %}
+
+`:__add(other):` [<mark style="color:purple;">**`Vertex`**</mark>](vertex)
+
+| Name      | Type                                                                                                         | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| **other** | [<mark style="color:purple;">**`Vertex`**</mark>](vertex) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>\_\_sub</sub>
+
+{% hint style="info" %}
+Overload for operator -
+{% endhint %}
+
+\`:\_\_sub(other):\` \[<mark style="color:purple;">\*\*\`Vertex\`\*\*</mark>]\(Vertex.md)
+
+| Name      | Type                                                                                                         | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| **other** | [<mark style="color:purple;">**`Vertex`**</mark>](vertex) \| <mark style="color:purple;">**`number`**</mark> |             |

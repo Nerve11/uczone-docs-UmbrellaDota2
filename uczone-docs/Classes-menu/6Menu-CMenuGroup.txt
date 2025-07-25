@@ -1,0 +1,306 @@
+# CMenuGroup
+
+CMenuGroup metatable
+
+## <sub>Name</sub>
+
+`:Name():` <mark style="color:purple;">**`string`**</mark>
+
+Returns group's name.
+
+## <sub>Parent</sub>
+
+`:Parent():` [<mark style="color:purple;">**`CThirdTab`**</mark>](cthirdtab)
+
+Returns group's parent.
+
+## <sub>Type</sub>
+
+`:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](../../../enums#enum.widgettype)
+
+Returns widget type.
+
+## <sub>Open</sub>
+
+`:Open():` <mark style="color:purple;">**`nil`**</mark>
+
+Opens parent tabs.
+
+## <sub>Find</sub>
+
+`:Find(widgetName):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](../widgets/cmenuswitch) | [<mark style="color:purple;">**`CMenuBind`**</mark>](../widgets/cmenubind) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](../widgets/cmenusliderfloat) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](../widgets/cmenusliderint) | [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](../widgets/cmenucolorpicker) | [<mark style="color:purple;">**`CMenuComboBox`**</mark>](../widgets/cmenucombobox) | [<mark style="color:purple;">**`CMenuButton`**</mark>](../widgets/cmenubutton) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](../widgets/cmenumulticombobox) | [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](../widgets/cmenumultiselect) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](../widgets/cmenuinputbox) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/menu/CMenuLabel.md) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name           | Type                                            | Description |
+| -------------- | ----------------------------------------------- | ----------- |
+| **widgetName** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Finds the widget by name.
+
+## <sub>Switch</sub>
+
+`:Switch(switchName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](../widgets/cmenuswitch)
+
+| Name                                                               | Type                                             | Description                                                |
+| ------------------------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------------------- |
+| **switchName**                                                     | <mark style="color:purple;">**`string`**</mark>  |                                                            |
+| **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | `(default: false)`                                         |
+| **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>  | Path to image or FontAwesome icon unicode. `(default: "")` |
+
+Creates new `CMenuSwitch`.
+
+## <sub>Bind</sub>
+
+`:Bind(bindName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuBind`**</mark>](../widgets/cmenubind)
+
+| Name                                                               | Type                                                                                       | Description                                                |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| **bindName**                                                       | <mark style="color:purple;">**`string`**</mark>                                            |                                                            |
+| **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../enums#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
+| **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                            | Path to image or FontAwesome icon unicode. `(default: "")` |
+
+Creates new `CMenuBind`.
+
+## <sub>Slider</sub>
+
+`:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](../widgets/cmenusliderint)
+
+| Name                                                         | Type                                                                                                                   | Description                                                               |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **sliderName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                        |                                                                           |
+| **minValue**                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
+| **maxValue**                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
+| **defaultValue**                                             | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
+| **format&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`fun(value: integer):string`**</mark> | Format string or function to format value. See example. `(default: "%d")` |
+
+Creates new `CMenuSliderInt` or `CMenuSliderFloat` depents on arg types.\
+`minValue`, `maxValue` and `defaultValue` should be integer to create `CMenuSliderInt`.
+
+#### Example
+
+```lua
+-- Create slider with integer values
+group:Slider( "slider", 0, 100, 50, "%d" )
+-- Create slider with integer values and custom format function
+group:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- turns into
+"50%"
+```
+
+## <sub>Slider</sub>
+
+`:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](../widgets/cmenusliderfloat)
+
+| Name                                                         | Type                                                                                                                  | Description                                                               |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **sliderName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                       |                                                                           |
+| **minValue**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
+| **maxValue**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
+| **defaultValue**                                             | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
+| **format&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`fun(value: number):string`**</mark> | Format string or function to format value. See example. `(default: "%f")` |
+
+Creates new `CMenuSliderFloat`.
+
+#### Example
+
+```lua
+-- Create slider with float values
+group:Slider( "slider", 0.0, 1.0, 0.5, "%.2f" ) -- turns into "0.50"
+-- Create slider with float values and custom format function
+group:Slider( "slider", 0.0, 100.0, 50.0, function( value )
+	if value < 50 then
+		return "Low(%f)"
+	else
+		return "High(%f)"
+  end
+end )
+```
+
+## <sub>ColorPicker</sub>
+
+`:ColorPicker(colorPickerName, color, [imageIcon]):` [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](../widgets/cmenucolorpicker)
+
+| Name                                                            | Type                                                       | Description                                                |
+| --------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| **colorPickerName**                                             | <mark style="color:purple;">**`string`**</mark>            |                                                            |
+| **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](../color) |                                                            |
+| **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark>            | Path to image or FontAwesome icon unicode. `(default: "")` |
+
+Creates new `CMenuColorPicker`.
+
+## <sub>Button</sub>
+
+`:Button(buttonName, callback, [altStyle], [widthPercent]):` [<mark style="color:purple;">**`CMenuButton`**</mark>](../widgets/cmenubutton)
+
+| Name                                                               | Type                                              | Description                                                     |
+| ------------------------------------------------------------------ | ------------------------------------------------- | --------------------------------------------------------------- |
+| **buttonName**                                                     | <mark style="color:purple;">**`string`**</mark>   |                                                                 |
+| **callback**                                                       | <mark style="color:purple;">**`function`**</mark> | `func(this: CMenuButton):nil` function to call on button click. |
+| **altStyle&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>  | Use alternative button style. `(default: false)`                |
+| **widthPercent&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>   | Button width in percents. \[0.0, 1.0] `(default: 1.0)`          |
+
+Creates new `CMenuButton`.
+
+#### Example
+
+```lua
+group:Button( "button", function( this )
+	Log.Write( "Button '" .. this:Name() .. "' has been clicked."  )
+end )
+```
+
+## <sub>Combo</sub>
+
+`:Combo(comboName, items, [defaultValue]):` [<mark style="color:purple;">**`CMenuComboBox`**</mark>](../widgets/cmenucombobox)
+
+| Name                                                               | Type                                              | Description                                           |
+| ------------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------- |
+| **comboName**                                                      | <mark style="color:purple;">**`string`**</mark>   |                                                       |
+| **items**                                                          | <mark style="color:purple;">**`string[]`**</mark> |                                                       |
+| **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark>  | Index of default item. (starts from 0) `(default: 0)` |
+
+Creates new `CMenuComboBox`.
+
+## <sub>MultiCombo</sub>
+
+`:MultiCombo(multiComboName, items, enabledItems):` [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](../widgets/cmenumulticombobox)
+
+| Name               | Type                                              | Description            |
+| ------------------ | ------------------------------------------------- | ---------------------- |
+| **multiComboName** | <mark style="color:purple;">**`string`**</mark>   |                        |
+| **items**          | <mark style="color:purple;">**`string[]`**</mark> |                        |
+| **enabledItems**   | <mark style="color:purple;">**`string[]`**</mark> | table of enabled items |
+
+Creates new `CMenuMultiComboBox`.
+
+#### Example
+
+```lua
+group:MultiCombo( "multiCombo", { "item1", "item2", "item3" }, { "item1", "item3" } )
+```
+
+## <sub>MultiSelect</sub>
+
+`:MultiSelect(multiSelectName, items, [expanded]):` [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](../widgets/cmenumultiselect)
+
+| Name                                                           | Type                                                                                               | Description                                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **multiSelectName**                                            | <mark style="color:purple;">**`string`**</mark>                                                    |                                                                                |
+| **items**                                                      | <mark style="color:purple;">**`{nameId: string, imagePath: string, isEnabled: boolean}[]`**</mark> | See example.                                                                   |
+| **expanded&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                   | false if you want to create MultiSelect in collapsed state. `(default: false)` |
+
+Creates new `CMenuMultiSelect`.
+
+#### Example
+
+```lua
+group:MultiSelect( "multiSelect", {
+ 	{ "1", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
+ 	{ "2", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
+}, true )
+```
+
+## <sub>Input</sub>
+
+`:Input(inputName, defaultValue, [imageIcon]):` [<mark style="color:purple;">**`CMenuInputBox`**</mark>](../widgets/cmenuinputbox)
+
+| Name                                                            | Type                                            | Description                                                |
+| --------------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------- |
+| **inputName**                                                   | <mark style="color:purple;">**`string`**</mark> |                                                            |
+| **defaultValue**                                                | <mark style="color:purple;">**`string`**</mark> |                                                            |
+| **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | Path to image or FontAwesome icon unicode. `(default: "")` |
+
+Creates new `CMenuInputBox`.
+
+## <sub>Label</sub>
+
+`:Label(labelText, [imageIcon]):` [<mark style="color:purple;">**`CMenuLabel`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/menu/CMenuLabel.md)
+
+| Name                                                            | Type                                            | Description                                                |
+| --------------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------- |
+| **labelText**                                                   | <mark style="color:purple;">**`string`**</mark> |                                                            |
+| **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | Path to image or FontAwesome icon unicode. `(default: "")` |
+
+Creates new `CMenuLabel`.
+
+## <sub>Disabled</sub>
+
+`:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets group's disabled state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+group:Disabled( false )
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isDisabled = group:Disabled()
+```
+
+## <sub>Visible</sub>
+
+`:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets group's visible state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+group:Visible(false)
+```
+
+## <sub>Visible</sub>
+
+`:Visible():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isVisible = group:Visible()
+```
+
+## <sub>SearchHidden</sub>
+
+`:SearchHidden(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets group's search state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+group:SearchHidden(false)
+```
+
+## <sub>SearchHidden</sub>
+
+`:SearchHidden():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isSearchHidden = group:SearchHidden()
+```

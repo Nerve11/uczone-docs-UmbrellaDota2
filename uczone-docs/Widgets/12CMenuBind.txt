@@ -1,0 +1,313 @@
+# CMenuBind
+
+CMenuBind metatable.
+
+## <sub>Name</sub>
+
+`:Name():` <mark style="color:purple;">**`string`**</mark>
+
+Returns widget's name.
+
+## <sub>Parent</sub>
+
+`:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](../menu/cmenugroup) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](cmenugearattachment)
+
+Returns widget's parent.
+
+## <sub>Type</sub>
+
+`:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](../../../enums#enum.widgettype)
+
+Returns widget's type.
+
+## <sub>Open</sub>
+
+`:Open():` <mark style="color:purple;">**`nil`**</mark>
+
+Opens parent tabs.
+
+## <sub>ForceLocalization</sub>
+
+{% hint style="info" %}
+Not recommended for use due to its complexity
+{% endhint %}
+
+`:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Changes text in the widget. The path to the widget is not affected.\
+May be used for dynamic text customization or recolor.
+
+## <sub>ToolTip</sub>
+
+`:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
+Depends on the argument.
+
+## <sub>ToolTip</sub>
+
+`:ToolTip():` <mark style="color:purple;">**`string`**</mark>
+
+## <sub>Visible</sub>
+
+`:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets visible state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+widget:Visible(false)
+```
+
+## <sub>Visible</sub>
+
+`:Visible():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isVisible = widget:Visible()
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets disabled state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+widget:Disabled( false )
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isDisabled = widget:Disabled()
+```
+
+## <sub>Unsafe</sub>
+
+`:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets unsafe state. Unsafe widgets have warning sign.\
+Depends on argument.
+
+## <sub>Unsafe</sub>
+
+`:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
+
+## <sub>Get</sub>
+
+`:Get([idx]):` [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../enums#enum.buttoncode)
+
+| Name                                                      | Type                                                                                     | Description                                          |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| **idx&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`0`**</mark> \| <mark style="color:purple;">**`1`**</mark> | index of the button to get value from `(default: 0)` |
+
+Returns widget's value. To get both of the buttons use `Buttons` method.
+
+## <sub>Set</sub>
+
+`:Set(key1, [key2]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                       | Type                                                                                       | Description                                                 |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| **key1**                                                   | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../enums#enum.buttoncode) | primary button code                                         |
+| **key2&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../enums#enum.buttoncode) | secondary button code `(default: Enum.ButtonCode.KEY_NONE)` |
+
+Sets widget's value.
+
+## <sub>Buttons</sub>
+
+`:Buttons():` [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../enums#enum.buttoncode), [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../enums#enum.buttoncode)
+
+Returns widget's buttons value.
+
+## <sub>IsDown</sub>
+
+`:IsDown():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` when the key or both keys is down.
+
+## <sub>IsPressed</sub>
+
+`:IsPressed():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` when the key or both keys is pressed for the first time.
+
+## <sub>IsToggled</sub>
+
+`:IsToggled():` <mark style="color:purple;">**`boolean`**</mark>
+
+Bind stores it's toggle state and switches it when the key is pressed. This method\
+returns this state.
+
+## <sub>SetToggled</sub>
+
+`:SetToggled(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Sets the toggle state manually.
+
+## <sub>Image</sub>
+
+`:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                          | Description                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>               | Path to the image.                             |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](../math/vec2) | Optional image offset. `(default: {0.0, 0.0})` |
+
+Sets widget's image.
+
+## <sub>ImageHandle</sub>
+
+`:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                          | Description                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>              |                                                |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](../math/vec2) | Optional image offset. `(default: {0.0, 0.0})` |
+
+Sets tab's image by already created handle.
+
+## <sub>Icon</sub>
+
+`:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                          | Description                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | <mark style="color:purple;">**`string`**</mark>               | icon unicode.                                 |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](../math/vec2) | Optional icon offset. `(default: {0.0, 0.0})` |
+
+Sets widget's icon.\
+[Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
+
+#### Example
+
+```lua
+--https://fontawesome.com/icons/user?f=classic&s=solid
+switch:Icon("\u{f007}")
+```
+
+## <sub>SetCallback</sub>
+
+{% hint style="info" %}
+Multiple callbacks could be set.
+{% endhint %}
+
+\`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+
+| Name                                                            | Type                                                              | Description                                                              |
+| --------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuBind):nil`**</mark> | function to be called on widget change.                                  |
+| **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                  | true if you want to call callback on widget creation. `(default: false)` |
+
+Sets widget's on change callback.
+
+## <sub>UnsetCallback</sub>
+
+`:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                                              | Description                                     |
+| ------------ | ----------------------------------------------------------------- | ----------------------------------------------- |
+| **callback** | <mark style="color:purple;">**`fun(this: CMenuBind):nil`**</mark> | function to be removed from widget's callbacks. |
+
+Removes widget's on change callback.
+
+## <sub>ColorPicker</sub>
+
+`:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](cmenucolorpickerattachment)
+
+| Name      | Type                                                       | Description             |
+| --------- | ---------------------------------------------------------- | ----------------------- |
+| **name**  | <mark style="color:purple;">**`string`**</mark>            | Name of the attachment. |
+| **color** | [<mark style="color:purple;">**`Color`**</mark>](../color) | Default color.          |
+
+Creates `CMenuColorPickerAttachment` and attaches it to the widget.
+
+## <sub>Gear</sub>
+
+`:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](cmenugearattachment)
+
+| Name                                                               | Type                                             | Description                                     |
+| ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
+| **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
+| **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
+| **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
+
+Creates `CMenuGearAttachment` and attaches it to the widget.
+
+## <sub>Properties</sub>
+
+`:Properties([name], [value], [markAsToggle]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                               | Type                                             | Description                                                                                                                                                                                                                |
+| ------------------------------------------------------------------ | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **name&#x20;**<mark style="color:orange;">**`[?]`**</mark>         | <mark style="color:purple;">**`string`**</mark>  | Overridden name to display in bind list. `(default: nil)`                                                                                                                                                                  |
+| **value&#x20;**<mark style="color:orange;">**`[?]`**</mark>        | <mark style="color:purple;">**`string`**</mark>  | Overridden value to display alongside the name in the bind list. This can be used to provide additional context about the bind. `(default: nil)`                                                                           |
+| **markAsToggle&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Indicates whether the bind should be marked as a toggle, which is particularly useful if the bind's functionality includes toggling states. Recommended to be used in conjunction with the IsToggled(). `(default: false)` |
+
+Updates the properties of a widget for display in the bind list.
+
+## <sub>ShowInBindIsland</sub>
+
+`:ShowInBindIsland(newStatus):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name          | Type                                             | Description |
+| ------------- | ------------------------------------------------ | ----------- |
+| **newStatus** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets the visibility of the bind in the bind island.
+
+## <sub>ShowInBindIsland</sub>
+
+`:ShowInBindIsland():` <mark style="color:purple;">**`boolean`**</mark>
+
+## <sub>MouseBinding</sub>
+
+`:MouseBinding(newStatus):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name          | Type                                             | Description |
+| ------------- | ------------------------------------------------ | ----------- |
+| **newStatus** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets the ability to bind the mouse button.
+
+## <sub>MouseBinding</sub>
+
+`:MouseBinding():` <mark style="color:purple;">**`boolean`**</mark>

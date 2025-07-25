@@ -1,0 +1,107 @@
+# Input
+
+Table to work with input system.
+
+## <sub>GetWorldCursorPos</sub>
+
+`Input.GetWorldCursorPos():` [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector)
+
+Returns world cursor position.
+
+## <sub>GetCursorPos</sub>
+
+`Input.GetCursorPos():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns screen cursor position (x, y). See example.
+
+#### Example
+
+```lua
+local x, y =	Input.GetCursorPos()
+```
+
+## <sub>IsCursorInRect</sub>
+
+`Input.IsCursorInRect(x, y, w, h):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> | x position  |
+| **y** | <mark style="color:purple;">**`number`**</mark> |             |
+| **w** | <mark style="color:purple;">**`number`**</mark> | width       |
+| **h** | <mark style="color:purple;">**`number`**</mark> | height      |
+
+Returns `true` if cursor is in rect.
+
+## <sub>IsCursorInBounds</sub>
+
+`Input.IsCursorInBounds(x0, y0, x1, y1):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name   | Type                                            | Description |
+| ------ | ----------------------------------------------- | ----------- |
+| **x0** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y0** | <mark style="color:purple;">**`number`**</mark> |             |
+| **x1** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y1** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Returns `true` if cursor is in bounds.
+
+## <sub>GetNearestUnitToCursor</sub>
+
+{% hint style="info" %}
+Excludes not visible, illusions and dead units.
+{% endhint %}
+
+`Input.GetNearestUnitToCursor(teamNum, teamType):` [<mark style="color:purple;">**`CNPC`**</mark>](../core/npc) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                                                                                              | Description                                        |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| **teamNum**  | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
+| **teamType** | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamtype) | team type to search relative to teamNum param      |
+
+Returns nearest unit to cursor.
+
+## <sub>GetNearestHeroToCursor</sub>
+
+{% hint style="info" %}
+Excludes not visible, illusions and dead heroes.
+{% endhint %}
+
+`Input.GetNearestHeroToCursor(teamNum, teamType):` [<mark style="color:purple;">**`CHero`**</mark>](../core/hero) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                                                                                              | Description                                        |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| **teamNum**  | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
+| **teamType** | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](../../../cheats-types-and-callbacks/enums#enum.teamtype) | team type to search relative to teamNum param      |
+
+Returns nearest hero to cursor.
+
+## <sub>IsInputCaptured</sub>
+
+`Input.IsInputCaptured():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if input is captured. e.g. opened console, chat, shop.
+
+## <sub>IsKeyDown</sub>
+
+`Input.IsKeyDown(KeyCode):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name        | Type                                                                                                                  | Description |
+| ----------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **KeyCode** | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../cheats-types-and-callbacks/enums#enum.buttoncode) |             |
+
+Returns `true` if key is down.
+
+## <sub>IsKeyDownOnce</sub>
+
+{% hint style="info" %}
+This function will return \`true\` only once per key press.
+{% endhint %}
+
+\`Input.IsKeyDownOnce(KeyCode):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
+
+| Name        | Type                                                                                                                  | Description |
+| ----------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **KeyCode** | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](../../../cheats-types-and-callbacks/enums#enum.buttoncode) |             |
+
+Return `true` if key is down once.

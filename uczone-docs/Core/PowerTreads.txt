@@ -1,0 +1,13 @@
+# PowerTreads
+
+Table to work with `CPowerTreads`.<mark style="color:purple;">**`CTower`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
+
+## <sub>GetStats</sub>
+
+`PowerTreads.GetStats(power_tread):` [<mark style="color:purple;">**`Enum.Attributes`**</mark>](../../../cheats-types-and-callbacks/enums#enum.attributes)
+
+| Name             | Type                                                                 | Description |
+| ---------------- | -------------------------------------------------------------------- | ----------- |
+| **power\_tread** | [<mark style="color:purple;">**`CPowerTreads`**</mark>](powertreads) |             |
+
+Returns selected `Enum.Attributes` attribute.

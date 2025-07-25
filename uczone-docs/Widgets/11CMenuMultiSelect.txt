@@ -1,0 +1,307 @@
+# CMenuMultiSelect
+
+CMenuMultiSelect metatable.
+
+## <sub>Name</sub>
+
+`:Name():` <mark style="color:purple;">**`string`**</mark>
+
+Returns widget's name.
+
+## <sub>Update</sub>
+
+`:Update(items, [expanded], [saveToConfig]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                               | Type                                                                                               | Description                                                                    |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| **items**                                                          | <mark style="color:purple;">**`{nameId: string, imagePath: string, isEnabled: boolean}[]`**</mark> | See `CMenuGroup:MultiSelect`.                                                  |
+| **expanded&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                                                   | false if you want to create MultiSelect in collapsed state. `(default: false)` |
+| **saveToConfig&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                   | true if you want to save to config `(default: false)`                          |
+
+Updates the multiselect values.
+
+## <sub>OneItemSelection</sub>
+
+`:OneItemSelection(newState):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name         | Type                                             | Description |
+| ------------ | ------------------------------------------------ | ----------- |
+| **newState** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets one item selection state. One item selection allows only one item to be\
+selected. Depends on the argument.
+
+## <sub>OneItemSelection</sub>
+
+`:OneItemSelection():` <mark style="color:purple;">**`boolean`**</mark>
+
+## <sub>DragAllowed</sub>
+
+`:DragAllowed(newState):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name         | Type                                             | Description |
+| ------------ | ------------------------------------------------ | ----------- |
+| **newState** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets drag allowed state. Drag allows items to be ordered by cursor.\
+Depends on the argument.
+
+## <sub>DragAllowed</sub>
+
+`:DragAllowed():` <mark style="color:purple;">**`boolean`**</mark>
+
+## <sub>Parent</sub>
+
+`:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](../menu/cmenugroup) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](cmenugearattachment)
+
+Returns widget's parent.
+
+## <sub>Type</sub>
+
+`:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](../../../enums#enum.widgettype)
+
+Returns widget type.
+
+## <sub>Open</sub>
+
+`:Open():` <mark style="color:purple;">**`nil`**</mark>
+
+Opens parent tabs.
+
+## <sub>ForceLocalization</sub>
+
+{% hint style="info" %}
+Not recommended for use due to its complexity
+{% endhint %}
+
+`:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Changes text in the widget. The path to the widget is not affected.\
+May be used for dynamic text customization or recolor.
+
+## <sub>ToolTip</sub>
+
+`:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
+Depends on the argument.
+
+## <sub>ToolTip</sub>
+
+`:ToolTip():` <mark style="color:purple;">**`string`**</mark>
+
+## <sub>Visible</sub>
+
+`:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets visible state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+widget:Visible(false)
+```
+
+## <sub>Visible</sub>
+
+`:Visible():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isVisible = widget:Visible()
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets disabled state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+widget:Disabled( false )
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isDisabled = widget:Disabled()
+```
+
+## <sub>Unsafe</sub>
+
+`:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets unsafe state. Unsafe widgets have warning sign.\
+Depends on argument.
+
+## <sub>Unsafe</sub>
+
+`:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
+
+## <sub>Get</sub>
+
+`:Get(itemId):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                            | Description |
+| ---------- | ----------------------------------------------- | ----------- |
+| **itemId** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Returns enable state of the item in multiselect.
+
+## <sub>Set</sub>
+
+`:Set(enabledItems):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name             | Type                                              | Description                                             |
+| ---------------- | ------------------------------------------------- | ------------------------------------------------------- |
+| **enabledItems** | <mark style="color:purple;">**`string[]`**</mark> | A table of enabled items; other items will be disabled. |
+
+Sets a new value for the item by itemId or sets a new list of enabled items
+
+## <sub>Set</sub>
+
+`:Set(itemId, value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                             | Description |
+| ---------- | ------------------------------------------------ | ----------- |
+| **itemId** | <mark style="color:purple;">**`string`**</mark>  |             |
+| **value**  | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+## <sub>List</sub>
+
+`:List():` <mark style="color:purple;">**`string[]`**</mark>
+
+Returns array of itemIds.
+
+## <sub>ListEnabled</sub>
+
+`:ListEnabled():` <mark style="color:purple;">**`string[]`**</mark>
+
+Returns array of enabled itemIds.
+
+## <sub>Image</sub>
+
+`:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                          | Description                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>               | Path to the image.                             |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](../math/vec2) | Optional image offset. `(default: {0.0, 0.0})` |
+
+Sets widget's image.
+
+## <sub>ImageHandle</sub>
+
+`:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                          | Description                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>              |                                                |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](../math/vec2) | Optional image offset. `(default: {0.0, 0.0})` |
+
+Sets tab's image by already created handle.
+
+## <sub>Icon</sub>
+
+`:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                          | Description                                   |
+| ------------------------------------------------------------ | ------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | <mark style="color:purple;">**`string`**</mark>               | icon unicode.                                 |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](../math/vec2) | Optional icon offset. `(default: {0.0, 0.0})` |
+
+Sets widget's icon.\
+[Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
+
+#### Example
+
+```lua
+--https://fontawesome.com/icons/user?f=classic&s=solid
+widget:Icon("\u{f007}")
+```
+
+## <sub>SetCallback</sub>
+
+{% hint style="info" %}
+Multiple callbacks could be set.
+{% endhint %}
+
+\`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+
+| Name                                                            | Type                                                                     | Description                                                              |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuMultiSelect):nil`**</mark> | function to be called on widget change.                                  |
+| **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                         | true if you want to call callback on widget creation. `(default: false)` |
+
+Sets widget's on change callback.
+
+## <sub>UnsetCallback</sub>
+
+`:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                                                     | Description                                     |
+| ------------ | ------------------------------------------------------------------------ | ----------------------------------------------- |
+| **callback** | <mark style="color:purple;">**`fun(this: CMenuMultiSelect):nil`**</mark> | function to be removed from widget's callbacks. |
+
+Removes widget's on change callback.
+
+## <sub>UpdateBackgroundColors</sub>
+
+`:UpdateBackgroundColors(colors):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                                   | Description                   |
+| ---------- | ------------------------------------------------------ | ----------------------------- |
+| **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with background colors. |
+
+Updates widget's background colors.
+
+## <sub>UpdateImageColors</sub>
+
+`:UpdateImageColors(colors):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                                   | Description              |
+| ---------- | ------------------------------------------------------ | ------------------------ |
+| **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with image colors. |
+
+Updates widget's image colors.
+
+## <sub>UpdateToolTips</sub>
+
+`:UpdateToolTips(colors):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name       | Type                                                   | Description             |
+| ---------- | ------------------------------------------------------ | ----------------------- |
+| **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with new tooltips |
+
+Updates widget's tooltips

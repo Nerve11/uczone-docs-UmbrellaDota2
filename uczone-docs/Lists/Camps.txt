@@ -1,0 +1,46 @@
+# Camps
+
+Table to work with list of neutral spawners.
+
+## <sub>Count</sub>
+
+`Camps.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of neutral spawner list.
+
+## <sub>Get</sub>
+
+`Camps.Get(index):` [<mark style="color:purple;">**`CCamp`**</mark>](../core/camp) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                             |
+| --------- | ------------------------------------------------ | --------------------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of neutral spawner in cheat list. |
+
+Return neutral spawner by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`Camps.GetAll():` [<mark style="color:purple;">**`CCamp[]`**</mark>](../core/camp)
+
+Return all neutral spawners in cheat list.
+
+## <sub>InRadius</sub>
+
+`Camps.InRadius(pos, radius):` [<mark style="color:purple;">**`CCamp[]`**</mark>](../core/camp)
+
+| Name       | Type                                                                                                    | Description        |
+| ---------- | ------------------------------------------------------------------------------------------------------- | ------------------ |
+| **pos**    | [<mark style="color:purple;">**`Vector`**</mark>](../../cheats-types-and-callbacks/classes/math/vector) | Position to check. |
+| **radius** | <mark style="color:purple;">**`number`**</mark>                                                         | Radius to check.   |
+
+Return all neutral spawners in radius.
+
+## <sub>Contains</sub>
+
+`Camps.Contains(camp):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name     | Type                                                           | Description               |
+| -------- | -------------------------------------------------------------- | ------------------------- |
+| **camp** | [<mark style="color:purple;">**`CCamp`**</mark>](../core/camp) | Neutral spawner to check. |
+
+Check neutral spawner in cheat list.
