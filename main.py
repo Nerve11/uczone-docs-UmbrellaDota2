@@ -1,9 +1,7 @@
 import requests
 import time
-from bs4 import BeautifulSoup
-from markdownify import markdownify as md
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import List, Optional
 from dataclasses import dataclass
 
 OUTPUT_FILE = "DocumentationUCZONE.md"
@@ -151,31 +149,38 @@ PAGE_GROUPS = [
 ]
 
 
-def get_clean_content(url: str) -> Optional[str]:
-    """Извлекает чистый Markdown-контент из GitBook страницы"""
+def get_markdown_content(url: str) -> Optional[str]:
+    """
+    Получает чистый Markdown напрямую из GitBook.
+    GitBook поддерживает .md URL для прямого доступа к исходному Markdown.
+    """
     try:
+        # Конвертируем HTML URL в Markdown URL
+        markdown_url = url if url.endswith('.md') else f"{url}.md"
+        
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        # Основной контент в <main>
-        main_content = soup.find('main')
-        if not main_content:
-            return None
-
-        # Удаляем навигацию и мусор
-        for element in main_content.find_all(['nav', 'footer']):
-            element.decompose()
-        for link in main_content.find_all('a', class_=lambda x: x and 'pagination' in str(x)):
-            link.decompose()
         
-        # Конвертация в Markdown
-        markdown_text = md(str(main_content), heading_style="ATX")
-        return markdown_text.strip()
+        response = requests.get(markdown_url, headers=headers, timeout=15)
+        response.raise_for_status()
+        
+        # GitBook возвращает чистый Markdown
+        content = response.text.strip()
+        
+        # Проверяем, что получили Markdown, а не HTML
+        if content.startswith('<!DOCTYPE') or content.startswith('<html'):
+            print(f"⚠️  Получен HTML вместо Markdown для {url}")
+            return None
+            
+        return content
 
+    except requests.exceptions.HTTPError as e:
+        if e.response.status_code == 404:
+            print(f"⚠️  Markdown недоступен для {url}, пробуем альтернативный метод...")
+            return None
+        print(f"❌ HTTP ошибка {e.response.status_code} для {url}")
+        return None
     except Exception as e:
         print(f"❌ Ошибка при обработке {url}: {e}")
         return None
@@ -196,6 +201,7 @@ def generate_toc(groups: List[PageGroup]) -> str:
 def main():
     total_pages = sum(len(group.urls) for group in PAGE_GROUPS)
     print(f"🚀 Начинаем парсинг {total_pages} страниц в {len(PAGE_GROUPS)} групп...")
+    print("📝 Используем прямой доступ к Markdown через GitBook API\n")
     
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         # Заголовок документа
@@ -209,6 +215,8 @@ def main():
         
         # Обрабатываем группы
         processed = 0
+        success_count = 0
+        
         for group_idx, group in enumerate(PAGE_GROUPS, 1):
             # Заголовок группы
             heading_level = "#" * (group.level + 1)
@@ -219,15 +227,18 @@ def main():
                 processed += 1
                 print(f"[{processed}/{total_pages}] Группа '{group.title}' ({url_idx}/{len(group.urls)}): {url}")
                 
-                content = get_clean_content(url)
+                content = get_markdown_content(url)
                 
                 if content:
                     # Добавляем якорь источника
                     f.write(f"<!-- Source: {url} -->\n\n")
                     f.write(content)
                     f.write("\n\n")
+                    success_count += 1
+                    print(f"   ✅ Успешно загружено ({len(content)} символов)")
                 else:
                     f.write(f"> ⚠️ Не удалось загрузить: {url}\n\n")
+                    print(f"   ❌ Ошибка загрузки")
                 
                 time.sleep(0.3)  # Защита от блокировки
             
@@ -237,7 +248,8 @@ def main():
 
     print(f"\n✅ Готово! Файл сохранён: {OUTPUT_FILE}")
     print(f"📊 Обработано групп: {len(PAGE_GROUPS)}")
-    print(f"📄 Обработано страниц: {total_pages}")
+    print(f"📄 Успешно загружено: {success_count}/{total_pages} страниц")
+    print(f"⚠️  Ошибок: {total_pages - success_count}")
 
 
 if __name__ == "__main__":
