@@ -6,6 +6,9 @@ on:
     - cron: '0 3 * * 0'
   workflow_dispatch: # Ручной запуск
 
+permissions:
+  contents: write
+
 jobs:
   update-docs:
     runs-on: ubuntu-latest
@@ -14,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: true
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -25,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests beautifulsoup4 markdownify
+          pip install -r requirements.txt
       
       - name: Run parser
         run: |
