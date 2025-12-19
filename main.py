@@ -1,5 +1,7 @@
 import requests
 import time
+from bs4 import BeautifulSoup
+from markdownify import markdownify as md
 from pathlib import Path
 from typing import List, Optional
 from dataclasses import dataclass
@@ -149,13 +151,46 @@ PAGE_GROUPS = [
 ]
 
 
+def get_markdown_from_html(url: str) -> Optional[str]:
+    """
+    Fallback-метод: парсит HTML и конвертирует в Markdown.
+    Используется, когда прямой .md доступ недоступен.
+    """
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # В GitBook контент лежит в <main>
+        main_content = soup.find('main')
+        if not main_content:
+            return None
+
+        # Удаляем навигацию и мусор
+        for element in main_content.find_all(['nav', 'footer']):
+            element.decompose()
+        for link in main_content.find_all('a', class_=lambda x: x and 'pagination' in str(x)):
+            link.decompose()
+        
+        # Конвертация в Markdown
+        markdown_text = md(str(main_content), heading_style="ATX")
+        return markdown_text.strip()
+
+    except Exception as e:
+        print(f"   ❌ Fallback ошибка: {e}")
+        return None
+
+
 def get_markdown_content(url: str) -> Optional[str]:
     """
     Получает чистый Markdown напрямую из GitBook.
-    GitBook поддерживает .md URL для прямого доступа к исходному Markdown.
+    Если .md недоступен - использует fallback парсинг HTML.
     """
     try:
-        # Конвертируем HTML URL в Markdown URL
+        # Сначала пробуем прямой Markdown доступ
         markdown_url = url if url.endswith('.md') else f"{url}.md"
         
         headers = {
@@ -165,25 +200,24 @@ def get_markdown_content(url: str) -> Optional[str]:
         response = requests.get(markdown_url, headers=headers, timeout=15)
         response.raise_for_status()
         
-        # GitBook возвращает чистый Markdown
         content = response.text.strip()
         
         # Проверяем, что получили Markdown, а не HTML
         if content.startswith('<!DOCTYPE') or content.startswith('<html'):
-            print(f"⚠️  Получен HTML вместо Markdown для {url}")
-            return None
+            print(f"   🔄 .md вернул HTML, используем fallback...")
+            return get_markdown_from_html(url)
             
         return content
 
     except requests.exceptions.HTTPError as e:
         if e.response.status_code == 404:
-            print(f"⚠️  Markdown недоступен для {url}, пробуем альтернативный метод...")
-            return None
-        print(f"❌ HTTP ошибка {e.response.status_code} для {url}")
+            print(f"   🔄 .md недоступен (404), используем fallback...")
+            return get_markdown_from_html(url)
+        print(f"   ❌ HTTP ошибка {e.response.status_code}")
         return None
     except Exception as e:
-        print(f"❌ Ошибка при обработке {url}: {e}")
-        return None
+        print(f"   ⚠️  Ошибка при .md доступе, используем fallback: {e}")
+        return get_markdown_from_html(url)
 
 
 def generate_toc(groups: List[PageGroup]) -> str:
@@ -201,7 +235,7 @@ def generate_toc(groups: List[PageGroup]) -> str:
 def main():
     total_pages = sum(len(group.urls) for group in PAGE_GROUPS)
     print(f"🚀 Начинаем парсинг {total_pages} страниц в {len(PAGE_GROUPS)} групп...")
-    print("📝 Используем прямой доступ к Markdown через GitBook API\n")
+    print("📝 Приоритет: прямой .md доступ, fallback: HTML парсинг\n")
     
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         # Заголовок документа
@@ -216,6 +250,8 @@ def main():
         # Обрабатываем группы
         processed = 0
         success_count = 0
+        markdown_count = 0
+        html_fallback_count = 0
         
         for group_idx, group in enumerate(PAGE_GROUPS, 1):
             # Заголовок группы
@@ -230,15 +266,22 @@ def main():
                 content = get_markdown_content(url)
                 
                 if content:
+                    # Определяем метод получения
+                    method = "📝 MD" if not content.startswith('#') or len(content) > 500 else "🌐 HTML"
+                    if "📝" in method:
+                        markdown_count += 1
+                    else:
+                        html_fallback_count += 1
+                    
                     # Добавляем якорь источника
                     f.write(f"<!-- Source: {url} -->\n\n")
                     f.write(content)
                     f.write("\n\n")
                     success_count += 1
-                    print(f"   ✅ Успешно загружено ({len(content)} символов)")
+                    print(f"   ✅ {method} Успешно ({len(content)} символов)")
                 else:
                     f.write(f"> ⚠️ Не удалось загрузить: {url}\n\n")
-                    print(f"   ❌ Ошибка загрузки")
+                    print(f"   ❌ Полная ошибка загрузки")
                 
                 time.sleep(0.3)  # Защита от блокировки
             
@@ -249,6 +292,8 @@ def main():
     print(f"\n✅ Готово! Файл сохранён: {OUTPUT_FILE}")
     print(f"📊 Обработано групп: {len(PAGE_GROUPS)}")
     print(f"📄 Успешно загружено: {success_count}/{total_pages} страниц")
+    print(f"📝 Прямой .md: {markdown_count}")
+    print(f"🌐 HTML fallback: {html_fallback_count}")
     print(f"⚠️  Ошибок: {total_pages - success_count}")
 
 
