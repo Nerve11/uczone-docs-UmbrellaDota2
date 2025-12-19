@@ -1,16 +1,33 @@
-# UCZONE API v2.0 Documentation
+# UCZONE API v2.0 - Полная документация
 
-Generated from 94 pages.
+*Сгенерировано из 93 страниц GitBook*
 
+---
+
+# Оглавление
+
+- [Starting Guide](#starting-guide)
+- [Cheats Types and Callbacks](#cheats-types-and-callbacks)
+  - [Classes - Color](#classes---color)
+  - [Classes - Menu System](#classes---menu-system)
+  - [Classes - UI Widgets](#classes---ui-widgets)
+  - [Classes - Math](#classes---math)
+- [Game Components - Entity Lists](#game-components---entity-lists)
+- [Game Components - Core Objects](#game-components---core-objects)
+- [Game Engine](#game-engine)
+- [Networking and APIs](#networking-and-apis)
+- [Rendering and Visuals](#rendering-and-visuals)
+  - [Rendering - Panorama UI](#rendering---panorama-ui)
+- [Configuration and Utilities](#configuration-and-utilities)
 
 
 ================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0
-================================================================================
+
+## Starting Guide
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0 -->
 
 Copy
-
-1. [Getting Started](/api-v2.0/getting-started)
 
 # 👉Starting Guide
 
@@ -561,226 +578,6 @@ return debug
 
 Example
 
-Copy
-
-```
-local example = {}
-
---#region UI
-
-local tab = Menu.Create("General", "Main", "Example")
-tab:Icon("\u{f6b6}")
-local group = tab:Create("Main"):Create("Group")
-
-local ui = {}
-
-ui.global_switch = group:Switch("Global Switch", false, "\u{f00c}")
-
-ui.auto_phase = group:Switch("Auto Phase Boots", true, "panorama/images/items/phase_boots_png.vtex_c")
-ui.custom_radius = group:Slider("Custom Radius", 0, 1000, 0, function (value)
-
-    if value == 0 then return "Disabled" end
-
-    return tostring(value)
-end)
-ui.custom_radius:Icon("\u{f1ce}")
-ui.radius_color = group:ColorPicker("Radius Color", Color(255, 255, 255), "\u{f53f}")
-ui.vbe_render = group:Switch("VBE Render", false, "\u{f06e}")
-ui.particle_notif = group:Switch("Particle Notification", false, "\u{f0f3}")
-
-ui.global_switch:SetCallback(function ()
-
-    ui.auto_phase:Disabled(not ui.global_switch:Get())
-    ui.custom_radius:Disabled(not ui.global_switch:Get())
-    ui.radius_color:Disabled(not ui.global_switch:Get())
-    ui.vbe_render:Disabled(not ui.global_switch:Get())
-    ui.particle_notif:Disabled(not ui.global_switch:Get())
-end, true)
-
---#endregion UI
-
---#region Vars
-
-local my_hero = nil
-local particle = nil
-local need_update_particle = false
-local need_update_color = false
-
-ui.custom_radius:SetCallback(function ()
-
-    need_update_particle = true
-
-    if ui.global_switch:Get() then
-
-        ui.radius_color:Disabled(ui.custom_radius:Get() == 0)
-    end
-end, true)
-
-ui.radius_color:SetCallback(function ()
-
-    need_update_color = true
-end)
-
---#endregion Vars
-
-local auto_phase = function ()
-
-    if not ui.auto_phase:Get() then return end
-
-    local item = NPC.GetItem(my_hero, "item_phase_boots")
-
-    if not item then return end
-
-    if not Ability.IsCastable(item, NPC.GetMana(my_hero)) then return end
-
-    if not NPC.IsRunning(my_hero) then return end
-
-    Ability.CastNoTarget(item)
-    return true
-end
-
-local custom_radius = function ()
-
-    if ui.custom_radius:Get() == 0 or need_update_particle or not Entity.IsAlive(my_hero) then
-
-        Particle.Destroy(particle)
-        particle = nil
-        need_update_particle = false
-        return
-    end
-
-    if not particle then
-
-        particle = Particle.Create("particles/ui_mouseactions/drag_selected_ring.vpcf", Enum.ParticleAttachment.PATTACH_ABSORIGIN_FOLLOW, my_hero)
-
-        Particle.SetControlPoint(particle, 2, Vector(ui.custom_radius:Get(), 255, 255))
-        local color = ui.radius_color:Get()
-        color = Vector(color.r, color.g, color.b)
-        Particle.SetControlPoint(particle, 1, color)
-    end
-
-    if particle and need_update_color then
-
-        local color = ui.radius_color:Get()
-        color = Vector(color.r, color.g, color.b)
-        Particle.SetControlPoint(particle, 1, color)
-    end
-end
-
-local font = Render.LoadFont("MuseoSansEx", Enum.FontCreate.FONTFLAG_ANTIALIAS)
-
-local vbe_render = function ()
-
-    if not ui.vbe_render:Get() then return end
-
-    local is_visible = NPC.IsVisibleToEnemies(my_hero)
-
-    if not is_visible then return end
-
-    local pos = Entity.GetAbsOrigin(my_hero) + Vector(0, 0, NPC.GetHealthBarOffset(my_hero))
-    local render_pos, pos_is_visible = Render.WorldToScreen(pos)
-
-    if not pos_is_visible then return end
-
-    local x, y = render_pos.x, render_pos.y - 80
-
-    local text = "Visible"
-    local text_size = Render.TextSize(font, 30, text)
-
-    x = x - text_size.x / 2
-
-    Render.Text(font, 30, text, Vec2(x + 1, y + 1), Color(0, 0, 0))
-    Render.Text(font, 30, text, Vec2(x, y), Color(255, 255, 255))
-end
-
---#region Callbacks
-
-example.OnParticleCreate = function (data)
-
-    if not ui.global_switch:Get() or not ui.particle_notif:Get() then return end
-
-    --[[ data:
-        {
-          "index": "4",
-          "entity_id": "-1",
-          "fullName": "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf",
-          "hash": "3519047136",
-          "particleNameIndex": "-2119646217882970990",
-          "name": "maiden_crystal_nova",
-          "attachType": "2",
-          "entityForModifiers": "<userdata>",
-          "entity_for_modifiers_id": "214"
-        }
-    ]]
-
-    if data.entityForModifiers then
-
-        local str = '<img class="HeroIcon" src="file://{images}/heroes/'..Entity.GetUnitName(data.entityForModifiers)..'.png"/>'.." "..data.fullName
-        Chat.Print("ConsoleChat", str) --chat
-
-        Notification ({ --side
-            duration = 3,
-            timer = 3,
-            hero = Entity.GetUnitName(data.entityForModifiers),
-            -- primary_text = "Sunstrike",
-            -- primary_image = "panorama/images/spellicons/invoker_sun_strike_png.vtex_c",
-            --secondary_image = "panorama/images/spellicons/invoker/magus_apex/invoker_sun_strike_png.vtex_c",
-            secondary_text = data.fullName,
-            -- active = false,
-            position = Entity.GetAbsOrigin(data.entityForModifiers),
-            --sound = "sounds/ui/yoink"
-        })
-    else
-
-        Chat.Print("ConsoleChat", data.fullName) --chat
-
-        Notification ({ --side
-            duration = 3,
-            timer = 3,
-            --hero = Entity.GetUnitName(data.entityForModifiers),
-            primary_text = "Particle Create",
-            primary_image = "panorama/images/emoticons/dotakin_roshan_stars_png.vtex_c",
-            secondary_image = "\u{2b}",
-            secondary_text = data.fullName,
-            -- active = false,
-            --position = Entity.GetAbsOrigin(data.entityForModifiers),
-            --sound = "sounds/ui/yoink"
-        })
-    end
-end
-
-example.OnDraw = function ()
-
-    if not ui.global_switch:Get() or not my_hero then return end
-
-    vbe_render()
-end
-
-example.OnUpdate = function ()
-
-    if not ui.global_switch:Get() then
-
-        if particle then
-
-            Particle.Destroy(particle)
-            particle = nil
-        end
-
-        return
-    end
-
-    if not my_hero then my_hero = Heroes.GetLocal(); return end
-
-    custom_radius()
-
-    if auto_phase() then return end
-end
-
---#endregion Callbacks
-
-return example
-```
-
 ---
 
 ## Debugging
@@ -792,15 +589,6 @@ This functions will automaticly stringify your tables
 
 Example
 
-Copy
-
-```
--- print all towers names and their positions
-for _, tower in pairs(Towers.GetAll()) do
-	print(NPC.GetUnitName(tower), Entity.GetAbsOrigin(tower))
-end
-```
-
 ## Useful Links
 
 Here are some useful links:
@@ -810,17 +598,16 @@ Here are some useful links:
 
 [NextCallbacks](/api-v2.0/cheats-types-and-callbacks/callbacks)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks
-================================================================================
+## Cheats Types and Callbacks
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
 
 # 🔄Callbacks
 
@@ -2096,33 +1883,6 @@ from being sent (doesnt work with recieved messages). For more look at GC table 
 
 #### Example
 
-Copy
-
-```
--- ongc_message.lua
--- import protobuf and json libraries
-local protobuf = require('protobuf');
-local JSON = require('assets.JSON');
-
--- do the stats request
-local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest', JSON:encode({}));
-GC.SendMessage( request.binary, 7197, request.size );
-
-return {
-    OnGCMessage = function(msg)
-        if (msg.msg_type ~= 7198) then
-            return true;
-        end
-
-        -- decode the response and print it
-        local response = protobuf.decodeToJSON('CMsgDOTAMatchmakingStatsResponse', msg.binary_buffer_recv, msg.size);
-        Log.Write(response);
-
-        return true;
-    end
-}
-```
-
 ## OnSendNetMessage
 
 `Callbacks.OnSendNetMessage(data):` `boolean`
@@ -2168,52 +1928,6 @@ example
 
 #### Example
 
-Copy
-
-```
--- onsend_netmsg.lua
--- anti-mute script for dota 2
--- redirects all chat messages to console command 'say' or 'say_team'
-
--- import protobuf and json libraries
-local protobuf = require('protobuf');
-local JSON = require('assets.JSON');
-return {
-    OnSendNetMessage = function(msg)
-        if msg.message_id ~= 394 then
-            return true;
-        end
-
-        -- decode protobuf message to json
-        local json_message = JSON:decode(protobuf.decodeToJSON("CDOTAClientMsg_ChatMessage", msg.buffer , msg.size));
-        if not json_message then
-            return true;
-        end
-
-        -- message CDOTAClientMsg_ChatMessage {
-        --     optional uint32 channel_type = 1;
-        --     optional string message_text = 2;
-        -- }
-
-        local text_message = json_message.message_text;
-        -- skip commands starting with '-'
-        if text_message:find("-") == 1 then
-            return true;
-        end
-    
-        -- 11 - all chat 
-        if (json_message.channel_type == 11) then
-            Engine.ExecuteCommand('say "'..text_message..'"');
-            return false;
-        -- 12 - team chat
-        elseif (json_message.channel_type == 12) then
-            Engine.ExecuteCommand('say_team "'..text_message..'"');
-            return false;
-        end
-    end
-}
-```
-
 ## OnPostReceivedNetMessage
 
 `Callbacks.OnPostReceivedNetMessage(data):` `boolean`
@@ -2245,24 +1959,6 @@ The encoded buffer of the message.
 Called when a net message is received. Return false to prevent the message from being recieved
 
 #### Example
-
-Copy
-
-```
--- onrecv_netmsg.lua
-local protobuf = require('protobuf')
-local JSON = require('assets.JSON')
-return {
-    OnPostReceivedNetMessage = function(msg)
-        if msg.message_id == 612 then -- DOTA_UM_ChatMessage https://github.com/SteamDatabase/GameTracking-Dota2/blob/932a8b002f651262ffda6562b758d8ca97c98297/Protobufs/dota_usermessages.proto#L152
-            local json = protobuf.decodeToJSONfromObject(msg.msg_object);
-            Log.Write(json)
-            local lua_table = JSON:decode(json)
-            -- ...
-        end
-    end
-}
-```
 
 ## OnGameEnd
 
@@ -2381,17 +2077,11 @@ Called on NPC dying.
 
 [PreviousStarting Guide](/api-v2.0)[NextEnums](/api-v2.0/cheats-types-and-callbacks/enums)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
 
 # 📊Enums
 
@@ -7479,18 +7169,16 @@ Value
 
 [PreviousCallbacks](/api-v2.0/cheats-types-and-callbacks/callbacks)[NextClasses](/api-v2.0/cheats-types-and-callbacks/classes)
 
-Last updated 5 months ago
+Last updated 6 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color
-================================================================================
+### Classes - Color
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
 
 # 🎨Color
 
@@ -7821,18 +7509,16 @@ Returns hex string representing the color.
 
 [PreviousClasses](/api-v2.0/cheats-types-and-callbacks/classes)[NextMenu](/api-v2.0/cheats-types-and-callbacks/classes/menu)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu
-================================================================================
+### Classes - Menu System
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
 
 # 📋Menu
 
@@ -7975,19 +7661,11 @@ Returns current menu animation duration.
 
 [PreviousColor](/api-v2.0/cheats-types-and-callbacks/classes/color)[NextCTabSection](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [📋Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu)
 
 # CTabSection
 
@@ -8051,19 +7729,11 @@ Finds the `CSecondTab` by name.
 
 [PreviousMenu](/api-v2.0/cheats-types-and-callbacks/classes/menu)[NextCFirstTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [📋Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu)
 
 # CFirstTab
 
@@ -8127,19 +7797,11 @@ Finds the `CTabSection` by name.
 
 [PreviousCTabSection](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection)[NextCSecondTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [📋Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu)
 
 # CSecondTab
 
@@ -8274,13 +7936,6 @@ Sets tab's icon.
 
 #### Example
 
-Copy
-
-```
--- https://fontawesome.com/icons/user?f=classic&s=solid
-tab:Icon( "\u{f007}" )
-```
-
 ## LinkHero
 
 `:LinkHero(heroId, attribute):` `nil`
@@ -8305,19 +7960,11 @@ Links tab to hero and attribute.
 
 [PreviousCFirstTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab)[NextCThirdTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [📋Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu)
 
 # CThirdTab
 
@@ -8449,25 +8096,11 @@ Gets or sets third tab's visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-third_tab:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = third_tab:Visible()
-```
 
 ## Icon
 
@@ -8496,28 +8129,13 @@ Sets tab's icon.
 
 #### Example
 
-Copy
-
-```
--- https://fontawesome.com/icons/user?f=classic&s=solid
-tab:Icon( "\u{f007}")
-```
-
 [PreviousCSecondTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab)[NextCMenuGroup](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [📋Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu)
 
 # CMenuGroup
 
@@ -8656,16 +8274,6 @@ Creates new `CMenuSliderInt` or `CMenuSliderFloat` depents on arg types.
 
 #### Example
 
-Copy
-
-```
--- Create slider with integer values
-group:Slider( "slider", 0, 100, 50, "%d" )
--- Create slider with integer values and custom format function
-group:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- turns into
-"50%"
-```
-
 ## Slider
 
 `:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [`CMenuSliderFloat`](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat)
@@ -8701,21 +8309,6 @@ Format string or function to format value. See example. `(default: "%f")`
 Creates new `CMenuSliderFloat`.
 
 #### Example
-
-Copy
-
-```
--- Create slider with float values
-group:Slider( "slider", 0.0, 1.0, 0.5, "%.2f" ) -- turns into "0.50"
--- Create slider with float values and custom format function
-group:Slider( "slider", 0.0, 100.0, 50.0, function( value )
-	if value < 50 then
-		return "Low(%f)"
-	else
-		return "High(%f)"
-  end
-end )
-```
 
 ## ColorPicker
 
@@ -8779,14 +8372,6 @@ Creates new `CMenuButton`.
 
 #### Example
 
-Copy
-
-```
-group:Button( "button", function( this )
-	Log.Write( "Button '" .. this:Name() .. "' has been clicked."  )
-end )
-```
-
 ## Combo
 
 `:Combo(comboName, items, [defaultValue]):` [`CMenuComboBox`](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox)
@@ -8841,12 +8426,6 @@ Creates new `CMenuMultiComboBox`.
 
 #### Example
 
-Copy
-
-```
-group:MultiCombo( "multiCombo", { "item1", "item2", "item3" }, { "item1", "item3" } )
-```
-
 ## MultiSelect
 
 `:MultiSelect(multiSelectName, items, [expanded]):` [`CMenuMultiSelect`](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect)
@@ -8876,15 +8455,6 @@ false if you want to create MultiSelect in collapsed state. `(default: false)`
 Creates new `CMenuMultiSelect`.
 
 #### Example
-
-Copy
-
-```
-group:MultiSelect( "multiSelect", {
- 	{ "1", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
- 	{ "2", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
-}, true )
-```
 
 ## Input
 
@@ -8952,25 +8522,11 @@ Gets or sets group's disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-group:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = group:Disabled()
-```
 
 ## Visible
 
@@ -8990,25 +8546,11 @@ Gets or sets group's visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-group:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = group:Visible()
-```
 
 ## SearchHidden
 
@@ -9028,40 +8570,24 @@ Gets or sets group's search state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-group:SearchHidden(false)
-```
-
 ## SearchHidden
 
 `:SearchHidden():` `boolean`
 
 #### Example
 
-Copy
-
-```
--- getter
-local isSearchHidden = group:SearchHidden()
-```
-
 [PreviousCThirdTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab)[NextWidgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets
-================================================================================
+### Classes - UI Widgets
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
 
 # 🧩Widgets
 
@@ -9069,19 +8595,11 @@ Copy
 
 [PreviousCMenuGroup](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup)[NextCMenuSwitch](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuSwitch
 
@@ -9169,25 +8687,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = switch:Visible()
-```
 
 ## Disabled
 
@@ -9207,25 +8711,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = switch:Disabled()
-```
 
 ## Unsafe
 
@@ -9343,13 +8833,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-switch:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -9450,19 +8933,11 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 [PreviousWidgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)[NextCMenuSliderFloat](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuSliderFloat
 
@@ -9574,25 +9049,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = switch:Visible()
-```
 
 ## Disabled
 
@@ -9612,25 +9073,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = switch:Disabled()
-```
 
 ## Unsafe
 
@@ -9748,13 +9195,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-switch:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -9855,19 +9295,11 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 [PreviousCMenuSwitch](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch)[NextCMenuSliderInt](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuSliderInt
 
@@ -9979,25 +9411,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = switch:Visible()
-```
 
 ## Disabled
 
@@ -10017,25 +9435,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = switch:Disabled()
-```
 
 ## Unsafe
 
@@ -10153,13 +9557,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-switch:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -10260,19 +9657,11 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 [PreviousCMenuSliderFloat](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat)[NextCMenuButton](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuButton
 
@@ -10360,25 +9749,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -10398,25 +9773,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Unsafe
 
@@ -10512,13 +9873,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-widget:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -10565,19 +9919,11 @@ Removes widget's on change callback.
 
 [PreviousCMenuSliderInt](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint)[NextCMenuColorPicker](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuColorPicker
 
@@ -10665,25 +10011,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -10703,25 +10035,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Unsafe
 
@@ -10839,13 +10157,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-widget:Icon("\u{f007}")
-```
-
 ## ImageHandle
 
 `:ImageHandle(imageHandle, [offset]):` `nil`
@@ -10930,41 +10241,19 @@ Gets or sets alpha bar state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:HideAlphaBar( true )
-```
-
 ## HideAlphaBar
 
 `:HideAlphaBar():` `boolean`
 
 #### Example
 
-Copy
-
-```
--- getter
-local isAlphaBarHidden = widget:HideAlphaBar()
-```
-
 [PreviousCMenuButton](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton)[NextCMenuColorPickerAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuColorPickerAttachment
 
@@ -11031,25 +10320,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -11069,25 +10344,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Get
 
@@ -11157,19 +10418,11 @@ Removes widget's on change callback.
 
 [PreviousCMenuColorPicker](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker)[NextCMenuComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuComboBox
 
@@ -11279,25 +10532,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -11317,25 +10556,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Unsafe
 
@@ -11459,13 +10684,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-widget:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -11566,19 +10784,11 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 [PreviousCMenuColorPickerAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment)[NextCMenuGearAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuGearAttachment
 
@@ -11736,16 +10946,6 @@ Creates new `CMenuSliderInt` or `CMenuSliderFloat` depents on arg types.
 
 #### Example
 
-Copy
-
-```
--- Create slider with integer values
-gear:Slider( "slider", 0, 100, 50, "%d" )
--- Create slider with integer values and custom format function
-gear:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- turns into
-"50%"
-```
-
 ## Slider
 
 `:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [`CMenuSliderFloat`](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat)
@@ -11781,21 +10981,6 @@ Format string or function to format value. See example. `(default: "%f")`
 Creates new `CMenuSliderFloat`.
 
 #### Example
-
-Copy
-
-```
--- Create slider with float values
-gear:Slider( "slider", 0.0, 1.0, 0.5, "%.2f" ) -- turns into "0.50"
--- Create slider with float values and custom format function
-gear:Slider( "slider", 0.0, 100.0, 50.0, function( value )
-	if value < 50 then
-		return "Low(%f)"
-	else
-		return "High(%f)"
-  end
-end )
-```
 
 ## ColorPicker
 
@@ -11877,12 +11062,6 @@ Creates new `CMenuMultiComboBox`.
 
 #### Example
 
-Copy
-
-```
-gear:MultiCombo( "multiCombo", { "item1", "item2", "item3" }, { "item1", "item3" } )
-```
-
 ## MultiSelect
 
 `:MultiSelect(multiSelectName, items, [expanded]):` [`CMenuMultiSelect`](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect)
@@ -11912,15 +11091,6 @@ false if you want to create MultiSelect in collapsed state. `(default: false)`
 Creates new `CMenuMultiSelect`.
 
 #### Example
-
-Copy
-
-```
-gear:MultiSelect( "multiSelect", {
- 	{ "1", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
- 	{ "2", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
-}, true )
-```
 
 ## Input
 
@@ -11990,25 +11160,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -12028,41 +11184,19 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
 
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
-
 [PreviousCMenuComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox)[NextCMenuInputBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuInputBox
 
@@ -12150,25 +11284,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = switch:Visible()
-```
 
 ## Disabled
 
@@ -12188,25 +11308,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-switch:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = switch:Disabled()
-```
 
 ## Unsafe
 
@@ -12324,13 +11430,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-switch:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -12431,19 +11530,11 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 [PreviousCMenuGearAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment)[NextCMenuMultiComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuMultiComboBox
 
@@ -12553,25 +11644,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -12591,25 +11668,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Unsafe
 
@@ -12769,13 +11832,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-widget:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -12876,19 +11932,11 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 [PreviousCMenuInputBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox)[NextCMenuMultiSelect](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuMultiSelect
 
@@ -13048,25 +12096,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -13086,25 +12120,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Unsafe
 
@@ -13264,13 +12284,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-widget:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -13371,19 +12384,11 @@ Updates widget's tooltips
 
 [PreviousCMenuMultiComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox)[NextCMenuBind](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🧩Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets)
 
 # CMenuBind
 
@@ -13471,25 +12476,11 @@ Gets or sets visible state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Visible(false)
-```
-
 ## Visible
 
 `:Visible():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isVisible = widget:Visible()
-```
 
 ## Disabled
 
@@ -13509,25 +12500,11 @@ Gets or sets disabled state. Depends on argument.
 
 #### Example
 
-Copy
-
-```
--- setter
-widget:Disabled( false )
-```
-
 ## Disabled
 
 `:Disabled():` `boolean`
 
 #### Example
-
-Copy
-
-```
--- getter
-local isDisabled = widget:Disabled()
-```
 
 ## Unsafe
 
@@ -13706,13 +12683,6 @@ Sets widget's icon.
 
 #### Example
 
-Copy
-
-```
---https://fontawesome.com/icons/user?f=classic&s=solid
-switch:Icon("\u{f007}")
-```
-
 ## SetCallback
 
 Multiple callbacks could be set.
@@ -13883,18 +12853,16 @@ Gets or sets the ability to bind the mouse button.
 
 [PreviousCMenuMultiSelect](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect)[NextCMenuLabel](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math
-================================================================================
+### Classes - Math
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
 
 # 🔢Math
 
@@ -13902,19 +12870,11 @@ Copy
 
 [PreviousCMenuLabel](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel)[NextVector](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🔢Math](/api-v2.0/cheats-types-and-callbacks/classes/math)
 
 # 🌐Vector
 
@@ -14299,13 +13259,6 @@ Moves vector forward by a specified distance in the direction defined by a given
 
 #### Example
 
-Copy
-
-```
--- entity position moved forward by 300
-local pos = Entity.GetAbsOrigin(entity):MoveForward(Entity.GetRotation(entity), 300);
-```
-
 ## ToAngle
 
 `:ToAngle():` [`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
@@ -14393,19 +13346,11 @@ Sets z. The same as Vector.z = value.
 
 [PreviousMath](/api-v2.0/cheats-types-and-callbacks/classes/math)[NextAngle](/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🔢Math](/api-v2.0/cheats-types-and-callbacks/classes/math)
 
 # 🔄Angle
 
@@ -14545,19 +13490,11 @@ Sets the pitch. The same as Angle.pitch = value.
 
 [PreviousVector](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)[NextVec2](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2 -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🔢Math](/api-v2.0/cheats-types-and-callbacks/classes/math)
 
 # 🔢Vec2
 
@@ -14715,19 +13652,11 @@ Sets y. The same as Vec2.y = value.
 
 [PreviousAngle](/api-v2.0/cheats-types-and-callbacks/classes/math/angle)[NextVertex](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex -->
 
 Copy
-
-1. [Cheat's Types and Callbacks](/api-v2.0/cheats-types-and-callbacks)
-2. [📔Classes](/api-v2.0/cheats-types-and-callbacks/classes)
-3. [🔢Math](/api-v2.0/cheats-types-and-callbacks/classes/math)
 
 # 🔀Vertex
 
@@ -14839,17 +13768,16 @@ Description
 
 [PreviousVec2](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)[NextLists](/api-v2.0/game-components/lists)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists
-================================================================================
+## Game Components - Entity Lists
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
 
 # 📃Lists
 
@@ -14857,18 +13785,11 @@ Copy
 
 [PreviousVertex](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex)[NextAbilities](/api-v2.0/game-components/lists/abilities)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🔮Abilities
 
@@ -14924,18 +13845,11 @@ Check ability in cheat list.
 
 [PreviousLists](/api-v2.0/game-components/lists)[NextCouriers](/api-v2.0/game-components/lists/couriers)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🚚Couriers
 
@@ -14997,18 +13911,11 @@ Return local courier.
 
 [PreviousAbilities](/api-v2.0/game-components/lists/abilities)[NextCustomEntities](/api-v2.0/game-components/lists/customentities)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🛠️CustomEntities
 
@@ -15106,18 +14013,11 @@ Accept the Meepo's Divided We Stand ability and return index of Meepo.
 
 [PreviousCouriers](/api-v2.0/game-components/lists/couriers)[NextEntities](/api-v2.0/game-components/lists/entities)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 👾Entities
 
@@ -15149,18 +14049,11 @@ Check entity in cheat list.
 
 [PreviousCustomEntities](/api-v2.0/game-components/lists/customentities)[NextHeroes](/api-v2.0/game-components/lists/heroes)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🦸Heroes
 
@@ -15270,18 +14163,11 @@ Return local hero.
 
 [PreviousEntities](/api-v2.0/game-components/lists/entities)[NextNPCs](/api-v2.0/game-components/lists/npcs)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🎭NPCs
 
@@ -15440,18 +14326,11 @@ Check NPC in cheat list.
 
 [PreviousHeroes](/api-v2.0/game-components/lists/heroes)[NextCamps](/api-v2.0/game-components/lists/camps)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🐉Camps
 
@@ -15531,18 +14410,11 @@ Check neutral spawner in cheat list.
 
 [PreviousNPCs](/api-v2.0/game-components/lists/npcs)[NextPlayers](/api-v2.0/game-components/lists/players)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/players
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/players -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 👥Players
 
@@ -15604,18 +14476,11 @@ Return local player.
 
 [PreviousCamps](/api-v2.0/game-components/lists/camps)[NextRunes](/api-v2.0/game-components/lists/runes)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🔮Runes
 
@@ -15671,18 +14536,11 @@ Check rune in cheat list.
 
 [PreviousPlayers](/api-v2.0/game-components/lists/players)[NextTempTrees](/api-v2.0/game-components/lists/temptrees)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🌳TempTrees
 
@@ -15762,18 +14620,11 @@ Check temp tree in cheat list.
 
 [PreviousRunes](/api-v2.0/game-components/lists/runes)[NextTowers](/api-v2.0/game-components/lists/towers)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🏰Towers
 
@@ -15865,18 +14716,11 @@ Check tower in cheat list.
 
 [PreviousTempTrees](/api-v2.0/game-components/lists/temptrees)[NextTrees](/api-v2.0/game-components/lists/trees)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🌲Trees
 
@@ -15962,18 +14806,11 @@ Check tree in cheat list.
 
 [PreviousTowers](/api-v2.0/game-components/lists/towers)[NextPhysical Items](/api-v2.0/game-components/lists/physicalitems)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🎁Physical Items
 
@@ -16029,18 +14866,11 @@ Check physical item in cheat list.
 
 [PreviousTrees](/api-v2.0/game-components/lists/trees)[NextModifiers](/api-v2.0/game-components/lists/modifiers)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # ✨Modifiers
 
@@ -16096,18 +14926,11 @@ Checks if modifiers is in list.
 
 [PreviousPhysical Items](/api-v2.0/game-components/lists/physicalitems)[NextLinearProjectiles](/api-v2.0/game-components/lists/linearprojectiles)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📃Lists](/api-v2.0/game-components/lists)
 
 # 🚀LinearProjectiles
 
@@ -16146,17 +14969,16 @@ return {
 
 [PreviousModifiers](/api-v2.0/game-components/lists/modifiers)[NextCore](/api-v2.0/game-components/core)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core
-================================================================================
+## Game Components - Core Objects
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
 
 # 🔧Core
 
@@ -16164,18 +14986,11 @@ Copy
 
 [PreviousLinearProjectiles](/api-v2.0/game-components/lists/linearprojectiles)[NextPlayer](/api-v2.0/game-components/core/player)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/player
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/player -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 👤Player
 
@@ -16729,18 +15544,11 @@ Returns player's active ability.
 
 [PreviousCore](/api-v2.0/game-components/core)[NextModifier](/api-v2.0/game-components/core/modifier)
 
-Last updated 5 months ago
+Last updated 6 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # ✨Modifier
 
@@ -17357,14 +16165,6 @@ Returns the modifier state masks. See the example.
 
 #### Example
 
-Copy
-
-```
-local m_nEnabledStateMask, m_nDisabledStateMask = Modifier.GetState(mod)
-local mod_is_hex = (m_nEnabledStateMask >> Enum.ModifierState.MODIFIER_STATE_HEXED & 1) > 0
-local mod_is_stun = (m_nEnabledStateMask >> Enum.ModifierState.MODIFIER_STATE_STUNNED & 1) > 0
-```
-
 ## IsDebuff
 
 `Modifier.IsDebuff(modifier):` `boolean`
@@ -17415,18 +16215,11 @@ Returns value of the field.
 
 [PreviousPlayer](/api-v2.0/game-components/core/player)[NextEntity](/api-v2.0/game-components/core/entity)
 
-Last updated 3 days ago
+Last updated 1 month ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/entity
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/entity -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 👾Entity
 
@@ -17533,16 +16326,6 @@ Description
 Returns entity by game index.
 
 #### Example
-
-Copy
-
-```
--- get_by_index.lua
-local hero = Heroes.GetLocal();
-local index = Entity.GetIndex(hero);
-local entity_by_index = Entity.Get(index);
-assert(hero == entity_by_index, "Entity.Get() is broken!"); -- true
-```
 
 ## GetIndex
 
@@ -17693,31 +16476,6 @@ Description
 Returns the entity's rotation.
 
 #### Example
-
-Copy
-
-```
--- forward_pos.lua
-return {
-    -- get local hero's forward position and draw a circle around it
-    OnUpdate = function ()
-        local hero = Heroes.GetLocal();
-        local rotation = Entity.GetRotation(hero);
-        -- forward_direction is a vector that points 100 units in direction of my hero's rotation
-        local forward_direction = rotation:GetForward():Normalized():Scaled(100);
-        -- add forward_direction to my hero's position to get the forward position
-        local forward_pos = Entity.GetAbsOrigin(hero) + forward_direction;
-        -- screen_x and screen_y are the coordinates of forward_pos on the screen
-        local screen_x, screen_y, is_on_screen = Renderer.WorldToScreen(forward_pos);
-        if is_on_screen then
-            -- draw a circle around the position
-            Renderer.SetDrawColor(255, 255, 255, 255);
-            Renderer.DrawFilledCircle(screen_x, screen_y, 10, 10);
-            -- result: https://i.imgur.com/ERf1Pxk.png
-        end
-    end
-}
-```
 
 ## IsAlive
 
@@ -17909,18 +16667,6 @@ Returns an array of all alive and visible heroes in radius of the entity. Exclud
 
 #### Example
 
-Copy
-
-```
-local hero = Heroes.GetLocal()
--- get all enemy heroes in 1200 radius
-local heroes_around = Entity.GetHeroesInRadius(hero, 1200)
-for i = 1, #heroes_around do
-	local hero = heroes_around[i];
-	Log.Write(NPC.GetUnitName(hero) .. " is near!");
-end
-```
-
 ## GetUnitsInRadius
 
 `Entity.GetUnitsInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [`CNPC[]`](/api-v2.0/game-components/core/npc)
@@ -17965,18 +16711,6 @@ Returns an array of all alive and visible NPCs in radius of the entity.
 
 #### Example
 
-Copy
-
-```
-local hero = Heroes.GetLocal()
--- get all ally NPCs in 1200 radius
-local units_around = Entity.GetUnitsInRadius(hero, 1200, Enum.TeamType.TEAM_FRIEND)
-for i = 1, #units_around do
-	local unit = units_around[i];
-	Log.Write(NPC.GetUnitName(unit) .. " is near!");
-end
-```
-
 ## GetTreesInRadius
 
 Active means that tree is not destroyed.
@@ -18011,18 +16745,6 @@ Returns an array of all not temporary trees in radius of the entity.
 
 #### Example
 
-Copy
-
-```
-local hero = Heroes.GetLocal()
--- get all trees in 400 radius
-local trees_around = Entity.GetTreesInRadius(hero, 400, true)
-for i = 1, #trees_around do
-	local tree = trees_around[i];
-	Log.Write(Entity.GetClassName(tree) .. " is near!");
-end
-```
-
 ## GetTempTreesInRadius
 
 Temporary trees are trees planted by abilities or items.
@@ -18050,18 +16772,6 @@ radius to search around
 Returns an array of all temporary trees in radius of the entity.
 
 #### Example
-
-Copy
-
-```
-local hero = Heroes.GetLocal()
--- get all trees in 400 radius
-local trees_around = Entity.GetTempTreesInRadius(hero, 400)
-for i = 1, #trees_around do
-	local tree = trees_around[i];
-	Log.Write(Entity.GetClassName(tree) .. " is near!");
-end
-```
 
 ## IsControllableByPlayer
 
@@ -18167,18 +16877,11 @@ Returns value of the field.
 
 [PreviousModifier](/api-v2.0/game-components/core/modifier)[NextNPC](/api-v2.0/game-components/core/npc)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/npc
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🎭NPC
 
@@ -18415,18 +17118,6 @@ if `true` then check only states that active on unit, otherwise check all states
 Returns table of remaining modifier states duration. See the example
 
 #### Example
-
-Copy
-
-```
-local states_to_check = {
-		[Enum.ModifierState.MODIFIER_STATE_STUNNED] = true,
-		[Enum.ModifierState.MODIFIER_STATE_HEXED] = true,
-}
-local states = NPC.GetStatesDuration(unit, states_to_check)
-local hex_duration = states[Enum.ModifierState.MODIFIER_STATE_HEXED]
-local stun_duration = states[Enum.ModifierState.MODIFIER_STATE_STUNNED]
-```
 
 ## IsWaitingToSpawn
 
@@ -20096,67 +18787,6 @@ Returns the attachment position of the `CNPC` by the name.
 
 #### Example
 
-Copy
-
-```
--- attachments.txt
-attach_hitloc
-attach_eye_r
-attach_eye_l
-attach_mouth
-attach_totem
-attach_head
-attach_tidebringer
-attach_tidebringer_2
-attach_sword
-attach_attack1
-attach_weapon
-attach_eyes
-attach_prop_l
-attach_prop_r
-attach_light
-attach_staff
-attach_mouthbase
-attach_mouthend
-attach_mom_l
-attach_mom_r
-attach_attack2
-attach_fuse
-attach_mane
-attach_tail
-attach_upper_jaw
-attach_weapon_core_fx
-attach_bow_top
-attach_bow_bottom
-attach_bow_mid
-attach_armor
-attach_chimmney
-attach_eyeR
-attach_eyeL
-attach_spine4
-attach_spine5
-attach_spine6
-attach_spine7
-attach_spine8
-attach_spine9
-attach_armlet_1
-attach_armlet_2
-attach_armlet_3
-attach_armlet_4
-attach_armlet_5
-attach_vanguard_guard_1
-attach_vanguard_guard_2
-attach_weapon_offhand
-attach_vanguard_1
-attach_vanguard_2
-attach_attack3
-attach_attack4
-attach_banner
-attach_fx
-attach_portcullis
-attach_gem
-```
-
 ## GetAttachmentByIndex
 
 `NPC.GetAttachmentByIndex(npc, index):` [`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
@@ -20683,18 +19313,11 @@ Returns the hieghest property value for the `CNPC`.
 
 [PreviousEntity](/api-v2.0/game-components/core/entity)[NextHero](/api-v2.0/game-components/core/hero)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/hero
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🦸Hero
 
@@ -21030,15 +19653,6 @@ Returns `true` if talent is learned.
 
 #### Example
 
-Copy
-
-```
-TALENT_8 <=> TALENT_7
-TALENT_6 <=> TALENT_5
-TALENT_4 <=> TALENT_3
-TALENT_2 <=> TALENT_1
-```
-
 ## GetFacetAbilities
 
 `Hero.GetFacetAbilities(hero):` [`CAbility[]`](/api-v2.0/game-components/core/ability)
@@ -21105,18 +19719,11 @@ Returns the last visible time from VBE.
 
 [PreviousNPC](/api-v2.0/game-components/core/npc)[NextAbility](/api-v2.0/game-components/core/ability)
 
-Last updated 2 days ago
+Last updated 1 month ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/ability
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/ability -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🌟Ability
 
@@ -22276,18 +20883,11 @@ Returns the keybind of the ability.
 
 [PreviousHero](/api-v2.0/game-components/core/hero)[NextItem](/api-v2.0/game-components/core/item)
 
-Last updated 3 days ago
+Last updated 1 month ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/item
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🔑Item
 
@@ -22740,28 +21340,13 @@ Returns amount of remaining items in shop by item id.
 
 #### Example
 
-Copy
-
-```
--- "item_ward_observer": {
---     "ID": "42",
-Log.Write("Observers available: " .. Item.GetStockCount(42))
-```
-
 [PreviousAbility](/api-v2.0/game-components/core/ability)[NextRune](/api-v2.0/game-components/core/rune)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/rune
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🔮Rune
 
@@ -22785,18 +21370,11 @@ Returns `Enum.RuneType` the rune type.
 
 [PreviousItem](/api-v2.0/game-components/core/item)[NextTower](/api-v2.0/game-components/core/tower)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/tower
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tower -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🏰Tower
 
@@ -22820,18 +21398,11 @@ Returns `CNPC` that is attacked by the tower now.
 
 [PreviousRune](/api-v2.0/game-components/core/rune)[NextTree](/api-v2.0/game-components/core/tree)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/tree
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tree -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🌳Tree
 
@@ -22855,18 +21426,11 @@ Returns if the tree is not cut.
 
 [PreviousTower](/api-v2.0/game-components/core/tower)[NextVambrace](/api-v2.0/game-components/core/vambrace)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🔱Vambrace
 
@@ -22890,18 +21454,11 @@ Returns selected `Enum.Attributes` attribute.
 
 [PreviousTree](/api-v2.0/game-components/core/tree)[NextCamp](/api-v2.0/game-components/core/camp)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/camp
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🐉Camp
 
@@ -22945,18 +21502,11 @@ Returns camp box as a table with **min** and **max** fields(**Vector**).
 
 [PreviousVambrace](/api-v2.0/game-components/core/vambrace)[NextBottle](/api-v2.0/game-components/core/bottle)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🍾Bottle
 
@@ -22982,18 +21532,11 @@ Returns the rune inside the bottle.
 
 [PreviousCamp](/api-v2.0/game-components/core/camp)[NextCourier](/api-v2.0/game-components/core/courier)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/courier
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/courier -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🚚Courier
 
@@ -23091,18 +21634,11 @@ Returns the entity that the courier is currently interacting with.
 
 [PreviousBottle](/api-v2.0/game-components/core/bottle)[NextDrunkenBrawler](/api-v2.0/game-components/core/drunkenbrawler)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🍻DrunkenBrawler
 
@@ -23126,18 +21662,11 @@ Returns the state of the CDrunkenBrawler ability.
 
 [PreviousCourier](/api-v2.0/game-components/core/courier)[NextPhysicalItem](/api-v2.0/game-components/core/physicalitem)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 📦PhysicalItem
 
@@ -23161,18 +21690,11 @@ Returns `CItem` object from `CPhysicalItem`.
 
 [PreviousDrunkenBrawler](/api-v2.0/game-components/core/drunkenbrawler)[NextPowerTreads](/api-v2.0/game-components/core/powertreads)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 👟PowerTreads
 
@@ -23196,18 +21718,11 @@ Returns selected `Enum.Attributes` attribute.
 
 [PreviousPhysicalItem](/api-v2.0/game-components/core/physicalitem)[NextTierToken](/api-v2.0/game-components/core/tiertoken)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🔧Core](/api-v2.0/game-components/core)
 
 # 🪙TierToken
 
@@ -23233,17 +21748,16 @@ Returns the choices (ability ids) of the `CTierToken`.
 
 [PreviousPowerTreads](/api-v2.0/game-components/core/powertreads)[NextGame Engine](/api-v2.0/game-components/game-engine)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine
-================================================================================
+## Game Engine
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
 
 # 🛠️Game Engine
 
@@ -23251,18 +21765,11 @@ Copy
 
 [PreviousTierToken](/api-v2.0/game-components/core/tiertoken)[NextEngine](/api-v2.0/game-components/game-engine/engine)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🔧Engine
 
@@ -23332,13 +21839,6 @@ documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Pa
 
 #### Example
 
-Copy
-
-```
--- in dota console, you should see "Hello from Lua!"
-Engine.RunScript("$.Msg('Hello from Lua!')");
-```
-
 ## ExecuteCommand
 
 `Engine.ExecuteCommand(command):` `nil`
@@ -23358,13 +21858,6 @@ The command to execute.
 Execute a console command.
 
 #### Example
-
-Copy
-
-```
--- in dota chat, you should see "Hello from Lua!"
-Engine.ExecuteCommand("say \"Hello from Lua!\"");
-```
 
 ## PlayVol
 
@@ -23392,13 +21885,6 @@ Play a sound with a specific volume.
 
 #### Example
 
-Copy
-
-```
--- play a sound with a volume of 0.5 (very loud)
-Engine.PlayVol("sounds/npc/courier/courier_acknowledge.vsnd_c", 0.5);
-```
-
 ## CreateConfig
 
 `Engine.CreateConfig(config_name, categories):` `nil`
@@ -23422,29 +21908,6 @@ The name of the config.
 Creates a new hero grid config.
 
 #### Example
-
-Copy
-
-```
-Engine.CreateConfig("From lua", {
-{
-	name = "55%+",
-	hero_ids = {1, 2, 3, 4},
-	x = 0.0,
-	y = 0.0,
-	width = 300.0,
-	height = 200.0
-},
-{
-	name = "52%+",
-	hero_ids = {5, 6},
-	x = 350.0,
-	y = 0.0,
-	width = 300.0,
-	height = 200.0
-}
-});
-```
 
 ## GetCurrentConfigName
 
@@ -23639,12 +22102,6 @@ Returns hero ID by unit name.
 
 #### Example
 
-Copy
-
-```
-local abaddonId = Engine.GetHeroIDByName( "npc_dota_hero_abaddon" )
-```
-
 ## GetDisplayNameByUnitName
 
 `Engine.GetDisplayNameByUnitName(unitName):` `string` | `nil`
@@ -23664,13 +22121,6 @@ Can be retrieved from `NPC.GetUnitName`
 Returns hero display name by unit name.
 
 #### Example
-
-Copy
-
-```
-local nevermore_name = Engine.GetDisplayNameByUnitName( "npc_dota_hero_nevermore" )
--- nevermore_name == "Shadow Fiend"
-```
 
 ## GetHeroNameByID
 
@@ -23696,18 +22146,11 @@ Returns current UI state.
 
 [PreviousGame Engine](/api-v2.0/game-components/game-engine)[NextEvent](/api-v2.0/game-components/game-engine/event)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🎉Event
 
@@ -23896,18 +22339,11 @@ Returns the string value of the specified event field.
 
 [PreviousEngine](/api-v2.0/game-components/game-engine/engine)[NextGameRules](/api-v2.0/game-components/game-engine/gamerules)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 📜GameRules
 
@@ -23968,15 +22404,6 @@ Can be used to calculate time in an in-game timer. See the example.
 Returns the current game time. Starts counting from pregame state.
 
 #### Example
-
-Copy
-
-```
-local game_time = GameRules.GetGameTime();
-local ingame_timer = game_time - GameRules.GetGameStartTime();
-Log.Write(string.format("Current time: %d:%02d", math.floor(ingame_timer / 60),
-math.floor(ingame_timer % 60)))
-```
 
 ## IsPaused
 
@@ -24088,14 +22515,6 @@ Returns amount of remaining items in shop by item id.
 
 #### Example
 
-Copy
-
-```
--- "item_ward_observer": {
---     "ID": "42",
-Log.Write("Observers available: " .. GameRules.GetStockCount(42))
-```
-
 ## GetNextCycleTime
 
 `GameRules.GetNextCycleTime():` `number`, `boolean`
@@ -24182,18 +22601,11 @@ Returns time remaining between state changes.
 
 [PreviousEvent](/api-v2.0/game-components/game-engine/event)[NextGlobalVars](/api-v2.0/game-components/game-engine/globalvars)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🌍GlobalVars
 
@@ -24249,18 +22661,11 @@ TODO
 
 [PreviousGameRules](/api-v2.0/game-components/game-engine/gamerules)[NextGridNav](/api-v2.0/game-components/game-engine/gridnav)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🧭GridNav
 
@@ -24378,37 +22783,6 @@ Build path from start to end. Returns an array with builded positions.
 
 #### Example
 
-Copy
-
-```
--- build_path.lua
-return {
-    OnUpdate = function()
-        local ignore_trees = false;
-        local my_hero = Heroes.GetLocal();
-        local start_pos = Entity.GetAbsOrigin(my_hero);
-        local end_pos = Input.GetWorldCursorPos();
-
-        -- create npc map with the temp trees but with no local hero in it
-        local npc_map = GridNav.CreateNpcMap({Heroes.GetLocal()}, not ignore_trees);
-
-        local path = GridNav.BuildPath(start_pos, end_pos, ignore_trees, npc_map);
-        local prev_x, prev_y = nil, nil;
-        for i, pos in pairs(path) do
-            local x, y, visible = Renderer.WorldToScreen(pos);
-            if (prev_x and visible) then
-                Renderer.SetDrawColor(255, 255, 255, 255);
-                Renderer.DrawLine(prev_x, prev_y, x, y);
-            end
-            prev_x, prev_y = x, y;
-        end
-
-        -- releasing allocated npc map after we done with build pathing
-        GridNav.ReleaseNpcMap(npc_map)
-    end
-}
-```
-
 ## IsTraversableFromTo
 
 `GridNav.IsTraversableFromTo(start, end_, [ignoreTrees], [npc_map]):` `boolean`
@@ -24477,18 +22851,11 @@ Debug render of current GridNav with GridNavNpcMap (if provided)
 
 [PreviousGlobalVars](/api-v2.0/game-components/game-engine/globalvars)[NextInput](/api-v2.0/game-components/game-engine/input)
 
-Last updated 5 months ago
+Last updated 6 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🎮Input
 
@@ -24670,18 +23037,11 @@ Return `true` if key is down once.
 
 [PreviousGridNav](/api-v2.0/game-components/game-engine/gridnav)[NextWorld](/api-v2.0/game-components/game-engine/world)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🌍World
 
@@ -24713,18 +23073,11 @@ Returns the ground Z at the given position.
 
 [PreviousInput](/api-v2.0/game-components/game-engine/input)[NextFogOfWar](/api-v2.0/game-components/game-engine/fogofwar)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # 🌫️FogOfWar
 
@@ -24750,18 +23103,11 @@ Returns `true` if the world position is visible.
 
 [PreviousWorld](/api-v2.0/game-components/game-engine/world)[NextConVar](/api-v2.0/game-components/game-engine/convar)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🛠️Game Engine](/api-v2.0/game-components/game-engine)
 
 # ⚙️ConVar
 
@@ -24939,17 +23285,16 @@ Assigns new boolean value to the ConVar
 
 [PreviousFogOfWar](/api-v2.0/game-components/game-engine/fogofwar)[NextNetworking & APIs](/api-v2.0/game-components/networking-and-apis)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis
-================================================================================
+## Networking and APIs
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
 
 # 🌐Networking & APIs
 
@@ -24957,18 +23302,11 @@ Copy
 
 [PreviousConVar](/api-v2.0/game-components/game-engine/convar)[NextChat](/api-v2.0/game-components/networking-and-apis/chatapi)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🌐Networking & APIs](/api-v2.0/game-components/networking-and-apis)
 
 # 💬Chat
 
@@ -25078,18 +23416,11 @@ Roll a dice in a channel.
 
 [PreviousNetworking & APIs](/api-v2.0/game-components/networking-and-apis)[NextHTTP](/api-v2.0/game-components/networking-and-apis/http)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🌐Networking & APIs](/api-v2.0/game-components/networking-and-apis)
 
 # 🌐HTTP
 
@@ -25168,18 +23499,11 @@ HTTP.Request("GET", url, {
 
 [PreviousChat](/api-v2.0/game-components/networking-and-apis/chatapi)[NextSteam](/api-v2.0/game-components/networking-and-apis/steamapi)
 
-Last updated 6 months ago
+Last updated 7 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🌐Networking & APIs](/api-v2.0/game-components/networking-and-apis)
 
 # 🚂Steam
 
@@ -25270,18 +23594,11 @@ Returns the handle of the profile picture of the given account id.
 
 [PreviousHTTP](/api-v2.0/game-components/networking-and-apis/http)[NextNetChannel](/api-v2.0/game-components/networking-and-apis/netchannel)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🌐Networking & APIs](/api-v2.0/game-components/networking-and-apis)
 
 # 📡NetChannel
 
@@ -25351,40 +23668,13 @@ Sends a protobuff message to the game server. [List of messages](https://github.
 
 #### Example
 
-Copy
-
-```
--- send_netmsg.lua
--- import json encoder
-local JSON = require('assets.JSON');
-
--- https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs/dota_clientmessages.proto#L395
--- message CDOTAClientMsg_RollDice {
--- 	optional uint32 channel_type = 1;
--- 	optional uint32 roll_min = 2;
--- 	optional uint32 roll_max = 3;
--- }
-NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
-    channel_type = 13,
-    roll_min = 11,
-    roll_max = 222
-}));
-```
-
 [PreviousSteam](/api-v2.0/game-components/networking-and-apis/steamapi)[NextGame Coordinator](/api-v2.0/game-components/networking-and-apis/gc)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🌐Networking & APIs](/api-v2.0/game-components/networking-and-apis)
 
 # 🌐Game Coordinator
 
@@ -25444,17 +23734,16 @@ Returns local player Steam ID as string.
 
 [PreviousNetChannel](/api-v2.0/game-components/networking-and-apis/netchannel)[NextRendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals
-================================================================================
+## Rendering and Visuals
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
 
 # 🎨Rendering & Visuals
 
@@ -25462,18 +23751,11 @@ Copy
 
 [PreviousGame Coordinator](/api-v2.0/game-components/networking-and-apis/gc)[NextParticle](/api-v2.0/game-components/rendering-and-visuals/particle)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
 
 # ✨Particle
 
@@ -25673,18 +23955,11 @@ Destroys the particle by index.
 
 [PreviousRendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)[NextRenderer](/api-v2.0/game-components/rendering-and-visuals/renderv1)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1 -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
 
 # 🖌️Renderer
 
@@ -26640,985 +24915,11 @@ Draws a centered notification.
 
 [PreviousParticle](/api-v2.0/game-components/rendering-and-visuals/particle)[NextRender](/api-v2.0/game-components/rendering-and-visuals/renderv2)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1#setdrawcolor
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2 -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
-
-# 🖌️Renderer
-
-Table to work with renderer.
-
-## SetDrawColor
-
-`Renderer.SetDrawColor([r], [g], [b], [a]):` `nil`
-
-Name
-
-Type
-
-Description
-
-**r** `[?]`
-
-`integer`
-
-Red color. `(default: 255)`
-
-**g** `[?]`
-
-`integer`
-
-Green color. `(default: 255)`
-
-**b** `[?]`
-
-`integer`
-
-Blue color. `(default: 255)`
-
-**a** `[?]`
-
-`integer`
-
-Alpha color. `(default: 255)`
-
-Sets the color of the renderer.
-
-## DrawLine
-
-`Renderer.DrawLine(x0, y0, x1, y1):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x0**
-
-`integer`
-
-X coordinate of the first point.
-
-**y0**
-
-`integer`
-
-Y coordinate of the first point.
-
-**x1**
-
-`integer`
-
-X coordinate of the second point.
-
-**y1**
-
-`integer`
-
-Y coordinate of the second point.
-
-Draws a line.
-
-## DrawPolyLine
-
-`Renderer.DrawPolyLine(points):` `nil`
-
-Name
-
-Type
-
-Description
-
-**points**
-
-`table`
-
-Table of points.
-
-Draws a polyline.
-
-## DrawPolyLineFilled
-
-`Renderer.DrawPolyLineFilled(points):` `nil`
-
-Name
-
-Type
-
-Description
-
-**points**
-
-`table`
-
-Table of points.
-
-Draws a filled polyline.
-
-## DrawFilledRect
-
-`Renderer.DrawFilledRect(x, y, w, h):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`integer`
-
-Width of the rectangle.
-
-**h**
-
-`integer`
-
-Height of the rectangle.
-
-Draws a filled rectangle.
-
-## DrawOutlineRect
-
-`Renderer.DrawOutlineRect(x, y, w, h):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`integer`
-
-Width of the rectangle.
-
-**h**
-
-`integer`
-
-Height of the rectangle.
-
-Draws an outlined rectangle.
-
-## DrawOutlineCircle
-
-`Renderer.DrawOutlineCircle(x, y, r, s):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the circle.
-
-**y**
-
-`integer`
-
-Y coordinate of the circle.
-
-**r**
-
-`integer`
-
-Radius of the circle.
-
-**s**
-
-`integer`
-
-Segments of the circle.
-
-Draws an outlined circle.
-
-## DrawFilledCircle
-
-`Renderer.DrawFilledCircle(x, y, r):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the circle.
-
-**y**
-
-`integer`
-
-Y coordinate of the circle.
-
-**r**
-
-`integer`
-
-Radius of the circle.
-
-Draws a filled circle.
-
-## DrawOutlineRoundedRect
-
-`Renderer.DrawOutlineRoundedRect(x, y, w, h, radius):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`integer`
-
-Width of the rectangle.
-
-**h**
-
-`integer`
-
-Height of the rectangle.
-
-**radius**
-
-`integer`
-
-Radius of the rectangle.
-
-Draws an outlined rounded rectangle.
-
-## DrawFilledRoundedRect
-
-`Renderer.DrawFilledRoundedRect(x, y, w, h, radius):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`integer`
-
-Width of the rectangle.
-
-**h**
-
-`integer`
-
-Height of the rectangle.
-
-**radius**
-
-`integer`
-
-Radius of the rectangle.
-
-Draws a filled rounded rectangle.
-
-## DrawOutlineTriangle
-
-`Renderer.DrawOutlineTriangle(points):` `nil`
-
-Name
-
-Type
-
-Description
-
-**points**
-
-`table`
-
-Table of points.
-
-Draws an outlined triangle.
-
-## DrawFilledTriangle
-
-`Renderer.DrawFilledTriangle(points):` `nil`
-
-Name
-
-Type
-
-Description
-
-**points**
-
-`table`
-
-Table of points.
-
-Draws a filled triangle.
-
-## DrawTexturedPolygon
-
-`Renderer.DrawTexturedPolygon(points, texture):` `nil`
-
-Name
-
-Type
-
-Description
-
-**points**
-
-`table`
-
-Table of points.
-
-**texture**
-
-`integer`
-
-Texture handle.
-
-Draws a textured polygon.
-
-## LoadFont
-
-`Renderer.LoadFont(name, size, flags, weight):` `integer`
-
-Name
-
-Type
-
-Description
-
-**name**
-
-`string`
-
-Name of the font.
-
-**size**
-
-`integer`
-
-Size of the font.
-
-**flags**
-
-`integer`
-
-Font flags.
-
-**weight**
-
-`integer`
-
-Font weight.
-
-Loads a font.
-
-## DrawText
-
-`Renderer.DrawText(font, x, y, text):` `nil`
-
-Name
-
-Type
-
-Description
-
-**font**
-
-`integer`
-
-Font handle.
-
-**x**
-
-`integer`
-
-X coordinate of the text.
-
-**y**
-
-`integer`
-
-Y coordinate of the text.
-
-**text**
-
-`string`
-
-Text to draw.
-
-Draws a text.
-
-## WorldToScreen
-
-`Renderer.WorldToScreen(pos):` `integer`, `integer`, `boolean`
-
-Name
-
-Type
-
-Description
-
-**pos**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-World coordinates.
-
-Converts world coordinates to screen coordinates. Returns x, y and visible.
-
-## GetScreenSize
-
-`Renderer.GetScreenSize():` `integer`, `integer`
-
-Returns screen size.
-
-## GetTextSize
-
-`Renderer.GetTextSize(font, text):` `integer`, `integer`
-
-Name
-
-Type
-
-Description
-
-**font**
-
-`integer`
-
-Font handle.
-
-**text**
-
-`string`
-
-Text to measure.
-
-Returns text size.
-
-## LoadImage
-
-`Renderer.LoadImage(path):` `integer`
-
-Name
-
-Type
-
-Description
-
-**path**
-
-`string`
-
-Path to the image.
-
-Loads an image. Returns image handle.
-
-## DrawImage
-
-`Renderer.DrawImage(handle, x, y, w, h):` `nil`
-
-Name
-
-Type
-
-Description
-
-**handle**
-
-`integer`
-
-Image handle.
-
-**x**
-
-`integer`
-
-X coordinate of the image.
-
-**y**
-
-`integer`
-
-Y coordinate of the image.
-
-**w**
-
-`integer`
-
-Width of the image.
-
-**h**
-
-`integer`
-
-Height of the image.
-
-Draws an image.
-
-## DrawImageCentered
-
-`Renderer.DrawImageCentered(handle, x, y, w, h):` `nil`
-
-Name
-
-Type
-
-Description
-
-**handle**
-
-`integer`
-
-Image handle.
-
-**x**
-
-`integer`
-
-X coordinate of the image.
-
-**y**
-
-`integer`
-
-Y coordinate of the image.
-
-**w**
-
-`integer`
-
-Width of the image.
-
-**h**
-
-`integer`
-
-Height of the image.
-
-Draws an image centered.
-
-## GetImageSize
-
-`Renderer.GetImageSize(handle):` `integer`, `integer`
-
-Name
-
-Type
-
-Description
-
-**handle**
-
-`integer`
-
-Image handle.
-
-Returns image size.
-
-## DrawFilledRectFade
-
-`Renderer.DrawFilledRectFade(x0, y0, x1, y1, alpha0, alpha1, bHorizontal):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x0**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y0**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**x1**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y1**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**alpha0**
-
-`integer`
-
-Alpha of the first point.
-
-**alpha1**
-
-`integer`
-
-Alpha of the second point.
-
-**bHorizontal**
-
-`boolean`
-
-Horizontal fade.
-
-Draws a filled rectangle with fade.
-
-## DrawFilledGradRect
-
-`Renderer.DrawFilledGradRect(x0, y0, x1, y1, r, g, b, a, r2, g2, b2, a2, bHorizontal):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x0**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y0**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**x1**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y1**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**r**
-
-`integer`
-
-Red color of the first point.
-
-**g**
-
-`integer`
-
-Green color of the first point.
-
-**b**
-
-`integer`
-
-Blue color of the first point.
-
-**a**
-
-`integer`
-
-Alpha color of the first point.
-
-**r2**
-
-`integer`
-
-Red color of the second point.
-
-**g2**
-
-`integer`
-
-Green color of the second point.
-
-**b2**
-
-`integer`
-
-Blue color of the second point.
-
-**a2**
-
-`integer`
-
-Alpha color of the second point.
-
-**bHorizontal**
-
-`boolean`
-
-Horizontal gradient.
-
-Draws a filled gradient rectangle.
-
-## DrawGlow
-
-`Renderer.DrawGlow(x0, y0, w, h, thickness, obj_rounding):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x0**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y0**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`integer`
-
-Width of the rectangle.
-
-**h**
-
-`integer`
-
-Height of the rectangle.
-
-**thickness**
-
-`integer`
-
-Thickness of the glow.
-
-**obj\_rounding**
-
-`integer`
-
-Rounding of the glow.
-
-Draws a glow.
-
-## DrawBlur
-
-`Renderer.DrawBlur(x0, y0, w, h, strength, rounding, alpha):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x0**
-
-`number`
-
-X coordinate of the rectangle.
-
-**y0**
-
-`number`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`number`
-
-Width of the rectangle.
-
-**h**
-
-`number`
-
-Height of the rectangle.
-
-**strength**
-
-`number`
-
-Strength of the blur.
-
-**rounding**
-
-`number`
-
-Rounding of the blur.
-
-**alpha**
-
-`number`
-
-Alpha of the blur.
-
-Draws a blur.
-
-## PushClip
-
-`Renderer.PushClip(x, y, w, h, intersect):` `nil`
-
-Name
-
-Type
-
-Description
-
-**x**
-
-`integer`
-
-X coordinate of the rectangle.
-
-**y**
-
-`integer`
-
-Y coordinate of the rectangle.
-
-**w**
-
-`integer`
-
-Width of the rectangle.
-
-**h**
-
-`integer`
-
-Height of the rectangle.
-
-**intersect**
-
-`boolean`
-
-Intersect with the previous clip.
-
-Pushes a clip rect.
-
-## PopClip
-
-`Renderer.PopClip():` `nil`
-
-Pops a clip rect.
-
-## DrawCenteredNotification
-
-`Renderer.DrawCenteredNotification(text, duration):` `nil`
-
-Name
-
-Type
-
-Description
-
-**text**
-
-`string`
-
-Text to draw.
-
-**duration**
-
-`number`
-
-Duration of the notification.
-
-Draws a centered notification.
-
-[PreviousParticle](/api-v2.0/game-components/rendering-and-visuals/particle)[NextRender](/api-v2.0/game-components/rendering-and-visuals/renderv2)
-
-Last updated 7 months ago
-
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2
-================================================================================
-
-Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
 
 # 🎨Render
 
@@ -28165,19 +25466,6 @@ The 3D world position to be converted.
 Converts a 3D world position to a 2D screen position. Returns A Vec2 representing the 2D screen position and a boolean indicating visibility on the screen.
 
 #### Example
-
-Copy
-
-```
--- Example: Convert the center of the map (0,0,0) to screen coordinates.
-local worldPos = Vector(0.0, 0.0, 0.0)
-local screenPos, isVisible = Render.WorldToScreen(worldPos)
-if isVisible then
-    Log.Write("Screen Position: " .. screenPos.x .. ", " .. screenPos.y)
-else
-    Log.Write("Position is not visible on the screen")
-end
-```
 
 ## ScreenSize
 
@@ -28849,18 +26137,11 @@ Reset the global alpha value for rendering to 1.0.
 
 [PreviousRenderer](/api-v2.0/game-components/rendering-and-visuals/renderv1)[NextMiniMap](/api-v2.0/game-components/rendering-and-visuals/minimap)
 
-Last updated 1 month ago
+Last updated 2 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
 
 # 🗺️MiniMap
 
@@ -29146,18 +26427,16 @@ Returns world position from minimap position. The same as `GetMousePosInWorld`, 
 
 [PreviousRender](/api-v2.0/game-components/rendering-and-visuals/renderv2)[NextPanorama](/api-v2.0/game-components/rendering-and-visuals/panorama)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama
-================================================================================
+### Rendering - Panorama UI
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
 
 # 🖼️Panorama
 
@@ -29165,19 +26444,11 @@ Copy
 
 [PreviousMiniMap](/api-v2.0/game-components/rendering-and-visuals/minimap)[NextPanorama](/api-v2.0/game-components/rendering-and-visuals/panorama/panorama)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
-3. [🖼️Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama)
 
 # 🖼️Panorama
 
@@ -29305,69 +26576,13 @@ Creates a new panorama panel
 
 #### Example
 
-Copy
-
-```
--- create_panel.lua
-function create_category()
-	local panel = Panorama.GetPanelByPath({"DOTAHeroesPage", "HeroGrid", "Footer", "ViewModeControls", "Filters"}, true);
-	if (not panel) then 
-		print("not on hero grid page");
-		return
-	end;
-
-	local filter_category = Panorama.CreatePanel("Panel", nil, panel, "FilterCategory")
-	local filter_category_title = Panorama.CreatePanel("Label", nil, filter_category, "FilterCategoryTitle");
-	filter_category_title:SetText("Filter");
-	local items_panel = Panorama.CreatePanel("Panel", nil, filter_category, "FilterCategoryItems")
-	items_panel:AddClasses("FilterCategoryItems")
-
-	local button_styles = {
-		["CrossButton"] = 'background-image: url("s2r://panorama/images/control_icons/purgatory_png.vtex");',
-		["GearButton"] = 'background-image: url("s2r://panorama/images/control_icons/settings_png.vtex");',
-	};
-	local buttons = {}
-	for id, style in pairs(button_styles) do
-		buttons[id] = Panorama.CreatePanel("Button", id, items_panel, "FilterButton", style)
-	end
-	local button_id, button = next(buttons);
-
-    -- set up the button events
-	Engine.RunScript(([[
-		(function(){
-			let ctx = $.GetContextPanel();
-			let button = ctx.FindChildTraverse("%s")
-			let items_panel = button.GetParent();
-
-			let children = items_panel.Children();
-			let children_count = children.length;
-			for (let i = 0; i < children_count; i++) {
-				let item = children[i];
-				item.SetPanelEvent("onmouseover", () => $.DispatchEvent("UIShowTextTooltipStyled", item, ("Button Id: " + item.id), "GameModeTooltip"));
-				item.SetPanelEvent("onmouseout", () => $.DispatchEvent("UIHideTextTooltip", item));
-				item.SetPanelEvent("onactivate", () => $.Msg(item.id + " was clicked!"));
-			}
-		})()
-	]]):format(button_id), button)
-end
-create_category();
-```
-
 [PreviousPanorama](/api-v2.0/game-components/rendering-and-visuals/panorama)[NextUIPanel](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [🎨Rendering & Visuals](/api-v2.0/game-components/rendering-and-visuals)
-3. [🖼️Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama)
 
 # 🖼️UIPanel
 
@@ -29681,48 +26896,6 @@ Sets the panel style.
 
 #### Example
 
-Copy
-
-```
--- set_style.lua
-local css_like_table = {
-    ["horizontal-align"] = "center",
-	["vertical-align"] = "center",
-    ["transform"] = "translate3d( 0px, -0px, 0px ) scale3d(1, 1, 1)",
-    ["padding-left"] = "0px",
-    ["margin"] = "0px",
-    ["border-radius"] = "4px",
-    ["background-color"] = "none",
-    ["box-shadow"] = "none",
-    ["color"] = "gradient( linear, 0% 100%, 0% 0%, from( #ff00FF ), to( #5C9C68 ) )",
-    ["font-size"] = "20px",
-    ["text-align"] = "center",
-    ["text-decoration"] = "none",
-    ["background-size"] = "0% 0%",
-    ["opacity-mask"] = 'url("s2r://panorama/images/masks/hudchat_mask_psd.vtex") 1.0',
-    ["hue-rotation"] = "-10deg",
-    ["text-shadow"] = "2px 2px #111111b0",
-    ["blur"] = "gaussian(0px)",
-    ["line-height"] = "120%",
-    ["font-family"] = "Radiance",
-    ["border-brush"] = "gradient( linear, 0% 0%, 0% 100%, from( #96c5ff96 ), to( #12142d2d ) )",
-}
-
-
-local function css_to_string(tbl)
-    local str = ""
-    for k, v in pairs(tbl) do
-        str = str .. k .. ": " .. v .. "; "
-    end
-    return str;
-end
-
-local health_label = Panorama.GetPanelByName("HealthLabel");
-if (health_label) then
-    health_label:SetStyle(css_to_string(css_like_table))
-end
-```
-
 ## SetAttribute
 
 `:SetAttribute(key, value):` `nil`
@@ -29825,13 +26998,6 @@ Sets the label panel's text type. (2 = plain, 3 = html). Should always set text 
 
 #### Example
 
-Copy
-
-```
-label_panel:SetTextType(3)
-label_panel:SetText("<font color='#8BFFD8'>Vitória</font>")
-```
-
 ## IsValid
 
 `:IsValid():` `boolean`
@@ -29894,17 +27060,16 @@ Removes a class to the panel.
 
 [PreviousPanorama](/api-v2.0/game-components/rendering-and-visuals/panorama/panorama)[NextConfiguration & Utilities](/api-v2.0/game-components/configuration-and-utilities)
 
-Last updated 3 months ago
+Last updated 4 months ago
 
 
+--------------------------------------------------------------------------------
 
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities
-================================================================================
+## Configuration and Utilities
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
 
 # 📁Configuration & Utilities
 
@@ -29912,18 +27077,11 @@ Copy
 
 [PreviousUIPanel](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel)[NextConfig](/api-v2.0/game-components/configuration-and-utilities/config)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📁Configuration & Utilities](/api-v2.0/game-components/configuration-and-utilities)
 
 # ⚒️Config
 
@@ -30111,18 +27269,11 @@ Write a string to a config file.
 
 [PreviousConfiguration & Utilities](/api-v2.0/game-components/configuration-and-utilities)[NextHumanizer](/api-v2.0/game-components/configuration-and-utilities/humanizer)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📁Configuration & Utilities](/api-v2.0/game-components/configuration-and-utilities)
 
 # 🤖Humanizer
 
@@ -30194,18 +27345,11 @@ Forces current user order by minimap. Must be called in OnPrepareUnitOrder
 
 [PreviousConfig](/api-v2.0/game-components/configuration-and-utilities/config)[NextLog](/api-v2.0/game-components/configuration-and-utilities/log)
 
-Last updated 4 months ago
+Last updated 5 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📁Configuration & Utilities](/api-v2.0/game-components/configuration-and-utilities)
 
 # 📓Log
 
@@ -30231,18 +27375,11 @@ Writes a message to the console.
 
 [PreviousHumanizer](/api-v2.0/game-components/configuration-and-utilities/humanizer)[NextLocalizer](/api-v2.0/game-components/configuration-and-utilities/localizer)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📁Configuration & Utilities](/api-v2.0/game-components/configuration-and-utilities)
 
 # 🗣️Localizer
 
@@ -30282,18 +27419,11 @@ Registers key (token) string to localizer.
 
 [PreviousLog](/api-v2.0/game-components/configuration-and-utilities/log)[NextGameLocalizer](/api-v2.0/game-components/configuration-and-utilities/gamelocalizer)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
-
-
-================================================================================
-Original URL: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer
-================================================================================
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer -->
 
 Copy
-
-1. [Game Components](/api-v2.0/game-components)
-2. [📁Configuration & Utilities](/api-v2.0/game-components/configuration-and-utilities)
 
 # 📝GameLocalizer
 
@@ -30368,13 +27498,6 @@ Returns localized string by item name or returns empty string if item not found.
 
 #### Example
 
-Copy
-
-```
-GameLocalizer.FindItem("item_blink") -- Blink Dagger
-GameLocalizer.FindItem("item_recipe_arcane_blink") -- Recipe: Arcane Blink
-```
-
 ## FindNPC
 
 `GameLocalizer.FindNPC(unit_name):` `string`
@@ -30393,13 +27516,7 @@ Returns localized string by unit name or returns empty string if unit not found.
 
 #### Example
 
-Copy
-
-```
-GameLocalizer.FindNPC("npc_dota_hero_necrolyte") -- Necrophos
-```
-
 [PreviousLocalizer](/api-v2.0/game-components/configuration-and-utilities/localizer)
 
-Last updated 7 months ago
+Last updated 8 months ago
 
