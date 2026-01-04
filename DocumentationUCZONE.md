@@ -11352,299 +11352,462 @@ Returns the keybind of the ability.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item -->
 
-# Item
+Copy
+
+# 🔑Item
 
 Table to work with `CItem`.
 
-<mark style="color:purple;">**`CItem`**</mark> extends <mark style="color:purple;">**`CAbility`**</mark>
+`CItem` extends `CAbility`
 
-## <sub>IsCombinable</sub>
+## IsCombinable
 
-`Item.IsCombinable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsCombinable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is combinable. I'm not sure if non-combinable items even exist.
 
-## <sub>IsPermanent</sub>
+## IsPermanent
 
-`Item.IsPermanent(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsPermanent(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is permanent. I'm not sure what permanent items is, but for items with stacks this function returns `false`.
 
-## <sub>IsStackable</sub>
+## IsStackable
 
-`Item.IsStackable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsStackable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is stackable. e.g tangoes, wards, etc.
 
-## <sub>IsRecipe</sub>
+## IsRecipe
 
-`Item.IsRecipe(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsRecipe(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is recipe.
 
-## <sub>GetSharability</sub>
+## GetSharability
 
-`Item.GetSharability(item):` [<mark style="color:purple;">**`Enum.ShareAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums#enum.shareability)
+`Item.GetSharability(item):` [`Enum.ShareAbility`](/api-v2.0/cheats-types-and-callbacks/enums#enum.shareability)
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns item's sharability type.
 
-## <sub>IsDroppable</sub>
+## IsDroppable
 
-`Item.IsDroppable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsDroppable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is droppable.
 
-## <sub>IsPurchasable</sub>
+## IsPurchasable
 
-`Item.IsPurchasable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsPurchasable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is purchasable.
 
-## <sub>IsSellable</sub>
+## IsSellable
 
-`Item.IsSellable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsSellable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item is sellable.
 
-## <sub>RequiresCharges</sub>
+## RequiresCharges
 
-`Item.RequiresCharges(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.RequiresCharges(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if the item requires charges. e.g. urn, vessel etc.
 
-## <sub>IsKillable</sub>
+## IsKillable
 
-`Item.IsKillable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsKillable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if item is destroyable by autoatack.
 
-## <sub>IsDisassemblable</sub>
+## IsDisassemblable
 
-`Item.IsDisassemblable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsDisassemblable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if item is disassemblable.
 
-## <sub>IsAlertable</sub>
+## IsAlertable
 
-`Item.IsAlertable(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsAlertable(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if item is alertable. e.g. smoke, mekansm, arcane boots etc.
 
-## <sub>GetInitialCharges</sub>
+## GetInitialCharges
 
-`Item.GetInitialCharges(item):` <mark style="color:purple;">**`integer`**</mark>
+`Item.GetInitialCharges(item):` `integer`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns initial charges of the item. e.g. 3 for bottle, 1 for dust etc.
 
-## <sub>CastsOnPickup</sub>
+## CastsOnPickup
 
-`Item.CastsOnPickup(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.CastsOnPickup(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 No idea what this function does.
 
-## <sub>GetCurrentCharges</sub>
+## GetCurrentCharges
 
-`Item.GetCurrentCharges(item):` <mark style="color:purple;">**`integer`**</mark>
+`Item.GetCurrentCharges(item):` `integer`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns amount of current charges.
 
-## <sub>GetSecondaryCharges</sub>
+## GetSecondaryCharges
 
-`Item.GetSecondaryCharges(item):` <mark style="color:purple;">**`integer`**</mark>
+`Item.GetSecondaryCharges(item):` `integer`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns amount of secondary charges. e.g. pack of both type of wards.
 
-## <sub>IsCombineLocked</sub>
+## IsCombineLocked
 
-`Item.IsCombineLocked(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsCombineLocked(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if item locked for combining.
 
-## <sub>IsMarkedForSell</sub>
+## IsMarkedForSell
 
-`Item.IsMarkedForSell(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsMarkedForSell(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if item is marked for sell.
 
-## <sub>GetPurchaseTime</sub>
+## GetPurchaseTime
 
-`Item.GetPurchaseTime(item):` <mark style="color:purple;">**`number`**</mark>
+`Item.GetPurchaseTime(item):` `number`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
 
-Returns the game time when the item was purchased. If the item was assembled from other items, It returns the purchase time of the item that had the lowest\
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
+
+Returns the game time when the item was purchased. If the item was assembled from other items, It returns the purchase time of the item that had the lowest
 index at the moment of assembling.
 
-## <sub>GetAssembledTime</sub>
+## GetAssembledTime
 
-`Item.GetAssembledTime(item):` <mark style="color:purple;">**`number`**</mark>
+`Item.GetAssembledTime(item):` `number`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns the game time when the item was assembled. If the item was not assembled, returns time when the item was purchased.
 
-## <sub>PurchasedWhileDead</sub>
+## PurchasedWhileDead
 
-`Item.PurchasedWhileDead(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.PurchasedWhileDead(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `true` if item was purchased while dead.
 
-## <sub>CanBeUsedOutOfInventory</sub>
+## CanBeUsedOutOfInventory
 
-`Item.CanBeUsedOutOfInventory(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.CanBeUsedOutOfInventory(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 No idea which specific item example could be used out of inventory.
 
-## <sub>IsItemEnabled</sub>
+## IsItemEnabled
 
-`Item.IsItemEnabled(item):` <mark style="color:purple;">**`boolean`**</mark>
+`Item.IsItemEnabled(item):` `boolean`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns `false` if item has CD after moving from stash.
 
-## <sub>GetEnableTime</sub>
+## GetEnableTime
 
-{% hint style="info" %}
 Could be less than current game time if item is already enabled.
-{% endhint %}
 
-`Item.GetEnableTime(item):` <mark style="color:purple;">**`number`**</mark>
+`Item.GetEnableTime(item):` `number`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns game time when item will be enabled.
 
-## <sub>GetPlayerOwnerID</sub>
+## GetPlayerOwnerID
 
-`Item.GetPlayerOwnerID(item):` <mark style="color:purple;">**`integer`**</mark>
+`Item.GetPlayerOwnerID(item):` `integer`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns player ID who owns the item.
 
-## <sub>GetCost</sub>
+## GetCost
 
-`Item.GetCost(item):` <mark style="color:purple;">**`integer`**</mark>
+`Item.GetCost(item):` `integer`
 
-| Name     | Type                                                                                                           | Description |
-| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
-| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
+Name
+
+Type
+
+Description
+
+**item**
+
+[`CItem`](/api-v2.0/game-components/core/item)
 
 Returns item cost.
 
-## <sub>GetStockCount</sub>
+## GetStockCount
 
-{% hint style="info" %}
-Item id can be found in \`assets/data/items.json\` file in cheat folder.
-{% endhint %}
+Item id can be found in `assets/data/items.json` file in cheat folder.
 
-\`Item.GetStockCount(item\_id, \[team]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
+`Item.GetStockCount(item\_id, [team]):` \*\*`integer`\*\*
 
-| Name                                                       | Type                                                                                                                                      | Description                                                                        |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| **item\_id**                                               | <mark style="color:purple;">**`integer`**</mark>                                                                                          |                                                                                    |
-| **team&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
+Name
+
+Type
+
+Description
+
+**item\_id**
+
+`integer`
+
+**team** `[?]`
+
+[`Enum.TeamNum`](/api-v2.0/cheats-types-and-callbacks/enums#enum.teamnum)
+
+- Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)`
 
 Returns amount of remaining items in shop by item id.
 
 #### Example
 
-```lua
--- "item_ward_observer": {
---     "ID": "42",
-Log.Write("Observers available: " .. Item.GetStockCount(42))
-```
+[PreviousAbility](/api-v2.0/game-components/core/ability)[NextRune](/api-v2.0/game-components/core/rune)
+
+Last updated 8 months ago
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune -->
 
