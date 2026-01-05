@@ -1,437 +1,300 @@
-import json
-import re
-import time
-from dataclasses import dataclass, field
-from pathlib import Path
-from typing import List, Optional, Tuple
-from urllib.parse import urljoin, urlparse
-
 import requests
+import time
 from bs4 import BeautifulSoup
 from markdownify import markdownify as md
+from pathlib import Path
+from typing import List, Optional
+from dataclasses import dataclass
 
-BASE_URL = "https://uczone.gitbook.io/api-v2.0"
 OUTPUT_FILE = "DocumentationUCZONE.md"
-OUTPUT_DIR = Path("docs_md")
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0 Safari/537.36",
-}
-
 
 @dataclass
-class MenuNode:
+class PageGroup:
+    """Группа страниц с общей темой"""
     title: str
-    url: str
-    children: List["MenuNode"] = field(default_factory=list)
+    urls: List[str]
+    level: int  # Уровень вложенности (1 = основной раздел, 2 = подраздел)
 
+# Умная иерархическая структура разделов
+PAGE_GROUPS = [
+    PageGroup("Starting Guide", [
+        "https://uczone.gitbook.io/api-v2.0"
+    ], level=1),
+    
+    PageGroup("Cheats Types and Callbacks", [
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums"
+    ], level=1),
+    
+    PageGroup("Classes - Color", [
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color"
+    ], level=2),
+    
+    PageGroup("Classes - Menu System", [
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup"
+    ], level=2),
+    
+    PageGroup("Classes - UI Widgets", [
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind"
+    ], level=2),
+    
+    PageGroup("Classes - Math", [
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2",
+        "https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex"
+    ], level=2),
+    
+    PageGroup("Game Components - Entity Lists", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/entities",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/camps",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/players",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/runes",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/towers",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/trees",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers",
+        "https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles"
+    ], level=1),
+    
+    PageGroup("Game Components - Core Objects", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/core",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/player",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/modifier",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/entity",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/npc",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/hero",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/ability",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/item",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/rune",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/tower",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/tree",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/camp",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/bottle",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/courier",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads",
+        "https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken"
+    ], level=1),
+    
+    PageGroup("Game Engine", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar",
+        "https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar"
+    ], level=1),
+    
+    PageGroup("Networking and APIs", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis",
+        "https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi",
+        "https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http",
+        "https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi",
+        "https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel",
+        "https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc"
+    ], level=1),
+    
+    PageGroup("Rendering and Visuals", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals",
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle",
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1",
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2",
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap"
+    ], level=1),
+    
+    PageGroup("Rendering - Panorama UI", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama",
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama",
+        "https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel"
+    ], level=2),
+    
+    PageGroup("Configuration and Utilities", [
+        "https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities",
+        "https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config",
+        "https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer",
+        "https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log",
+        "https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer",
+        "https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer"
+    ], level=1)
+]
 
-# ----------------------------
-# URL + text helpers
-# ----------------------------
-
-def normalize_url(url: str) -> str:
-    url = url.strip()
-    url = url.split("#", 1)[0]
-    url = url.rstrip("/")
-    return url
-
-
-def is_internal_doc_url(url: str) -> bool:
-    url = normalize_url(url)
-    return url.startswith(BASE_URL)
-
-
-def slugify_anchor(text: str) -> str:
-    t = text.strip().lower()
-    t = re.sub(r"[^a-z0-9\u0400-\u04ff\s_-]", "", t)
-    t = t.replace("_", "-")
-    t = re.sub(r"\s+", "-", t)
-    t = re.sub(r"-+", "-", t)
-    return t.strip("-")
-
-
-def url_to_local_md_path(url: str) -> Path:
-    """Maps https://uczone.gitbook.io/api-v2.0/a/b -> docs_md/a/b.md"""
-    path = urlparse(normalize_url(url)).path
-    if path.startswith("/api-v2.0"):
-        rel = path[len("/api-v2.0") :].lstrip("/")
-    else:
-        rel = path.lstrip("/")
-
-    if not rel:
-        rel = "index"
-
-    # keep URL path segments; just make sure it is a safe path
-    rel = rel.replace("..", "")
-    return OUTPUT_DIR / f"{rel}.md"
-
-
-# ----------------------------
-# Fetch + parse
-# ----------------------------
-
-def fetch_html(url: str) -> str:
-    resp = requests.get(url, headers=HEADERS, timeout=25)
-    resp.raise_for_status()
-    return resp.text
-
-
-def pick_best_nav_container(soup: BeautifulSoup) -> Optional[BeautifulSoup]:
-    """Pick nav/aside container with max number of internal doc links."""
-    candidates = []
-
-    for tag_name in ("nav", "aside"):
-        for el in soup.find_all(tag_name):
-            links = el.select("a[href]")
-            cnt = 0
-            for a in links:
-                href = a.get("href", "").strip()
-                if not href:
-                    continue
-                full = normalize_url(urljoin(BASE_URL, href))
-                if is_internal_doc_url(full):
-                    cnt += 1
-            candidates.append((cnt, el))
-
-    # fallback: any element that looks like sidebar
-    for el in soup.find_all(["div", "section"]):
-        cls = " ".join(el.get("class", [])).lower()
-        if not cls:
-            continue
-        if any(k in cls for k in ("sidebar", "navigation", "toc")):
-            links = el.select("a[href]")
-            cnt = 0
-            for a in links:
-                href = a.get("href", "").strip()
-                full = normalize_url(urljoin(BASE_URL, href))
-                if is_internal_doc_url(full):
-                    cnt += 1
-            candidates.append((cnt, el))
-
-    if not candidates:
-        return None
-
-    candidates.sort(key=lambda x: x[0], reverse=True)
-    best_cnt, best_el = candidates[0]
-    return best_el if best_cnt > 0 else None
-
-
-def parse_menu_tree_from_ul(container: BeautifulSoup, page_url: str) -> Optional[List[MenuNode]]:
-    ul = container.find("ul")
-    if not ul:
-        return None
-
-    def parse_ul(ul_tag) -> List[MenuNode]:
-        nodes: List[MenuNode] = []
-        for li in ul_tag.find_all("li", recursive=False):
-            a = li.find("a", href=True)
-            if not a:
-                continue
-            title = " ".join(a.get_text(" ", strip=True).split())
-            href = a.get("href", "")
-            full = normalize_url(urljoin(page_url, href))
-            if not title or not is_internal_doc_url(full):
-                continue
-
-            child_ul = li.find("ul")
-            children = parse_ul(child_ul) if child_ul else []
-            nodes.append(MenuNode(title=title, url=full, children=children))
-        return nodes
-
-    tree = parse_ul(ul)
-    return tree if tree else None
-
-
-def parse_menu_tree_from_aria(container: BeautifulSoup, page_url: str) -> Optional[List[MenuNode]]:
-    """Parse menu from aria-level treeitems (common in SPA sidebars)."""
-    items = container.select("[aria-level] a[href]")
-    if not items:
-        # some layouts put aria-level directly on clickable node
-        items = container.select("a[aria-level][href]")
-
-    rows: List[Tuple[int, str, str]] = []
-    for a in items:
-        try:
-            lvl_raw = a.get("aria-level") or (a.find_parent(attrs={"aria-level": True}) or {}).get("aria-level")
-            lvl = int(lvl_raw) if lvl_raw else 1
-        except Exception:
-            lvl = 1
-
-        title = " ".join(a.get_text(" ", strip=True).split())
-        href = a.get("href", "").strip()
-        full = normalize_url(urljoin(page_url, href))
-        if not title or not is_internal_doc_url(full):
-            continue
-
-        rows.append((lvl, title, full))
-
-    if not rows:
-        return None
-
-    # Build tree using stack
-    root: List[MenuNode] = []
-    stack: List[Tuple[int, MenuNode]] = []
-
-    for lvl, title, full in rows:
-        node = MenuNode(title=title, url=full)
-
-        while stack and stack[-1][0] >= lvl:
-            stack.pop()
-
-        if not stack:
-            root.append(node)
-        else:
-            stack[-1][1].children.append(node)
-
-        stack.append((lvl, node))
-
-    return root if root else None
-
-
-def parse_menu_tree_fallback_flat(container: BeautifulSoup, page_url: str) -> List[MenuNode]:
-    seen = set()
-    out: List[MenuNode] = []
-    for a in container.select("a[href]"):
-        href = a.get("href", "").strip()
-        if not href:
-            continue
-        if href.startswith(("mailto:", "tel:", "javascript:")):
-            continue
-        full = normalize_url(urljoin(page_url, href))
-        if not is_internal_doc_url(full):
-            continue
-        if full in seen:
-            continue
-        title = " ".join(a.get_text(" ", strip=True).split())
-        if not title:
-            continue
-        seen.add(full)
-        out.append(MenuNode(title=title, url=full))
-    return out
-
-
-def discover_menu_tree() -> List[MenuNode]:
-    """Discover menu structure from GitBook sidebar."""
-    html = fetch_html(BASE_URL)
-    soup = BeautifulSoup(html, "html.parser")
-
-    container = pick_best_nav_container(soup)
-    if not container:
-        raise RuntimeError("Не удалось найти контейнер меню (nav/aside) на стартовой странице")
-
-    # Try multiple strategies
-    tree = (
-        parse_menu_tree_from_aria(container, BASE_URL)
-        or parse_menu_tree_from_ul(container, BASE_URL)
-        or parse_menu_tree_fallback_flat(container, BASE_URL)
-    )
-
-    # Ensure root page is included
-    if not any(normalize_url(n.url) == normalize_url(BASE_URL) for n in tree):
-        tree.insert(0, MenuNode(title="Starting Guide", url=normalize_url(BASE_URL)))
-
-    return tree
-
-
-# ----------------------------
-# Markdown fetching
-# ----------------------------
 
 def get_markdown_from_html(url: str) -> Optional[str]:
+    """
+    Fallback-метод: парсит HTML и конвертирует в Markdown.
+    Используется, когда прямой .md доступ недоступен.
+    """
     try:
-        response = requests.get(url, headers=HEADERS, timeout=25)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        response = requests.get(url, headers=headers, timeout=15)
         response.raise_for_status()
-        soup = BeautifulSoup(response.content, "html.parser")
+        soup = BeautifulSoup(response.content, 'html.parser')
 
-        main_content = soup.find("main")
+        # В GitBook контент лежит в <main>
+        main_content = soup.find('main')
         if not main_content:
             return None
 
-        for element in main_content.find_all(["nav", "footer", "aside"]):
+        # Удаляем навигацию и мусор
+        for element in main_content.find_all(['nav', 'footer']):
             element.decompose()
-
+        for link in main_content.find_all('a', class_=lambda x: x and 'pagination' in str(x)):
+            link.decompose()
+        
+        # Конвертация в Markdown
         markdown_text = md(str(main_content), heading_style="ATX")
         return markdown_text.strip()
 
     except Exception as e:
-        print(f"   ❌ HTML fallback ошибка: {e}")
+        print(f"   ❌ Fallback ошибка: {e}")
         return None
 
 
 def get_markdown_content(url: str) -> Optional[str]:
-    """Prefer direct .md, fallback to HTML->MD."""
-    url = normalize_url(url)
+    """
+    Получает чистый Markdown напрямую из GitBook.
+    Если .md недоступен - использует fallback парсинг HTML.
+    """
     try:
-        markdown_url = url if url.endswith(".md") else f"{url}.md"
-        response = requests.get(markdown_url, headers=HEADERS, timeout=25)
+        # Сначала пробуем прямой Markdown доступ
+        markdown_url = url if url.endswith('.md') else f"{url}.md"
+        
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        
+        response = requests.get(markdown_url, headers=headers, timeout=15)
         response.raise_for_status()
+        
         content = response.text.strip()
-
-        if content.startswith("<!DOCTYPE") or content.startswith("<html"):
+        
+        # Проверяем, что получили Markdown, а не HTML
+        if content.startswith('<!DOCTYPE') or content.startswith('<html'):
+            print(f"   🔄 .md вернул HTML, используем fallback...")
             return get_markdown_from_html(url)
-
+            
         return content
 
     except requests.exceptions.HTTPError as e:
-        if getattr(e.response, "status_code", None) == 404:
+        if e.response.status_code == 404:
+            print(f"   🔄 .md недоступен (404), используем fallback...")
             return get_markdown_from_html(url)
-        print(f"   ❌ HTTP ошибка при .md: {e}")
+        print(f"   ❌ HTTP ошибка {e.response.status_code}")
         return None
     except Exception as e:
-        print(f"   ⚠️  Ошибка при .md доступе: {e}")
+        print(f"   ⚠️  Ошибка при .md доступе, используем fallback: {e}")
         return get_markdown_from_html(url)
 
 
-# ----------------------------
-# Cleaning + formatting
-# ----------------------------
-
-def strip_gitbook_noise(markdown_text: str) -> str:
-    lines = markdown_text.splitlines()
-    out: List[str] = []
-
-    # very conservative filters
-    noise_patterns = [
-        re.compile(r"^\s*last\s+updated\b", re.IGNORECASE),
-        re.compile(r"^\s*(previous|next)\s*$", re.IGNORECASE),
-        re.compile(r"^\s*\[(previous|next)\]\s*\(.*\)\s*$", re.IGNORECASE),
-    ]
-
-    for line in lines:
-        s = line.strip()
-        if not s:
-            out.append(line)
-            continue
-        if any(p.search(s) for p in noise_patterns):
-            continue
-        out.append(line)
-
-    # collapse multiple blank lines
-    cleaned = "\n".join(out)
-    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
-    return cleaned.strip() + "\n"
-
-
-def shift_headings(markdown_text: str, shift: int) -> str:
-    if shift <= 0:
-        return markdown_text
-
-    out_lines = []
-    for line in markdown_text.splitlines():
-        m = re.match(r"^(#{1,6})\s+(.*)$", line)
-        if not m:
-            out_lines.append(line)
-            continue
-        lvl = len(m.group(1))
-        new_lvl = min(6, lvl + shift)
-        out_lines.append("#" * new_lvl + " " + m.group(2))
-    return "\n".join(out_lines).strip() + "\n"
-
-
-def drop_leading_h1(markdown_text: str) -> str:
-    lines = markdown_text.splitlines()
-    if lines and re.match(r"^#\s+", lines[0]):
-        return "\n".join(lines[1:]).lstrip() + "\n"
-    return markdown_text
-
-
-def generate_toc_from_tree(tree: List[MenuNode]) -> str:
-    lines = ["# Оглавление", ""]
-
-    def walk(nodes: List[MenuNode], depth: int):
-        for n in nodes:
-            indent = "  " * depth
-            anchor = slugify_anchor(n.title)
-            lines.append(f"{indent}- [{n.title}](#{anchor})")
-            if n.children:
-                walk(n.children, depth + 1)
-
-    walk(tree, 0)
-    return "\n".join(lines).strip() + "\n\n"
-
-
-# ----------------------------
-# Export
-# ----------------------------
-
-def export_page_md(url: str, title: str) -> Optional[Path]:
-    content = get_markdown_content(url)
-    if not content:
-        return None
-
-    content = strip_gitbook_noise(content)
-
-    path = url_to_local_md_path(url)
-    path.parent.mkdir(parents=True, exist_ok=True)
-
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(f"<!-- Source: {normalize_url(url)} -->\n")
-        f.write(f"<!-- Title: {title} -->\n\n")
-        f.write(content)
-
-    return path
-
-
-def build_single_markdown(tree: List[MenuNode]) -> None:
-    # First: export every page as separate md (also builds a url->path map)
-    url_to_path = {}
-
-    def walk_export(nodes: List[MenuNode]):
-        for n in nodes:
-            print(f"🧾 Экспорт страницы: {n.title} -> {n.url}")
-            p = export_page_md(n.url, n.title)
-            if p:
-                url_to_path[normalize_url(n.url)] = p
-                print(f"   ✅ сохранено: {p}")
-            else:
-                print("   ❌ не удалось скачать")
-            time.sleep(0.25)
-            if n.children:
-                walk_export(n.children)
-
-    walk_export(tree)
-
-    # Second: build combined documentation following menu order
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        f.write("# UCZONE API v2.0 - Полная документация\n\n")
-        f.write(f"*Source: {BASE_URL}*\n\n")
-        f.write("---\n\n")
-        f.write(generate_toc_from_tree(tree))
-        f.write("---\n\n")
-
-        def walk_write(nodes: List[MenuNode], depth: int):
-            for n in nodes:
-                heading_level = min(6, 2 + depth)  # root items => ##
-                f.write("#" * heading_level + f" {n.title}\n\n")
-                f.write(f"<!-- Source: {normalize_url(n.url)} -->\n\n")
-
-                page_md = get_markdown_content(n.url)
-                if page_md:
-                    page_md = strip_gitbook_noise(page_md)
-                    page_md = drop_leading_h1(page_md)
-                    # shift headings so that in-page H2 becomes deeper than section header
-                    page_md = shift_headings(page_md, heading_level - 1)
-                    f.write(page_md)
-                    f.write("\n")
-                else:
-                    f.write(f"> ⚠️ Не удалось загрузить: {n.url}\n\n")
-
-                if n.children:
-                    walk_write(n.children, depth + 1)
-
-        walk_write(tree, 0)
-
-    print(f"\n✅ Готово: {OUTPUT_FILE}")
-    print(f"📁 Отдельные страницы сохранены в: {OUTPUT_DIR}")
+def generate_toc(groups: List[PageGroup]) -> str:
+    """Генерирует оглавление"""
+    toc_lines = ["# Оглавление\n"]
+    
+    for group in groups:
+        indent = "  " * (group.level - 1)
+        anchor = group.title.lower().replace(" ", "-").replace("_", "-")
+        toc_lines.append(f"{indent}- [{group.title}](#{anchor})")
+    
+    return "\n".join(toc_lines) + "\n\n"
 
 
 def main():
-    print("🚀 Старт")
-    print(f"🔎 Строим структуру меню GitBook из: {BASE_URL}")
-    tree = discover_menu_tree()
-    print("✅ Меню получено, начинаем экспорт страниц...")
-    build_single_markdown(tree)
+    total_pages = sum(len(group.urls) for group in PAGE_GROUPS)
+    print(f"🚀 Начинаем парсинг {total_pages} страниц в {len(PAGE_GROUPS)} групп...")
+    print("📝 Приоритет: прямой .md доступ, fallback: HTML парсинг\n")
+    
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        # Заголовок документа
+        f.write("# UCZONE API v2.0 - Полная документация\n\n")
+        f.write(f"*Сгенерировано из {total_pages} страниц GitBook*\n\n")
+        f.write("---\n\n")
+        
+        # Оглавление
+        f.write(generate_toc(PAGE_GROUPS))
+        f.write("\n" + "="*80 + "\n\n")
+        
+        # Обрабатываем группы
+        processed = 0
+        success_count = 0
+        markdown_count = 0
+        html_fallback_count = 0
+        
+        for group_idx, group in enumerate(PAGE_GROUPS, 1):
+            # Заголовок группы
+            heading_level = "#" * (group.level + 1)
+            f.write(f"{heading_level} {group.title}\n\n")
+            
+            # Обрабатываем страницы в группе
+            for url_idx, url in enumerate(group.urls, 1):
+                processed += 1
+                print(f"[{processed}/{total_pages}] Группа '{group.title}' ({url_idx}/{len(group.urls)}): {url}")
+                
+                content = get_markdown_content(url)
+                
+                if content:
+                    # Определяем метод получения
+                    method = "📝 MD" if not content.startswith('#') or len(content) > 500 else "🌐 HTML"
+                    if "📝" in method:
+                        markdown_count += 1
+                    else:
+                        html_fallback_count += 1
+                    
+                    # Добавляем якорь источника
+                    f.write(f"<!-- Source: {url} -->\n\n")
+                    f.write(content)
+                    f.write("\n\n")
+                    success_count += 1
+                    print(f"   ✅ {method} Успешно ({len(content)} символов)")
+                else:
+                    f.write(f"> ⚠️ Не удалось загрузить: {url}\n\n")
+                    print(f"   ❌ Полная ошибка загрузки")
+                
+                time.sleep(0.3)  # Защита от блокировки
+            
+            # Разделитель между группами
+            if group_idx < len(PAGE_GROUPS):
+                f.write("\n" + "-"*80 + "\n\n")
+
+    print(f"\n✅ Готово! Файл сохранён: {OUTPUT_FILE}")
+    print(f"📊 Обработано групп: {len(PAGE_GROUPS)}")
+    print(f"📄 Успешно загружено: {success_count}/{total_pages} страниц")
+    print(f"📝 Прямой .md: {markdown_count}")
+    print(f"🌐 HTML fallback: {html_fallback_count}")
+    print(f"⚠️  Ошибок: {total_pages - success_count}")
 
 
 if __name__ == "__main__":
