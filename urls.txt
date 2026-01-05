@@ -1,6 +1,7 @@
 https://uczone.gitbook.io/api-v2.0
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums
+https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection
@@ -21,6 +22,7 @@ https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cm
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind
+https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle
@@ -77,10 +79,8 @@ https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http
 https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi
 https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel
 https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc
-https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1
-https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1#setdrawcolor
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama
