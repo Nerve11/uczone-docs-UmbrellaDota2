@@ -27,8 +27,6 @@
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0 -->
 
-Copy
-
 # 👉Starting Guide
 
 To execute your script move the `.lua` file into the `%cheat_dir%/scripts` folder.
@@ -39,8 +37,6 @@ To execute your script move the `.lua` file into the `%cheat_dir%/scripts` folde
 
 Most of your code will be executed inside the callbacks. To register the callback function, your script should return a table in the following format:
 
-Copy
-
 ```
 return {
     CallbackName = FuncHandler,
@@ -48,8 +44,6 @@ return {
 ```
 
 Example
-
-Copy
 
 ```
 -- much more convenient way for big scripts
@@ -63,8 +57,6 @@ return script
 ```
 
 or
-
-Copy
 
 ```
 return {
@@ -81,8 +73,6 @@ return {
 There is example scripts you can rely on:
 
 Debug Script
-
-Copy
 
 ```
 ---@diagnostic disable: undefined-global, param-type-mismatch, inject-field
@@ -269,7 +259,6 @@ function debug.OnLinearProjectileCreate(proj)
     print(proj)
     add_divider()
 end
-
 
 function debug.OnProjectileLoc(proj)
     if not ui.callbacks.projectile:Get() then return end
@@ -715,9 +704,7 @@ Called when a modifier is updated/refreshed.
 
 ## <sub>OnEntityHurt</sub>
 
-{% hint style="info" %}
 This callback is called only in unsafe mode.
-{% endhint %}
 
 `Callbacks.OnEntityHurt(data):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -729,9 +716,7 @@ Called when an entity is hurt.
 
 ## <sub>OnEntityKilled</sub>
 
-{% hint style="info" %}
 This callback is called only in unsafe mode.
-{% endhint %}
 
 `Callbacks.OnEntityKilled(data):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -743,9 +728,7 @@ Called when an entity is killed.
 
 ## <sub>OnFireEventClient</sub>
 
-{% hint style="info" %}
 This callback is called only in unsafe mode.
-{% endhint %}
 
 \`Callbacks.OnFireEventClient(data):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -3714,9 +3697,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -3872,9 +3853,7 @@ switch:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -3962,9 +3941,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -4120,9 +4097,7 @@ switch:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -4210,9 +4185,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -4368,9 +4341,7 @@ switch:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -4446,9 +4417,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -4588,9 +4557,7 @@ widget:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -4643,9 +4610,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -4812,9 +4777,7 @@ Sets tab's image by already created handle.
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -4895,9 +4858,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -4982,9 +4943,7 @@ Sets widget's value.
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -5048,9 +5007,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -5212,9 +5169,7 @@ widget:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -5290,9 +5245,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 \`:ForceLocalization(newText):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -5565,9 +5518,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -5723,9 +5674,7 @@ switch:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -5812,9 +5761,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -5995,9 +5942,7 @@ widget:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -6115,9 +6060,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -6298,9 +6241,7 @@ widget:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -6383,9 +6324,7 @@ Opens parent tabs.
 
 ## <sub>ForceLocalization</sub>
 
-{% hint style="info" %}
 Not recommended for use due to its complexity
-{% endhint %}
 
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -6581,9 +6520,7 @@ switch:Icon("\u{f007}")
 
 ## <sub>SetCallback</sub>
 
-{% hint style="info" %}
 Multiple callbacks could be set.
-{% endhint %}
 
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -6713,9 +6650,7 @@ Create a new Vector.
 
 ## <sub>\_\_add</sub>
 
-{% hint style="info" %}
 Overload for operator +
-{% endhint %}
 
 `:__add(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
 
@@ -6725,9 +6660,7 @@ Overload for operator +
 
 ## <sub>\_\_sub</sub>
 
-{% hint style="info" %}
 Overload for operator -
-{% endhint %}
 
 `:__sub(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
 
@@ -6737,9 +6670,7 @@ Overload for operator -
 
 ## <sub>\_\_div</sub>
 
-{% hint style="info" %}
 Overload for operator /
-{% endhint %}
 
 `:__div(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
 
@@ -6749,9 +6680,7 @@ Overload for operator /
 
 ## <sub>\_\_mul</sub>
 
-{% hint style="info" %}
 Overload for operator \*
-{% endhint %}
 
 `:__mul(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
 
@@ -6761,9 +6690,7 @@ Overload for operator \*
 
 ## <sub>\_\_eq</sub>
 
-{% hint style="info" %}
 Overload for operator ==
-{% endhint %}
 
 \`:\_\_eq(other):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
 
@@ -7138,9 +7065,7 @@ Create a new Vec2(0,0).
 
 ## <sub>\_\_add</sub>
 
-{% hint style="info" %}
 Overload for operator +
-{% endhint %}
 
 `:__add(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
 
@@ -7150,9 +7075,7 @@ Overload for operator +
 
 ## <sub>\_\_sub</sub>
 
-{% hint style="info" %}
 Overload for operator -
-{% endhint %}
 
 `:__sub(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
 
@@ -7162,9 +7085,7 @@ Overload for operator -
 
 ## <sub>\_\_div</sub>
 
-{% hint style="info" %}
 Overload for operator /
-{% endhint %}
 
 \`:\_\_div(other):\` \[<mark style="color:purple;">\*\*\`Vec2\`\*\*</mark>]\(Vec2.md)
 
@@ -7259,9 +7180,7 @@ Create a new Vertex(0,0).
 
 ## <sub>\_\_add</sub>
 
-{% hint style="info" %}
 Overload for operator +
-{% endhint %}
 
 `:__add(other):` [<mark style="color:purple;">**`Vertex`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex)
 
@@ -7271,9 +7190,7 @@ Overload for operator +
 
 ## <sub>\_\_sub</sub>
 
-{% hint style="info" %}
 Overload for operator -
-{% endhint %}
 
 \`:\_\_sub(other):\` \[<mark style="color:purple;">\*\*\`Vertex\`\*\*</mark>]\(Vertex.md)
 
@@ -8311,9 +8228,7 @@ Returns the name of the modifier's class.
 
 ## <sub>GetModifierAura</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetModifierAura(modifier):` <mark style="color:purple;">**`string`**</mark>
 
@@ -8326,9 +8241,7 @@ the cases I have tested.
 
 ## <sub>GetSerialNumber</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetSerialNumber(modifier):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -8341,9 +8254,7 @@ have tested.
 
 ## <sub>GetStringIndex</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetStringIndex(modifier):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -8430,9 +8341,7 @@ If there are stacks of the modifier, it returns the amount of stacks; otherwise,
 
 ## <sub>GetAuraSearchTeam</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetAuraSearchTeam(modifier):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -8444,9 +8353,7 @@ Returns aura search team of the modifier.
 
 ## <sub>GetAuraSearchType</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetAuraSearchType(modifier):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -8458,9 +8365,7 @@ Returns aura search type of the modifier.
 
 ## <sub>GetAuraSearchFlags</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetAuraSearchFlags(modifier):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -8472,9 +8377,7 @@ Returns aura search flags of the modifier.
 
 ## <sub>GetAuraRadius</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetAuraRadius(modifier):` <mark style="color:purple;">**`number`**</mark>
 
@@ -8496,9 +8399,7 @@ Returns team of the modifier.
 
 ## <sub>GetAttributes</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetAttributes(modifier):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -8510,9 +8411,7 @@ Returns the attributes of the modifier.
 
 ## <sub>IsAura</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.IsAura(modifier):` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -8524,9 +8423,7 @@ Returns `true` if the modifier is an aura.
 
 ## <sub>IsAuraActiveOnDeath</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.IsAuraActiveOnDeath(modifier):` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -8538,9 +8435,7 @@ Returns `true` if the modifier aura active on death.
 
 ## <sub>GetMarkedForDeletion</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetMarkedForDeletion(modifier):` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -8552,9 +8447,7 @@ Returns `true` if the modifier is marked for deletion.
 
 ## <sub>GetAuraIsHeal</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetAuraIsHeal(modifier):` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -8586,9 +8479,7 @@ Returns the game time of the last modifier tick (\~0.033 seconds).
 
 ## <sub>GetThinkInterval</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 `Modifier.GetThinkInterval(modifier):` <mark style="color:purple;">**`number`**</mark>
 
@@ -8600,9 +8491,7 @@ Returns the modifier's think interval.
 
 ## <sub>GetThinkTimeAccumulator</sub>
 
-{% hint style="info" %}
 Deprecated.
-{% endhint %}
 
 \`Modifier.GetThinkTimeAccumulator(modifier):\` <mark style="color:purple;">\*\*\`number\`\*\*</mark>
 
@@ -8762,9 +8651,7 @@ Returns `true` if the entity is in ability list. Search in unordered set. Item i
 
 ## <sub>Get</sub>
 
-{% hint style="info" %}
 Not the same as Entities.Get(index). See example.
-{% endhint %}
 
 `Entity.Get(index):` [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) | <mark style="color:purple;">**`nil`**</mark>
 
@@ -9038,9 +8925,7 @@ end
 
 ## <sub>GetTreesInRadius</sub>
 
-{% hint style="info" %}
 Active means that tree is not destroyed.
-{% endhint %}
 
 `Entity.GetTreesInRadius(entity, radius, [active]):` [<mark style="color:purple;">**`CTree[]`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/tree)
 
@@ -9066,9 +8951,7 @@ end
 
 ## <sub>GetTempTreesInRadius</sub>
 
-{% hint style="info" %}
 Temporary trees are trees planted by abilities or items.
-{% endhint %}
 
 \`Entity.GetTempTreesInRadius(entity, radius):\` \[<mark style="color:purple;">\*\*\`CTree\[]\`\*\*</mark>]\(Tree.md)
 
@@ -9205,7 +9088,7 @@ Returns `CModifier` by name.
 
 ## <sub>GetModifiers</sub>
 
-\`poperty\_filter\` doesn\`t filter all modifiers every call, it uses already prefiltered list. {% endhint %} \`
+\`poperty\_filter\` doesn\`t filter all modifiers every call, it uses already prefiltered list.  \`
 
 NPC.GetModifiers(npc, \[poperty\_filter]): `[<mark style="color:purple">**`CModifier\[]\`\*\*]\(Modifier.md)
 
@@ -9499,9 +9382,7 @@ Returns `true` if the `CNPC` is protected by Mirror Shield.
 
 ## <sub>IsChannellingAbility</sub>
 
-{% hint style="info" %}
 Do not work for items.
-{% endhint %}
 
 `NPC.IsChannellingAbility(npc):` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -9777,9 +9658,7 @@ Returns the ring radius of this `NPC`.
 
 ## <sub>GetProjectileCollisionSize</sub>
 
-{% hint style="info" %}
 see: <https://dota2.fandom.com/wiki/Unit\\_Size#Collision\\_Size>
-{% endhint %}
 
 `NPC.GetProjectileCollisionSize(npc):` <mark style="color:purple;">**`number`**</mark>
 
@@ -9791,9 +9670,7 @@ Returns the collision size of the `CNPC`. Collision size is the internal size th
 
 ## <sub>GetTurnRate</sub>
 
-{% hint style="info" %}
 see: <https://dota2.fandom.com/wiki/Turn\\_rate>
-{% endhint %}
 
 `NPC.GetTurnRate(npc):` <mark style="color:purple;">**`number`**</mark>
 
@@ -9805,9 +9682,7 @@ Returns the turn rate, which is the speed at which the `CNPC` can turn.
 
 ## <sub>GetAttackAnimPoint</sub>
 
-{% hint style="info" %}
 see: <https://dota2.fandom.com/wiki/Attack\\_animation>
-{% endhint %}
 
 `NPC.GetAttackAnimPoint(npc):` <mark style="color:purple;">**`number`**</mark>
 
@@ -9819,9 +9694,7 @@ Returns the attack animation point, `nil` if not found.
 
 ## <sub>GetAttackProjectileSpeed</sub>
 
-{% hint style="info" %}
 see: <https://dota2.fandom.com/wiki/Projectile\\_Speed>
-{% endhint %}
 
 `NPC.GetAttackProjectileSpeed(npc):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -9843,9 +9716,7 @@ Returns true if the `CNPC` is turning.
 
 ## <sub>GetAngleDiff</sub>
 
-{% hint style="info" %}
 doesn't work for creeps
-{% endhint %}
 
 `NPC.GetAngleDiff(npc):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -10069,9 +9940,7 @@ Returns the health regeneration rate of the `CNPC`.
 
 ## <sub>CalculateHealthRegen</sub>
 
-{% hint style="info" %}
 Works for creeps but really slow.
-{% endhint %}
 
 `NPC.CalculateHealthRegen(npc):` <mark style="color:purple;">**`number`**</mark>
 
@@ -10134,9 +10003,7 @@ Returns the health bar offset of the `CNPC`.
 
 ## <sub>GetUnitNameIndex</sub>
 
-{% hint style="info" %}
 index can change when new unit are added
-{% endhint %}
 
 `NPC.GetUnitNameIndex(npc):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -10436,9 +10303,7 @@ Returns `true` if npc is controllable by player.
 
 ## <sub>GetModifierPropertyHighest</sub>
 
-{% hint style="info" %}
 Fixes the issue when you have multiple Kaya items that actually don't stack.
-{% endhint %}
 
 \`NPC.GetModifierPropertyHighest(npc, property):\` <mark style="color:purple;">\*\*\`number\`\*\*</mark>
 
@@ -10479,9 +10344,7 @@ Returns the hero's available ability points.
 
 ## <sub>GetRespawnTime</sub>
 
-{% hint style="info" %}
 Could be less than current game time if hero is already alive.
-{% endhint %}
 
 \`Hero.GetRespawnTime(hero):\` <mark style="color:purple;">\*\*\`number\`\*\*</mark>
 
@@ -11352,462 +11215,295 @@ Returns the keybind of the ability.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item -->
 
-Copy
-
-# 🔑Item
+# Item
 
 Table to work with `CItem`.
 
-`CItem` extends `CAbility`
+<mark style="color:purple;">**`CItem`**</mark> extends <mark style="color:purple;">**`CAbility`**</mark>
 
-## IsCombinable
+## <sub>IsCombinable</sub>
 
-`Item.IsCombinable(item):` `boolean`
+`Item.IsCombinable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is combinable. I'm not sure if non-combinable items even exist.
 
-## IsPermanent
+## <sub>IsPermanent</sub>
 
-`Item.IsPermanent(item):` `boolean`
+`Item.IsPermanent(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is permanent. I'm not sure what permanent items is, but for items with stacks this function returns `false`.
 
-## IsStackable
+## <sub>IsStackable</sub>
 
-`Item.IsStackable(item):` `boolean`
+`Item.IsStackable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is stackable. e.g tangoes, wards, etc.
 
-## IsRecipe
+## <sub>IsRecipe</sub>
 
-`Item.IsRecipe(item):` `boolean`
+`Item.IsRecipe(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is recipe.
 
-## GetSharability
+## <sub>GetSharability</sub>
 
-`Item.GetSharability(item):` [`Enum.ShareAbility`](/api-v2.0/cheats-types-and-callbacks/enums#enum.shareability)
+`Item.GetSharability(item):` [<mark style="color:purple;">**`Enum.ShareAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums#enum.shareability)
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns item's sharability type.
 
-## IsDroppable
+## <sub>IsDroppable</sub>
 
-`Item.IsDroppable(item):` `boolean`
+`Item.IsDroppable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is droppable.
 
-## IsPurchasable
+## <sub>IsPurchasable</sub>
 
-`Item.IsPurchasable(item):` `boolean`
+`Item.IsPurchasable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is purchasable.
 
-## IsSellable
+## <sub>IsSellable</sub>
 
-`Item.IsSellable(item):` `boolean`
+`Item.IsSellable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item is sellable.
 
-## RequiresCharges
+## <sub>RequiresCharges</sub>
 
-`Item.RequiresCharges(item):` `boolean`
+`Item.RequiresCharges(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if the item requires charges. e.g. urn, vessel etc.
 
-## IsKillable
+## <sub>IsKillable</sub>
 
-`Item.IsKillable(item):` `boolean`
+`Item.IsKillable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if item is destroyable by autoatack.
 
-## IsDisassemblable
+## <sub>IsDisassemblable</sub>
 
-`Item.IsDisassemblable(item):` `boolean`
+`Item.IsDisassemblable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if item is disassemblable.
 
-## IsAlertable
+## <sub>IsAlertable</sub>
 
-`Item.IsAlertable(item):` `boolean`
+`Item.IsAlertable(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if item is alertable. e.g. smoke, mekansm, arcane boots etc.
 
-## GetInitialCharges
+## <sub>GetInitialCharges</sub>
 
-`Item.GetInitialCharges(item):` `integer`
+`Item.GetInitialCharges(item):` <mark style="color:purple;">**`integer`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns initial charges of the item. e.g. 3 for bottle, 1 for dust etc.
 
-## CastsOnPickup
+## <sub>CastsOnPickup</sub>
 
-`Item.CastsOnPickup(item):` `boolean`
+`Item.CastsOnPickup(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 No idea what this function does.
 
-## GetCurrentCharges
+## <sub>GetCurrentCharges</sub>
 
-`Item.GetCurrentCharges(item):` `integer`
+`Item.GetCurrentCharges(item):` <mark style="color:purple;">**`integer`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns amount of current charges.
 
-## GetSecondaryCharges
+## <sub>GetSecondaryCharges</sub>
 
-`Item.GetSecondaryCharges(item):` `integer`
+`Item.GetSecondaryCharges(item):` <mark style="color:purple;">**`integer`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns amount of secondary charges. e.g. pack of both type of wards.
 
-## IsCombineLocked
+## <sub>IsCombineLocked</sub>
 
-`Item.IsCombineLocked(item):` `boolean`
+`Item.IsCombineLocked(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if item locked for combining.
 
-## IsMarkedForSell
+## <sub>IsMarkedForSell</sub>
 
-`Item.IsMarkedForSell(item):` `boolean`
+`Item.IsMarkedForSell(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if item is marked for sell.
 
-## GetPurchaseTime
+## <sub>GetPurchaseTime</sub>
 
-`Item.GetPurchaseTime(item):` `number`
+`Item.GetPurchaseTime(item):` <mark style="color:purple;">**`number`**</mark>
 
-Name
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
-
-Returns the game time when the item was purchased. If the item was assembled from other items, It returns the purchase time of the item that had the lowest
+Returns the game time when the item was purchased. If the item was assembled from other items, It returns the purchase time of the item that had the lowest\
 index at the moment of assembling.
 
-## GetAssembledTime
+## <sub>GetAssembledTime</sub>
 
-`Item.GetAssembledTime(item):` `number`
+`Item.GetAssembledTime(item):` <mark style="color:purple;">**`number`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns the game time when the item was assembled. If the item was not assembled, returns time when the item was purchased.
 
-## PurchasedWhileDead
+## <sub>PurchasedWhileDead</sub>
 
-`Item.PurchasedWhileDead(item):` `boolean`
+`Item.PurchasedWhileDead(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `true` if item was purchased while dead.
 
-## CanBeUsedOutOfInventory
+## <sub>CanBeUsedOutOfInventory</sub>
 
-`Item.CanBeUsedOutOfInventory(item):` `boolean`
+`Item.CanBeUsedOutOfInventory(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 No idea which specific item example could be used out of inventory.
 
-## IsItemEnabled
+## <sub>IsItemEnabled</sub>
 
-`Item.IsItemEnabled(item):` `boolean`
+`Item.IsItemEnabled(item):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns `false` if item has CD after moving from stash.
 
-## GetEnableTime
+## <sub>GetEnableTime</sub>
 
 Could be less than current game time if item is already enabled.
 
-`Item.GetEnableTime(item):` `number`
+`Item.GetEnableTime(item):` <mark style="color:purple;">**`number`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns game time when item will be enabled.
 
-## GetPlayerOwnerID
+## <sub>GetPlayerOwnerID</sub>
 
-`Item.GetPlayerOwnerID(item):` `integer`
+`Item.GetPlayerOwnerID(item):` <mark style="color:purple;">**`integer`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns player ID who owns the item.
 
-## GetCost
+## <sub>GetCost</sub>
 
-`Item.GetCost(item):` `integer`
+`Item.GetCost(item):` <mark style="color:purple;">**`integer`**</mark>
 
-Name
-
-Type
-
-Description
-
-**item**
-
-[`CItem`](/api-v2.0/game-components/core/item)
+| Name     | Type                                                                                                           | Description |
+| -------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| **item** | [<mark style="color:purple;">**`CItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/item) |             |
 
 Returns item cost.
 
-## GetStockCount
+## <sub>GetStockCount</sub>
 
-Item id can be found in `assets/data/items.json` file in cheat folder.
+Item id can be found in \`assets/data/items.json\` file in cheat folder.
 
-`Item.GetStockCount(item\_id, [team]):` \*\*`integer`\*\*
+\`Item.GetStockCount(item\_id, \[team]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
 
-Name
-
-Type
-
-Description
-
-**item\_id**
-
-`integer`
-
-**team** `[?]`
-
-[`Enum.TeamNum`](/api-v2.0/cheats-types-and-callbacks/enums#enum.teamnum)
-
-- Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)`
+| Name                                                       | Type                                                                                                                                      | Description                                                                        |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **item\_id**                                               | <mark style="color:purple;">**`integer`**</mark>                                                                                          |                                                                                    |
+| **team&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
 
 Returns amount of remaining items in shop by item id.
 
 #### Example
 
-[PreviousAbility](/api-v2.0/game-components/core/ability)[NextRune](/api-v2.0/game-components/core/rune)
-
-Last updated 8 months ago
+```lua
+-- "item_ward_observer": {
+--     "ID": "42",
+Log.Write("Observers available: " .. Item.GetStockCount(42))
+```
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune -->
 
@@ -12475,9 +12171,7 @@ Returns the current game mode.
 
 ## <sub>GetPreGameStartTime</sub>
 
-{% hint style="info" %}
 Pregame time is the time before the game starts, e.g. ban phase, pick time.
-{% endhint %}
 
 `GameRules.GetPreGameStartTime():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12485,9 +12179,7 @@ Returns pregame duration or 0 if now is pregame time.
 
 ## <sub>GetGameStartTime</sub>
 
-{% hint style="info" %}
 Game start time is 0:00 on ingame timer.
-{% endhint %}
 
 `GameRules.GetGameStartTime():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12507,9 +12199,7 @@ No idea what this function does. Returns 0 in all cases what I've tested.
 
 ## <sub>GetGameTime</sub>
 
-{% hint style="info" %}
 Can be used to calculate time in an in-game timer. See the example.
-{% endhint %}
 
 `GameRules.GetGameTime():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12532,9 +12222,7 @@ Returns `true` if game is paused.
 
 ## <sub>IsTemporaryDay</sub>
 
-{% hint style="info" %}
 Example: Phoenix's Supernova.
-{% endhint %}
 
 `GameRules.IsTemporaryDay():` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -12542,9 +12230,7 @@ Returns `true` if it's temporary day.
 
 ## <sub>IsTemporaryNight</sub>
 
-{% hint style="info" %}
 Example: Luna's Eclipse.
-{% endhint %}
 
 `GameRules.IsTemporaryNight():` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -12570,9 +12256,7 @@ Returns current lobby id.
 
 ## <sub>GetGoodGlyphCD</sub>
 
-{% hint style="info" %}
 Could be less than current game time if glyph is already available.
-{% endhint %}
 
 `GameRules.GetGoodGlyphCD():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12580,9 +12264,7 @@ Returns game time when next radiant glyph will be available.
 
 ## <sub>GetBadGlyphCD</sub>
 
-{% hint style="info" %}
 Could be less than current game time if glyph is already available.
-{% endhint %}
 
 `GameRules.GetBadGlyphCD():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12590,9 +12272,7 @@ Returns game time when next dire glyph will be available.
 
 ## <sub>GetGoodScanCD</sub>
 
-{% hint style="info" %}
 Could be less than current game time if scan is already available.
-{% endhint %}
 
 `GameRules.GetGoodScanCD():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12600,9 +12280,7 @@ Returns game time when next radiant scan will be available.
 
 ## <sub>GetBadScanCD</sub>
 
-{% hint style="info" %}
 Could be less than current game time if scan is already available.
-{% endhint %}
 
 `GameRules.GetBadScanCD():` <mark style="color:purple;">**`number`**</mark>
 
@@ -12622,9 +12300,7 @@ Returns current dire scan charges.
 
 ## <sub>GetStockCount</sub>
 
-{% hint style="info" %}
 Item id can be found in \`assets/data/items.json\` file in cheat folder.
-{% endhint %}
 
 \`GameRules.GetStockCount(item\_id, \[team]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
 
@@ -12776,9 +12452,7 @@ Table to work with in-game navigation API.
 
 ## <sub>CreateNpcMap</sub>
 
-{% hint style="info" %}
 You should always call \`GridNav.ReleaseNpcMap\` after you done with your build pathing
-{% endhint %}
 
 \`GridNav.CreateNpcMap(\[excluded\_npcs], \[includeTempTrees], \[customCollisionSizes]):\` \[<mark style="color:purple;">\*\*\`GridNavNpcMap\`\*\*</mark>]\(GridNavNpcMap.md)
 
@@ -12933,9 +12607,7 @@ Returns `true` if cursor is in bounds.
 
 ## <sub>GetNearestUnitToCursor</sub>
 
-{% hint style="info" %}
 Excludes not visible, illusions and dead units.
-{% endhint %}
 
 `Input.GetNearestUnitToCursor(teamNum, teamType):` [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) | <mark style="color:purple;">**`nil`**</mark>
 
@@ -12948,9 +12620,7 @@ Returns nearest unit to cursor.
 
 ## <sub>GetNearestHeroToCursor</sub>
 
-{% hint style="info" %}
 Excludes not visible, illusions and dead heroes.
-{% endhint %}
 
 `Input.GetNearestHeroToCursor(teamNum, teamType):` [<mark style="color:purple;">**`CHero`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/hero) | <mark style="color:purple;">**`nil`**</mark>
 
@@ -12979,9 +12649,7 @@ Returns `true` if key is down.
 
 ## <sub>IsKeyDownOnce</sub>
 
-{% hint style="info" %}
 This function will return \`true\` only once per key press.
-{% endhint %}
 
 \`Input.IsKeyDownOnce(KeyCode):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
 
@@ -13281,9 +12949,7 @@ Returns the current game language.
 
 ## <sub>GetProfilePictureBySteamId</sub>
 
-{% hint style="info" %}
 This function works only if you already got player's user information (EMsg\_ClientRequestFriendData). That means you should be in the same game with the player or he should be in your friend list.
-{% endhint %}
 
 `Steam.GetProfilePictureBySteamId(steamID64, [large]):` <mark style="color:purple;">**`integer`**</mark>
 
@@ -13296,9 +12962,7 @@ Returns the handle of the profile picture of the given Steam ID.
 
 ## <sub>GetProfilePictureByAccountId</sub>
 
-{% hint style="info" %}
 This function works only if you already got player's user information (EMsg\_ClientRequestFriendData). That means you should be in the same game with the player or he should be in your friend list.
-{% endhint %}
 
 \`Steam.GetProfilePictureByAccountId(steamID64, \[large]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
 
@@ -13337,9 +13001,7 @@ Returns the average latency/ping of the net channel in seconds.
 
 ## <sub>SendNetMessage</sub>
 
-{% hint style="info" %}
 You can repeat the same message from OnSendNetMessage if you want to know the format of the message.
-{% endhint %}
 
 \`NetChannel.SendNetMessage(name, json):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -13368,7 +13030,6 @@ NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
     roll_min = 11,
     roll_max = 222
 }));
-
 
 ```
 
@@ -14299,9 +13960,7 @@ End the rotation.
 
 ## <sub>SetGlobalAlpha</sub>
 
-{% hint style="info" %}
 Do not forget to reset the global alpha value after your rendering.
-{% endhint %}
 
 \`Render.SetGlobalAlpha(alpha):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
@@ -14555,9 +14214,7 @@ UIPanel metatable
 
 ## <sub>\_\_eq</sub>
 
-{% hint style="info" %}
 Overload for operator ==.
-{% endhint %}
 
 `:__eq(other):` <mark style="color:purple;">**`boolean`**</mark>
 
@@ -14800,7 +14457,6 @@ local css_like_table = {
     ["border-brush"] = "gradient( linear, 0% 0%, 0% 100%, from( #96c5ff96 ), to( #12142d2d ) )",
 }
 
-
 local function css_to_string(tbl)
     local str = ""
     for k, v in pairs(tbl) do
@@ -14846,9 +14502,7 @@ Returns the panel's window position. Not sure about optimization.
 
 ## <sub>GetText</sub>
 
-{% hint style="info" %}
 This method is only available for Label panels.
-{% endhint %}
 
 `:GetText():` <mark style="color:purple;">**`string`**</mark>
 
@@ -14856,9 +14510,7 @@ Returns the label panel's text.
 
 ## <sub>SetText</sub>
 
-{% hint style="info" %}
 This method is only available for Label panels.
-{% endhint %}
 
 `:SetText(text):` <mark style="color:purple;">**`nil`**</mark>
 
@@ -14870,9 +14522,7 @@ Sets the label panel's text.
 
 ## <sub>GetTextType</sub>
 
-{% hint style="info" %}
 This method is only available for Label panels.
-{% endhint %}
 
 `:GetTextType():` <mark style="color:purple;">**`integer`**</mark>
 
@@ -14880,9 +14530,7 @@ Gets the label panel's text type. (2 = plain, 3 = html)
 
 ## <sub>SetTextType</sub>
 
-{% hint style="info" %}
 This method is only available for Label panels.
-{% endhint %}
 
 \`:SetTextType(new):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
