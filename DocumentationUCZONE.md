@@ -1,6 +1,6 @@
 # UCZONE API v2.0 - Полная документация
 
-*Сгенерировано из 93 страниц GitBook*
+*Сгенерировано из 94 страниц GitBook*
 
 ---
 
@@ -2741,6 +2741,37 @@ Called on NPC dying.
 | <mark style="color:green;">`RoundCornersDefault_`</mark>        |       |
 | <mark style="color:green;">`RoundCornersMask_`</mark>           |       |
 | <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> |       |
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes -->
+
+# Classes
+
+- [Color](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
+- [Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu.md)
+- [CTabSection](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md)
+- [CFirstTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md)
+- [CSecondTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md)
+- [CThirdTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md)
+- [CMenuGroup](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md)
+- [Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets.md)
+- [CMenuSwitch](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
+- [CMenuSliderFloat](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
+- [CMenuSliderInt](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
+- [CMenuButton](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
+- [CMenuColorPicker](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
+- [CMenuColorPickerAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
+- [CMenuComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
+- [CMenuGearAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
+- [CMenuInputBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
+- [CMenuMultiComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
+- [CMenuMultiSelect](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
+- [CMenuBind](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
+- [CMenuLabel](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
+- [Math](/api-v2.0/cheats-types-and-callbacks/classes/math.md)
+- [Vector](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
+- [Angle](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
+- [Vec2](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
+- [Vertex](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
 
 
 --------------------------------------------------------------------------------
@@ -6603,6 +6634,199 @@ Gets or sets the ability to bind the mouse button.
 ## <sub>MouseBinding</sub>
 
 `:MouseBinding():` <mark style="color:purple;">**`boolean`**</mark>
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel -->
+
+# CMenuLabel
+
+CMenuLabel metatable.
+
+## <sub>Name</sub>
+
+`:Name():` <mark style="color:purple;">**`string`**</mark>
+
+Returns widget's name.
+
+## <sub>Parent</sub>
+
+`:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment)
+
+Returns widget's parent.
+
+## <sub>Type</sub>
+
+`:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.widgettype)
+
+Returns widget type.
+
+## <sub>Open</sub>
+
+`:Open():` <mark style="color:purple;">**`nil`**</mark>
+
+Opens parent tabs.
+
+## <sub>ForceLocalization</sub>
+
+Not recommended for use due to its complexity
+
+\`:ForceLocalization(newText):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Changes text in the widget. The path to the widget is not affected.\
+May be used for dynamic text customization or recolor.
+
+## <sub>ToolTip</sub>
+
+`:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
+Depends on the argument.
+
+## <sub>ToolTip</sub>
+
+`:ToolTip():` <mark style="color:purple;">**`string`**</mark>
+
+## <sub>Visible</sub>
+
+`:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets visible state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+widget:Visible(false)
+```
+
+## <sub>Visible</sub>
+
+`:Visible():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isVisible = widget:Visible()
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets disabled state. Depends on argument.
+
+#### Example
+
+```lua
+-- setter
+widget:Disabled( false )
+```
+
+## <sub>Disabled</sub>
+
+`:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
+
+#### Example
+
+```lua
+-- getter
+local isDisabled = widget:Disabled()
+```
+
+## <sub>Unsafe</sub>
+
+`:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description |
+| --------- | ------------------------------------------------ | ----------- |
+| **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
+
+Gets or sets unsafe state. Unsafe widgets have warning sign.\
+Depends on argument.
+
+## <sub>Unsafe</sub>
+
+`:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
+
+## <sub>Image</sub>
+
+`:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                                                                                             | Description                                    |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                                                  | Path to the image.                             |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | Optional image offset. `(default: {0.0, 0.0})` |
+
+Sets widget's image.
+
+## <sub>ImageHandle</sub>
+
+`:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                                                                                             | Description                                    |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                                                 |                                                |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | Optional image offset. `(default: {0.0, 0.0})` |
+
+Sets tab's image by already created handle.
+
+## <sub>Icon</sub>
+
+`:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                         | Type                                                                                                                             | Description                                   |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                                                  | icon unicode.                                 |
+| **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | Optional icon offset. `(default: {0.0, 0.0})` |
+
+Sets widget's icon.\
+[Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
+
+#### Example
+
+```lua
+--https://fontawesome.com/icons/user?f=classic&s=solid
+widget:Icon("\u{f007}")
+```
+
+## <sub>ColorPicker</sub>
+
+`:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment)
+
+| Name      | Type                                                                                                                          | Description             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | <mark style="color:purple;">**`string`**</mark>                                                                               | Name of the attachment. |
+| **color** | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color) | Default color.          |
+
+Creates `CMenuColorPickerAttachment` and attaches it to the widget.
+
+## <sub>Gear</sub>
+
+`:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment)
+
+| Name                                                               | Type                                             | Description                                     |
+| ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
+| **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
+| **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
+| **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
+
+Creates `CMenuGearAttachment` and attaches it to the widget.
 
 
 --------------------------------------------------------------------------------
@@ -13075,18 +13299,6 @@ Returns local player Steam ID as string.
 --------------------------------------------------------------------------------
 
 ## Rendering and Visuals
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals -->
-
-# Rendering & Visuals
-
-- [Particle](/api-v2.0/game-components/rendering-and-visuals/particle.md)
-- [Renderer](/api-v2.0/game-components/rendering-and-visuals/renderv1.md)
-- [Render](/api-v2.0/game-components/rendering-and-visuals/renderv2.md)
-- [MiniMap](/api-v2.0/game-components/rendering-and-visuals/minimap.md)
-- [Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama.md)
-- [Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md)
-- [UIPanel](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle -->
 
