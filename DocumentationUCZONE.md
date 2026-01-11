@@ -2144,6 +2144,9 @@ Called on NPC dying.
 
 ## <mark style="color:purple;">Enum.GroupSide</mark>
 
+| Key | Value |
+| --- | ----- |
+
 ## <mark style="color:purple;">Enum.PingType</mark>
 
 | Key                                                       | Value |
@@ -2432,216 +2435,216 @@ Called on NPC dying.
 | <mark style="color:green;">`MODIFIER_PROPERTY_PERCENTAGE_DEATHGOLDCOST`</mark>                   | 136   |
 | <mark style="color:green;">`MODIFIER_PROPERTY_EXP_RATE_BOOST`</mark>                             | 137   |
 | <mark style="color:green;">`MODIFIER_PROPERTY_GOLD_RATE_BOOST`</mark>                            | 138   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE`</mark>                   | 139   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE`</mark>            | 140   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK`</mark>                     | 141   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK`</mark>                    | 142   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL`</mark>            | 143   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR`</mark> | 145   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK`</mark>                       | 146   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ANIMATION`</mark>                         | 147   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE`</mark>                    | 148   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABSORB_SPELL`</mark>                               | 149   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_REFLECT_SPELL`</mark>                              | 150   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_AUTOATTACK`</mark>                         | 151   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_DAY_VISION`</mark>                           | 152   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_DAY_VISION_PERCENTAGE`</mark>                | 153   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_NIGHT_VISION`</mark>                         | 154   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE`</mark>                  | 155   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE`</mark>                    | 156   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_DAY_VISION`</mark>                           | 157   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_NIGHT_VISION`</mark>                         | 158   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MIN_HEALTH`</mark>                                 | 159   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL`</mark>                | 161   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL`</mark>                 | 162   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE`</mark>                    | 163   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IS_ILLUSION`</mark>                                | 164   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ILLUSION_LABEL`</mark>                             | 165   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_STRONG_ILLUSION`</mark>                            | 166   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPER_ILLUSION`</mark>                             | 167   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE`</mark>               | 168   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_XP_DURING_DEATH`</mark>                            | 169   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE`</mark>                       | 170   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_OVERRIDE`</mark>                         | 171   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_HEALING`</mark>                            | 172   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK`</mark>                        | 174   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK`</mark>                     | 175   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL`</mark>                    | 176   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH`</mark>                   | 177   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER`</mark>                    | 178   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER`</mark>                    | 179   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING`</mark>                    | 180   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DODGE_PROJECTILE`</mark>                           | 181   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TRIGGER_COSMETIC_AND_END_ATTACK`</mark>            | 182   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MAX_DEBUFF_DURATION`</mark>                        | 183   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PRIMARY_STAT_DAMAGE_MULTIPLIER`</mark>             | 184   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_DEADLY_BLOW`</mark>                      | 185   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ALWAYS_AUTOATTACK_WHILE_HOLD_POSITION`</mark>      | 186   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_SPELL_TARGET_READY`</mark>                         | 191   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_RECORD`</mark>                              | 192   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_START`</mark>                               | 193   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK`</mark>                                     | 194   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_LANDED`</mark>                              | 195   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_FAIL`</mark>                                | 196   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_ALLIED`</mark>                              | 197   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_PROJECTILE_DODGE`</mark>                           | 198   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ORDER`</mark>                                      | 199   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_UNIT_MOVED`</mark>                                 | 200   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_START`</mark>                              | 201   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_EXECUTED`</mark>                           | 202   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_FULLY_CAST`</mark>                         | 203   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_BREAK_INVISIBILITY`</mark>                         | 204   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_END_CHANNEL`</mark>                        | 205   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_PROCESS_UPGRADE`</mark>                            | 206   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_REFRESH`</mark>                                    | 207   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE`</mark>                                 | 208   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DEATH_PREVENTED`</mark>                            | 209   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_STATE_CHANGED`</mark>                              | 210   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ORB_EFFECT`</mark>                                 | 211   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_PROCESS_CLEAVE`</mark>                             | 212   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DAMAGE_CALCULATED`</mark>                          | 213   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MAGIC_DAMAGE_CALCULATED`</mark>                    | 214   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACKED`</mark>                                   | 215   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DEATH`</mark>                                      | 216   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DEATH_COMPLETED`</mark>                            | 217   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_RESPAWN`</mark>                                    | 218   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_SPENT_MANA`</mark>                                 | 219   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_SPENT_HEALTH`</mark>                               | 220   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TELEPORTING`</mark>                                | 221   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TELEPORTED`</mark>                                 | 222   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_SET_LOCATION`</mark>                               | 223   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_HEALTH_GAINED`</mark>                              | 224   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MANA_GAINED`</mark>                                | 225   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT`</mark>                      | 226   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_HERO_KILLED`</mark>                                | 227   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_HEAL_RECEIVED`</mark>                              | 228   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_BUILDING_KILLED`</mark>                            | 229   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MODEL_CHANGED`</mark>                              | 230   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MODIFIER_ADDED`</mark>                             | 231   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MODIFIER_REMOVED`</mark>                           | 232   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP`</mark>                                    | 233   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_CHANGE`</mark>                               | 234   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE`</mark>                                | 235   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_ANIMATE_TIME`</mark>                   | 236   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_USE_IN_OUT_EASE`</mark>                | 237   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_CONSTANT`</mark>                       | 238   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SCEPTER`</mark>                                 | 239   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SHARD`</mark>                                   | 240   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION`</mark>                   | 241   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS`</mark>               | 242   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND`</mark>                     | 243   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_LIFETIME_FRACTION`</mark>                          | 244   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PROVIDES_FOW_POSITION`</mark>                      | 245   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SPELLS_REQUIRE_HP`</mark>                          | 246   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CONVERT_MANA_COST_TO_HEALTH_COST`</mark>           | 247   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP`</mark>                         | 248   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_TURNING`</mark>                            | 249   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_CAST_ANGLE`</mark>                          | 250   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE`</mark>                       | 251   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL`</mark>                   | 252   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE`</mark>             | 253   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_LAYOUT`</mark>                             | 254   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DOMINATED`</mark>                                  | 255   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_KILL`</mark>                                       | 256   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ASSIST`</mark>                                     | 257   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TEMPEST_DOUBLE`</mark>                             | 258   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE`</mark>         | 259   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_FINISHED`</mark>                            | 260   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_COOLDOWN`</mark>                            | 261   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CAN_ATTACK_TREES`</mark>                           | 262   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_DELTA`</mark>                             | 263   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_SPEED_BASE_OVERRIDE`</mark>               | 264   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION`</mark>                   | 265   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER`</mark>               | 266   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP2`</mark>                                   | 267   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY`</mark>                      | 268   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT`</mark>                 | 269   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_TELEPORT`</mark>                          | 270   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_CANCELLED`</mark>                           | 271   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CLEAVE`</mark>                            | 272   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS`</mark>                     | 273   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE`</mark>           | 274   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE`</mark>             | 275   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET`</mark>                 | 276   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE`</mark>                     | 277   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTEMPT_PROJECTILE_DODGE`</mark>                   | 278   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_PREDEBUFF_APPLIED`</mark>                          | 279   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING`</mark>               | 280   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SPELL_REDIRECT_TARGET`</mark>                      | 281   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_CONSTANT`</mark>                         | 282   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PACK_RAT`</mark>                                   | 283   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICALDAMAGEOUTGOING_PERCENTAGE`</mark>          | 284   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_KNOCKBACK_AMPLIFICATION_PERCENTAGE`</mark>         | 285   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HEALTHBAR_PIPS`</mark>                             | 286   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT`</mark>                   | 287   |
-| <mark style="color:green;">`MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY`</mark>                    | 288   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS`</mark>              | 289   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FAIL_ATTACK`</mark>                                | 290   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PREREDUCE_INCOMING_DAMAGE_MULT`</mark>             | 291   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_FULLSCREEN_DEATH_FX`</mark>               | 292   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT_POST`</mark>              | 293   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_MULTIPLICATIVE`</mark>   | 294   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TICK_GOLD_MULTIPLIER`</mark>                       | 295   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_UNIQUE`</mark>                     | 296   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING`</mark>                   | 297   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_PERCENTAGE`</mark>                       | 299   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED`</mark>                           | 300   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED_TARGET`</mark>                    | 301   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_STRENGTH`</mark>                            | 302   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_AGILITY`</mark>                             | 303   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_INTELLIGENCE`</mark>                        | 304   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_UNIVERSAL`</mark>                           | 305   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_FORCE_PROC_MAGIC_STICK`</mark>                     | 306   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DAMAGE_HPLOSS`</mark>                              | 307   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SHARE_XPRUNE`</mark>                               | 308   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_NO_FREE_TP_SCROLL_ON_DEATH`</mark>                 | 310   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HAS_BONUS_NEUTRAL_ITEM_CHOICE`</mark>              | 311   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_HEALTH`</mark>                           | 313   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_MANA`</mark>                             | 314   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT`</mark>                         | 315   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING`</mark>                | 316   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE_POST_UNAVOIDABLE_BLOCK`</mark>          | 317   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MUTE_DAMAGE_ABILITIES`</mark>                      | 318   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CRIT`</mark>                              | 319   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_POINTS`</mark>                             | 320   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BUYBACK_PENALTY_PERCENT`</mark>                    | 321   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ITEM_SELLBACK_COST`</mark>                         | 322   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DISASSEMBLE_ANYTHING`</mark>                       | 323   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_MANA_REGEN`</mark>                           | 324   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_UPHILL_MISS_CHANCE`</mark>                   | 325   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CREEP_DENY_PERCENT`</mark>                         | 326   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_ABSOLUTE_MAX`</mark>                   | 327   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FOW_TEAM`</mark>                                   | 328   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_HERO_BEGIN_DYING`</mark>                           | 329   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_LOTUS_HEAL`</mark>                           | 330   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_HP_REGEN_PER_STR_BONUS_PERCENTAGE`</mark>     | 331   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_ARMOR_PER_AGI_BONUS_PERCENTAGE`</mark>        | 332   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MP_REGEN_PER_INT_BONUS_PERCENTAGE`</mark>     | 333   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE`</mark>         | 334   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DAY_STARTED`</mark>                                | 335   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_CHANCE`</mark>               | 337   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_COUNT`</mark>                | 338   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PSEUDORANDOM_BONUS`</mark>                         | 339   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_HEIGHT_BONUS`</mark>                        | 340   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SKIP_ATTACK_REGULATOR`</mark>                      | 341   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MISS_PERCENTAGE_TARGET`</mark>                     | 342   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ADDITIONAL_NEUTRAL_ITEM_DROPS`</mark>              | 343   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_KILL_STREAK_BONUS_GOLD_PERCENTAGE`</mark>          | 344   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HP_REGEN_MULTIPLIER_PRE_AMPLIFICATION`</mark>      | 345   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HEROFACET_OVERRIDE`</mark>                         | 346   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TREE_CUT_DOWN`</mark>                              | 347   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_CLEAVE_ATTACK_LANDED`</mark>                       | 348   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MIN_ATTRIBUTE_LEVEL`</mark>                        | 349   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TIER_TOKEN_REROLL`</mark>                          | 350   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_STACKING`</mark>              | 352   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INVENTORY_SLOT_RESTRICTED`</mark>                  | 353   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TIER_TOKEN_REROLLED`</mark>                        | 354   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_REDIRECT_SPELL`</mark>                             | 355   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASEATTACK_POSTBONUS`</mark>                       | 356   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`</mark>                           | 357   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`</mark>                      | 358   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_TOGGLED`</mark>                            | 359   |
-| <mark style="color:green;">`MODIFIER_FUNCTION_LAST`</mark>                                       | 378   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE`</mark>                   | 140   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE`</mark>            | 141   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK`</mark>                     | 142   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK`</mark>                    | 143   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL`</mark>            | 144   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR`</mark> | 146   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK`</mark>                       | 147   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ANIMATION`</mark>                         | 148   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE`</mark>                    | 149   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABSORB_SPELL`</mark>                               | 150   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_REFLECT_SPELL`</mark>                              | 151   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_AUTOATTACK`</mark>                         | 152   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_DAY_VISION`</mark>                           | 153   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_DAY_VISION_PERCENTAGE`</mark>                | 154   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_NIGHT_VISION`</mark>                         | 155   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE`</mark>                  | 156   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE`</mark>                    | 157   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_DAY_VISION`</mark>                           | 158   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_NIGHT_VISION`</mark>                         | 159   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MIN_HEALTH`</mark>                                 | 160   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL`</mark>                | 162   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL`</mark>                 | 163   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE`</mark>                    | 164   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IS_ILLUSION`</mark>                                | 165   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ILLUSION_LABEL`</mark>                             | 166   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_STRONG_ILLUSION`</mark>                            | 167   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPER_ILLUSION`</mark>                             | 168   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE`</mark>               | 169   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_XP_DURING_DEATH`</mark>                            | 170   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE`</mark>                       | 171   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_OVERRIDE`</mark>                         | 172   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_HEALING`</mark>                            | 173   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK`</mark>                        | 175   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK`</mark>                     | 176   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL`</mark>                    | 177   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH`</mark>                   | 178   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER`</mark>                    | 179   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER`</mark>                    | 180   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING`</mark>                    | 181   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DODGE_PROJECTILE`</mark>                           | 182   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TRIGGER_COSMETIC_AND_END_ATTACK`</mark>            | 183   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MAX_DEBUFF_DURATION`</mark>                        | 184   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PRIMARY_STAT_DAMAGE_MULTIPLIER`</mark>             | 185   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_DEADLY_BLOW`</mark>                      | 186   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ALWAYS_AUTOATTACK_WHILE_HOLD_POSITION`</mark>      | 187   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_SPELL_TARGET_READY`</mark>                         | 193   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_RECORD`</mark>                              | 194   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_START`</mark>                               | 195   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK`</mark>                                     | 196   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_LANDED`</mark>                              | 197   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_FAIL`</mark>                                | 198   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_ALLIED`</mark>                              | 199   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_PROJECTILE_DODGE`</mark>                           | 200   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ORDER`</mark>                                      | 201   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_UNIT_MOVED`</mark>                                 | 203   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_START`</mark>                              | 204   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_EXECUTED`</mark>                           | 205   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_FULLY_CAST`</mark>                         | 206   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_BREAK_INVISIBILITY`</mark>                         | 207   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_END_CHANNEL`</mark>                        | 208   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_PROCESS_UPGRADE`</mark>                            | 209   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_REFRESH`</mark>                                    | 210   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE`</mark>                                 | 211   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DEATH_PREVENTED`</mark>                            | 212   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_STATE_CHANGED`</mark>                              | 213   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ORB_EFFECT`</mark>                                 | 214   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_PROCESS_CLEAVE`</mark>                             | 215   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DAMAGE_CALCULATED`</mark>                          | 216   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MAGIC_DAMAGE_CALCULATED`</mark>                    | 217   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACKED`</mark>                                   | 218   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DEATH`</mark>                                      | 219   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DEATH_COMPLETED`</mark>                            | 220   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_RESPAWN`</mark>                                    | 221   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_SPENT_MANA`</mark>                                 | 222   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_SPENT_HEALTH`</mark>                               | 223   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TELEPORTING`</mark>                                | 224   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TELEPORTED`</mark>                                 | 225   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_SET_LOCATION`</mark>                               | 226   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_HEALTH_GAINED`</mark>                              | 227   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MANA_GAINED`</mark>                                | 228   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT`</mark>                      | 229   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_HERO_KILLED`</mark>                                | 230   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_HEAL_RECEIVED`</mark>                              | 231   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_BUILDING_KILLED`</mark>                            | 232   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MODEL_CHANGED`</mark>                              | 233   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MODIFIER_ADDED`</mark>                             | 234   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MODIFIER_REMOVED`</mark>                           | 235   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP`</mark>                                    | 236   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_CHANGE`</mark>                               | 237   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE`</mark>                                | 238   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_ANIMATE_TIME`</mark>                   | 239   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_USE_IN_OUT_EASE`</mark>                | 240   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_CONSTANT`</mark>                       | 241   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SCEPTER`</mark>                                 | 242   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SHARD`</mark>                                   | 243   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION`</mark>                   | 244   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS`</mark>               | 245   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND`</mark>                     | 246   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_LIFETIME_FRACTION`</mark>                          | 247   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PROVIDES_FOW_POSITION`</mark>                      | 248   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SPELLS_REQUIRE_HP`</mark>                          | 249   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CONVERT_MANA_COST_TO_HEALTH_COST`</mark>           | 250   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP`</mark>                         | 251   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_TURNING`</mark>                            | 252   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_CAST_ANGLE`</mark>                          | 253   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE`</mark>                       | 254   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL`</mark>                   | 255   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE`</mark>             | 256   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_LAYOUT`</mark>                             | 257   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DOMINATED`</mark>                                  | 258   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_KILL`</mark>                                       | 259   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ASSIST`</mark>                                     | 260   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TEMPEST_DOUBLE`</mark>                             | 261   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE`</mark>         | 262   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_FINISHED`</mark>                            | 263   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_COOLDOWN`</mark>                            | 264   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CAN_ATTACK_TREES`</mark>                           | 265   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_DELTA`</mark>                             | 266   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_SPEED_BASE_OVERRIDE`</mark>               | 267   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION`</mark>                   | 268   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER`</mark>               | 269   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP2`</mark>                                   | 270   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY`</mark>                      | 271   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT`</mark>                 | 272   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_TELEPORT`</mark>                          | 273   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_CANCELLED`</mark>                           | 274   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CLEAVE`</mark>                            | 275   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS`</mark>                     | 276   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE`</mark>           | 277   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE`</mark>             | 278   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET`</mark>                 | 279   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE`</mark>                     | 280   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTEMPT_PROJECTILE_DODGE`</mark>                   | 281   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_PREDEBUFF_APPLIED`</mark>                          | 282   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING`</mark>               | 283   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SPELL_REDIRECT_TARGET`</mark>                      | 284   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_CONSTANT`</mark>                         | 285   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PACK_RAT`</mark>                                   | 286   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICALDAMAGEOUTGOING_PERCENTAGE`</mark>          | 287   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_KNOCKBACK_AMPLIFICATION_PERCENTAGE`</mark>         | 288   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HEALTHBAR_PIPS`</mark>                             | 289   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT`</mark>                   | 290   |
+| <mark style="color:green;">`MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY`</mark>                    | 291   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS`</mark>              | 292   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FAIL_ATTACK`</mark>                                | 293   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PREREDUCE_INCOMING_DAMAGE_MULT`</mark>             | 294   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_FULLSCREEN_DEATH_FX`</mark>               | 295   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT_POST`</mark>              | 296   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_MULTIPLICATIVE`</mark>   | 297   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TICK_GOLD_MULTIPLIER`</mark>                       | 298   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_UNIQUE`</mark>                     | 299   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING`</mark>                   | 300   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_PERCENTAGE`</mark>                       | 302   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED`</mark>                           | 303   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED_TARGET`</mark>                    | 304   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_STRENGTH`</mark>                            | 305   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_AGILITY`</mark>                             | 306   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_INTELLIGENCE`</mark>                        | 307   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_UNIVERSAL`</mark>                           | 308   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_FORCE_PROC_MAGIC_STICK`</mark>                     | 309   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DAMAGE_HPLOSS`</mark>                              | 310   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SHARE_XPRUNE`</mark>                               | 311   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_NO_FREE_TP_SCROLL_ON_DEATH`</mark>                 | 313   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HAS_BONUS_NEUTRAL_ITEM_CHOICE`</mark>              | 314   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_HEALTH`</mark>                           | 316   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_MANA`</mark>                             | 317   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT`</mark>                         | 318   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING`</mark>                | 319   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE_POST_UNAVOIDABLE_BLOCK`</mark>          | 320   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MUTE_DAMAGE_ABILITIES`</mark>                      | 321   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CRIT`</mark>                              | 322   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_POINTS`</mark>                             | 323   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BUYBACK_PENALTY_PERCENT`</mark>                    | 324   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ITEM_SELLBACK_COST`</mark>                         | 325   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DISASSEMBLE_ANYTHING`</mark>                       | 326   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_MANA_REGEN`</mark>                           | 327   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_UPHILL_MISS_CHANCE`</mark>                   | 328   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CREEP_DENY_PERCENT`</mark>                         | 329   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_ABSOLUTE_MAX`</mark>                   | 330   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FOW_TEAM`</mark>                                   | 331   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_HERO_BEGIN_DYING`</mark>                           | 332   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_LOTUS_HEAL`</mark>                           | 333   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_HP_REGEN_PER_STR_BONUS_PERCENTAGE`</mark>     | 334   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_ARMOR_PER_AGI_BONUS_PERCENTAGE`</mark>        | 335   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MP_REGEN_PER_INT_BONUS_PERCENTAGE`</mark>     | 336   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE`</mark>         | 337   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DAY_STARTED`</mark>                                | 338   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_CHANCE`</mark>               | 340   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_COUNT`</mark>                | 341   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PSEUDORANDOM_BONUS`</mark>                         | 342   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_HEIGHT_BONUS`</mark>                        | 343   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SKIP_ATTACK_REGULATOR`</mark>                      | 344   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MISS_PERCENTAGE_TARGET`</mark>                     | 345   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ADDITIONAL_NEUTRAL_ITEM_DROPS`</mark>              | 346   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_KILL_STREAK_BONUS_GOLD_PERCENTAGE`</mark>          | 347   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HP_REGEN_MULTIPLIER_PRE_AMPLIFICATION`</mark>      | 348   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HEROFACET_OVERRIDE`</mark>                         | 349   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TREE_CUT_DOWN`</mark>                              | 350   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_CLEAVE_ATTACK_LANDED`</mark>                       | 351   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MIN_ATTRIBUTE_LEVEL`</mark>                        | 352   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TIER_TOKEN_REROLL`</mark>                          | 353   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_STACKING`</mark>              | 355   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INVENTORY_SLOT_RESTRICTED`</mark>                  | 356   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TIER_TOKEN_REROLLED`</mark>                        | 357   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_REDIRECT_SPELL`</mark>                             | 358   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASEATTACK_POSTBONUS`</mark>                       | 359   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`</mark>                           | 360   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`</mark>                      | 361   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_TOGGLED`</mark>                            | 362   |
+| <mark style="color:green;">`MODIFIER_FUNCTION_LAST`</mark>                                       | 388   |
 | <mark style="color:green;">`MODIFIER_FUNCTION_INVALID`</mark>                                    | 65535 |
 
 ## <mark style="color:purple;">Enum.DrunkenBrawlerState</mark>
@@ -3427,6 +3430,19 @@ Creates new `CMenuSwitch`.
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                                      | Path to image or FontAwesome icon unicode. `(default: "")` |
 
 Creates new `CMenuBind`.
+
+## <sub>ForceLocalization</sub>
+
+Not recommended for use due to its complexity
+
+\`:ForceLocalization(newText):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+
+| Name        | Type                                            | Description |
+| ----------- | ----------------------------------------------- | ----------- |
+| **newText** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Changes text in the group header. The path to the widget is not affected.\
+May be used for dynamic text customization or recolor.
 
 ## <sub>Slider</sub>
 
@@ -8315,7 +8331,7 @@ Returns table with `CItem`s available in the neutral stash.
 
 ## <sub>GetTeamPlayer</sub>
 
-`Player.GetTeamPlayer(player):` <mark style="color:purple;">**`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, meta_level:integer, meta_experience:integer, meta_experience_awarded:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity, override_selection_entity:CEntity, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:integer, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer}`**</mark>
+`Player.GetTeamPlayer(player):` <mark style="color:purple;">**`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, meta_level:integer, meta_experience:integer, meta_experience_awarded:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity, override_selection_entity:CEntity, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:integer, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**</mark>
 
 | Name       | Type                                                                                                               | Description        |
 | ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------ |
@@ -14442,7 +14458,7 @@ Overload for operator ==.
 | ------ | ----------------------------------------------- | ---------------- |
 | **id** | <mark style="color:purple;">**`string`**</mark> | id of the child. |
 
-Finds child by name.
+Finds child by ID.
 
 ## <sub>IsVisible</sub>
 
@@ -14495,6 +14511,16 @@ Returns class name list.
 | **id** | <mark style="color:purple;">**`string`**</mark> |             |
 
 Recursive find child by id.
+
+## <sub>FindChildWithClass</sub>
+
+`:FindChildWithClass(className):` [<mark style="color:purple;">**`UIPanel`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name          | Type                                            | Description |
+| ------------- | ----------------------------------------------- | ----------- |
+| **className** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Finds first child with provided class name.
 
 ## <sub>GetChildCount</sub>
 
