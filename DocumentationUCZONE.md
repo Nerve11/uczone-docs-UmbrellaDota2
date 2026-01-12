@@ -27,13 +27,15 @@
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0 -->
 
+copyCopychevron-down
+
 # 👉Starting Guide
 
 To execute your script move the `.lua` file into the `%cheat_dir%/scripts` folder.
 
 ---
 
-## Callbacks
+## [hashtag](#callbacks) Callbacks
 
 Most of your code will be executed inside the callbacks. To register the callback function, your script should return a table in the following format:
 
@@ -43,7 +45,7 @@ return {
 }
 ```
 
-Example
+chevron-rightExample[hashtag](#example)
 
 ```
 -- much more convenient way for big scripts
@@ -68,11 +70,11 @@ return {
 
 ---
 
-## Example Scripts
+## [hashtag](#example-scripts) Example Scripts
 
 There is example scripts you can rely on:
 
-Debug Script
+chevron-rightDebug Script[hashtag](#debug-script)
 
 ```
 ---@diagnostic disable: undefined-global, param-type-mismatch, inject-field
@@ -565,27 +567,29 @@ end
 return debug
 ```
 
-Example
+chevron-rightExample[hashtag](#example-1)
 
 ---
 
-## Debugging
+## [hashtag](#debugging) Debugging
 
 You can use `print` or `log` function to print messages to the console and `%cheat_dir%/debug.log` file.
 This is useful for debugging your scripts.
 
+circle-info
+
 This functions will automaticly stringify your tables
 
-Example
+chevron-rightExample[hashtag](#example-2)
 
-## Useful Links
+## [hashtag](#useful-links) Useful Links
 
 Here are some useful links:
 
-* [Lua 5.4 Manual](https://www.lua.org/manual/5.4/)
-* [VS Code Umbrella Extention](https://marketplace.visualstudio.com/items?itemName=ILKA.umbrella-vscode)
+* [Lua 5.4 Manualarrow-up-right](https://www.lua.org/manual/5.4/)
+* [VS Code Umbrella Extentionarrow-up-right](https://marketplace.visualstudio.com/items?itemName=ILKA.umbrella-vscode)
 
-[NextCallbacks](/api-v2.0/cheats-types-and-callbacks/callbacks)
+[NextCallbackschevron-right](/api-v2.0/cheats-types-and-callbacks/callbacks)
 
 Last updated 8 months ago
 
