@@ -79,6 +79,7 @@ https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http
 https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi
 https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel
 https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc
+https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1
 https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2
