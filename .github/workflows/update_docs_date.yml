@@ -21,9 +21,9 @@ jobs:
       - name: Get Commit Date
         id: date
         run: |
-          # Get the date of the last commit that touched DocumentationUCZONE.md
+          # Get the date of the last commit (HEAD)
           # Format: DD.MM.YYYY
-          LAST_DATE=$(git log -1 --format="%cd" --date=format:"%d.%m.%Y" DocumentationUCZONE.md)
+          LAST_DATE=$(git show -s --format="%cd" --date=format:"%d.%m.%Y" HEAD)
           echo "NEW_DATE=$LAST_DATE" >> $GITHUB_ENV
           echo "Found date: $LAST_DATE"
 
