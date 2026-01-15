@@ -1,4 +1,4 @@
-https://uczone.gitbook.io/api-v2.0/getting-started
+https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums
 https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes
@@ -93,4 +93,5 @@ https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/h
 https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log
 https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer
 https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer
+
 
