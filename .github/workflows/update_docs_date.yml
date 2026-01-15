@@ -6,6 +6,7 @@ on:
       - 'DocumentationUCZONE.md'
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   update-date:
