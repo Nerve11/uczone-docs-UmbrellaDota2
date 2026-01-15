@@ -2,8 +2,8 @@ name: Update Documentation
 
 on:
   schedule:
-    # Запуск каждое воскресенье в 03:00 UTC
-    - cron: '0 3 * * 0'
+    # Запуск каждый день в 20:00 MSK (17:00 UTC)
+    - cron: '0 17 * * *'
   workflow_dispatch: # Ручной запуск
 
 permissions:
