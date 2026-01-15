@@ -33,12 +33,22 @@ jobs:
 
       - name: Update Dates
         run: |
-          # Update date in README.md (looks for "**Последнее обновление**: DD.MM.YYYY")
-          sed -i "s/\*\*Последнее обновление\*\*: [0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\}/**Последнее обновление**: $NEW_DATE/g" README.md
+          # Update date in README.md (looks for "**Last Update**: DD.MM.YYYY")
+          sed -i "s/\*\*Last Update\*\*: [0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\}/**Last Update**: $NEW_DATE/g" README.md
           
-          # If the same pattern exists in DocumentationUCZONE.md, update it too
+          # If the same pattern exists in DocumentationUCZONE.md (Russian), keep it or update if mixed.
+          # Assuming DocumentationUCZONE.md might still have Russian header or you want to update Russian header there.
+          # Based on previous file content, DocumentationUCZONE.md had "**Последнее обновление**".
+          # If you want that one updated too, we keep the old sed for that file, or add a new one.
+          # Let's keep the Russian check for DocumentationUCZONE.md as the user only asked to update README to ENG.
+          
           if grep -q "\*\*Последнее обновление\*\*" DocumentationUCZONE.md; then
             sed -i "s/\*\*Последнее обновление\*\*: [0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\}/**Последнее обновление**: $NEW_DATE/g" DocumentationUCZONE.md
+          fi
+          
+          # If DocumentationUCZONE.md also switches to English in future, we can add a check for that too:
+          if grep -q "\*\*Last Update\*\*" DocumentationUCZONE.md; then
+            sed -i "s/\*\*Last Update\*\*: [0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{4\}/**Last Update**: $NEW_DATE/g" DocumentationUCZONE.md
           fi
 
       - name: Commit and Push changes
