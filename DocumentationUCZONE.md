@@ -14453,6 +14453,71 @@ Set the global alpha value for rendering.
 
 Reset the global alpha value for rendering to 1.0.
 
+## <sub>DrawCenteredNotification</sub>
+
+`Render.DrawCenteredNotification(text, duration):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                            | Description                   |
+| ------------ | ----------------------------------------------- | ----------------------------- |
+| **text**     | <mark style="color:purple;">**`string`**</mark> | Text to draw.                 |
+| **duration** | <mark style="color:purple;">**`number`**</mark> | Duration of the notification. |
+
+Draws a centered notification.
+
+## <sub>Logo</sub>
+
+`Render.Logo(center, radius, [angle], [primary_color], [secondary_color]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                                   | Type                                                                                                                             | Description                                    |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **center**                                                             | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) |                                                |
+| **radius**                                                             | <mark style="color:purple;">**`number`**</mark>                                                                                  |                                                |
+| **angle&#x20;**<mark style="color:orange;">**`[?]`**</mark>            | <mark style="color:purple;">**`number`**</mark>                                                                                  | rotation angle `(default: -45)`                |
+| **primary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | uses Menu.Style("primary") if nothing provided |
+| **secondary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | uses {227, 227, 227, 255} if nothing provided  |
+
+Draws umbrella logo
+
+## <sub>FindOrCreateRT</sub>
+
+`Render.FindOrCreateRT(name, [w], [h]):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name                                                    | Type                                            | Description                                |
+| ------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------ |
+| **name**                                                | <mark style="color:purple;">**`string`**</mark> | The unique name of the render target.      |
+| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The width of the render target. Optional.  |
+| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The height of the render target. Optional. |
+
+Creates a new render target or retrieves an existing one by name.\
+If width or height are not provided, the render target will be full screen size.
+
+## <sub>RenderToRT</sub>
+
+`Render.RenderToRT(handle, callback):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                              | Description                                   |
+| ------------ | ------------------------------------------------- | --------------------------------------------- |
+| **handle**   | <mark style="color:purple;">**`integer`**</mark>  | The handle of the render target to draw into. |
+| **callback** | <mark style="color:purple;">**`function`**</mark> | The function containing rendering commands.   |
+
+Executes a callback function to render content into a specific render target.\
+Drawing commands inside the callback will be applied to the render target instead of the screen.
+
+## <sub>DrawRT</sub>
+
+`Render.DrawRT(handle, pos, color, [scale], [uvSizeMin], [uvSizeMax]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                            | Type                                                                                                                             | Description                                                                              |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **handle**                                                      | <mark style="color:purple;">**`integer`**</mark>                                                                                 | The handle of the render target to draw.                                                 |
+| **pos**                                                         | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The position where the render target will be drawn.                                      |
+| **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | The color tint to apply to the render target.                                            |
+| **scale&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`number`**</mark>                                                                                  | The scale factor for the render target. `(default: 1.0)`                                 |
+| **uvSizeMin&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The minimum UV coordinates (or size offset) for texture mapping. `(default: {0.0, 0.0})` |
+| **uvSizeMax&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The maximum UV coordinates (or size offset) for texture mapping. `(default: {0.0, 0.0})` |
+
+Draws the content of a render target onto the screen.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap -->
 
 # MiniMap
