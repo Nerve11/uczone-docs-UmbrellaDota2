@@ -14243,6 +14243,29 @@ Calculates the size of the given text using the specified font, returning the si
 
 Loads an image and returns its handle.
 
+## <sub>LoadSvg</sub>
+
+`Render.LoadSvg(path, size):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name     | Type                                                                                                                             | Description             |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **path** | <mark style="color:purple;">**`string`**</mark>                                                                                  | Path to the image.      |
+| **size** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | Size of image to scale. |
+
+Loads svg image and returns its handle.
+
+## <sub>LoadSvgString</sub>
+
+`Render.LoadSvgString(svg, size, cacheId):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name        | Type                                                                                                                             | Description                                                  |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **svg**     | <mark style="color:purple;">**`string`**</mark>                                                                                  | Svg text itself.                                             |
+| **size**    | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | Size of image to scale.                                      |
+| **cacheId** | <mark style="color:purple;">**`string`**</mark>                                                                                  | Texture of image creates only once for every unique cache id |
+
+Loads svg image from string and returns its handle.
+
 ## <sub>Image</sub>
 
 `Render.Image(imageHandle, pos, size, color, [rounding], [flags], [uvMin], [uvMax], [grayscale]):` <mark style="color:purple;">**`nil`**</mark>
