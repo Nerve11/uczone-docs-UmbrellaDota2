@@ -6,7 +6,7 @@ Documentation for developing Lua 5.4 scripts for the Umbrella Dota 2 cheat using
 
 - **API Version**: UC.Zone API v2
 - **Programming Language**: Lua 5.4
-- **Last Update**: 10.02.2026
+- **Last Update**: 11.02.2026
 - **Official Website**: [uc.zone/ru/dota2](https://uc.zone/ru/dota2)
 
 ## 📁 Repository Structure
@@ -62,5 +62,5 @@ To run the documentation parser locally on your machine:
 
 ---
 
-**Last Update**: 10.02.2026  
+**Last Update**: 11.02.2026  
 **Author**: Nerve11
