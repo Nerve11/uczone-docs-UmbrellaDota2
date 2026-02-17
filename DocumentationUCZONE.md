@@ -833,1483 +833,627 @@ Here are some useful links:
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks -->
 
-copyCopychevron-down
-
-# 🔄Callbacks
+# Callbacks
 
 Callbacks for lua Scripts should return a table with the following functions. If the table contains one of the functions below, it will be registered as a callback and will be called at the appropriate time.
 
-## [hashtag](#onscriptsloaded) OnScriptsLoaded
+## <sub>OnScriptsLoaded</sub>
 
-`Callbacks.OnScriptsLoaded():` `nil`
+`Callbacks.OnScriptsLoaded():` <mark style="color:purple;">**`nil`**</mark>
 
 Called after all scripts are loaded.
 
-## [hashtag](#ondraw) OnDraw
+## <sub>OnDraw</sub>
 
-`Callbacks.OnDraw():` `nil`
+`Callbacks.OnDraw():` <mark style="color:purple;">**`nil`**</mark>
 
-Called when the game is drawing. Works only in the game.
+Called when the game is drawing. Works only in the game.\
 Recommended to use for drawing only.
 
-## [hashtag](#onframe) OnFrame
+## <sub>OnFrame</sub>
 
-`Callbacks.OnFrame():` `nil`
+`Callbacks.OnFrame():` <mark style="color:purple;">**`nil`**</mark>
 
 The same as OnDraw, but called in the menu too.
 
-## [hashtag](#onupdate) OnUpdate
+## <sub>OnUpdate</sub>
 
-`Callbacks.OnUpdate():` `nil`
+`Callbacks.OnUpdate():` <mark style="color:purple;">**`nil`**</mark>
 
-Called every game update. Works only in the game.
+Called every game update. Works only in the game.\
 Recommended to use for logic.
 
-## [hashtag](#onprehumanizer) OnPreHumanizer
+## <sub>OnPreHumanizer</sub>
 
-`Callbacks.OnPreHumanizer():` `nil`
+`Callbacks.OnPreHumanizer():` <mark style="color:purple;">**`nil`**</mark>
 
 TODO
 
-## [hashtag](#onupdateex) OnUpdateEx
+## <sub>OnUpdateEx</sub>
 
-`Callbacks.OnUpdateEx():` `nil`
+`Callbacks.OnUpdateEx():` <mark style="color:purple;">**`nil`**</mark>
 
-Called every game update. Same as OnUpdate but as well called in the menu.
+Called every game update. Same as OnUpdate but as well called in the menu.\
 Recommended to use for logic.
 
-## [hashtag](#onentitycreate) OnEntityCreate
+## <sub>OnEntityCreate</sub>
 
-`Callbacks.OnEntityCreate(entity):` `nil`
+`Callbacks.OnEntityCreate(entity):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**entity**
-
-[`CEntity`](/api-v2.0/game-components/core/entity)
-
-The entity that was created.
+| Name       | Type                                                                                                               | Description                  |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) | The entity that was created. |
 
 Called when a new entity is created.
 
-## [hashtag](#onnpcspawned) OnNpcSpawned
+## <sub>OnNpcSpawned</sub>
 
-`Callbacks.OnNpcSpawned(npc):` `nil`
+`Callbacks.OnNpcSpawned(npc):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**npc**
-
-`CNpc`
-
-The npc that was created.
+| Name    | Type                                          | Description               |
+| ------- | --------------------------------------------- | ------------------------- |
+| **npc** | <mark style="color:purple;">**`CNpc`**</mark> | The npc that was created. |
 
 Called when a npc is spawned. Unlike OnAddEntity, the entity is fully initialized here.
 
-## [hashtag](#onentitydestroy) OnEntityDestroy
+## <sub>OnEntityDestroy</sub>
 
-`Callbacks.OnEntityDestroy(entity):` `nil`
+`Callbacks.OnEntityDestroy(entity):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**entity**
-
-[`CEntity`](/api-v2.0/game-components/core/entity)
-
-The entity that was destroyed.
+| Name       | Type                                                                                                               | Description                    |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) | The entity that was destroyed. |
 
 Called when an entity is destroyed.
 
-## [hashtag](#onmodifiercreate) OnModifierCreate
+## <sub>OnModifierCreate</sub>
 
-`Callbacks.OnModifierCreate(entity, modifier):` `nil`
+`Callbacks.OnModifierCreate(entity, modifier):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**entity**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The entity that has the modifier.
-
-**modifier**
-
-[`CModifier`](/api-v2.0/game-components/core/modifier)
-
-The modifier that was created.
+| Name         | Type                                                                                                                   | Description                       |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| **entity**   | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)           | The entity that has the modifier. |
+| **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier) | The modifier that was created.    |
 
 Called when a modifier is created.
 
-## [hashtag](#onmodifierdestroy) OnModifierDestroy
+## <sub>OnModifierDestroy</sub>
 
-`Callbacks.OnModifierDestroy(entity, modifier):` `nil`
+`Callbacks.OnModifierDestroy(entity, modifier):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**entity**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The entity that has the modifier.
-
-**modifier**
-
-[`CModifier`](/api-v2.0/game-components/core/modifier)
-
-The modifier that was destroyed.
+| Name         | Type                                                                                                                   | Description                       |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| **entity**   | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)           | The entity that has the modifier. |
+| **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier) | The modifier that was destroyed.  |
 
 Called when a modifier is destroyed.
 
-## [hashtag](#onmodifierupdate) OnModifierUpdate
+## <sub>OnModifierUpdate</sub>
 
-`Callbacks.OnModifierUpdate(entity, modifier):` `nil`
+`Callbacks.OnModifierUpdate(entity, modifier):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**entity**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The entity that has the modifier.
-
-**modifier**
-
-[`CModifier`](/api-v2.0/game-components/core/modifier)
-
-The modifier that was updated.
+| Name         | Type                                                                                                                   | Description                       |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| **entity**   | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)           | The entity that has the modifier. |
+| **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier) | The modifier that was updated.    |
 
 Called when a modifier is updated/refreshed.
 
-## [hashtag](#onentityhurt) OnEntityHurt
-
-circle-info
+## <sub>OnEntityHurt</sub>
 
 This callback is called only in unsafe mode.
 
-`Callbacks.OnEntityHurt(data):` `nil`
+`Callbacks.OnEntityHurt(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`{source:CEntity` | `nil, target:CEntity` | `nil, ability:CAbility` | `nil, damage:number}`
-
-The data about the event.
+| Name     | Type                                                                                                                                                                                                                                                       | Description               |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data** | <mark style="color:purple;">**`{source:CEntity`**</mark> \| <mark style="color:purple;">**`nil, target:CEntity`**</mark> \| <mark style="color:purple;">**`nil, ability:CAbility`**</mark> \| <mark style="color:purple;">**`nil, damage:number}`**</mark> | The data about the event. |
 
 Called when an entity is hurt.
 
-## [hashtag](#onentitykilled) OnEntityKilled
-
-circle-info
+## <sub>OnEntityKilled</sub>
 
 This callback is called only in unsafe mode.
 
-`Callbacks.OnEntityKilled(data):` `nil`
+`Callbacks.OnEntityKilled(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`{source:CEntity` | `nil, target:CEntity` | `nil, ability:CAbility` | `nil}`
-
-The data about the event.
+| Name     | Type                                                                                                                                                                                                                                        | Description               |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data** | <mark style="color:purple;">**`{source:CEntity`**</mark> \| <mark style="color:purple;">**`nil, target:CEntity`**</mark> \| <mark style="color:purple;">**`nil, ability:CAbility`**</mark> \| <mark style="color:purple;">**`nil}`**</mark> | The data about the event. |
 
 Called when an entity is killed.
 
-## [hashtag](#onfireeventclient) OnFireEventClient
-
-circle-info
+## <sub>OnFireEventClient</sub>
 
 This callback is called only in unsafe mode.
 
-`Callbacks.OnFireEventClient(data):` \*\*`nil`\*\*
+\`Callbacks.OnFireEventClient(data):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`{name:string, event:Event}`
-
-The data about the event.
+| Name     | Type                                                                | Description               |
+| -------- | ------------------------------------------------------------------- | ------------------------- |
+| **data** | <mark style="color:purple;">**`{name:string, event:Event}`**</mark> | The data about the event. |
 
 Called when a game event is fired.
 
-## [hashtag](#onunitanimation) OnUnitAnimation
+## <sub>OnUnitAnimation</sub>
 
-`Callbacks.OnUnitAnimation(data):` `nil`
+`Callbacks.OnUnitAnimation(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**unit**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The unit that played the animation.
-
-.**sequenceVariant**
-
-`number`
-
-The sequence variant.
-
-.**playbackRate**
-
-`number`
-
-The playback rate.
-
-.**castpoint**
-
-`number`
-
-The castpoint.
-
-.**type**
-
-`integer`
-
-The type.
-
-.**activity**
-
-`integer`
-
-The activity.
-
-.**sequence**
-
-`integer`
-
-The sequence.
-
-.**sequenceName**
-
-`string`
-
-The sequence name.
-
-.**lag\_compensation\_time**
-
-`number`
-
-The lag compensation time.
+| Name                          | Type                                                                                                         | Description                         |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| **data**                      | <mark style="color:purple;">**`table`**</mark>                                                               | The data about the event.           |
+|  .**unit**                    | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) | The unit that played the animation. |
+|  .**sequenceVariant**         | <mark style="color:purple;">**`number`**</mark>                                                              | The sequence variant.               |
+|  .**playbackRate**            | <mark style="color:purple;">**`number`**</mark>                                                              | The playback rate.                  |
+|  .**castpoint**               | <mark style="color:purple;">**`number`**</mark>                                                              | The castpoint.                      |
+|  .**type**                    | <mark style="color:purple;">**`integer`**</mark>                                                             | The type.                           |
+|  .**activity**                | <mark style="color:purple;">**`integer`**</mark>                                                             | The activity.                       |
+|  .**sequence**                | <mark style="color:purple;">**`integer`**</mark>                                                             | The sequence.                       |
+|  .**sequenceName**            | <mark style="color:purple;">**`string`**</mark>                                                              | The sequence name.                  |
+|  .**lag\_compensation\_time** | <mark style="color:purple;">**`number`**</mark>                                                              | The lag compensation time.          |
 
 Called when a unit animation is played.
 
-## [hashtag](#onunitanimationend) OnUnitAnimationEnd
+## <sub>OnUnitAnimationEnd</sub>
 
-`Callbacks.OnUnitAnimationEnd(data):` `nil`
+`Callbacks.OnUnitAnimationEnd(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**unit**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The unit that played the animation.
-
-.**snap**
-
-`boolean`
-
-The snap.
+| Name       | Type                                                                                                         | Description                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| **data**   | <mark style="color:purple;">**`table`**</mark>                                                               | The data about the event.           |
+|  .**unit** | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) | The unit that played the animation. |
+|  .**snap** | <mark style="color:purple;">**`boolean`**</mark>                                                             | The snap.                           |
 
 Called when a unit animation ends.
 
-## [hashtag](#onprojectile) OnProjectile
+## <sub>OnProjectile</sub>
 
-`Callbacks.OnProjectile(data):` `nil`
+`Callbacks.OnProjectile(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**source**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The source entity.
-
-.**target**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The target entity.
-
-.**ability**
-
-[`CAbility`](/api-v2.0/game-components/core/ability)
-
-The ability linked to the projectile.
-
-.**moveSpeed**
-
-`integer`
-
-The move speed.
-
-.**sourceAttachment**
-
-`integer`
-
-The source attachment.
-
-.**particleSystemHandle**
-
-`integer`
-
-The particle system handle.
-
-.**dodgeable**
-
-`boolean`
-
-The dodgeable.
-
-.**isAttack**
-
-`boolean`
-
-The is attack.
-
-.**expireTime**
-
-`number`
-
-The expire time.
-
-.**maxImpactTime**
-
-`number`
-
-The max impact time.
-
-.**launch\_tick**
-
-`integer`
-
-The tick the pojectile was launched.
-
-.**colorGemColor**
-
-`integer`
-
-The color gem color.
-
-.**fullName**
-
-`string`
-
-The full name of projectile.
-
-.**name**
-
-`string`
-
-The short name of projectile.
-
-.**handle**
-
-`integer`
-
-The handle of projectile.
-
-.**target\_loc**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The location of the target.
-
-.**original\_move\_speed**
-
-`integer`
-
-The original move speed.
+| Name                        | Type                                                                                                                                 | Description                           |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| **data**                    | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event.             |
+|  .**source**                | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The source entity.                    |
+|  .**target**                | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The target entity.                    |
+|  .**ability**               | [<mark style="color:purple;">**`CAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/ability)                 | The ability linked to the projectile. |
+|  .**moveSpeed**             | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The move speed.                       |
+|  .**sourceAttachment**      | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The source attachment.                |
+|  .**particleSystemHandle**  | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The particle system handle.           |
+|  .**dodgeable**             | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | The dodgeable.                        |
+|  .**isAttack**              | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | The is attack.                        |
+|  .**expireTime**            | <mark style="color:purple;">**`number`**</mark>                                                                                      | The expire time.                      |
+|  .**maxImpactTime**         | <mark style="color:purple;">**`number`**</mark>                                                                                      | The max impact time.                  |
+|  .**launch\_tick**          | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The tick the pojectile was launched.  |
+|  .**colorGemColor**         | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The color gem color.                  |
+|  .**fullName**              | <mark style="color:purple;">**`string`**</mark>                                                                                      | The full name of projectile.          |
+|  .**name**                  | <mark style="color:purple;">**`string`**</mark>                                                                                      | The short name of projectile.         |
+|  .**handle**                | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The handle of projectile.             |
+|  .**target\_loc**           | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The location of the target.           |
+|  .**original\_move\_speed** | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The original move speed.              |
 
 Called when new projectile is created.
 
-## [hashtag](#onprojectileloc) OnProjectileLoc
+## <sub>OnProjectileLoc</sub>
 
-`Callbacks.OnProjectileLoc(data):` `nil`
+`Callbacks.OnProjectileLoc(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**target** `[?]`
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The source entity. `(default: nil)`
-
-.**sourceLoc**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The source location.
-
-.**targetLoc**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The target location.
-
-.**moveSpeed**
-
-`integer`
-
-The move speed.
-
-.**original\_move\_speed**
-
-`integer`
-
-The original move speed.
-
-.**particleSystemHandle**
-
-`integer`
-
-The particle system handle.
-
-.**dodgeable**
-
-`boolean`
-
-The dodgeable.
-
-.**isAttack**
-
-`boolean`
-
-The is attack.
-
-.**expireTime**
-
-`number`
-
-The expire time.
-
-.**colorGemColor**
-
-`integer`
-
-The color gem color.
-
-.**launchTick**
-
-`integer`
-
-The launch tick.
-
-.**handle**
-
-`integer`
-
-The handle of projectile.
-
-.**fullName**
-
-`string`
-
-The full name of projectile.
-
-.**name**
-
-`string`
-
-The short name of projectile.
+| Name                                                           | Type                                                                                                                                 | Description                         |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| **data**                                                       | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event.           |
+|  .**target&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The source entity. `(default: nil)` |
+|  .**sourceLoc**                                                | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The source location.                |
+|  .**targetLoc**                                                | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The target location.                |
+|  .**moveSpeed**                                                | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The move speed.                     |
+|  .**original\_move\_speed**                                    | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The original move speed.            |
+|  .**particleSystemHandle**                                     | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The particle system handle.         |
+|  .**dodgeable**                                                | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | The dodgeable.                      |
+|  .**isAttack**                                                 | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | The is attack.                      |
+|  .**expireTime**                                               | <mark style="color:purple;">**`number`**</mark>                                                                                      | The expire time.                    |
+|  .**colorGemColor**                                            | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The color gem color.                |
+|  .**launchTick**                                               | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The launch tick.                    |
+|  .**handle**                                                   | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The handle of projectile.           |
+|  .**fullName**                                                 | <mark style="color:purple;">**`string`**</mark>                                                                                      | The full name of projectile.        |
+|  .**name**                                                     | <mark style="color:purple;">**`string`**</mark>                                                                                      | The short name of projectile.       |
 
 Called when new projectile loc is created.
 
-## [hashtag](#onlinearprojectilecreate) OnLinearProjectileCreate
+## <sub>OnLinearProjectileCreate</sub>
 
-`Callbacks.OnLinearProjectileCreate(data):` `nil`
+`Callbacks.OnLinearProjectileCreate(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**source**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The source entity.
-
-.**origin**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The origin.
-
-.**velocity**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The velocity.
-
-.**particleIndex**
-
-`integer`
-
-The particle index.
-
-.**handle**
-
-`integer`
-
-The handle of projectile.
-
-.**acceleration**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The acceleration.
-
-.**maxSpeed**
-
-`number`
-
-The max speed.
-
-.**fowRadius**
-
-`number`
-
-The fow radius.
-
-.**distance**
-
-`number`
-
-The distance.
-
-.**colorGemColor**
-
-`integer`
-
-The color gem color.
-
-.**fullName**
-
-`string`
-
-The full name of projectile.
-
-.**name**
-
-`string`
-
-The short name of projectile.
+| Name                | Type                                                                                                                                 | Description                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **data**            | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event.     |
+|  .**source**        | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The source entity.            |
+|  .**origin**        | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The origin.                   |
+|  .**velocity**      | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The velocity.                 |
+|  .**particleIndex** | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The particle index.           |
+|  .**handle**        | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The handle of projectile.     |
+|  .**acceleration**  | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The acceleration.             |
+|  .**maxSpeed**      | <mark style="color:purple;">**`number`**</mark>                                                                                      | The max speed.                |
+|  .**fowRadius**     | <mark style="color:purple;">**`number`**</mark>                                                                                      | The fow radius.               |
+|  .**distance**      | <mark style="color:purple;">**`number`**</mark>                                                                                      | The distance.                 |
+|  .**colorGemColor** | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The color gem color.          |
+|  .**fullName**      | <mark style="color:purple;">**`string`**</mark>                                                                                      | The full name of projectile.  |
+|  .**name**          | <mark style="color:purple;">**`string`**</mark>                                                                                      | The short name of projectile. |
 
 Called when new linear projectile is created.
 
-## [hashtag](#onlinearprojectiledestroy) OnLinearProjectileDestroy
+## <sub>OnLinearProjectileDestroy</sub>
 
-`Callbacks.OnLinearProjectileDestroy(data):` `nil`
+`Callbacks.OnLinearProjectileDestroy(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**handle**
-
-`integer`
-
-The handle of projectile.
+| Name         | Type                                             | Description               |
+| ------------ | ------------------------------------------------ | ------------------------- |
+| **data**     | <mark style="color:purple;">**`table`**</mark>   | The data about the event. |
+|  .**handle** | <mark style="color:purple;">**`integer`**</mark> | The handle of projectile. |
 
 Called when linear projectile is destroyed.
 
-## [hashtag](#onparticlecreate) OnParticleCreate
+## <sub>OnParticleCreate</sub>
 
-`Callbacks.OnParticleCreate(data):` `nil`
+`Callbacks.OnParticleCreate(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**index**
-
-`integer`
-
-The index of particle.
-
-.**entity** `[?]`
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The entity. `(default: nil)`
-
-.**entity\_id**
-
-`integer`
-
-The entity id.
-
-.**entityForModifiers** `[?]`
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The entity for modifiers. `(default: nil)`
-
-.**entity\_for\_modifiers\_id**
-
-`integer`
-
-The entity for modifiers id.
-
-.**attachType**
-
-[`Enum.ParticleAttachment`](/api-v2.0/cheats-types-and-callbacks/enums#enum.particleattachment)
-
-The attach type.
-
-.**fullName**
-
-`string`
-
-The full name of particle.
-
-.**name**
-
-`string`
-
-The short name of particle.
-
-.**hash**
-
-`integer`
-
-The hash of particle.
-
-.**particleNameIndex**
-
-`integer`
-
-The particle name index.
+| Name                                                                       | Type                                                                                                                                 | Description                                |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| **data**                                                                   | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event.                  |
+|  .**index**                                                                | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The index of particle.                     |
+|  .**entity&#x20;**<mark style="color:orange;">**`[?]`**</mark>             | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The entity. `(default: nil)`               |
+|  .**entity\_id**                                                           | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The entity id.                             |
+|  .**entityForModifiers&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The entity for modifiers. `(default: nil)` |
+|  .**entity\_for\_modifiers\_id**                                           | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The entity for modifiers id.               |
+|  .**attachType**                                                           | [<mark style="color:purple;">**`Enum.ParticleAttachment`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.particleattachment) | The attach type.                           |
+|  .**fullName**                                                             | <mark style="color:purple;">**`string`**</mark>                                                                                      | The full name of particle.                 |
+|  .**name**                                                                 | <mark style="color:purple;">**`string`**</mark>                                                                                      | The short name of particle.                |
+|  .**hash**                                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The hash of particle.                      |
+|  .**particleNameIndex**                                                    | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The particle name index.                   |
 
 Called when new particle is created.
 
-## [hashtag](#onparticleupdate) OnParticleUpdate
+## <sub>OnParticleUpdate</sub>
 
-`Callbacks.OnParticleUpdate(data):` `nil`
+`Callbacks.OnParticleUpdate(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**index**
-
-`integer`
-
-The index of particle.
-
-.**controlPoint**
-
-`integer`
-
-The control point.
-
-.**position**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The position.
+| Name               | Type                                                                                                                                 | Description               |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| **data**           | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event. |
+|  .**index**        | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The index of particle.    |
+|  .**controlPoint** | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The control point.        |
+|  .**position**     | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The position.             |
 
 Called when particle is updated.
 
-## [hashtag](#onparticleupdatefallback) OnParticleUpdateFallback
+## <sub>OnParticleUpdateFallback</sub>
 
-`Callbacks.OnParticleUpdateFallback(data):` `nil`
+`Callbacks.OnParticleUpdateFallback(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**index**
-
-`integer`
-
-The index of particle.
-
-.**controlPoint**
-
-`integer`
-
-The control point.
-
-.**position**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The position.
+| Name               | Type                                                                                                                                 | Description               |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| **data**           | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event. |
+|  .**index**        | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The index of particle.    |
+|  .**controlPoint** | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The control point.        |
+|  .**position**     | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The position.             |
 
 Called when particle is updated. Alternative version for some particles.
 
-## [hashtag](#onparticleupdateentity) OnParticleUpdateEntity
+## <sub>OnParticleUpdateEntity</sub>
 
-`Callbacks.OnParticleUpdateEntity(data):` `nil`
+`Callbacks.OnParticleUpdateEntity(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**index**
-
-`integer`
-
-The index of particle.
-
-.**controlPoint**
-
-`integer`
-
-The control point.
-
-.**entity**
-
-[`CEntity`](/api-v2.0/game-components/core/entity)
-
-The entity.
-
-.**entIdx**
-
-`integer`
-
-The entity id.
-
-.**attachType**
-
-[`Enum.ParticleAttachment`](/api-v2.0/cheats-types-and-callbacks/enums#enum.particleattachment)
-
-The attach type.
-
-.**attachmentName**
-
-`string`
-
-The attachment name.
-
-.**position**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The position.
-
-.**includeWearables**
-
-`boolean`
-
-Include wearables.
+| Name                   | Type                                                                                                                                 | Description               |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| **data**               | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event. |
+|  .**index**            | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The index of particle.    |
+|  .**controlPoint**     | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The control point.        |
+|  .**entity**           | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity)                   | The entity.               |
+|  .**entIdx**           | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The entity id.            |
+|  .**attachType**       | [<mark style="color:purple;">**`Enum.ParticleAttachment`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.particleattachment) | The attach type.          |
+|  .**attachmentName**   | <mark style="color:purple;">**`string`**</mark>                                                                                      | The attachment name.      |
+|  .**position**         | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The position.             |
+|  .**includeWearables** | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | Include wearables.        |
 
 Called when particle is updated on entity.
 
-## [hashtag](#onparticledestroy) OnParticleDestroy
+## <sub>OnParticleDestroy</sub>
 
-`Callbacks.OnParticleDestroy(data):` `nil`
+`Callbacks.OnParticleDestroy(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**index**
-
-`integer`
-
-The index of destroyed particle.
-
-.**destroyImmediately**
-
-`boolean`
-
-Destroy immediately.
+| Name                     | Type                                             | Description                      |
+| ------------------------ | ------------------------------------------------ | -------------------------------- |
+| **data**                 | <mark style="color:purple;">**`table`**</mark>   | The data about the event.        |
+|  .**index**              | <mark style="color:purple;">**`integer`**</mark> | The index of destroyed particle. |
+|  .**destroyImmediately** | <mark style="color:purple;">**`boolean`**</mark> | Destroy immediately.             |
 
 Called when particle is destroyed.
 
-## [hashtag](#onstartsound) OnStartSound
+## <sub>OnStartSound</sub>
 
-`Callbacks.OnStartSound(data):` `nil`
+`Callbacks.OnStartSound(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**source** `[?]`
-
-[`CEntity`](/api-v2.0/game-components/core/entity)
-
-The source of sound. `(default: nil)`
-
-.**hash**
-
-`integer`
-
-The hash of sound.
-
-.**guid**
-
-`integer`
-
-The guid of sound.
-
-.**seed**
-
-`integer`
-
-The seed of sound.
-
-.**name**
-
-`string`
-
-The name of sound.
-
-.**position**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The position of sound.
+| Name                                                           | Type                                                                                                                                 | Description                           |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| **data**                                                       | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event.             |
+|  .**source&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity)                   | The source of sound. `(default: nil)` |
+|  .**hash**                                                     | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The hash of sound.                    |
+|  .**guid**                                                     | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The guid of sound.                    |
+|  .**seed**                                                     | <mark style="color:purple;">**`integer`**</mark>                                                                                     | The seed of sound.                    |
+|  .**name**                                                     | <mark style="color:purple;">**`string`**</mark>                                                                                      | The name of sound.                    |
+|  .**position**                                                 | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The position of sound.                |
 
 Called when sound is started.
 
-## [hashtag](#onspeak) OnSpeak
+## <sub>OnSpeak</sub>
 
-`Callbacks.OnSpeak(data):` `boolean`
+`Callbacks.OnSpeak(data):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**source**
-
-[`CNPC`](/api-v2.0/game-components/core/npc) | `nil`
-
-The unit who speak.
-
-.**name**
-
-`string`
-
-The name of the sound.
+| Name         | Type                                                                                                                                                         | Description               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| **data**     | <mark style="color:purple;">**`table`**</mark>                                                                                                               | The data about the event. |
+|  .**source** | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) \| <mark style="color:purple;">**`nil`**</mark> | The unit who speak.       |
+|  .**name**   | <mark style="color:purple;">**`string`**</mark>                                                                                                              | The name of the sound.    |
 
 Called every time unit/announcer talk. You could return false to prevent the sound from being played.
 
-## [hashtag](#onchatevent) OnChatEvent
+## <sub>OnChatEvent</sub>
 
-`Callbacks.OnChatEvent(data):` `nil`
+`Callbacks.OnChatEvent(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**type**
-
-`integer`
-
-The type of chat event.
-
-.**value**
-
-`integer`
-
-The value of chat event.
-
-.**value2**
-
-`integer`
-
-The value2 of chat event.
-
-.**value3**
-
-`integer`
-
-The value3 of chat event.
-
-.**playerid\_1**
-
-`integer`
-
-The playerid\_1 of chat event.
-
-.**playerid\_2**
-
-`integer`
-
-The playerid\_2 of chat event.
-
-.**playerid\_3**
-
-`integer`
-
-The playerid\_3 of chat event.
-
-.**playerid\_4**
-
-`integer`
-
-The playerid\_4 of chat event.
-
-.**playerid\_5**
-
-`integer`
-
-The playerid\_5 of chat event.
-
-.**playerid\_6**
-
-`integer`
-
-The playerid\_6 of chat event.
+| Name              | Type                                             | Description                    |
+| ----------------- | ------------------------------------------------ | ------------------------------ |
+| **data**          | <mark style="color:purple;">**`table`**</mark>   | The data about the event.      |
+|  .**type**        | <mark style="color:purple;">**`integer`**</mark> | The type of chat event.        |
+|  .**value**       | <mark style="color:purple;">**`integer`**</mark> | The value of chat event.       |
+|  .**value2**      | <mark style="color:purple;">**`integer`**</mark> | The value2 of chat event.      |
+|  .**value3**      | <mark style="color:purple;">**`integer`**</mark> | The value3 of chat event.      |
+|  .**playerid\_1** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_1 of chat event. |
+|  .**playerid\_2** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_2 of chat event. |
+|  .**playerid\_3** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_3 of chat event. |
+|  .**playerid\_4** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_4 of chat event. |
+|  .**playerid\_5** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_5 of chat event. |
+|  .**playerid\_6** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_6 of chat event. |
 
 Called on chat event.
 
-## [hashtag](#onoverheadevent) OnOverHeadEvent
+## <sub>OnOverHeadEvent</sub>
 
-`Callbacks.OnOverHeadEvent(data):` `nil`
+`Callbacks.OnOverHeadEvent(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`{player_source:CPlayer` | `nil, player_target:CPlayer` | `nil, target_npc:CNPC, value:integer}`
-
-The table with the event info.
+| Name     | Type                                                                                                                                                                                                                    | Description                    |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **data** | <mark style="color:purple;">**`{player_source:CPlayer`**</mark> \| <mark style="color:purple;">**`nil, player_target:CPlayer`**</mark> \| <mark style="color:purple;">**`nil, target_npc:CNPC, value:integer}`**</mark> | The table with the event info. |
 
 Called on event above the hero's head.
 
-## [hashtag](#onunitaddgesture) OnUnitAddGesture
+## <sub>OnUnitAddGesture</sub>
 
-`Callbacks.OnUnitAddGesture(data):` `nil`
+`Callbacks.OnUnitAddGesture(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**npc** `[?]`
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The unit that is added to a gesture. `(default: nil)`
-
-.**sequenceVariant**
-
-`integer`
-
-The sequence variant.
-
-.**playbackRate**
-
-`number`
-
-The playback rate.
-
-.**fadeIn**
-
-`number`
-
-The fade in.
-
-.**fadeOut**
-
-`number`
-
-The fade out.
-
-.**slot**
-
-`integer`
-
-The slot.
-
-.**activity**
-
-`integer`
-
-The activity.
-
-.**sequenceName**
-
-`string`
-
-The sequence name.
+| Name                                                        | Type                                                                                                         | Description                                           |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| **data**                                                    | <mark style="color:purple;">**`table`**</mark>                                                               | The data about the event.                             |
+|  .**npc&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) | The unit that is added to a gesture. `(default: nil)` |
+|  .**sequenceVariant**                                       | <mark style="color:purple;">**`integer`**</mark>                                                             | The sequence variant.                                 |
+|  .**playbackRate**                                          | <mark style="color:purple;">**`number`**</mark>                                                              | The playback rate.                                    |
+|  .**fadeIn**                                                | <mark style="color:purple;">**`number`**</mark>                                                              | The fade in.                                          |
+|  .**fadeOut**                                               | <mark style="color:purple;">**`number`**</mark>                                                              | The fade out.                                         |
+|  .**slot**                                                  | <mark style="color:purple;">**`integer`**</mark>                                                             | The slot.                                             |
+|  .**activity**                                              | <mark style="color:purple;">**`integer`**</mark>                                                             | The activity.                                         |
+|  .**sequenceName**                                          | <mark style="color:purple;">**`string`**</mark>                                                              | The sequence name.                                    |
 
 Called when a unit is added to a gesture.
 
-## [hashtag](#onprepareunitorders) OnPrepareUnitOrders
+## <sub>OnPrepareUnitOrders</sub>
 
-`Callbacks.OnPrepareUnitOrders(data):` `boolean`
+`Callbacks.OnPrepareUnitOrders(data):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**player**
-
-[`CPlayer`](/api-v2.0/game-components/core/player)
-
-The player that issued the order.
-
-.**order**
-
-[`Enum.UnitOrder`](/api-v2.0/cheats-types-and-callbacks/enums#enum.unitorder)
-
-The order type.
-
-.**target** `[?]`
-
-[`CEntity`](/api-v2.0/game-components/core/entity)
-
-The target of the order. `(default: nil)`
-
-.**position**
-
-[`Vector`](/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-The position of the order.
-
-.**ability** `[?]`
-
-[`CAbility`](/api-v2.0/game-components/core/ability)
-
-The ability of the order. `(default: nil)`
-
-.**orderIssuer**
-
-[`Enum.PlayerOrderIssuer`](/api-v2.0/cheats-types-and-callbacks/enums#enum.playerorderissuer)
-
-The order issuer.
-
-.**npc**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The unit of the order.
-
-.**queue**
-
-`boolean`
-
-If the order is queued.
-
-.**showEffects**
-
-`boolean`
-
-The show effects of the order.
+| Name                                                            | Type                                                                                                                                 | Description                                |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| **data**                                                        | <mark style="color:purple;">**`table`**</mark>                                                                                       | The data about the event.                  |
+|  .**player**                                                    | [<mark style="color:purple;">**`CPlayer`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/player)                   | The player that issued the order.          |
+|  .**order**                                                     | [<mark style="color:purple;">**`Enum.UnitOrder`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.unitorder)                   | The order type.                            |
+|  .**target&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity)                   | The target of the order. `(default: nil)`  |
+|  .**position**                                                  | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | The position of the order.                 |
+|  .**ability&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`CAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/ability)                 | The ability of the order. `(default: nil)` |
+|  .**orderIssuer**                                               | [<mark style="color:purple;">**`Enum.PlayerOrderIssuer`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.playerorderissuer)   | The order issuer.                          |
+|  .**npc**                                                       | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)                         | The unit of the order.                     |
+|  .**queue**                                                     | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | If the order is queued.                    |
+|  .**showEffects**                                               | <mark style="color:purple;">**`boolean`**</mark>                                                                                     | The show effects of the order.             |
 
 Called on every player order. Return false to prevent the order from being executed.
 
-## [hashtag](#ongcmessage) OnGCMessage
+## <sub>OnGCMessage</sub>
 
-`Callbacks.OnGCMessage(data):` `boolean`
+`Callbacks.OnGCMessage(data):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
+| Name                                                                         | Type                                              | Description                                                 |
+| ---------------------------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| **data**                                                                     | <mark style="color:purple;">**`table`**</mark>    |                                                             |
+|  .**msg\_type**                                                              | <mark style="color:purple;">**`number`**</mark>   | The message type.                                           |
+|  .**size**                                                                   | <mark style="color:purple;">**`number`**</mark>   | The size of the message.                                    |
+|  .**binary\_buffer\_send&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`userdata`**</mark> | The binary buffer of the send message. `(default: nil)`     |
+|  .**binary\_buffer\_recv&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`userdata`**</mark> | The binary buffer of the recieved message. `(default: nil)` |
 
-Type
-
-Description
-
-**data**
-
-`table`
-
-.**msg\_type**
-
-`number`
-
-The message type.
-
-.**size**
-
-`number`
-
-The size of the message.
-
-.**binary\_buffer\_send** `[?]`
-
-`userdata`
-
-The binary buffer of the send message. `(default: nil)`
-
-.**binary\_buffer\_recv** `[?]`
-
-`userdata`
-
-The binary buffer of the recieved message. `(default: nil)`
-
-Called when a game coordinator protobuff message is received. Return false to prevent the message
+Called when a game coordinator protobuff message is received. Return false to prevent the message\
 from being sent (doesnt work with recieved messages). For more look at GC table description.
 
-#### [hashtag](#example) Example
+#### Example
 
-## [hashtag](#onsendnetmessage) OnSendNetMessage
+```lua
+-- ongc_message.lua
+-- import protobuf and json libraries
+local protobuf = require('protobuf');
+local JSON = require('assets.JSON');
 
-`Callbacks.OnSendNetMessage(data):` `boolean`
+-- do the stats request
+local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest', JSON:encode({}));
+GC.SendMessage( request.binary, 7197, request.size );
 
-Name
+return {
+    OnGCMessage = function(msg)
+        if (msg.msg_type ~= 7198) then
+            return true;
+        end
 
-Type
+        -- decode the response and print it
+        local response = protobuf.decodeToJSON('CMsgDOTAMatchmakingStatsResponse', msg.binary_buffer_recv, msg.size);
+        Log.Write(response);
 
-Description
+        return true;
+    end
+}
+```
 
-**data**
+## <sub>OnSendNetMessage</sub>
 
-`table`
+`Callbacks.OnSendNetMessage(data):` <mark style="color:purple;">**`boolean`**</mark>
 
-The data about the event.
+| Name                | Type                                                   | Description                        |
+| ------------------- | ------------------------------------------------------ | ---------------------------------- |
+| **data**            | <mark style="color:purple;">**`table`**</mark>         | The data about the event.          |
+|  .**message\_id**   | <mark style="color:purple;">**`number`**</mark>        | The message id.                    |
+|  .**message\_name** | <mark style="color:purple;">**`string`**</mark>        | The message name.                  |
+|  .**buffer**        | <mark style="color:purple;">**`lightuserdata`**</mark> | The encoded buffer of the message. |
+|  .**size**          | <mark style="color:purple;">**`number`**</mark>        | The size of the message.           |
 
-.**message\_id**
-
-`number`
-
-The message id.
-
-.**message\_name**
-
-`string`
-
-The message name.
-
-.**buffer**
-
-`lightuserdata`
-
-The encoded buffer of the message.
-
-.**size**
-
-`number`
-
-The size of the message.
-
-Called when a net message is sent. Return false to prevent the message from being sent. See
+Called when a net message is sent. Return false to prevent the message from being sent. See\
 example
 
-#### [hashtag](#example-1) Example
+#### Example
 
-## [hashtag](#onpostreceivednetmessage) OnPostReceivedNetMessage
+```lua
+-- onsend_netmsg.lua
+-- anti-mute script for dota 2
+-- redirects all chat messages to console command 'say' or 'say_team'
 
-`Callbacks.OnPostReceivedNetMessage(data):` `boolean`
+-- import protobuf and json libraries
+local protobuf = require('protobuf');
+local JSON = require('assets.JSON');
+return {
+    OnSendNetMessage = function(msg)
+        if msg.message_id ~= 394 then
+            return true;
+        end
 
-Name
+        -- decode protobuf message to json
+        local json_message = JSON:decode(protobuf.decodeToJSON("CDOTAClientMsg_ChatMessage", msg.buffer , msg.size));
+        if not json_message then
+            return true;
+        end
 
-Type
+        -- message CDOTAClientMsg_ChatMessage {
+        --     optional uint32 channel_type = 1;
+        --     optional string message_text = 2;
+        -- }
 
-Description
+        local text_message = json_message.message_text;
+        -- skip commands starting with '-'
+        if text_message:find("-") == 1 then
+            return true;
+        end
+    
+        -- 11 - all chat 
+        if (json_message.channel_type == 11) then
+            Engine.ExecuteCommand('say "'..text_message..'"');
+            return false;
+        -- 12 - team chat
+        elseif (json_message.channel_type == 12) then
+            Engine.ExecuteCommand('say_team "'..text_message..'"');
+            return false;
+        end
+    end
+}
+```
 
-**data**
+## <sub>OnPostReceivedNetMessage</sub>
 
-`table`
+`Callbacks.OnPostReceivedNetMessage(data):` <mark style="color:purple;">**`boolean`**</mark>
 
-The data about the event.
-
-.**message\_id**
-
-`number`
-
-The message id.
-
-.**msg\_object**
-
-`lightuserdata`
-
-The encoded buffer of the message.
+| Name              | Type                                                   | Description                        |
+| ----------------- | ------------------------------------------------------ | ---------------------------------- |
+| **data**          | <mark style="color:purple;">**`table`**</mark>         | The data about the event.          |
+|  .**message\_id** | <mark style="color:purple;">**`number`**</mark>        | The message id.                    |
+|  .**msg\_object** | <mark style="color:purple;">**`lightuserdata`**</mark> | The encoded buffer of the message. |
 
 Called when a net message is received. Return false to prevent the message from being recieved
 
-#### [hashtag](#example-2) Example
+#### Example
 
-## [hashtag](#ongameend) OnGameEnd
+```lua
+-- onrecv_netmsg.lua
+local protobuf = require('protobuf')
+local JSON = require('assets.JSON')
+return {
+    OnPostReceivedNetMessage = function(msg)
+        if msg.message_id == 612 then -- DOTA_UM_ChatMessage https://github.com/SteamDatabase/GameTracking-Dota2/blob/932a8b002f651262ffda6562b758d8ca97c98297/Protobufs/dota_usermessages.proto#L152
+            local json = protobuf.decodeToJSONfromObject(msg.msg_object);
+            Log.Write(json)
+            local lua_table = JSON:decode(json)
+            -- ...
+        end
+    end
+}
 
-`Callbacks.OnGameEnd():` `nil`
+```
 
-Called on game end.
+## <sub>OnGameEnd</sub>
+
+`Callbacks.OnGameEnd():` <mark style="color:purple;">**`nil`**</mark>
+
+Called on game end.\
 Recommended to use for zeroing.
 
-## [hashtag](#onkeyevent) OnKeyEvent
+## <sub>OnKeyEvent</sub>
 
-`Callbacks.OnKeyEvent(data):` `boolean`
+`Callbacks.OnKeyEvent(data):` <mark style="color:purple;">**`boolean`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`table`
-
-The data about the event.
-
-.**key**
-
-[`Enum.ButtonCode`](/api-v2.0/cheats-types-and-callbacks/enums#enum.buttoncode)
-
-The key code.
-
-.**event**
-
-[`Enum.EKeyEvent`](/api-v2.0/cheats-types-and-callbacks/enums#enum.ekeyevent)
-
-Key event.
+| Name        | Type                                                                                                                 | Description               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data**    | <mark style="color:purple;">**`table`**</mark>                                                                       | The data about the event. |
+|  .**key**   | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.buttoncode) | The key code.             |
+|  .**event** | [<mark style="color:purple;">**`Enum.EKeyEvent`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.ekeyevent)   | Key event.                |
 
 Called on key and mouse input. Return false to prevent the event from being processed.
 
-## [hashtag](#onunitinventoryupdated) OnUnitInventoryUpdated
+## <sub>OnUnitInventoryUpdated</sub>
 
-`Callbacks.OnUnitInventoryUpdated(data):` `nil`
+`Callbacks.OnUnitInventoryUpdated(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The data about the event.
+| Name     | Type                                                                                                         | Description               |
+| -------- | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| **data** | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) | The data about the event. |
 
 Called on unit inventory updated.
 
-## [hashtag](#onsetdormant) OnSetDormant
+## <sub>OnSetDormant</sub>
 
-`Callbacks.OnSetDormant(npc, type):` `nil`
+`Callbacks.OnSetDormant(npc, type):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**npc**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The target npc.
-
-**type**
-
-[`Enum.DormancyType`](/api-v2.0/cheats-types-and-callbacks/enums#enum.dormancytype)
-
-The type of change.
+| Name     | Type                                                                                                                     | Description         |
+| -------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+| **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)             | The target npc.     |
+| **type** | [<mark style="color:purple;">**`Enum.DormancyType`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.dormancytype) | The type of change. |
 
 Called on NPC dormancy state changed.
 
-## [hashtag](#ongamerulesstatechange) OnGameRulesStateChange
+## <sub>OnGameRulesStateChange</sub>
 
-`Callbacks.OnGameRulesStateChange(data):` `nil`
+`Callbacks.OnGameRulesStateChange(data):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**data**
-
-`{}`
-
-The table with new game state info.
+| Name     | Type                                        | Description                         |
+| -------- | ------------------------------------------- | ----------------------------------- |
+| **data** | <mark style="color:purple;">**`{}`**</mark> | The table with new game state info. |
 
 Called on gamestate change.
 
-## [hashtag](#onnpcdying) OnNpcDying
+## <sub>OnNpcDying</sub>
 
-`Callbacks.OnNpcDying(npc):` `nil`
+`Callbacks.OnNpcDying(npc):` <mark style="color:purple;">**`nil`**</mark>
 
-Name
-
-Type
-
-Description
-
-**npc**
-
-[`CNPC`](/api-v2.0/game-components/core/npc)
-
-The target npc.
+| Name    | Type                                                                                                         | Description     |
+| ------- | ------------------------------------------------------------------------------------------------------------ | --------------- |
+| **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) | The target npc. |
 
 Called on NPC dying.
-
-[PreviousStarting Guidechevron-left](/api-v2.0)[NextEnumschevron-right](/api-v2.0/cheats-types-and-callbacks/enums)
-
-Last updated 4 months ago
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums -->
 
