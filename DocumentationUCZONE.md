@@ -1455,6 +1455,14 @@ Called on gamestate change.
 
 Called on NPC dying.
 
+## <sub>OnThemeUpdate</sub>
+
+`Callbacks.OnThemeUpdate():` <mark style="color:purple;">**`nil`**</mark>
+
+Called when the UI theme colors are changed.\
+This includes animated theme transitions (called every frame during animation)\
+and manual per-color edits via the theme color picker.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums -->
 
 # Enums
@@ -2381,8 +2389,12 @@ Called on NPC dying.
 
 ## <mark style="color:purple;">Enum.GroupSide</mark>
 
-| Key | Value |
-| --- | ----- |
+| Key                                           | Value |
+| --------------------------------------------- | ----- |
+| <mark style="color:green;">`Default`</mark>   | -1    |
+| <mark style="color:green;">`Left`</mark>      | 1     |
+| <mark style="color:green;">`Right`</mark>     | 2     |
+| <mark style="color:green;">`FullWidth`</mark> | 3     |
 
 ## <mark style="color:purple;">Enum.PingType</mark>
 
@@ -2526,13 +2538,13 @@ Called on NPC dying.
 
 | Key                                             | Value |
 | ----------------------------------------------- | ----- |
-| <mark style="color:green;">`READY`</mark>       |       |
-| <mark style="color:green;">`NOT_LEARNED`</mark> |       |
-| <mark style="color:green;">`NO_MANA`</mark>     |       |
-| <mark style="color:green;">`ABILITY_CD`</mark>  |       |
-| <mark style="color:green;">`PASSIVE`</mark>     |       |
-| <mark style="color:green;">`HIDDEN`</mark>      |       |
-| <mark style="color:green;">`ITEM_CD`</mark>     |       |
+| <mark style="color:green;">`READY`</mark>       | -1    |
+| <mark style="color:green;">`NOT_LEARNED`</mark> | 16    |
+| <mark style="color:green;">`NO_MANA`</mark>     | 14    |
+| <mark style="color:green;">`ABILITY_CD`</mark>  | 15    |
+| <mark style="color:green;">`PASSIVE`</mark>     | 17    |
+| <mark style="color:green;">`HIDDEN`</mark>      | 60    |
+| <mark style="color:green;">`ITEM_CD`</mark>     | 61    |
 
 ## <mark style="color:purple;">Enum.ModifierFunction</mark>
 
@@ -2931,10 +2943,10 @@ Called on NPC dying.
 
 | Key                                              | Value |
 | ------------------------------------------------ | ----- |
-| <mark style="color:green;">`TEAM_NONE`</mark>    |       |
-| <mark style="color:green;">`TEAM_DIRE`</mark>    |       |
-| <mark style="color:green;">`TEAM_RADIANT`</mark> |       |
-| <mark style="color:green;">`TEAM_NEUTRAL`</mark> |       |
+| <mark style="color:green;">`TEAM_NONE`</mark>    | 0     |
+| <mark style="color:green;">`TEAM_DIRE`</mark>    | 3     |
+| <mark style="color:green;">`TEAM_RADIANT`</mark> | 2     |
+| <mark style="color:green;">`TEAM_NEUTRAL`</mark> | 4     |
 
 ## <mark style="color:purple;">Enum.UIState</mark>
 
@@ -11458,7 +11470,7 @@ Returns the default ability icon name from items\_game.txt
 
 ## <sub>CanBeUpgraded</sub>
 
-`Ability.CanBeUpgraded(ability):` [<mark style="color:purple;">**`Enum.AbilityLearnResult`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums#enum.abilitylearnresult) | <mark style="color:purple;">**`nil`**</mark>
+`Ability.CanBeUpgraded(ability):` <mark style="color:purple;">**`boolean`**</mark>
 
 | Name        | Type                                                                                                                 | Description |
 | ----------- | -------------------------------------------------------------------------------------------------------------------- | ----------- |
@@ -14058,6 +14070,20 @@ Draws an unfilled rectangle.
 
 Draw a progress rectangle.
 
+## <sub>DonutChart</sub>
+
+`Render.DonutChart(center, radius, thickness, segments, [options]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                          | Type                                                                                                                                                                                                                                                                                                             | Description                                 |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| **center**                                                    | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)                                                                                                                                                                                 | The center position of the chart.           |
+| **radius**                                                    | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The outer radius of the chart.              |
+| **thickness**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The thickness of the donut ring.            |
+| **segments**                                                  | <mark style="color:purple;">**`{value: number, color: Color, icon: number`**</mark> \| <mark style="color:purple;">**`nil, icon_color: Color`**</mark> \| <mark style="color:purple;">**`nil, font_icon: {font: number, size: number, text: string}`**</mark> \| <mark style="color:purple;">**`nil}[]`**</mark> | List of data segments.                      |
+| **options&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`{separator_color:Color`**</mark> \| <mark style="color:purple;">**`nil, separator_thickness:number`**</mark> \| <mark style="color:purple;">**`nil}`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                                                                     | Optional settings for the chart appearance. |
+
+Draw a donut chart.
+
 ## <sub>Line</sub>
 
 `Render.Line(start, end_, color, [thickness]):` <mark style="color:purple;">**`nil`**</mark>
@@ -14540,6 +14566,20 @@ Drawing commands inside the callback will be applied to the render target instea
 | **uvSizeMax&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The maximum UV coordinates (or size offset) for texture mapping. `(default: {0.0, 0.0})` |
 
 Draws the content of a render target onto the screen.
+
+## <sub>ResizeRT</sub>
+
+`Render.ResizeRT(handle, [w], [h]):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name                                                    | Type                                                                                                                                                                                | Description                                          |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| **handle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                    | The handle of the render target to resize.           |
+| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> \| [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The new width, or a Vec2 containing both dimensions. |
+| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                                     | The new height. Not used when Vec2 is provided.      |
+
+Resizes an existing render target.\
+If width and height are not provided, it changes the render target to be full screen size.\
+Accepts (handle, w, h), (handle, vec2), or (handle) for full screen.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap -->
 
