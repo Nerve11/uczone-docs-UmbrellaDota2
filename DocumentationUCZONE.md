@@ -1,6 +1,6 @@
 # UCZONE API v2.0 - Полная документация
 
-*Сгенерировано из 95 страниц GitBook*
+*Сгенерировано из 85 страниц GitBook*
 
 ---
 
@@ -831,7 +831,7 @@ Here are some useful links:
 
 ## Cheats Types and Callbacks
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md -->
 
 # Callbacks
 
@@ -1463,7 +1463,7 @@ Called when the UI theme colors are changed.\
 This includes animated theme transitions (called every frame during animation)\
 and manual per-color edits via the theme color picker.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md -->
 
 # Enums
 
@@ -2994,43 +2994,12 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`RoundCornersMask_`</mark>           |       |
 | <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> |       |
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes -->
-
-# Classes
-
-- [Color](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-- [Menu](/api-v2.0/cheats-types-and-callbacks/classes/menu.md)
-- [CTabSection](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md)
-- [CFirstTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md)
-- [CSecondTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md)
-- [CThirdTab](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md)
-- [CMenuGroup](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md)
-- [Widgets](/api-v2.0/cheats-types-and-callbacks/classes/widgets.md)
-- [CMenuSwitch](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
-- [CMenuSliderFloat](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
-- [CMenuSliderInt](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
-- [CMenuButton](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
-- [CMenuColorPicker](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
-- [CMenuColorPickerAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-- [CMenuComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
-- [CMenuGearAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-- [CMenuInputBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
-- [CMenuMultiComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
-- [CMenuMultiSelect](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
-- [CMenuBind](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
-- [CMenuLabel](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
-- [Math](/api-v2.0/cheats-types-and-callbacks/classes/math.md)
-- [Vector](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-- [Angle](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-- [Vec2](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-- [Vertex](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
-
 
 --------------------------------------------------------------------------------
 
 ### Classes - Color
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md -->
 
 # Color
 
@@ -3204,7 +3173,7 @@ Returns hex string representing the color.
 
 ### Classes - Menu System
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md -->
 
 # Menu
 
@@ -3294,7 +3263,7 @@ Returns current menu scale percentage.
 
 Returns current menu animation duration.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md -->
 
 # CTabSection
 
@@ -3344,7 +3313,7 @@ Creates new `CSecondTab`.
 
 Finds the `CSecondTab` by name.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md -->
 
 # CFirstTab
 
@@ -3394,7 +3363,7 @@ Creates new `CTabSection`.
 
 Finds the `CTabSection` by name.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md -->
 
 # CSecondTab
 
@@ -3496,7 +3465,7 @@ tab:Icon( "\u{f007}" )
 
 Links tab to hero and attribute.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md -->
 
 # CThirdTab
 
@@ -3616,7 +3585,7 @@ Sets tab's icon.\
 tab:Icon( "\u{f007}")
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md -->
 
 # CMenuGroup
 
@@ -3943,25 +3912,7 @@ local isSearchHidden = group:SearchHidden()
 
 ### Classes - UI Widgets
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets -->
-
-# Widgets
-
-- [CMenuSwitch](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
-- [CMenuSliderFloat](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
-- [CMenuSliderInt](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
-- [CMenuButton](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
-- [CMenuColorPicker](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
-- [CMenuColorPickerAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-- [CMenuComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
-- [CMenuGearAttachment](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-- [CMenuInputBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
-- [CMenuMultiComboBox](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
-- [CMenuMultiSelect](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
-- [CMenuBind](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
-- [CMenuLabel](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md -->
 
 # CMenuSwitch
 
@@ -4193,7 +4144,7 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md -->
 
 # CMenuSliderFloat
 
@@ -4437,7 +4388,7 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md -->
 
 # CMenuSliderInt
 
@@ -4681,7 +4632,7 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md -->
 
 # CMenuButton
 
@@ -4874,7 +4825,7 @@ Sets widget's on change callback.
 
 Removes widget's on change callback.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md -->
 
 # CMenuColorPicker
 
@@ -5122,7 +5073,7 @@ widget:HideAlphaBar( true )
 local isAlphaBarHidden = widget:HideAlphaBar()
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md -->
 
 # CMenuColorPickerAttachment
 
@@ -5260,7 +5211,7 @@ Sets widget's on change callback.
 
 Removes widget's on change callback.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md -->
 
 # CMenuComboBox
 
@@ -5509,7 +5460,7 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md -->
 
 # CMenuGearAttachment
 
@@ -5782,7 +5733,7 @@ widget:Disabled( false )
 local isDisabled = widget:Disabled()
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md -->
 
 # CMenuInputBox
 
@@ -6014,7 +5965,7 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md -->
 
 # CMenuMultiComboBox
 
@@ -6282,7 +6233,7 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md -->
 
 # CMenuMultiSelect
 
@@ -6588,7 +6539,7 @@ Updates widget's image colors.
 
 Updates widget's tooltips
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md -->
 
 # CMenuBind
 
@@ -6900,7 +6851,7 @@ Gets or sets the ability to bind the mouse button.
 
 `:MouseBinding():` <mark style="color:purple;">**`boolean`**</mark>
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md -->
 
 # CMenuLabel
 
@@ -7098,16 +7049,7 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ### Classes - Math
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math -->
-
-# Math
-
-- [Vector](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-- [Angle](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-- [Vec2](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-- [Vertex](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md -->
 
 # Vector
 
@@ -7428,7 +7370,7 @@ Sets y. The same as Vector.y = value.
 
 Sets z. The same as Vector.z = value.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md -->
 
 # Angle
 
@@ -7518,7 +7460,7 @@ Sets the roll. The same as Angle.roll = value.
 
 Sets the pitch. The same as Angle.pitch = value.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2 -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md -->
 
 # Vec2
 
@@ -7626,7 +7568,7 @@ Sets x. The same as Vec2.x = value.
 
 Sets y. The same as Vec2.y = value.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md -->
 
 # Vertex
 
@@ -7692,27 +7634,7 @@ Overload for operator -
 
 ## Game Components - Entity Lists
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists -->
-
-# Lists
-
-- [Abilities](/api-v2.0/game-components/lists/abilities.md)
-- [Couriers](/api-v2.0/game-components/lists/couriers.md)
-- [CustomEntities](/api-v2.0/game-components/lists/customentities.md)
-- [Entities](/api-v2.0/game-components/lists/entities.md)
-- [Heroes](/api-v2.0/game-components/lists/heroes.md)
-- [NPCs](/api-v2.0/game-components/lists/npcs.md)
-- [Camps](/api-v2.0/game-components/lists/camps.md)
-- [Players](/api-v2.0/game-components/lists/players.md)
-- [Runes](/api-v2.0/game-components/lists/runes.md)
-- [TempTrees](/api-v2.0/game-components/lists/temptrees.md)
-- [Towers](/api-v2.0/game-components/lists/towers.md)
-- [Trees](/api-v2.0/game-components/lists/trees.md)
-- [Physical Items](/api-v2.0/game-components/lists/physicalitems.md)
-- [Modifiers](/api-v2.0/game-components/lists/modifiers.md)
-- [LinearProjectiles](/api-v2.0/game-components/lists/linearprojectiles.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md -->
 
 # Abilities
 
@@ -7750,7 +7672,7 @@ Return all abilities in cheat list.
 
 Check ability in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md -->
 
 # Couriers
 
@@ -7794,7 +7716,7 @@ Check courier in cheat list.
 
 Return local courier.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md -->
 
 # CustomEntities
 
@@ -7850,7 +7772,7 @@ Accept the Arc Warden's Tempest Double ability and return linked clone.
 
 Accept the Meepo's Divided We Stand ability and return index of Meepo.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md -->
 
 # Entities
 
@@ -7872,7 +7794,7 @@ Get all entities on the map.
 
 Check entity in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md -->
 
 # Heroes
 
@@ -7931,7 +7853,7 @@ Return all heroes in radius.
 
 Return local hero.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md -->
 
 # NPCs
 
@@ -8016,7 +7938,7 @@ Return all NPCs in radius.
 
 Check NPC in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md -->
 
 # Camps
 
@@ -8065,7 +7987,7 @@ Return all neutral spawners in radius.
 
 Check neutral spawner in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/players -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md -->
 
 # Players
 
@@ -8109,7 +8031,7 @@ Check player in cheat list.
 
 Return local player.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md -->
 
 # Runes
 
@@ -8147,7 +8069,7 @@ Return all runes in cheat list.
 
 Check rune in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md -->
 
 # TempTrees
 
@@ -8196,7 +8118,7 @@ Return all temp trees in radius.
 
 Check temp tree in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md -->
 
 # Towers
 
@@ -8247,7 +8169,7 @@ Return all towers in radius.
 
 Check tower in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md -->
 
 # Trees
 
@@ -8297,7 +8219,7 @@ Return all trees in radius.
 
 Check tree in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md -->
 
 # Physical Items
 
@@ -8335,7 +8257,7 @@ Return all physical items in cheat list.
 
 Check physical item in cheat list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md -->
 
 # Modifiers
 
@@ -8373,7 +8295,7 @@ Returns all modifiers in cheat list.
 
 Checks if modifiers is in list.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md -->
 
 # LinearProjectiles
 
@@ -8413,30 +8335,7 @@ return {
 
 ## Game Components - Core Objects
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core -->
-
-# Core
-
-- [Player](/api-v2.0/game-components/core/player.md)
-- [Modifier](/api-v2.0/game-components/core/modifier.md)
-- [Entity](/api-v2.0/game-components/core/entity.md)
-- [NPC](/api-v2.0/game-components/core/npc.md)
-- [Hero](/api-v2.0/game-components/core/hero.md)
-- [Ability](/api-v2.0/game-components/core/ability.md)
-- [Item](/api-v2.0/game-components/core/item.md)
-- [Rune](/api-v2.0/game-components/core/rune.md)
-- [Tower](/api-v2.0/game-components/core/tower.md)
-- [Tree](/api-v2.0/game-components/core/tree.md)
-- [Vambrace](/api-v2.0/game-components/core/vambrace.md)
-- [Camp](/api-v2.0/game-components/core/camp.md)
-- [Bottle](/api-v2.0/game-components/core/bottle.md)
-- [Courier](/api-v2.0/game-components/core/courier.md)
-- [DrunkenBrawler](/api-v2.0/game-components/core/drunkenbrawler.md)
-- [PhysicalItem](/api-v2.0/game-components/core/physicalitem.md)
-- [PowerTreads](/api-v2.0/game-components/core/powertreads.md)
-- [TierToken](/api-v2.0/game-components/core/tiertoken.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/player -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/player.md -->
 
 # Player
 
@@ -8689,7 +8588,7 @@ Returns player's assigned hero.
 
 Returns player's active ability.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md -->
 
 # Modifier
 
@@ -9080,7 +8979,7 @@ Returns `true` if the modifier is a debuff.
 
 Returns value of the field.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/entity -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md -->
 
 # Entity
 
@@ -9513,7 +9412,7 @@ Returns entity class id. Could be as a optimized way to check entity type.
 
 Returns value of the field.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md -->
 
 # NPC
 
@@ -10803,7 +10702,7 @@ Fixes the issue when you have multiple Kaya items that actually don't stack.
 
 Returns the hieghest property value for the `CNPC`.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md -->
 
 # Hero
 
@@ -11063,7 +10962,7 @@ Returns the last hero pos from maphack.
 
 Returns the last visible time from VBE.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/ability -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md -->
 
 # Ability
 
@@ -11702,7 +11601,7 @@ Returns the remaining time for the next charge to restore.
 
 Returns the keybind of the ability.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item.md -->
 
 # Item
 
@@ -11994,7 +11893,7 @@ Returns amount of remaining items in shop by item id.
 Log.Write("Observers available: " .. Item.GetStockCount(42))
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md -->
 
 # Rune
 
@@ -12010,7 +11909,7 @@ Table to work with `CRune`.<mark style="color:purple;">**`CRune`**</mark> extend
 
 Returns `Enum.RuneType` the rune type.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tower -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md -->
 
 # Tower
 
@@ -12026,7 +11925,7 @@ Table to work with `CTower`.<mark style="color:purple;">**`CTower`**</mark> exte
 
 Returns `CNPC` that is attacked by the tower now.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tree -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md -->
 
 # Tree
 
@@ -12042,7 +11941,7 @@ Table to work with `CTree`.<mark style="color:purple;">**`CTree`**</mark> extend
 
 Returns if the tree is not cut.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md -->
 
 # Vambrace
 
@@ -12058,7 +11957,7 @@ Table to work with `CVambrace`.<mark style="color:purple;">**`CVambrace`**</mark
 
 Returns selected `Enum.Attributes` attribute.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md -->
 
 # Camp
 
@@ -12084,7 +11983,7 @@ Returns the camp type.
 
 Returns camp box as a table with **min** and **max** fields(**Vector**).
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md -->
 
 # Bottle
 
@@ -12102,7 +12001,7 @@ Table to work with `CBottle`.
 
 Returns the rune inside the bottle.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/courier -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md -->
 
 # Courier
 
@@ -12158,7 +12057,7 @@ Returns owner's player id.
 
 Returns the entity that the courier is currently interacting with.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md -->
 
 # DrunkenBrawler
 
@@ -12174,7 +12073,7 @@ Table to work with `CDrunkenBrawler`.<mark style="color:purple;">**`CDrunkenBraw
 
 Returns the state of the CDrunkenBrawler ability.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md -->
 
 # PhysicalItem
 
@@ -12190,7 +12089,7 @@ Table to work with `CPhysicalItem`.<mark style="color:purple;">**`CPhysicalItem`
 
 Returns `CItem` object from `CPhysicalItem`.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md -->
 
 # PowerTreads
 
@@ -12206,7 +12105,7 @@ Table to work with `CPowerTreads`.<mark style="color:purple;">**`CTower`**</mark
 
 Returns selected `Enum.Attributes` attribute.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md -->
 
 # TierToken
 
@@ -12227,21 +12126,7 @@ Returns the choices (ability ids) of the `CTierToken`.
 
 ## Game Engine
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine -->
-
-# Game Engine
-
-- [Engine](/api-v2.0/game-components/game-engine/engine.md)
-- [Event](/api-v2.0/game-components/game-engine/event.md)
-- [GameRules](/api-v2.0/game-components/game-engine/gamerules.md)
-- [GlobalVars](/api-v2.0/game-components/game-engine/globalvars.md)
-- [GridNav](/api-v2.0/game-components/game-engine/gridnav.md)
-- [Input](/api-v2.0/game-components/game-engine/input.md)
-- [World](/api-v2.0/game-components/game-engine/world.md)
-- [FogOfWar](/api-v2.0/game-components/game-engine/fogofwar.md)
-- [ConVar](/api-v2.0/game-components/game-engine/convar.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md -->
 
 # Engine
 
@@ -12528,7 +12413,7 @@ Returns hero name by ID.
 
 Returns current UI state.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md -->
 
 # Event
 
@@ -12634,7 +12519,7 @@ Returns the floating value of the specified event field.
 
 Returns the string value of the specified event field.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md -->
 
 # GameRules
 
@@ -12879,7 +12764,7 @@ Returns zero-based array of banned heroes where index corresponds to the player 
 
 Returns time remaining between state changes.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md -->
 
 # GlobalVars
 
@@ -12933,7 +12818,7 @@ TODO
 
 TODO
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md -->
 
 # GridNav
 
@@ -13044,7 +12929,7 @@ Lite version of GridNav.BuildPath function which just cheking if the path is exi
 
 Debug render of current GridNav with GridNavNpcMap (if provided)
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md -->
 
 # Input
 
@@ -13148,7 +13033,7 @@ This function will return \`true\` only once per key press.
 
 Return `true` if key is down once.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md -->
 
 # World
 
@@ -13165,7 +13050,7 @@ Table containing functions for interacting with the world.
 
 Returns the ground Z at the given position.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md -->
 
 # FogOfWar
 
@@ -13181,7 +13066,7 @@ Table to work with FogOfWar API.
 
 Returns `true` if the world position is visible.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md -->
 
 # ConVar
 
@@ -13294,17 +13179,7 @@ Assigns new boolean value to the ConVar
 
 ## Networking and APIs
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis -->
-
-# Networking & APIs
-
-- [Chat](/api-v2.0/game-components/networking-and-apis/chatapi.md)
-- [HTTP](/api-v2.0/game-components/networking-and-apis/http.md)
-- [Steam](/api-v2.0/game-components/networking-and-apis/steamapi.md)
-- [NetChannel](/api-v2.0/game-components/networking-and-apis/netchannel.md)
-- [Game Coordinator](/api-v2.0/game-components/networking-and-apis/gc.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md -->
 
 # Chat
 
@@ -13360,7 +13235,7 @@ Flip the coin in a channel.
 
 Roll a dice in a channel.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md -->
 
 # HTTP
 
@@ -13407,7 +13282,7 @@ HTTP.Request("GET", url, {
 	}, callback, "reqres_get");
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md -->
 
 # Steam
 
@@ -13462,7 +13337,7 @@ This function works only if you already got player's user information (EMsg\_Cli
 
 Returns the handle of the profile picture of the given account id.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md -->
 
 # NetChannel
 
@@ -13522,7 +13397,7 @@ NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
 
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md -->
 
 # Game Coordinator
 
@@ -13565,19 +13440,7 @@ Returns local player Steam ID as string.
 
 ## Rendering and Visuals
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals -->
-
-# Rendering & Visuals
-
-- [Particle](/api-v2.0/game-components/rendering-and-visuals/particle.md)
-- [Renderer](/api-v2.0/game-components/rendering-and-visuals/renderv1.md)
-- [Render](/api-v2.0/game-components/rendering-and-visuals/renderv2.md)
-- [MiniMap](/api-v2.0/game-components/rendering-and-visuals/minimap.md)
-- [Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama.md)
-- [Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md)
-- [UIPanel](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md -->
 
 # Particle
 
@@ -13657,7 +13520,7 @@ Sets the control point's position and angle.
 
 Destroys the particle by index.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1 -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md -->
 
 # Renderer
 
@@ -14020,7 +13883,7 @@ Pops a clip rect.
 
 Draws a centered notification.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2 -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md -->
 
 # Render
 
@@ -14581,7 +14444,7 @@ Resizes an existing render target.\
 If width and height are not provided, it changes the render target to be full screen size.\
 Accepts (handle, w, h), (handle, vec2), or (handle) for full screen.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md -->
 
 # MiniMap
 
@@ -14698,14 +14561,7 @@ Returns world position from minimap position. The same as `GetMousePosInWorld`, 
 
 ### Rendering - Panorama UI
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama -->
-
-# Panorama
-
-- [Panorama](/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md)
-- [UIPanel](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md -->
 
 # Panorama
 
@@ -14807,7 +14663,7 @@ end
 create_category();
 ```
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md -->
 
 # UIPanel
 
@@ -15204,17 +15060,7 @@ Removes a class to the panel.
 
 ## Configuration and Utilities
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities -->
-
-# Configuration & Utilities
-
-- [Config](/api-v2.0/game-components/configuration-and-utilities/config.md)
-- [Humanizer](/api-v2.0/game-components/configuration-and-utilities/humanizer.md)
-- [Log](/api-v2.0/game-components/configuration-and-utilities/log.md)
-- [Localizer](/api-v2.0/game-components/configuration-and-utilities/localizer.md)
-- [GameLocalizer](/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md)
-
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md -->
 
 # Config
 
@@ -15292,7 +15138,7 @@ Write a float to a config file.
 
 Write a string to a config file.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md -->
 
 # Humanizer
 
@@ -15348,7 +15194,7 @@ Returns information about the current humanizer order queue.
 
 Forces current user order by minimap. Must be called in OnPrepareUnitOrder
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md -->
 
 # Log
 
@@ -15364,7 +15210,7 @@ Table to log.
 
 Writes a message to the console.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md -->
 
 # Localizer
 
@@ -15390,7 +15236,7 @@ Returns localized string using current language.
 
 Registers key (token) string to localizer.
 
-<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer -->
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md -->
 
 # GameLocalizer
 
