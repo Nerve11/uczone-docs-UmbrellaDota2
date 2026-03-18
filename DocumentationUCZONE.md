@@ -3014,6 +3014,50 @@ Color metatable
 | **b** | <mark style="color:purple;">**`number`**</mark> | blue        |
 | **a** | <mark style="color:purple;">**`number`**</mark> | alpha       |
 
+## <sub>\_\_eq</sub>
+
+`:__eq(other):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                                                                                          | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color) |             |
+
+Compares two colors for equality.
+
+## <sub>Set</sub>
+
+`:Set(r, g, b, [a]):` [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)
+
+| Name                                                    | Type                                            | Description      |
+| ------------------------------------------------------- | ----------------------------------------------- | ---------------- |
+| **r**                                                   | <mark style="color:purple;">**`number`**</mark> |                  |
+| **g**                                                   | <mark style="color:purple;">**`number`**</mark> |                  |
+| **b**                                                   | <mark style="color:purple;">**`number`**</mark> |                  |
+| **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
+
+Sets r, g, b, a components. Returns self for chaining.
+
+## <sub>LerpInPlace</sub>
+
+`:LerpInPlace(other, t):` [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)
+
+| Name      | Type                                                                                                                          | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color) |             |
+| **t**     | <mark style="color:purple;">**`number`**</mark>                                                                               |             |
+
+Linearly interpolates this color towards other in-place. Returns self for chaining.
+
+## <sub>IsZero</sub>
+
+`:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name                                                            | Type                                            | Description       |
+| --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
+| **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
+
+Returns true if all components are near zero within tolerance.
+
 ## <sub>Color</sub>
 
 `Color([r], [g], [b], [a]):` [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)
@@ -6769,7 +6813,7 @@ switch:Icon("\u{f007}")
 
 Multiple callbacks could be set.
 
-\`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+`:SetCallback(callback, [forceCall]):` <mark style="color:purple;">**`nil`**</mark>
 
 | Name                                                            | Type                                                              | Description                                                              |
 | --------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -6787,6 +6831,28 @@ Sets widget's on change callback.
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuBind):nil`**</mark> | function to be removed from widget's callbacks. |
 
 Removes widget's on change callback.
+
+## <sub>SetKeyCallback</sub>
+
+Multiple callbacks could be set.
+
+\`:SetKeyCallback(callback):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+
+| Name         | Type                                                                                                           | Description                                 |
+| ------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| **callback** | <mark style="color:purple;">**`fun(this: CMenuBind, key: Enum.ButtonCode, event: Enum.EKeyEvent):nil`**</mark> | function to be called on key press/release. |
+
+Sets widget's on key press/release callback.
+
+## <sub>UnsetKeyCallback</sub>
+
+`:UnsetKeyCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name         | Type                                                                                                           | Description             |
+| ------------ | -------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **callback** | <mark style="color:purple;">**`fun(this: CMenuBind, key: Enum.ButtonCode, event: Enum.EKeyEvent):nil`**</mark> | function to be removed. |
+
+Removes widget's on key press/release callback.
 
 ## <sub>ColorPicker</sub>
 
@@ -7062,6 +7128,194 @@ Vector metatable
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
 | **z** | <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>AddInPlace</sub>
+
+`:AddInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name      | Type                                                                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Adds other to this vector in-place. Returns self for chaining.
+
+## <sub>SubInPlace</sub>
+
+`:SubInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name      | Type                                                                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Subtracts other from this vector in-place. Returns self for chaining.
+
+## <sub>MulInPlace</sub>
+
+`:MulInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name      | Type                                                                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Multiplies this vector by other in-place. Returns self for chaining.
+
+## <sub>DivInPlace</sub>
+
+`:DivInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name      | Type                                                                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Divides this vector by other in-place. Returns self for chaining.
+
+## <sub>Set</sub>
+
+`:Set(x, y, z):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y** | <mark style="color:purple;">**`number`**</mark> |             |
+| **z** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets x, y, z components. Returns self for chaining.
+
+## <sub>LerpInPlace</sub>
+
+`:LerpInPlace(b, t):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name  | Type                                                                                                                                 | Description |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **b** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
+| **t** | <mark style="color:purple;">**`number`**</mark>                                                                                      |             |
+
+Linearly interpolates this vector towards other in-place. Returns self for chaining.
+
+## <sub>CopyFrom</sub>
+
+`:CopyFrom(other):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name      | Type                                                                                                                                 | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
+
+Copies values from another vector without allocating. Returns self for chaining.
+
+## <sub>DirectionTo</sub>
+
+`:DirectionTo(other, [dist]):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name                                                       | Type                                                                                                                                 | Description                            |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| **other**                                                  | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |                                        |
+| **dist&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                      | optional scale factor `(default: 1.0)` |
+
+Returns a normalized direction vector from this point to other, optionally scaled by distance.\
+Equivalent to `(other - self):Normalized():Scaled(dist)` but with a single allocation.
+
+## <sub>AngleBetween2D</sub>
+
+`:AngleBetween2D(middle, point3):` <mark style="color:purple;">**`number`**</mark>
+
+| Name       | Type                                                                                                                                 | Description                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| **middle** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | the vertex point (this is point1, middle is point2) |
+| **point3** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |                                                     |
+
+Returns the angle in radians between two 2D vectors formed by three points.\
+Equivalent to the angle at point2 in the triangle point1-point2-point3, ignoring Z.
+
+## <sub>ClosestToPoint</sub>
+
+`:ClosestToPoint(entities):` [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) | <mark style="color:purple;">**`nil`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+| Name         | Type                                                                                                                 | Description |
+| ------------ | -------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **entities** | [<mark style="color:purple;">**`CEntity[]`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) |             |
+
+Finds the closest entity to this position from a table of entities.\
+Returns the entity and the distance. Uses Distance2D.
+
+## <sub>DistanceSqr2D</sub>
+
+`:DistanceSqr2D(other):` <mark style="color:purple;">**`number`**</mark>
+
+| Name      | Type                                                                                                                                 | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
+
+Returns the squared 2D distance to another vector. Cheaper than Distance2D (no sqrt).\
+Use for distance comparisons: `a:DistanceSqr2D(b) < range * range`.
+
+## <sub>IsInRange2D</sub>
+
+`:IsInRange2D(other, range):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                                                                                                 | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
+| **range** | <mark style="color:purple;">**`number`**</mark>                                                                                      |             |
+
+Returns true if this position is within range of another position (2D, no sqrt).
+
+## <sub>Extend2D</sub>
+
+`:Extend2D(target, distance):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name         | Type                                                                                                                                 | Description |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **target**   | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
+| **distance** | <mark style="color:purple;">**`number`**</mark>                                                                                      |             |
+
+Extends this position towards target by distance (2D, ignores Z). Single allocation.\
+Equivalent to `self + (target - self):Normalized() * distance` without intermediate vectors.
+
+## <sub>Perpendicular2D</sub>
+
+`:Perpendicular2D():` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+Returns a 2D perpendicular vector (-y, x, z). Zero allocation if called in-place.
+
+## <sub>Negate</sub>
+
+`:Negate():` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+Negates this vector in-place (-x, -y, -z). Returns self for chaining.
+
+## <sub>IsZero</sub>
+
+`:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name                                                            | Type                                            | Description       |
+| --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
+| **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
+
+Returns true if all components are near zero within tolerance.
+
+## <sub>Extrapolate</sub>
+
+`:Extrapolate(direction, scalar):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name          | Type                                                                                                                                 | Description |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **direction** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
+| **scalar**    | <mark style="color:purple;">**`number`**</mark>                                                                                      |             |
+
+Returns `self + direction * scalar`. Single allocation.\
+Useful for position extrapolation: `start:Extrapolate(velocity, dt * speed)`.
+
+## <sub>Center</sub>
+
+`Vector.Center(points):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+| Name       | Type                                                                                                    | Description                      |
+| ---------- | ------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| **points** | <mark style="color:purple;">**`(Vector`**</mark> \| <mark style="color:purple;">**`CEntity)[]`**</mark> | array of Vectors and/or Entities |
+
+Computes the centroid (average position) of a mixed array of Vectors and Entities.\
+Each element can be a Vector (full userdata) or an Entity (lightuserdata).\
+Entity positions are resolved via GetAbsOrigin. Nil entries are skipped.
 
 ## <sub>Vector</sub>
 
@@ -7384,6 +7638,74 @@ Angle metatable
 | **yaw**   | <mark style="color:purple;">**`number`**</mark> |             |
 | **roll**  | <mark style="color:purple;">**`number`**</mark> |             |
 
+## <sub>\_\_eq</sub>
+
+`:__eq(other):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                                                                                               | Description |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle) |             |
+
+Compares two angles for equality.
+
+## <sub>\_\_add</sub>
+
+`:__add(other):` [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
+
+| Name      | Type                                                                                                                               | Description |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle) |             |
+
+Adds two angles together. Returns a new Angle.
+
+## <sub>\_\_sub</sub>
+
+`:__sub(other):` [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
+
+| Name      | Type                                                                                                                               | Description |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle) |             |
+
+Subtracts one angle from another. Returns a new Angle.
+
+## <sub>Set</sub>
+
+`:Set(pitch, yaw, roll):` [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
+
+| Name      | Type                                            | Description |
+| --------- | ----------------------------------------------- | ----------- |
+| **pitch** | <mark style="color:purple;">**`number`**</mark> |             |
+| **yaw**   | <mark style="color:purple;">**`number`**</mark> |             |
+| **roll**  | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets pitch, yaw, roll. Returns self for chaining.
+
+## <sub>CopyFrom</sub>
+
+`:CopyFrom(other):` [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
+
+| Name      | Type                                                                                                                               | Description |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle) |             |
+
+Copies values from another angle without allocating. Returns self for chaining.
+
+## <sub>Get</sub>
+
+`:Get():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+Returns pitch, yaw, roll as three numbers.
+
+## <sub>IsZero</sub>
+
+`:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name                                                            | Type                                            | Description       |
+| --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
+| **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
+
+Returns true if all components are near zero within tolerance.
+
 ## <sub>Angle</sub>
 
 `Angle([pitch], [yaw], [roll]):` [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
@@ -7472,6 +7794,67 @@ Vec2 metatable
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>AddInPlace</sub>
+
+`:AddInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name      | Type                                                                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Adds other to this Vec2 in-place. Returns self for chaining.
+
+## <sub>SubInPlace</sub>
+
+`:SubInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name      | Type                                                                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Subtracts other from this Vec2 in-place. Returns self for chaining.
+
+## <sub>MulInPlace</sub>
+
+`:MulInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name      | Type                                                                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Multiplies this Vec2 by other in-place. Returns self for chaining.
+
+## <sub>DivInPlace</sub>
+
+`:DivInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name      | Type                                                                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+Divides this Vec2 by other in-place. Returns self for chaining.
+
+## <sub>Set</sub>
+
+`:Set(x, y):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name  | Type                                            | Description |
+| ----- | ----------------------------------------------- | ----------- |
+| **x** | <mark style="color:purple;">**`number`**</mark> |             |
+| **y** | <mark style="color:purple;">**`number`**</mark> |             |
+
+Sets x, y components. Returns self for chaining.
+
+## <sub>IsZero</sub>
+
+`:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name                                                            | Type                                            | Description       |
+| --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
+| **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
+
+Returns true if all components are near zero within tolerance.
 
 ## <sub>Vec2</sub>
 
@@ -9175,6 +9558,26 @@ return {
 }
 ```
 
+## <sub>GetAbsOriginXYZ</sub>
+
+`Entity.GetAbsOriginXYZ(entity):` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+| Name       | Type                                                                                                               | Description |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) |             |
+
+Returns the entity's position as three numbers (zero allocation).
+
+## <sub>GetRotationPYR</sub>
+
+`Entity.GetRotationPYR(entity):` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
+
+| Name       | Type                                                                                                               | Description |
+| ---------- | ------------------------------------------------------------------------------------------------------------------ | ----------- |
+| **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) |             |
+
+Returns the entity's rotation as three numbers (zero allocation).
+
 ## <sub>IsAlive</sub>
 
 `Entity.IsAlive(entity):` <mark style="color:purple;">**`boolean`**</mark>
@@ -9476,9 +9879,7 @@ Returns `CModifier` by name.
 
 ## <sub>GetModifiers</sub>
 
-\`poperty\_filter\` doesn\`t filter all modifiers every call, it uses already prefiltered list.  \`
-
-NPC.GetModifiers(npc, \[poperty\_filter]): `[<mark style="color:purple">**`CModifier\[]\`\*\*]\(Modifier.md)
+\`poperty\_filter\` doesn\`t filter all modifiers every call, it uses already prefiltered list.  \`NPC.GetModifiers(npc, \[poperty\_filter]):\` \[<mark style="color:purple;">\*\*\`CModifier\[]\`\*\*</mark>]\(Modifier.md)
 
 | Name                                                                  | Type                                                                                                                                                        | Description                                                                                         |
 | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
@@ -9486,6 +9887,31 @@ NPC.GetModifiers(npc, \[poperty\_filter]): `[<mark style="color:purple">**`CModi
 | **poperty\_filter&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ModifierFunction`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums#enum.modifierfunction) | Filter modifiers by specified property `(default: Enum.ModifierFunction.MODIFIER_FUNCTION_INVALID)` |
 
 Returns an array of all NPC's `CModifier`s.
+
+## <sub>HasAnyModifier</sub>
+
+`NPC.HasAnyModifier(npc, names):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name      | Type                                                                                                                 | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc)         |             |
+| **names** | <mark style="color:purple;">**`string[]`**</mark> \| <mark style="color:purple;">**`table<string, boolean>`**</mark> |             |
+
+Returns `true` if the NPC has any modifier from the given set.\
+Accepts either an array `{"mod_a", "mod_b"}` or a hash set `{mod_a = true, mod_b = true}`.\
+The hash set form is faster: O(M) hash lookups vs O(M\*N) strcmp, where M = modifier count, N = names count.
+
+## <sub>GetModifierByIndex</sub>
+
+`NPC.GetModifierByIndex(npc, index):` [<mark style="color:purple;">**`CModifier`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                                                                                         | Description   |
+| --------- | ------------------------------------------------------------------------------------------------------------ | ------------- |
+| **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/npc) |               |
+| **index** | <mark style="color:purple;">**`integer`**</mark>                                                             | 1-based index |
+
+Returns the modifier at the given 1-based index, or nil if out of range.\
+Use with `NPC.GetModifiers` count or iterate until nil.
 
 ## <sub>HasInventorySlotFree</sub>
 
