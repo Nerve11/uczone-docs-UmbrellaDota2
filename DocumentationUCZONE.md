@@ -2046,20 +2046,20 @@ and manual per-color edits via the theme color picker.
 
 ## <mark style="color:purple;">Enum.UnitTypeFlags</mark>
 
-| Key                                                      | Value |
-| -------------------------------------------------------- | ----- |
-| <mark style="color:green;">`TYPE_HERO`</mark>            |       |
-| <mark style="color:green;">`TYPE_CONSIDERED_HERO`</mark> |       |
-| <mark style="color:green;">`TYPE_TOWER`</mark>           |       |
-| <mark style="color:green;">`TYPE_STRUCTURE`</mark>       |       |
-| <mark style="color:green;">`TYPE_ANCIENT`</mark>         |       |
-| <mark style="color:green;">`TYPE_BARRACKS`</mark>        |       |
-| <mark style="color:green;">`TYPE_CREEP`</mark>           |       |
-| <mark style="color:green;">`TYPE_COURIER`</mark>         |       |
-| <mark style="color:green;">`TYPE_SHOP`</mark>            |       |
-| <mark style="color:green;">`TYPE_LANE_CREEP`</mark>      |       |
-| <mark style="color:green;">`TYPE_WARD`</mark>            |       |
-| <mark style="color:green;">`TYPE_ROSHAN`</mark>          |       |
+| Key                                                      | Value  |
+| -------------------------------------------------------- | ------ |
+| <mark style="color:green;">`TYPE_HERO`</mark>            | 1      |
+| <mark style="color:green;">`TYPE_CONSIDERED_HERO`</mark> | 2      |
+| <mark style="color:green;">`TYPE_TOWER`</mark>           | 4      |
+| <mark style="color:green;">`TYPE_STRUCTURE`</mark>       | 16     |
+| <mark style="color:green;">`TYPE_ANCIENT`</mark>         | 32     |
+| <mark style="color:green;">`TYPE_BARRACKS`</mark>        | 64     |
+| <mark style="color:green;">`TYPE_CREEP`</mark>           | 128    |
+| <mark style="color:green;">`TYPE_COURIER`</mark>         | 256    |
+| <mark style="color:green;">`TYPE_SHOP`</mark>            | 512    |
+| <mark style="color:green;">`TYPE_LANE_CREEP`</mark>      | 1024   |
+| <mark style="color:green;">`TYPE_WARD`</mark>            | 131072 |
+| <mark style="color:green;">`TYPE_ROSHAN`</mark>          | 524288 |
 
 ## <mark style="color:purple;">Enum.UnitOrder</mark>
 
@@ -2198,135 +2198,135 @@ and manual per-color edits via the theme color picker.
 
 | Key                                                      | Value |
 | -------------------------------------------------------- | ----- |
-| <mark style="color:green;">`BUTTON_CODE_INVALID`</mark>  |       |
-| <mark style="color:green;">`BUTTON_CODE_NONE`</mark>     |       |
-| <mark style="color:green;">`KEY_FIRST`</mark>            |       |
-| <mark style="color:green;">`KEY_NONE`</mark>             |       |
-| <mark style="color:green;">`KEY_0`</mark>                |       |
-| <mark style="color:green;">`KEY_1`</mark>                |       |
-| <mark style="color:green;">`KEY_2`</mark>                |       |
-| <mark style="color:green;">`KEY_3`</mark>                |       |
-| <mark style="color:green;">`KEY_4`</mark>                |       |
-| <mark style="color:green;">`KEY_5`</mark>                |       |
-| <mark style="color:green;">`KEY_6`</mark>                |       |
-| <mark style="color:green;">`KEY_7`</mark>                |       |
-| <mark style="color:green;">`KEY_8`</mark>                |       |
-| <mark style="color:green;">`KEY_9`</mark>                |       |
-| <mark style="color:green;">`KEY_A`</mark>                |       |
-| <mark style="color:green;">`KEY_B`</mark>                |       |
-| <mark style="color:green;">`KEY_C`</mark>                |       |
-| <mark style="color:green;">`KEY_D`</mark>                |       |
-| <mark style="color:green;">`KEY_E`</mark>                |       |
-| <mark style="color:green;">`KEY_F`</mark>                |       |
-| <mark style="color:green;">`KEY_G`</mark>                |       |
-| <mark style="color:green;">`KEY_H`</mark>                |       |
-| <mark style="color:green;">`KEY_I`</mark>                |       |
-| <mark style="color:green;">`KEY_J`</mark>                |       |
-| <mark style="color:green;">`KEY_K`</mark>                |       |
-| <mark style="color:green;">`KEY_L`</mark>                |       |
-| <mark style="color:green;">`KEY_M`</mark>                |       |
-| <mark style="color:green;">`KEY_N`</mark>                |       |
-| <mark style="color:green;">`KEY_O`</mark>                |       |
-| <mark style="color:green;">`KEY_P`</mark>                |       |
-| <mark style="color:green;">`KEY_Q`</mark>                |       |
-| <mark style="color:green;">`KEY_R`</mark>                |       |
-| <mark style="color:green;">`KEY_S`</mark>                |       |
-| <mark style="color:green;">`KEY_T`</mark>                |       |
-| <mark style="color:green;">`KEY_U`</mark>                |       |
-| <mark style="color:green;">`KEY_V`</mark>                |       |
-| <mark style="color:green;">`KEY_W`</mark>                |       |
-| <mark style="color:green;">`KEY_X`</mark>                |       |
-| <mark style="color:green;">`KEY_Y`</mark>                |       |
-| <mark style="color:green;">`KEY_Z`</mark>                |       |
-| <mark style="color:green;">`KEY_PAD_0`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_1`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_2`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_3`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_4`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_5`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_6`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_7`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_8`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_9`</mark>            |       |
-| <mark style="color:green;">`KEY_PAD_DIVIDE`</mark>       |       |
-| <mark style="color:green;">`KEY_PAD_MULTIPLY`</mark>     |       |
-| <mark style="color:green;">`KEY_PAD_MINUS`</mark>        |       |
-| <mark style="color:green;">`KEY_PAD_PLUS`</mark>         |       |
-| <mark style="color:green;">`KEY_PAD_ENTER`</mark>        |       |
-| <mark style="color:green;">`KEY_PAD_DECIMAL`</mark>      |       |
-| <mark style="color:green;">`KEY_LBRACKET`</mark>         |       |
-| <mark style="color:green;">`KEY_RBRACKET`</mark>         |       |
-| <mark style="color:green;">`KEY_SEMICOLON`</mark>        |       |
-| <mark style="color:green;">`KEY_APOSTROPHE`</mark>       |       |
-| <mark style="color:green;">`KEY_BACKQUOTE`</mark>        |       |
-| <mark style="color:green;">`KEY_COMMA`</mark>            |       |
-| <mark style="color:green;">`KEY_PERIOD`</mark>           |       |
-| <mark style="color:green;">`KEY_SLASH`</mark>            |       |
-| <mark style="color:green;">`KEY_BACKSLASH`</mark>        |       |
-| <mark style="color:green;">`KEY_MINUS`</mark>            |       |
-| <mark style="color:green;">`KEY_EQUAL`</mark>            |       |
-| <mark style="color:green;">`KEY_ENTER`</mark>            |       |
-| <mark style="color:green;">`KEY_SPACE`</mark>            |       |
-| <mark style="color:green;">`KEY_BACKSPACE`</mark>        |       |
-| <mark style="color:green;">`KEY_TAB`</mark>              |       |
-| <mark style="color:green;">`KEY_CAPSLOCK`</mark>         |       |
-| <mark style="color:green;">`KEY_NUMLOCK`</mark>          |       |
-| <mark style="color:green;">`KEY_ESCAPE`</mark>           |       |
-| <mark style="color:green;">`KEY_SCROLLLOCK`</mark>       |       |
-| <mark style="color:green;">`KEY_INSERT`</mark>           |       |
-| <mark style="color:green;">`KEY_DELETE`</mark>           |       |
-| <mark style="color:green;">`KEY_HOME`</mark>             |       |
-| <mark style="color:green;">`KEY_END`</mark>              |       |
-| <mark style="color:green;">`KEY_PAGEUP`</mark>           |       |
-| <mark style="color:green;">`KEY_PAGEDOWN`</mark>         |       |
-| <mark style="color:green;">`KEY_BREAK`</mark>            |       |
-| <mark style="color:green;">`KEY_LSHIFT`</mark>           |       |
-| <mark style="color:green;">`KEY_RSHIFT`</mark>           |       |
-| <mark style="color:green;">`KEY_LALT`</mark>             |       |
-| <mark style="color:green;">`KEY_RALT`</mark>             |       |
-| <mark style="color:green;">`KEY_LCONTROL`</mark>         |       |
-| <mark style="color:green;">`KEY_RCONTROL`</mark>         |       |
-| <mark style="color:green;">`KEY_LWIN`</mark>             |       |
-| <mark style="color:green;">`KEY_RWIN`</mark>             |       |
-| <mark style="color:green;">`KEY_APP`</mark>              |       |
-| <mark style="color:green;">`KEY_UP`</mark>               |       |
-| <mark style="color:green;">`KEY_LEFT`</mark>             |       |
-| <mark style="color:green;">`KEY_DOWN`</mark>             |       |
-| <mark style="color:green;">`KEY_RIGHT`</mark>            |       |
-| <mark style="color:green;">`KEY_F1`</mark>               |       |
-| <mark style="color:green;">`KEY_F2`</mark>               |       |
-| <mark style="color:green;">`KEY_F3`</mark>               |       |
-| <mark style="color:green;">`KEY_F4`</mark>               |       |
-| <mark style="color:green;">`KEY_F5`</mark>               |       |
-| <mark style="color:green;">`KEY_F6`</mark>               |       |
-| <mark style="color:green;">`KEY_F7`</mark>               |       |
-| <mark style="color:green;">`KEY_F8`</mark>               |       |
-| <mark style="color:green;">`KEY_F9`</mark>               |       |
-| <mark style="color:green;">`KEY_F10`</mark>              |       |
-| <mark style="color:green;">`KEY_F11`</mark>              |       |
-| <mark style="color:green;">`KEY_F12`</mark>              |       |
-| <mark style="color:green;">`KEY_F13`</mark>              |       |
-| <mark style="color:green;">`KEY_F14`</mark>              |       |
-| <mark style="color:green;">`KEY_F15`</mark>              |       |
-| <mark style="color:green;">`KEY_F16`</mark>              |       |
-| <mark style="color:green;">`KEY_F17`</mark>              |       |
-| <mark style="color:green;">`KEY_F18`</mark>              |       |
-| <mark style="color:green;">`KEY_F19`</mark>              |       |
-| <mark style="color:green;">`KEY_F20`</mark>              |       |
-| <mark style="color:green;">`KEY_F21`</mark>              |       |
-| <mark style="color:green;">`KEY_F22`</mark>              |       |
-| <mark style="color:green;">`KEY_F23`</mark>              |       |
-| <mark style="color:green;">`KEY_F24`</mark>              |       |
-| <mark style="color:green;">`KEY_CAPSLOCKTOGGLE`</mark>   |       |
-| <mark style="color:green;">`KEY_NUMLOCKTOGGLE`</mark>    |       |
-| <mark style="color:green;">`KEY_SCROLLLOCKTOGGLE`</mark> |       |
-| <mark style="color:green;">`KEY_MOUSE1`</mark>           |       |
-| <mark style="color:green;">`KEY_MOUSE2`</mark>           |       |
-| <mark style="color:green;">`KEY_MOUSE3`</mark>           |       |
-| <mark style="color:green;">`KEY_MOUSE4`</mark>           |       |
-| <mark style="color:green;">`KEY_MOUSE5`</mark>           |       |
-| <mark style="color:green;">`KEY_MWHEELUP`</mark>         |       |
-| <mark style="color:green;">`KEY_MWHEELDOWN`</mark>       |       |
+| <mark style="color:green;">`BUTTON_CODE_INVALID`</mark>  | -1    |
+| <mark style="color:green;">`BUTTON_CODE_NONE`</mark>     | 0     |
+| <mark style="color:green;">`KEY_FIRST`</mark>            | 0     |
+| <mark style="color:green;">`KEY_NONE`</mark>             | 0     |
+| <mark style="color:green;">`KEY_0`</mark>                | 1     |
+| <mark style="color:green;">`KEY_1`</mark>                | 2     |
+| <mark style="color:green;">`KEY_2`</mark>                | 3     |
+| <mark style="color:green;">`KEY_3`</mark>                | 4     |
+| <mark style="color:green;">`KEY_4`</mark>                | 5     |
+| <mark style="color:green;">`KEY_5`</mark>                | 6     |
+| <mark style="color:green;">`KEY_6`</mark>                | 7     |
+| <mark style="color:green;">`KEY_7`</mark>                | 8     |
+| <mark style="color:green;">`KEY_8`</mark>                | 9     |
+| <mark style="color:green;">`KEY_9`</mark>                | 10    |
+| <mark style="color:green;">`KEY_A`</mark>                | 11    |
+| <mark style="color:green;">`KEY_B`</mark>                | 12    |
+| <mark style="color:green;">`KEY_C`</mark>                | 13    |
+| <mark style="color:green;">`KEY_D`</mark>                | 14    |
+| <mark style="color:green;">`KEY_E`</mark>                | 15    |
+| <mark style="color:green;">`KEY_F`</mark>                | 16    |
+| <mark style="color:green;">`KEY_G`</mark>                | 17    |
+| <mark style="color:green;">`KEY_H`</mark>                | 18    |
+| <mark style="color:green;">`KEY_I`</mark>                | 19    |
+| <mark style="color:green;">`KEY_J`</mark>                | 20    |
+| <mark style="color:green;">`KEY_K`</mark>                | 21    |
+| <mark style="color:green;">`KEY_L`</mark>                | 22    |
+| <mark style="color:green;">`KEY_M`</mark>                | 23    |
+| <mark style="color:green;">`KEY_N`</mark>                | 24    |
+| <mark style="color:green;">`KEY_O`</mark>                | 25    |
+| <mark style="color:green;">`KEY_P`</mark>                | 26    |
+| <mark style="color:green;">`KEY_Q`</mark>                | 27    |
+| <mark style="color:green;">`KEY_R`</mark>                | 28    |
+| <mark style="color:green;">`KEY_S`</mark>                | 29    |
+| <mark style="color:green;">`KEY_T`</mark>                | 30    |
+| <mark style="color:green;">`KEY_U`</mark>                | 31    |
+| <mark style="color:green;">`KEY_V`</mark>                | 32    |
+| <mark style="color:green;">`KEY_W`</mark>                | 33    |
+| <mark style="color:green;">`KEY_X`</mark>                | 34    |
+| <mark style="color:green;">`KEY_Y`</mark>                | 35    |
+| <mark style="color:green;">`KEY_Z`</mark>                | 36    |
+| <mark style="color:green;">`KEY_PAD_0`</mark>            | 37    |
+| <mark style="color:green;">`KEY_PAD_1`</mark>            | 38    |
+| <mark style="color:green;">`KEY_PAD_2`</mark>            | 39    |
+| <mark style="color:green;">`KEY_PAD_3`</mark>            | 40    |
+| <mark style="color:green;">`KEY_PAD_4`</mark>            | 41    |
+| <mark style="color:green;">`KEY_PAD_5`</mark>            | 42    |
+| <mark style="color:green;">`KEY_PAD_6`</mark>            | 43    |
+| <mark style="color:green;">`KEY_PAD_7`</mark>            | 44    |
+| <mark style="color:green;">`KEY_PAD_8`</mark>            | 45    |
+| <mark style="color:green;">`KEY_PAD_9`</mark>            | 46    |
+| <mark style="color:green;">`KEY_PAD_DIVIDE`</mark>       | 47    |
+| <mark style="color:green;">`KEY_PAD_MULTIPLY`</mark>     | 48    |
+| <mark style="color:green;">`KEY_PAD_MINUS`</mark>        | 49    |
+| <mark style="color:green;">`KEY_PAD_PLUS`</mark>         | 50    |
+| <mark style="color:green;">`KEY_PAD_ENTER`</mark>        | 51    |
+| <mark style="color:green;">`KEY_PAD_DECIMAL`</mark>      | 52    |
+| <mark style="color:green;">`KEY_LBRACKET`</mark>         | 53    |
+| <mark style="color:green;">`KEY_RBRACKET`</mark>         | 54    |
+| <mark style="color:green;">`KEY_SEMICOLON`</mark>        | 55    |
+| <mark style="color:green;">`KEY_APOSTROPHE`</mark>       | 56    |
+| <mark style="color:green;">`KEY_BACKQUOTE`</mark>        | 57    |
+| <mark style="color:green;">`KEY_COMMA`</mark>            | 58    |
+| <mark style="color:green;">`KEY_PERIOD`</mark>           | 59    |
+| <mark style="color:green;">`KEY_SLASH`</mark>            | 60    |
+| <mark style="color:green;">`KEY_BACKSLASH`</mark>        | 61    |
+| <mark style="color:green;">`KEY_MINUS`</mark>            | 62    |
+| <mark style="color:green;">`KEY_EQUAL`</mark>            | 63    |
+| <mark style="color:green;">`KEY_ENTER`</mark>            | 64    |
+| <mark style="color:green;">`KEY_SPACE`</mark>            | 65    |
+| <mark style="color:green;">`KEY_BACKSPACE`</mark>        | 66    |
+| <mark style="color:green;">`KEY_TAB`</mark>              | 67    |
+| <mark style="color:green;">`KEY_CAPSLOCK`</mark>         | 68    |
+| <mark style="color:green;">`KEY_NUMLOCK`</mark>          | 69    |
+| <mark style="color:green;">`KEY_ESCAPE`</mark>           | 70    |
+| <mark style="color:green;">`KEY_SCROLLLOCK`</mark>       | 71    |
+| <mark style="color:green;">`KEY_INSERT`</mark>           | 72    |
+| <mark style="color:green;">`KEY_DELETE`</mark>           | 73    |
+| <mark style="color:green;">`KEY_HOME`</mark>             | 74    |
+| <mark style="color:green;">`KEY_END`</mark>              | 75    |
+| <mark style="color:green;">`KEY_PAGEUP`</mark>           | 76    |
+| <mark style="color:green;">`KEY_PAGEDOWN`</mark>         | 77    |
+| <mark style="color:green;">`KEY_BREAK`</mark>            | 78    |
+| <mark style="color:green;">`KEY_LSHIFT`</mark>           | 79    |
+| <mark style="color:green;">`KEY_RSHIFT`</mark>           | 80    |
+| <mark style="color:green;">`KEY_LALT`</mark>             | 81    |
+| <mark style="color:green;">`KEY_RALT`</mark>             | 82    |
+| <mark style="color:green;">`KEY_LCONTROL`</mark>         | 83    |
+| <mark style="color:green;">`KEY_RCONTROL`</mark>         | 84    |
+| <mark style="color:green;">`KEY_LWIN`</mark>             | 85    |
+| <mark style="color:green;">`KEY_RWIN`</mark>             | 86    |
+| <mark style="color:green;">`KEY_APP`</mark>              | 87    |
+| <mark style="color:green;">`KEY_UP`</mark>               | 88    |
+| <mark style="color:green;">`KEY_LEFT`</mark>             | 89    |
+| <mark style="color:green;">`KEY_DOWN`</mark>             | 90    |
+| <mark style="color:green;">`KEY_RIGHT`</mark>            | 91    |
+| <mark style="color:green;">`KEY_F1`</mark>               | 92    |
+| <mark style="color:green;">`KEY_F2`</mark>               | 93    |
+| <mark style="color:green;">`KEY_F3`</mark>               | 94    |
+| <mark style="color:green;">`KEY_F4`</mark>               | 95    |
+| <mark style="color:green;">`KEY_F5`</mark>               | 96    |
+| <mark style="color:green;">`KEY_F6`</mark>               | 97    |
+| <mark style="color:green;">`KEY_F7`</mark>               | 98    |
+| <mark style="color:green;">`KEY_F8`</mark>               | 99    |
+| <mark style="color:green;">`KEY_F9`</mark>               | 100   |
+| <mark style="color:green;">`KEY_F10`</mark>              | 101   |
+| <mark style="color:green;">`KEY_F11`</mark>              | 102   |
+| <mark style="color:green;">`KEY_F12`</mark>              | 103   |
+| <mark style="color:green;">`KEY_F13`</mark>              | 104   |
+| <mark style="color:green;">`KEY_F14`</mark>              | 105   |
+| <mark style="color:green;">`KEY_F15`</mark>              | 106   |
+| <mark style="color:green;">`KEY_F16`</mark>              | 107   |
+| <mark style="color:green;">`KEY_F17`</mark>              | 108   |
+| <mark style="color:green;">`KEY_F18`</mark>              | 109   |
+| <mark style="color:green;">`KEY_F19`</mark>              | 110   |
+| <mark style="color:green;">`KEY_F20`</mark>              | 111   |
+| <mark style="color:green;">`KEY_F21`</mark>              | 112   |
+| <mark style="color:green;">`KEY_F22`</mark>              | 113   |
+| <mark style="color:green;">`KEY_F23`</mark>              | 114   |
+| <mark style="color:green;">`KEY_F24`</mark>              | 115   |
+| <mark style="color:green;">`KEY_CAPSLOCKTOGGLE`</mark>   | 116   |
+| <mark style="color:green;">`KEY_NUMLOCKTOGGLE`</mark>    | 117   |
+| <mark style="color:green;">`KEY_SCROLLLOCKTOGGLE`</mark> | 118   |
+| <mark style="color:green;">`KEY_MOUSE1`</mark>           | 119   |
+| <mark style="color:green;">`KEY_MOUSE2`</mark>           | 120   |
+| <mark style="color:green;">`KEY_MOUSE3`</mark>           | 121   |
+| <mark style="color:green;">`KEY_MOUSE4`</mark>           | 122   |
+| <mark style="color:green;">`KEY_MOUSE5`</mark>           | 123   |
+| <mark style="color:green;">`KEY_MWHEELUP`</mark>         | 124   |
+| <mark style="color:green;">`KEY_MWHEELDOWN`</mark>       | 125   |
 
 ## <mark style="color:purple;">Enum.FontCreate</mark>
 
@@ -2350,42 +2350,42 @@ and manual per-color edits via the theme color picker.
 
 | Key                                            | Value |
 | ---------------------------------------------- | ----- |
-| <mark style="color:green;">`THIN`</mark>       |       |
-| <mark style="color:green;">`ULTRALIGHT`</mark> |       |
-| <mark style="color:green;">`LIGHT`</mark>      |       |
-| <mark style="color:green;">`NORMAL`</mark>     |       |
-| <mark style="color:green;">`MEDIUM`</mark>     |       |
-| <mark style="color:green;">`SEMIBOLD`</mark>   |       |
-| <mark style="color:green;">`BOLD`</mark>       |       |
-| <mark style="color:green;">`EXTRABOLD`</mark>  |       |
-| <mark style="color:green;">`HEAVY`</mark>      |       |
+| <mark style="color:green;">`THIN`</mark>       | 100   |
+| <mark style="color:green;">`ULTRALIGHT`</mark> | 200   |
+| <mark style="color:green;">`LIGHT`</mark>      | 300   |
+| <mark style="color:green;">`NORMAL`</mark>     | 400   |
+| <mark style="color:green;">`MEDIUM`</mark>     | 500   |
+| <mark style="color:green;">`SEMIBOLD`</mark>   | 600   |
+| <mark style="color:green;">`BOLD`</mark>       | 700   |
+| <mark style="color:green;">`EXTRABOLD`</mark>  | 800   |
+| <mark style="color:green;">`HEAVY`</mark>      | 900   |
 
 ## <mark style="color:purple;">Enum.WidgetType</mark>
 
 | Key                                                    | Value |
 | ------------------------------------------------------ | ----- |
-| <mark style="color:green;">`MenuFirstTab`</mark>       |       |
-| <mark style="color:green;">`MenuSection`</mark>        |       |
-| <mark style="color:green;">`MenuSecondTab`</mark>      |       |
-| <mark style="color:green;">`MenuThirdTab`</mark>       |       |
-| <mark style="color:green;">`MenuGroup`</mark>          |       |
-| <mark style="color:green;">`MenuSwitch`</mark>         |       |
-| <mark style="color:green;">`MenuBind`</mark>           |       |
-| <mark style="color:green;">`MenuSliderFloat`</mark>    |       |
-| <mark style="color:green;">`MenuSliderInt`</mark>      |       |
-| <mark style="color:green;">`MenuColorPicker`</mark>    |       |
-| <mark style="color:green;">`MenuButton`</mark>         |       |
-| <mark style="color:green;">`MenuComboBox`</mark>       |       |
-| <mark style="color:green;">`MenuMultiComboBox`</mark>  |       |
-| <mark style="color:green;">`MenuGearAttachment`</mark> |       |
-| <mark style="color:green;">`MenuInputBox`</mark>       |       |
-| <mark style="color:green;">`MenuMultiSelect`</mark>    |       |
-| <mark style="color:green;">`MenuSearch`</mark>         |       |
-| <mark style="color:green;">`MenuThemePicker`</mark>    |       |
-| <mark style="color:green;">`MenuLabel`</mark>          |       |
-| <mark style="color:green;">`MenuCustomBind`</mark>     |       |
-| <mark style="color:green;">`MenuTypesCount`</mark>     |       |
-| <mark style="color:green;">`MenuTypeInvalid`</mark>    |       |
+| <mark style="color:green;">`MenuFirstTab`</mark>       | 0     |
+| <mark style="color:green;">`MenuSection`</mark>        | 1     |
+| <mark style="color:green;">`MenuSecondTab`</mark>      | 2     |
+| <mark style="color:green;">`MenuThirdTab`</mark>       | 3     |
+| <mark style="color:green;">`MenuGroup`</mark>          | 4     |
+| <mark style="color:green;">`MenuSwitch`</mark>         | 5     |
+| <mark style="color:green;">`MenuBind`</mark>           | 6     |
+| <mark style="color:green;">`MenuSliderFloat`</mark>    | 7     |
+| <mark style="color:green;">`MenuSliderInt`</mark>      | 8     |
+| <mark style="color:green;">`MenuColorPicker`</mark>    | 9     |
+| <mark style="color:green;">`MenuButton`</mark>         | 11    |
+| <mark style="color:green;">`MenuComboBox`</mark>       | 12    |
+| <mark style="color:green;">`MenuMultiComboBox`</mark>  | 13    |
+| <mark style="color:green;">`MenuGearAttachment`</mark> | 14    |
+| <mark style="color:green;">`MenuInputBox`</mark>       | 15    |
+| <mark style="color:green;">`MenuMultiSelect`</mark>    | 16    |
+| <mark style="color:green;">`MenuSearch`</mark>         | 17    |
+| <mark style="color:green;">`MenuThemePicker`</mark>    | 18    |
+| <mark style="color:green;">`MenuLabel`</mark>          | 19    |
+| <mark style="color:green;">`MenuCustomBind`</mark>     | 22    |
+| <mark style="color:green;">`MenuTypesCount`</mark>     | 25    |
+| <mark style="color:green;">`MenuTypeInvalid`</mark>    | 26    |
 
 ## <mark style="color:purple;">Enum.GroupSide</mark>
 
@@ -2952,10 +2952,10 @@ and manual per-color edits via the theme color picker.
 
 | Key                                                                   | Value |
 | --------------------------------------------------------------------- | ----- |
-| <mark style="color:green;">`DOTA_GAME_UI_STATE_INVALID`</mark>        |       |
-| <mark style="color:green;">`DOTA_GAME_UI_STATE_LOADING_SCREEN`</mark> |       |
-| <mark style="color:green;">`DOTA_GAME_UI_DOTA_INGAME`</mark>          |       |
-| <mark style="color:green;">`DOTA_GAME_UI_STATE_DASHBOARD`</mark>      |       |
+| <mark style="color:green;">`DOTA_GAME_UI_STATE_INVALID`</mark>        | 0     |
+| <mark style="color:green;">`DOTA_GAME_UI_STATE_LOADING_SCREEN`</mark> | 1     |
+| <mark style="color:green;">`DOTA_GAME_UI_DOTA_INGAME`</mark>          | 2     |
+| <mark style="color:green;">`DOTA_GAME_UI_STATE_DASHBOARD`</mark>      | 3     |
 
 ## <mark style="color:purple;">Enum.DormancyType</mark>
 
@@ -2978,21 +2978,21 @@ and manual per-color edits via the theme color picker.
 
 | Key                                                             | Value |
 | --------------------------------------------------------------- | ----- |
-| <mark style="color:green;">`None`</mark>                        |       |
-| <mark style="color:green;">`Closed`</mark>                      |       |
-| <mark style="color:green;">`RoundCornersTopLeft`</mark>         |       |
-| <mark style="color:green;">`RoundCornersTopRight`</mark>        |       |
-| <mark style="color:green;">`RoundCornersBottomLeft`</mark>      |       |
-| <mark style="color:green;">`RoundCornersBottomRight`</mark>     |       |
-| <mark style="color:green;">`RoundCornersNone`</mark>            |       |
-| <mark style="color:green;">`RoundCornersTop`</mark>             |       |
-| <mark style="color:green;">`RoundCornersBottom`</mark>          |       |
-| <mark style="color:green;">`RoundCornersLeft`</mark>            |       |
-| <mark style="color:green;">`RoundCornersRight`</mark>           |       |
-| <mark style="color:green;">`RoundCornersAll`</mark>             |       |
-| <mark style="color:green;">`RoundCornersDefault_`</mark>        |       |
-| <mark style="color:green;">`RoundCornersMask_`</mark>           |       |
-| <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> |       |
+| <mark style="color:green;">`None`</mark>                        | 0     |
+| <mark style="color:green;">`Closed`</mark>                      | 1     |
+| <mark style="color:green;">`RoundCornersTopLeft`</mark>         | 16    |
+| <mark style="color:green;">`RoundCornersTopRight`</mark>        | 32    |
+| <mark style="color:green;">`RoundCornersBottomLeft`</mark>      | 64    |
+| <mark style="color:green;">`RoundCornersBottomRight`</mark>     | 128   |
+| <mark style="color:green;">`RoundCornersNone`</mark>            | 256   |
+| <mark style="color:green;">`RoundCornersTop`</mark>             | 48    |
+| <mark style="color:green;">`RoundCornersBottom`</mark>          | 192   |
+| <mark style="color:green;">`RoundCornersLeft`</mark>            | 80    |
+| <mark style="color:green;">`RoundCornersRight`</mark>           | 160   |
+| <mark style="color:green;">`RoundCornersAll`</mark>             | 240   |
+| <mark style="color:green;">`RoundCornersDefault_`</mark>        | 240   |
+| <mark style="color:green;">`RoundCornersMask_`</mark>           | 496   |
+| <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> | 512   |
 
 
 --------------------------------------------------------------------------------
@@ -7181,6 +7181,12 @@ Divides this vector by other in-place. Returns self for chaining.
 
 Sets x, y, z components. Returns self for chaining.
 
+## <sub>SetGroundZ</sub>
+
+`:SetGroundZ():` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+Sets .z = World.GetGroundZ(.x, .y). Returns self for chaining.
+
 ## <sub>LerpInPlace</sub>
 
 `:LerpInPlace(b, t):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
@@ -7201,6 +7207,12 @@ Linearly interpolates this vector towards other in-place. Returns self for chain
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) |             |
 
 Copies values from another vector without allocating. Returns self for chaining.
+
+## <sub>Clone</sub>
+
+`:Clone():` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
+
+Creates a new vector with the same values as the original.
 
 ## <sub>DirectionTo</sub>
 
@@ -7304,18 +7316,6 @@ Returns true if all components are near zero within tolerance.
 
 Returns `self + direction * scalar`. Single allocation.\
 Useful for position extrapolation: `start:Extrapolate(velocity, dt * speed)`.
-
-## <sub>Center</sub>
-
-`Vector.Center(points):` [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector)
-
-| Name       | Type                                                                                                    | Description                      |
-| ---------- | ------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| **points** | <mark style="color:purple;">**`(Vector`**</mark> \| <mark style="color:purple;">**`CEntity)[]`**</mark> | array of Vectors and/or Entities |
-
-Computes the centroid (average position) of a mixed array of Vectors and Entities.\
-Each element can be a Vector (full userdata) or an Entity (lightuserdata).\
-Entity positions are resolved via GetAbsOrigin. Nil entries are skipped.
 
 ## <sub>Vector</sub>
 
@@ -7570,6 +7570,13 @@ Converts Vector to Angle. See\
 
 Converts Vector to screen coordinate
 
+## <sub>IsVisible</sub>
+
+`:IsVisible():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if position visible on screen.\
+To get screen position use :ToScreen method
+
 ## <sub>Get</sub>
 
 `:Get():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
@@ -7689,6 +7696,12 @@ Sets pitch, yaw, roll. Returns self for chaining.
 | **other** | [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle) |             |
 
 Copies values from another angle without allocating. Returns self for chaining.
+
+## <sub>Clone</sub>
+
+`:Clone():` [<mark style="color:purple;">**`Angle`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle)
+
+Creates a new angle with the same values as the original.
 
 ## <sub>Get</sub>
 
@@ -7834,6 +7847,22 @@ Multiplies this Vec2 by other in-place. Returns self for chaining.
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
 
 Divides this Vec2 by other in-place. Returns self for chaining.
+
+## <sub>CopyFrom</sub>
+
+`:CopyFrom(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name      | Type                                                                                                                             | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) |             |
+
+Copies values from another Vec2 without allocating. Returns self for chaining.
+
+## <sub>Clone</sub>
+
+`:Clone():` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+Creates a new Vec2 with the same values as the original.
 
 ## <sub>Set</sub>
 
@@ -8232,7 +8261,7 @@ Return all heroes in radius.
 
 ## <sub>GetLocal</sub>
 
-`Heroes.GetLocal():` [<mark style="color:purple;">**`CHero`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/hero) | <mark style="color:purple;">**`nil`**</mark>
+`Heroes.GetLocal():` [<mark style="color:purple;">**`CHero`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/hero)
 
 Return local hero.
 
@@ -13903,7 +13932,7 @@ Sets the control point value of a particle.
 | Name                | Type                                             | Description    |
 | ------------------- | ------------------------------------------------ | -------------- |
 | **particle\_index** | <mark style="color:purple;">**`integer`**</mark> | Particle index |
-| **value**           | <mark style="color:purple;">**`bool`**</mark>    | set value      |
+| **value**           | <mark style="color:purple;">**`boolean`**</mark> | set value      |
 
 Enables or disables the drawing of a particle.
 
