@@ -3776,12 +3776,12 @@ Creates new `CMenuColorPicker`.
 
 `:Button(buttonName, callback, [altStyle], [widthPercent]):` [<mark style="color:purple;">**`CMenuButton`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton)
 
-| Name                                                               | Type                                              | Description                                                     |
-| ------------------------------------------------------------------ | ------------------------------------------------- | --------------------------------------------------------------- |
-| **buttonName**                                                     | <mark style="color:purple;">**`string`**</mark>   |                                                                 |
-| **callback**                                                       | <mark style="color:purple;">**`function`**</mark> | `func(this: CMenuButton):nil` function to call on button click. |
-| **altStyle&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>  | Use alternative button style. `(default: false)`                |
-| **widthPercent&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>   | Button width in percents. \[0.0, 1.0] `(default: 1.0)`          |
+| Name                                                               | Type                                                                | Description                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------ |
+| **buttonName**                                                     | <mark style="color:purple;">**`string`**</mark>                     |                                                        |
+| **callback**                                                       | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to call on button click.                      |
+| **altStyle&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                    | Use alternative button style. `(default: false)`       |
+| **widthPercent&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                     | Button width in percents. \[0.0, 1.0] `(default: 1.0)` |
 
 Creates new `CMenuButton`.
 
@@ -7930,11 +7930,31 @@ Overload for operator -
 
 Overload for operator /
 
-\`:\_\_div(other):\` \[<mark style="color:purple;">\*\*\`Vec2\`\*\*</mark>]\(Vec2.md)
+`:__div(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
 
 | Name      | Type                                                                                                                                                                                | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>\_\_mul</sub>
+
+Overload for operator \*
+
+`:__mul(other):` [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)
+
+| Name      | Type                                                                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) \| <mark style="color:purple;">**`number`**</mark> |             |
+
+## <sub>\_\_eq</sub>
+
+Overload for operator ==
+
+\`:\_\_eq(other):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
+
+| Name      | Type                                                                                                                             | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **other** | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) |             |
 
 ## <sub>Length</sub>
 
@@ -14820,9 +14840,9 @@ Set the global alpha value for rendering.
 
 Reset the global alpha value for rendering to 1.0.
 
-## <sub>DrawCenteredNotification</sub>
+## <sub>CenteredNotification</sub>
 
-`Render.DrawCenteredNotification(text, duration):` <mark style="color:purple;">**`nil`**</mark>
+`Render.CenteredNotification(text, duration):` <mark style="color:purple;">**`nil`**</mark>
 
 | Name         | Type                                            | Description                   |
 | ------------ | ----------------------------------------------- | ----------------------------- |
@@ -14858,42 +14878,116 @@ Draws umbrella logo
 Creates a new render target or retrieves an existing one by name.\
 If width or height are not provided, the render target will be full screen size.
 
-## <sub>RenderToRT</sub>
+## <sub>MarkDirtyRT</sub>
 
-`Render.RenderToRT(handle, callback):` <mark style="color:purple;">**`nil`**</mark>
+`Render.MarkDirtyRT(handle):` <mark style="color:purple;">**`nil`**</mark>
 
-| Name         | Type                                              | Description                                   |
-| ------------ | ------------------------------------------------- | --------------------------------------------- |
-| **handle**   | <mark style="color:purple;">**`integer`**</mark>  | The handle of the render target to draw into. |
-| **callback** | <mark style="color:purple;">**`function`**</mark> | The function containing rendering commands.   |
+| Name       | Type                                             | Description                      |
+| ---------- | ------------------------------------------------ | -------------------------------- |
+| **handle** | <mark style="color:purple;">**`integer`**</mark> | The handle of the render target. |
 
-Executes a callback function to render content into a specific render target.\
-Drawing commands inside the callback will be applied to the render target instead of the screen.
+Marks a render target as dirty, causing the next Render.RenderRT call to re-bake it.\
+Safe across frame drops: the dirty state is only cleared once the bake is actually processed.
 
-## <sub>DrawRT</sub>
+## <sub>RenderRT</sub>
 
-`Render.DrawRT(handle, pos, color, [scale], [uvSizeMin], [uvSizeMax]):` <mark style="color:purple;">**`nil`**</mark>
+`Render.RenderRT(callback, handle, pos, color, [scale], [uvSizeMin], [uvSizeMax]):` <mark style="color:purple;">**`boolean`**</mark>
 
-| Name                                                            | Type                                                                                                                             | Description                                                                              |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **handle**                                                      | <mark style="color:purple;">**`integer`**</mark>                                                                                 | The handle of the render target to draw.                                                 |
-| **pos**                                                         | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The position where the render target will be drawn.                                      |
-| **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | The color tint to apply to the render target.                                            |
-| **scale&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`number`**</mark>                                                                                  | The scale factor for the render target. `(default: 1.0)`                                 |
-| **uvSizeMin&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The minimum UV coordinates (or size offset) for texture mapping. `(default: {0.0, 0.0})` |
-| **uvSizeMax&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The maximum UV coordinates (or size offset) for texture mapping. `(default: {0.0, 0.0})` |
+| Name                                                            | Type                                                                                                                             | Description                                                                |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **callback**                                                    | <mark style="color:purple;">**`fun():boolean?`**</mark>                                                                          | The function containing rendering commands to bake into the render target. |
+| **handle**                                                      | <mark style="color:purple;">**`integer`**</mark>                                                                                 | The handle of the render target (from Render.FindOrCreateRT).              |
+| **pos**                                                         | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The screen position where the render target texture will be drawn.         |
+| **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | The color tint to apply when drawing the render target texture.            |
+| **scale&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`number`**</mark>                                                                                  | The scale factor for the render target. `(default: 1.0)`                   |
+| **uvSizeMin&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The minimum UV offset for texture mapping. `(default: {0.0, 0.0})`         |
+| **uvSizeMax&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The maximum UV offset for texture mapping. `(default: {0.0, 0.0})`         |
 
-Draws the content of a render target onto the screen.
+Renders a cached render target texture at the given position.\
+If the render target is dirty (see Render.MarkDirtyRT), the callback is invoked once\
+inside a push/pop RT context to re-bake the texture content, then the baked texture\
+is drawn at `pos`. If the render target is clean, only the cached texture is drawn.\
+\
+The callback receives no arguments and may return a boolean: returning `true` signals\
+that the content is still updating (e.g. animation in progress).
+
+#### Example
+
+```lua
+-- render_target.lua
+local rt_w, rt_h = 256, 80
+local rt_handle = Render.FindOrCreateRT("example_rt", rt_w, rt_h)
+
+local font = Render.LoadFont("MuseoSansEx", Enum.FontCreate.FONTFLAG_ANTIALIAS | Enum.FontCreate.FONTFLAG_DROPSHADOW, 500)
+
+local white  = Color(255, 255, 255, 255)
+local bg     = Color(20, 20, 20, 220)
+local accent = Color(80, 200, 120, 255)
+local dim    = Color(160, 160, 160, 200)
+local rt_pos = Vec2(100, 100)
+
+-- Animation state
+local anim_start = 0
+local anim_duration = 0.6 -- seconds
+local is_animating = false
+local click_count = 0
+
+-- Draw callback is invoked ONLY when the RT is dirty.
+-- Returning true  tells the caller "content is still changing" (animation in progress).
+-- Returning false tells the caller "content is now static" (bake is final).
+-- The engine itself does NOT use this value — it is passed through as RenderRT's return.
+local function draw_rt_content()
+    local t = is_animating
+        and math.min((os.clock() - anim_start) / anim_duration, 1.0)
+        or 0
+
+    Render.FilledRect(Vec2(0, 0), Vec2(rt_w, rt_h), bg)
+    Render.FilledRect(Vec2(0, rt_h - 8), Vec2(t * rt_w, rt_h), accent)
+    Render.Text(font, 14, "Clicks: " .. click_count, Vec2(10, 10), white)
+
+    if t >= 1.0 then
+        is_animating = false
+    end
+
+    return is_animating
+end
+
+return {
+    OnDraw = function()
+        -- Click inside the RT rect -> start a new animation
+        if Input.IsKeyDownOnce(Enum.ButtonCode.KEY_MOUSE1)
+            and Input.IsCursorInRect(rt_pos.x, rt_pos.y, rt_w, rt_h) then
+            click_count = click_count + 1
+            anim_start = os.clock()
+            is_animating = true
+            Render.MarkDirtyRT(rt_handle)
+        end
+
+        -- RenderRT returns true when it baked AND the callback returned true.
+        -- That means the animation is still playing, so mark dirty again
+        -- to force another bake next frame.
+        local still_updating = Render.RenderRT(draw_rt_content, rt_handle, rt_pos, white)
+        if still_updating then
+            Render.MarkDirtyRT(rt_handle)
+        end
+
+        -- Print current state below the RT rect
+        local state = still_updating and "Redrawing (animation)" or "Cached (using RT)"
+        Render.Text(font, 12, state, Vec2(rt_pos.x, rt_pos.y + rt_h + 4), dim)
+    end
+}
+
+```
 
 ## <sub>ResizeRT</sub>
 
 `Render.ResizeRT(handle, [w], [h]):` <mark style="color:purple;">**`nil`**</mark>
 
-| Name                                                    | Type                                                                                                                                                                                | Description                                          |
-| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| **handle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                    | The handle of the render target to resize.           |
-| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> \| [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) | The new width, or a Vec2 containing both dimensions. |
-| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                                     | The new height. Not used when Vec2 is provided.      |
+| Name                                                    | Type                                             | Description                                          |
+| ------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------- |
+| **handle**                                              | <mark style="color:purple;">**`integer`**</mark> | The handle of the render target to resize.           |
+| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new width, or a Vec2 containing both dimensions. |
+| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new height. Not used when Vec2 is provided.      |
 
 Resizes an existing render target.\
 If width and height are not provided, it changes the render target to be full screen size.\
