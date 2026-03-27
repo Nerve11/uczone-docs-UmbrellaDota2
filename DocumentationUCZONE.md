@@ -11641,6 +11641,16 @@ the ability is not on the cooldown.
 Returns the ability damage from assets/data/npc\_abilities.json field. Will return 0.0 if the\
 ability doesn't contain this field.
 
+## <sub>GetHealthCost</sub>
+
+`Ability.GetHealthCost(ability):` <mark style="color:purple;">**`number`**</mark>
+
+| Name        | Type                                                                                                                 | Description |
+| ----------- | -------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/ability) |             |
+
+Returns the ability's health cost.
+
 ## <sub>GetLevel</sub>
 
 `Ability.GetLevel(ability):` <mark style="color:purple;">**`integer`**</mark>
