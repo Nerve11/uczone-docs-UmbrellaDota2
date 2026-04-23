@@ -826,6 +826,23 @@ Here are some useful links:
 * [Lua 5.4 Manual](https://www.lua.org/manual/5.4/)
 * [VS Code Umbrella Extention](https://marketplace.visualstudio.com/items?itemName=ILKA.umbrella-vscode)
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -1462,6 +1479,23 @@ Called on NPC dying.
 Called when the UI theme colors are changed.\
 This includes animated theme transitions (called every frame during animation)\
 and manual per-color edits via the theme color picker.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md -->
 
@@ -2990,6 +3024,23 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`RoundCornersMask_`</mark>           | 496   |
 | <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> | 512   |
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -3208,6 +3259,23 @@ accessed by indexing r, g, b, and a.
 
 Returns hex string representing the color.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -3303,6 +3371,23 @@ Returns current menu scale percentage.
 
 Returns current menu animation duration.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md -->
 
 # CTabSection
@@ -3353,6 +3438,23 @@ Creates new `CSecondTab`.
 
 Finds the `CSecondTab` by name.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md -->
 
 # CFirstTab
@@ -3402,6 +3504,23 @@ Creates new `CTabSection`.
 | **sectionName** | <mark style="color:purple;">**`string`**</mark> |             |
 
 Finds the `CTabSection` by name.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md -->
 
@@ -3504,6 +3623,23 @@ tab:Icon( "\u{f007}" )
 | **attribute** | [<mark style="color:purple;">**`Enum.Attributes`**</mark>](https://uczone.gitbook.io/api-v2.0/enums#enum.attributes) |                              |
 
 Links tab to hero and attribute.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md -->
 
@@ -3624,6 +3760,23 @@ Sets tab's icon.\
 -- https://fontawesome.com/icons/user?f=classic&s=solid
 tab:Icon( "\u{f007}")
 ```
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md -->
 
@@ -3947,6 +4100,23 @@ group:SearchHidden(false)
 local isSearchHidden = group:SearchHidden()
 ```
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -4183,6 +4353,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md -->
 
@@ -4428,6 +4615,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md -->
 
 # CMenuSliderInt
@@ -4672,6 +4876,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md -->
 
 # CMenuButton
@@ -4864,6 +5085,23 @@ Sets widget's on change callback.
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to be removed from widget's callbacks. |
 
 Removes widget's on change callback.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md -->
 
@@ -5113,6 +5351,23 @@ widget:HideAlphaBar( true )
 local isAlphaBarHidden = widget:HideAlphaBar()
 ```
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md -->
 
 # CMenuColorPickerAttachment
@@ -5250,6 +5505,23 @@ Sets widget's on change callback.
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuColorPickerAttachment):nil`**</mark> | function to be removed from widget's callbacks. |
 
 Removes widget's on change callback.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md -->
 
@@ -5499,6 +5771,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md -->
 
@@ -5773,6 +6062,23 @@ widget:Disabled( false )
 local isDisabled = widget:Disabled()
 ```
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md -->
 
 # CMenuInputBox
@@ -6004,6 +6310,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md -->
 
@@ -6272,6 +6595,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md -->
 
@@ -6578,6 +6918,23 @@ Updates widget's image colors.
 | **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with new tooltips |
 
 Updates widget's tooltips
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md -->
 
@@ -6913,6 +7270,23 @@ Gets or sets the ability to bind the mouse button.
 
 `:MouseBinding():` <mark style="color:purple;">**`boolean`**</mark>
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md -->
 
 # CMenuLabel
@@ -7113,6 +7487,23 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 
 Creates `CMenuGearAttachment` and attaches it to the widget.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -7635,6 +8026,23 @@ Sets y. The same as Vector.y = value.
 
 Sets z. The same as Vector.z = value.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md -->
 
 # Angle
@@ -7798,6 +8206,23 @@ Sets the roll. The same as Angle.roll = value.
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
 
 Sets the pitch. The same as Angle.pitch = value.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md -->
 
@@ -8004,6 +8429,23 @@ Sets x. The same as Vec2.x = value.
 
 Sets y. The same as Vec2.y = value.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md -->
 
 # Vertex
@@ -8065,6 +8507,23 @@ Overload for operator -
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vertex`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex) \| <mark style="color:purple;">**`number`**</mark> |             |
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -8107,6 +8566,23 @@ Return all abilities in cheat list.
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/ability) | Ability to check. |
 
 Check ability in cheat list.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md -->
 
@@ -8151,6 +8627,23 @@ Check courier in cheat list.
 `Couriers.GetLocal():` [<mark style="color:purple;">**`CCourier`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/courier) | <mark style="color:purple;">**`nil`**</mark>
 
 Return local courier.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md -->
 
@@ -8208,6 +8701,23 @@ Accept the Arc Warden's Tempest Double ability and return linked clone.
 
 Accept the Meepo's Divided We Stand ability and return index of Meepo.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md -->
 
 # Entities
@@ -8229,6 +8739,23 @@ Get all entities on the map.
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/entity) | Entity to check. |
 
 Check entity in cheat list.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md -->
 
@@ -8288,6 +8815,23 @@ Return all heroes in radius.
 `Heroes.GetLocal():` [<mark style="color:purple;">**`CHero`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/hero)
 
 Return local hero.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md -->
 
@@ -8374,6 +8918,23 @@ Return all NPCs in radius.
 
 Check NPC in cheat list.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md -->
 
 # Camps
@@ -8423,6 +8984,23 @@ Return all neutral spawners in radius.
 
 Check neutral spawner in cheat list.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md -->
 
 # Players
@@ -8467,6 +9045,23 @@ Check player in cheat list.
 
 Return local player.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md -->
 
 # Runes
@@ -8504,6 +9099,23 @@ Return all runes in cheat list.
 | **rune** | [<mark style="color:purple;">**`CRune`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/rune) | Rune to check. |
 
 Check rune in cheat list.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md -->
 
@@ -8553,6 +9165,23 @@ Return all temp trees in radius.
 | **tree** | [<mark style="color:purple;">**`CTree`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/tree) | Temp tree to check. |
 
 Check temp tree in cheat list.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md -->
 
@@ -8605,6 +9234,23 @@ Return all towers in radius.
 
 Check tower in cheat list.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md -->
 
 # Trees
@@ -8655,6 +9301,23 @@ Return all trees in radius.
 
 Check tree in cheat list.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md -->
 
 # Physical Items
@@ -8692,6 +9355,23 @@ Return all physical items in cheat list.
 | **physical** | [<mark style="color:purple;">**`CPhysicalItem`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem) | item Physical item to check. |
 
 Check physical item in cheat list.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md -->
 
@@ -8731,6 +9411,23 @@ Returns all modifiers in cheat list.
 
 Checks if modifiers is in list.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md -->
 
 # LinearProjectiles
@@ -8765,6 +9462,23 @@ return {
     end
 }
 ```
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -9025,6 +9739,23 @@ Returns player's assigned hero.
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/player) | The target player. |
 
 Returns player's active ability.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/player.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md -->
 
@@ -9416,6 +10147,23 @@ Returns `true` if the modifier is a debuff.
 | **dbgPrint&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                       | print possible errors `(default: false)` |
 
 Returns value of the field.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md -->
 
@@ -9869,6 +10617,23 @@ Returns entity class id. Could be as a optimized way to check entity type.
 | **dbgPrint&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                   | print possible errors `(default: false)` |
 
 Returns value of the field.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md -->
 
@@ -11203,6 +11968,23 @@ Fixes the issue when you have multiple Kaya items that actually don't stack.
 
 Returns the hieghest property value for the `CNPC`.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md -->
 
 # Hero
@@ -11462,6 +12244,23 @@ Returns the last hero pos from maphack.
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/hero) |             |
 
 Returns the last visible time from VBE.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md -->
 
@@ -12112,6 +12911,23 @@ Returns the remaining time for the next charge to restore.
 
 Returns the keybind of the ability.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item.md -->
 
 # Item
@@ -12404,6 +13220,23 @@ Returns amount of remaining items in shop by item id.
 Log.Write("Observers available: " .. Item.GetStockCount(42))
 ```
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/item.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md -->
 
 # Rune
@@ -12419,6 +13252,23 @@ Table to work with `CRune`.<mark style="color:purple;">**`CRune`**</mark> extend
 | **rune** | [<mark style="color:purple;">**`CRune`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/rune) |             |
 
 Returns `Enum.RuneType` the rune type.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md -->
 
@@ -12436,6 +13286,23 @@ Table to work with `CTower`.<mark style="color:purple;">**`CTower`**</mark> exte
 
 Returns `CNPC` that is attacked by the tower now.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md -->
 
 # Tree
@@ -12452,6 +13319,23 @@ Table to work with `CTree`.<mark style="color:purple;">**`CTree`**</mark> extend
 
 Returns if the tree is not cut.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md -->
 
 # Vambrace
@@ -12467,6 +13351,23 @@ Table to work with `CVambrace`.<mark style="color:purple;">**`CVambrace`**</mark
 | **vambrace** | [<mark style="color:purple;">**`CVambrace`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace) |             |
 
 Returns selected `Enum.Attributes` attribute.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md -->
 
@@ -12494,6 +13395,23 @@ Returns the camp type.
 
 Returns camp box as a table with **min** and **max** fields(**Vector**).
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md -->
 
 # Bottle
@@ -12511,6 +13429,23 @@ Table to work with `CBottle`.
 | **bottle** | [<mark style="color:purple;">**`CBottle`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/bottle) |             |
 
 Returns the rune inside the bottle.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md -->
 
@@ -12568,6 +13503,23 @@ Returns owner's player id.
 
 Returns the entity that the courier is currently interacting with.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md -->
 
 # DrunkenBrawler
@@ -12583,6 +13535,23 @@ Table to work with `CDrunkenBrawler`.<mark style="color:purple;">**`CDrunkenBraw
 | **ability** | [<mark style="color:purple;">**`CDrunkenBrawler`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler) |             |
 
 Returns the state of the CDrunkenBrawler ability.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md -->
 
@@ -12600,6 +13569,23 @@ Table to work with `CPhysicalItem`.<mark style="color:purple;">**`CPhysicalItem`
 
 Returns `CItem` object from `CPhysicalItem`.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md -->
 
 # PowerTreads
@@ -12616,6 +13602,23 @@ Table to work with `CPowerTreads`.<mark style="color:purple;">**`CTower`**</mark
 
 Returns selected `Enum.Attributes` attribute.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md -->
 
 # TierToken
@@ -12631,6 +13634,23 @@ Table to work with `CTierToken`.<mark style="color:purple;">**`CTierToken`**</ma
 | **tier\_token** | [<mark style="color:purple;">**`CTierToken`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken) | The `TierToken` to get the choices from. |
 
 Returns the choices (ability ids) of the `CTierToken`.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -12924,6 +13944,23 @@ Returns hero name by ID.
 
 Returns current UI state.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md -->
 
 # Event
@@ -13029,6 +14066,23 @@ Returns the floating value of the specified event field.
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                                         | Field name  |
 
 Returns the string value of the specified event field.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md -->
 
@@ -13275,6 +14329,23 @@ Returns zero-based array of banned heroes where index corresponds to the player 
 
 Returns time remaining between state changes.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md -->
 
 # GlobalVars
@@ -13328,6 +14399,23 @@ TODO
 `GlobalVars.GetIntervalPerTick():` <mark style="color:purple;">**`number`**</mark>
 
 TODO
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md -->
 
@@ -13440,6 +14528,23 @@ Lite version of GridNav.BuildPath function which just cheking if the path is exi
 
 Debug render of current GridNav with GridNavNpcMap (if provided)
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md -->
 
 # Input
@@ -13544,6 +14649,23 @@ This function will return \`true\` only once per key press.
 
 Return `true` if key is down once.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md -->
 
 # World
@@ -13561,6 +14683,23 @@ Table containing functions for interacting with the world.
 
 Returns the ground Z at the given position.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md -->
 
 # FogOfWar
@@ -13576,6 +14715,23 @@ Table to work with FogOfWar API.
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector) | position to check |
 
 Returns `true` if the world position is visible.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md -->
 
@@ -13685,6 +14841,23 @@ Assigns new float value to the ConVar
 
 Assigns new boolean value to the ConVar
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -13746,6 +14919,23 @@ Flip the coin in a channel.
 
 Roll a dice in a channel.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md -->
 
 # HTTP
@@ -13792,6 +14982,23 @@ HTTP.Request("GET", url, {
 		headers = headers,
 	}, callback, "reqres_get");
 ```
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md -->
 
@@ -13847,6 +15054,23 @@ This function works only if you already got player's user information (EMsg\_Cli
 | **large&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Whether to get the large profile picture `(default: false)` |
 
 Returns the handle of the profile picture of the given account id.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md -->
 
@@ -13908,6 +15132,23 @@ NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
 
 ```
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md -->
 
 # Game Coordinator
@@ -13945,6 +15186,23 @@ GC.SendMessage( request.binary, 7197, request.size )
 `GC.GetSteamID():` <mark style="color:purple;">**`string`**</mark>
 
 Returns local player Steam ID as string.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -14030,6 +15288,23 @@ Sets the control point's position and angle.
 | **particle\_index** | <mark style="color:purple;">**`integer`**</mark> | Particle index |
 
 Destroys the particle by index.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md -->
 
@@ -14393,6 +15668,23 @@ Pops a clip rect.
 | **duration** | <mark style="color:purple;">**`number`**</mark> | Duration of the notification. |
 
 Draws a centered notification.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md -->
 
@@ -15029,6 +16321,23 @@ Resizes an existing render target.\
 If width and height are not provided, it changes the render target to be full screen size.\
 Accepts (handle, w, h), (handle, vec2), or (handle) for full screen.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md -->
 
 # MiniMap
@@ -15141,6 +16450,23 @@ Returns `true` if the mouse is on the minimap.
 
 Returns world position from minimap position. The same as `GetMousePosInWorld`, but you can pass any position on screen, not only mouse position.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -15247,6 +16573,23 @@ function create_category()
 end
 create_category();
 ```
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md -->
 
@@ -15640,6 +16983,23 @@ Adds a class to the panel.
 
 Removes a class to the panel.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -15723,6 +17083,23 @@ Write a float to a config file.
 
 Write a string to a config file.
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md -->
 
 # Humanizer
@@ -15779,6 +17156,23 @@ Returns information about the current humanizer order queue.
 
 Forces current user order by minimap. Must be called in OnPrepareUnitOrder
 
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md -->
 
 # Log
@@ -15794,6 +17188,23 @@ Table to log.
 | **arg** | <mark style="color:purple;">**`any`**</mark> | Message to write |
 
 Writes a message to the console.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md -->
 
@@ -15820,6 +17231,23 @@ Returns localized string using current language.
 | **str** | <mark style="color:purple;">**`string`**</mark> |             |
 
 Registers key (token) string to localizer.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md -->
 
@@ -15892,4 +17320,21 @@ Returns localized string by unit name or returns empty string if unit not found.
 ```lua
 GameLocalizer.FindNPC("npc_dota_hero_necrolyte") -- Necrophos
 ```
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
