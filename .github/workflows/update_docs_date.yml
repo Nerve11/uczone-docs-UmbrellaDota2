@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   schedule:
     # 20:00 MSK is 17:00 UTC
-    - cron: '0 17 * * *'
+    - cron: '0 17 */2 * *'
 
 jobs:
   update-date:
