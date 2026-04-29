@@ -1352,7 +1352,7 @@ return {
         end
 
         -- decode protobuf message to json
-        local json_message = JSON:decode(protobuf.decodeToJSON("CDOTAClientMsg_ChatMessage", msg.buffer , msg.size));
+        local json_message = JSON:decode(protobuf.decodeToJSONfromObject(msg));
         if not json_message then
             return true;
         end
@@ -2802,128 +2802,128 @@ Use this mechanism when the answer is not explicitly present in the current page
 | <mark style="color:green;">`MODIFIER_EVENT_ON_MODEL_CHANGED`</mark>                              | 236   |
 | <mark style="color:green;">`MODIFIER_EVENT_ON_MODIFIER_ADDED`</mark>                             | 237   |
 | <mark style="color:green;">`MODIFIER_EVENT_ON_MODIFIER_REMOVED`</mark>                           | 238   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP`</mark>                                    | 242   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_CHANGE`</mark>                               | 243   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE`</mark>                                | 244   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_ANIMATE_TIME`</mark>                   | 245   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_USE_IN_OUT_EASE`</mark>                | 246   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_CONSTANT`</mark>                       | 247   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SCEPTER`</mark>                                 | 248   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SHARD`</mark>                                   | 249   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION`</mark>                   | 250   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS`</mark>               | 251   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND`</mark>                     | 252   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_LIFETIME_FRACTION`</mark>                          | 253   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PROVIDES_FOW_POSITION`</mark>                      | 254   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SPELLS_REQUIRE_HP`</mark>                          | 255   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CONVERT_MANA_COST_TO_HEALTH_COST`</mark>           | 256   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP`</mark>                         | 257   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_TURNING`</mark>                            | 258   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_CAST_ANGLE`</mark>                          | 259   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE`</mark>                       | 260   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL`</mark>                   | 261   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE`</mark>             | 262   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_LAYOUT`</mark>                             | 263   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DOMINATED`</mark>                                  | 264   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_KILL`</mark>                                       | 265   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ASSIST`</mark>                                     | 266   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TEMPEST_DOUBLE`</mark>                             | 267   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE`</mark>         | 268   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_FINISHED`</mark>                            | 269   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_COOLDOWN`</mark>                            | 270   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CAN_ATTACK_TREES`</mark>                           | 271   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_DELTA`</mark>                             | 272   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_SPEED_BASE_OVERRIDE`</mark>               | 273   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION`</mark>                   | 274   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER`</mark>               | 275   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP2`</mark>                                   | 276   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY`</mark>                      | 277   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT`</mark>                 | 278   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_TELEPORT`</mark>                          | 279   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_CANCELLED`</mark>                           | 280   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CLEAVE`</mark>                            | 281   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS`</mark>                     | 282   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE`</mark>           | 283   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE`</mark>             | 284   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET`</mark>                 | 285   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE`</mark>                     | 286   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTEMPT_PROJECTILE_DODGE`</mark>                   | 287   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING`</mark>               | 288   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SPELL_REDIRECT_TARGET`</mark>                      | 289   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_CONSTANT`</mark>                         | 290   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PACK_RAT`</mark>                                   | 291   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICALDAMAGEOUTGOING_PERCENTAGE`</mark>          | 292   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_KNOCKBACK_AMPLIFICATION_PERCENTAGE`</mark>         | 293   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HEALTHBAR_PIPS`</mark>                             | 294   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT`</mark>                   | 295   |
-| <mark style="color:green;">`MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY`</mark>                    | 296   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS`</mark>              | 297   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FAIL_ATTACK`</mark>                                | 298   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PREREDUCE_INCOMING_DAMAGE_MULT`</mark>             | 299   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_FULLSCREEN_DEATH_FX`</mark>               | 300   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT_POST`</mark>              | 301   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_MULTIPLICATIVE`</mark>   | 302   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TICK_GOLD_MULTIPLIER`</mark>                       | 303   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_UNIQUE`</mark>                     | 304   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING`</mark>                   | 305   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_PERCENTAGE`</mark>                       | 307   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED`</mark>                           | 308   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED_TARGET`</mark>                    | 309   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_STRENGTH`</mark>                            | 310   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_AGILITY`</mark>                             | 311   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_INTELLIGENCE`</mark>                        | 312   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_UNIVERSAL`</mark>                           | 313   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_FORCE_PROC_MAGIC_STICK`</mark>                     | 314   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DAMAGE_HPLOSS`</mark>                              | 315   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SHARE_XPRUNE`</mark>                               | 316   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_NO_FREE_TP_SCROLL_ON_DEATH`</mark>                 | 318   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HAS_BONUS_NEUTRAL_ITEM_CHOICE`</mark>              | 319   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_HEALTH`</mark>                           | 322   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_MANA`</mark>                             | 323   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT`</mark>                         | 324   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING`</mark>                | 325   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE_POST_UNAVOIDABLE_BLOCK`</mark>          | 326   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_MUTE_DAMAGE_ABILITIES`</mark>                      | 327   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CRIT`</mark>                              | 328   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_POINTS`</mark>                             | 329   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BUYBACK_PENALTY_PERCENT`</mark>                    | 330   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ITEM_SELLBACK_COST`</mark>                         | 331   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_DISASSEMBLE_ANYTHING`</mark>                       | 332   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_MANA_REGEN`</mark>                           | 333   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_UPHILL_MISS_CHANCE`</mark>                   | 334   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CREEP_DENY_PERCENT`</mark>                         | 335   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_ABSOLUTE_MAX`</mark>                   | 336   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_FOW_TEAM`</mark>                                   | 337   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_HERO_BEGIN_DYING`</mark>                           | 338   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_LOTUS_HEAL`</mark>                           | 339   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_HP_REGEN_PER_STR_BONUS_PERCENTAGE`</mark>     | 340   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_ARMOR_PER_AGI_BONUS_PERCENTAGE`</mark>        | 341   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MP_REGEN_PER_INT_BONUS_PERCENTAGE`</mark>     | 343   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE`</mark>         | 344   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_DAY_STARTED`</mark>                                | 345   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_CHANCE`</mark>               | 347   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_COUNT`</mark>                | 348   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_PSEUDORANDOM_BONUS`</mark>                         | 349   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_HEIGHT_BONUS`</mark>                        | 350   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SKIP_ATTACK_REGULATOR`</mark>                      | 351   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MISS_PERCENTAGE_TARGET`</mark>                     | 352   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_ADDITIONAL_NEUTRAL_ITEM_DROPS`</mark>              | 353   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_KILL_STREAK_BONUS_GOLD_PERCENTAGE`</mark>          | 354   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HP_REGEN_MULTIPLIER_PRE_AMPLIFICATION`</mark>      | 355   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_HEROFACET_OVERRIDE`</mark>                         | 356   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TREE_CUT_DOWN`</mark>                              | 357   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_CLEAVE_ATTACK_LANDED`</mark>                       | 358   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_MIN_ATTRIBUTE_LEVEL`</mark>                        | 359   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TIER_TOKEN_REROLL`</mark>                          | 360   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_STACKING`</mark>              | 362   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_INVENTORY_SLOT_RESTRICTED`</mark>                  | 363   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_TIER_TOKEN_REROLLED`</mark>                        | 364   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_REDIRECT_SPELL`</mark>                             | 365   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_BASEATTACK_POSTBONUS`</mark>                       | 366   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`</mark>                           | 367   |
-| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`</mark>                      | 368   |
-| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_TOGGLED`</mark>                            | 369   |
-| <mark style="color:green;">`MODIFIER_FUNCTION_LAST`</mark>                                       | 400   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP`</mark>                                    | 241   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_CHANGE`</mark>                               | 242   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE`</mark>                                | 243   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_ANIMATE_TIME`</mark>                   | 244   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_USE_IN_OUT_EASE`</mark>                | 245   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MODEL_SCALE_CONSTANT`</mark>                       | 246   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SCEPTER`</mark>                                 | 247   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IS_SHARD`</mark>                                   | 248   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION`</mark>                   | 249   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS`</mark>               | 250   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND`</mark>                     | 251   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_LIFETIME_FRACTION`</mark>                          | 252   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PROVIDES_FOW_POSITION`</mark>                      | 253   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SPELLS_REQUIRE_HP`</mark>                          | 254   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CONVERT_MANA_COST_TO_HEALTH_COST`</mark>           | 255   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP`</mark>                         | 256   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DISABLE_TURNING`</mark>                            | 257   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_CAST_ANGLE`</mark>                          | 258   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE`</mark>                       | 259   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL`</mark>                   | 260   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE`</mark>             | 261   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_LAYOUT`</mark>                             | 262   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DOMINATED`</mark>                                  | 263   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_KILL`</mark>                                       | 264   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ASSIST`</mark>                                     | 265   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TEMPEST_DOUBLE`</mark>                             | 266   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE`</mark>         | 267   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_FINISHED`</mark>                            | 268   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_IGNORE_COOLDOWN`</mark>                            | 269   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CAN_ATTACK_TREES`</mark>                           | 270   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_DELTA`</mark>                             | 271   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_VISUAL_Z_SPEED_BASE_OVERRIDE`</mark>               | 272   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION`</mark>                   | 273   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER`</mark>               | 274   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOOLTIP2`</mark>                                   | 275   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY`</mark>                      | 276   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT`</mark>                 | 277   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_TELEPORT`</mark>                          | 278   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTACK_CANCELLED`</mark>                           | 279   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CLEAVE`</mark>                            | 280   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS`</mark>                     | 281   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE`</mark>           | 282   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE`</mark>             | 283   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET`</mark>                 | 284   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE`</mark>                     | 285   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ATTEMPT_PROJECTILE_DODGE`</mark>                   | 286   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING`</mark>               | 287   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SPELL_REDIRECT_TARGET`</mark>                      | 288   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TURN_RATE_CONSTANT`</mark>                         | 289   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PACK_RAT`</mark>                                   | 290   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PHYSICALDAMAGEOUTGOING_PERCENTAGE`</mark>          | 291   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_KNOCKBACK_AMPLIFICATION_PERCENTAGE`</mark>         | 292   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HEALTHBAR_PIPS`</mark>                             | 293   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT`</mark>                   | 294   |
+| <mark style="color:green;">`MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY`</mark>                    | 295   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS`</mark>              | 296   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FAIL_ATTACK`</mark>                                | 297   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PREREDUCE_INCOMING_DAMAGE_MULT`</mark>             | 298   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_FULLSCREEN_DEATH_FX`</mark>               | 299   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT_POST`</mark>              | 300   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_MULTIPLICATIVE`</mark>   | 301   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TICK_GOLD_MULTIPLIER`</mark>                       | 302   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_UNIQUE`</mark>                     | 303   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING`</mark>                   | 304   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_PERCENTAGE`</mark>                       | 306   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED`</mark>                           | 307   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PROJECTILE_SPEED_TARGET`</mark>                    | 308   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_STRENGTH`</mark>                            | 309   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_AGILITY`</mark>                             | 310   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_INTELLIGENCE`</mark>                        | 311   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BECOME_UNIVERSAL`</mark>                           | 312   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_FORCE_PROC_MAGIC_STICK`</mark>                     | 313   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DAMAGE_HPLOSS`</mark>                              | 314   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SHARE_XPRUNE`</mark>                               | 315   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_NO_FREE_TP_SCROLL_ON_DEATH`</mark>                 | 317   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HAS_BONUS_NEUTRAL_ITEM_CHOICE`</mark>              | 318   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_HEALTH`</mark>                           | 321   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FORCE_MAX_MANA`</mark>                             | 322   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT`</mark>                         | 323   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING`</mark>                | 324   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TAKEDAMAGE_POST_UNAVOIDABLE_BLOCK`</mark>          | 325   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_MUTE_DAMAGE_ABILITIES`</mark>                      | 326   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_CRIT`</mark>                              | 327   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ABILITY_POINTS`</mark>                             | 328   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BUYBACK_PENALTY_PERCENT`</mark>                    | 329   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ITEM_SELLBACK_COST`</mark>                         | 330   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_DISASSEMBLE_ANYTHING`</mark>                       | 331   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FIXED_MANA_REGEN`</mark>                           | 332   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_UPHILL_MISS_CHANCE`</mark>                   | 333   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CREEP_DENY_PERCENT`</mark>                         | 334   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACKSPEED_ABSOLUTE_MAX`</mark>                   | 335   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_FOW_TEAM`</mark>                                   | 336   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_HERO_BEGIN_DYING`</mark>                           | 337   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BONUS_LOTUS_HEAL`</mark>                           | 338   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_HP_REGEN_PER_STR_BONUS_PERCENTAGE`</mark>     | 339   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_ARMOR_PER_AGI_BONUS_PERCENTAGE`</mark>        | 340   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MP_REGEN_PER_INT_BONUS_PERCENTAGE`</mark>     | 342   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE`</mark>         | 343   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_DAY_STARTED`</mark>                                | 344   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_CHANCE`</mark>               | 346   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_COUNT`</mark>                | 347   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_PSEUDORANDOM_BONUS`</mark>                         | 348   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ATTACK_HEIGHT_BONUS`</mark>                        | 349   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SKIP_ATTACK_REGULATOR`</mark>                      | 350   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MISS_PERCENTAGE_TARGET`</mark>                     | 351   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_ADDITIONAL_NEUTRAL_ITEM_DROPS`</mark>              | 352   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_KILL_STREAK_BONUS_GOLD_PERCENTAGE`</mark>          | 353   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HP_REGEN_MULTIPLIER_PRE_AMPLIFICATION`</mark>      | 354   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_HEROFACET_OVERRIDE`</mark>                         | 355   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TREE_CUT_DOWN`</mark>                              | 356   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_CLEAVE_ATTACK_LANDED`</mark>                       | 357   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_MIN_ATTRIBUTE_LEVEL`</mark>                        | 358   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TIER_TOKEN_REROLL`</mark>                          | 359   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_STACKING`</mark>              | 361   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_INVENTORY_SLOT_RESTRICTED`</mark>                  | 362   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_TIER_TOKEN_REROLLED`</mark>                        | 363   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_REDIRECT_SPELL`</mark>                             | 364   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_BASEATTACK_POSTBONUS`</mark>                       | 365   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`</mark>                           | 366   |
+| <mark style="color:green;">`MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`</mark>                      | 367   |
+| <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_TOGGLED`</mark>                            | 368   |
+| <mark style="color:green;">`MODIFIER_FUNCTION_LAST`</mark>                                       | 399   |
 | <mark style="color:green;">`MODIFIER_FUNCTION_INVALID`</mark>                                    | 65535 |
 
 ## <mark style="color:purple;">Enum.DrunkenBrawlerState</mark>
@@ -5931,6 +5931,27 @@ end )
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark>                                                                               | Path to image or FontAwesome icon unicode. `(default: "")` |
 
 Creates new `CMenuColorPicker`.
+
+## <sub>Button</sub>
+
+`:Button(buttonName, callback, [altStyle], [widthPercent]):` [<mark style="color:purple;">**`CMenuButton`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton)
+
+| Name                                                               | Type                                                                | Description                                            |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------ |
+| **buttonName**                                                     | <mark style="color:purple;">**`string`**</mark>                     |                                                        |
+| **callback**                                                       | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to call on button click.                      |
+| **altStyle&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                    | Use alternative button style. `(default: false)`       |
+| **widthPercent&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                     | Button width in percents. \[0.0, 1.0] `(default: 1.0)` |
+
+Creates new `CMenuButton`.
+
+#### Example
+
+```lua
+gear:Button( "button", function( this )
+	Log.Write( "Button '" .. this:Name() .. "' has been clicked."  )
+end )
+```
 
 ## <sub>Combo</sub>
 
@@ -9600,10 +9621,10 @@ Returns cached player's proname. Works only in game callbacks
 
 `Player.GetPlayerData(player, [output]):` <mark style="color:purple;">**`{valid:boolean, fullyJoined:boolean, fakeClient:boolean, connectionState:integer, steamid:integer, PlusSubscriber:boolean, MVPLastGame:boolean, PlayerName:string, ProName:string}`**</mark>
 
-| Name                                                         | Type                                                                                                               | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| **player**                                                   | [<mark style="color:purple;">**`CPlayer`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/player) | The target player.                                                 |
-| **output&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark>                                                                     | Optional reusable table to populate instead of creating a new one. |
+| Name                                                         | Type                                                                                                               | Description                                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| **player**                                                   | [<mark style="color:purple;">**`CPlayer`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/player) | The target player.                                                                  |
+| **output&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark>                                                                     | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
 
 Returns the player data table.
 
@@ -9632,10 +9653,10 @@ Returns table with `CItem`s available in the neutral stash.
 
 `Player.GetTeamPlayer(player, [output]):` <mark style="color:purple;">**`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, meta_level:integer, meta_experience:integer, meta_experience_awarded:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity, override_selection_entity:CEntity, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:integer, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**</mark>
 
-| Name                                                         | Type                                                                                                               | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| **player**                                                   | [<mark style="color:purple;">**`CPlayer`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/player) | The target player.                                                 |
-| **output&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark>                                                                     | Optional reusable table to populate instead of creating a new one. |
+| Name                                                         | Type                                                                                                               | Description                                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| **player**                                                   | [<mark style="color:purple;">**`CPlayer`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/player) | The target player.                                                                  |
+| **output&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark>                                                                     | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
 
 Returns **Team Player Data** table
 
@@ -15102,7 +15123,7 @@ Returns the average latency/ping of the net channel in seconds.
 
 You can repeat the same message from OnSendNetMessage if you want to know the format of the message.
 
-\`NetChannel.SendNetMessage(name, json):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
+\`NetChannel.SendNetMessage(name, json):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
 
 | Name     | Type                                            | Description             |
 | -------- | ----------------------------------------------- | ----------------------- |
@@ -15125,7 +15146,7 @@ local JSON = require('assets.JSON');
 -- 	optional uint32 roll_max = 3;
 -- }
 NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
-    channel_type = 13,
+    channel_type = 11, -- 11 - all chat
     roll_min = 11,
     roll_max = 222
 }));
@@ -15740,13 +15761,13 @@ Draw a progress rectangle.
 
 `Render.DonutChart(center, radius, thickness, segments, [options]):` <mark style="color:purple;">**`nil`**</mark>
 
-| Name                                                          | Type                                                                                                                                                                                                                                                                                                             | Description                                 |
-| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| **center**                                                    | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)                                                                                                                                                                                 | The center position of the chart.           |
-| **radius**                                                    | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The outer radius of the chart.              |
-| **thickness**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The thickness of the donut ring.            |
-| **segments**                                                  | <mark style="color:purple;">**`{value: number, color: Color, icon: number`**</mark> \| <mark style="color:purple;">**`nil, icon_color: Color`**</mark> \| <mark style="color:purple;">**`nil, font_icon: {font: number, size: number, text: string}`**</mark> \| <mark style="color:purple;">**`nil}[]`**</mark> | List of data segments.                      |
-| **options&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`{separator_color:Color`**</mark> \| <mark style="color:purple;">**`nil, separator_thickness:number`**</mark> \| <mark style="color:purple;">**`nil}`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                                                                     | Optional settings for the chart appearance. |
+| Name                                                          | Type                                                                                                                                                                                                                                                                                                             | Description                                                  |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **center**                                                    | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2)                                                                                                                                                                                 | The center position of the chart.                            |
+| **radius**                                                    | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The outer radius of the chart.                               |
+| **thickness**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The thickness of the donut ring.                             |
+| **segments**                                                  | <mark style="color:purple;">**`{value: number, color: Color, icon: number`**</mark> \| <mark style="color:purple;">**`nil, icon_color: Color`**</mark> \| <mark style="color:purple;">**`nil, font_icon: {font: number, size: number, text: string}`**</mark> \| <mark style="color:purple;">**`nil}[]`**</mark> | List of data segments.                                       |
+| **options&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`{separator_color:Color`**</mark> \| <mark style="color:purple;">**`nil, separator_thickness:number`**</mark> \| <mark style="color:purple;">**`nil}`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                                                                     | Optional settings for the chart appearance. `(default: nil)` |
 
 Draw a donut chart.
 
@@ -16183,13 +16204,13 @@ Draws a centered notification.
 
 `Render.Logo(center, radius, [angle], [primary_color], [secondary_color]):` <mark style="color:purple;">**`nil`**</mark>
 
-| Name                                                                   | Type                                                                                                                             | Description                                    |
-| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **center**                                                             | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) |                                                |
-| **radius**                                                             | <mark style="color:purple;">**`number`**</mark>                                                                                  |                                                |
-| **angle&#x20;**<mark style="color:orange;">**`[?]`**</mark>            | <mark style="color:purple;">**`number`**</mark>                                                                                  | rotation angle `(default: -45)`                |
-| **primary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | uses Menu.Style("primary") if nothing provided |
-| **secondary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | uses {227, 227, 227, 255} if nothing provided  |
+| Name                                                                   | Type                                                                                                                             | Description                        |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| **center**                                                             | [<mark style="color:purple;">**`Vec2`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2) |                                    |
+| **radius**                                                             | <mark style="color:purple;">**`number`**</mark>                                                                                  |                                    |
+| **angle&#x20;**<mark style="color:orange;">**`[?]`**</mark>            | <mark style="color:purple;">**`number`**</mark>                                                                                  | rotation angle `(default: -45)`    |
+| **primary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | `(default: Menu.Style("primary"))` |
+| **secondary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Color`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color)    | `(default: {227, 227, 227, 255})`  |
 
 Draws umbrella logo
 
@@ -16197,11 +16218,11 @@ Draws umbrella logo
 
 `Render.FindOrCreateRT(name, [w], [h]):` <mark style="color:purple;">**`integer`**</mark>
 
-| Name                                                    | Type                                            | Description                                |
-| ------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------ |
-| **name**                                                | <mark style="color:purple;">**`string`**</mark> | The unique name of the render target.      |
-| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The width of the render target. Optional.  |
-| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The height of the render target. Optional. |
+| Name                                                    | Type                                            | Description                                                 |
+| ------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------- |
+| **name**                                                | <mark style="color:purple;">**`string`**</mark> | The unique name of the render target.                       |
+| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The width of the render target. Optional. `(default: nil)`  |
+| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The height of the render target. Optional. `(default: nil)` |
 
 Creates a new render target or retrieves an existing one by name.\
 If width or height are not provided, the render target will be full screen size.
@@ -16311,11 +16332,11 @@ return {
 
 `Render.ResizeRT(handle, [w], [h]):` <mark style="color:purple;">**`nil`**</mark>
 
-| Name                                                    | Type                                             | Description                                          |
-| ------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------- |
-| **handle**                                              | <mark style="color:purple;">**`integer`**</mark> | The handle of the render target to resize.           |
-| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new width, or a Vec2 containing both dimensions. |
-| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new height. Not used when Vec2 is provided.      |
+| Name                                                    | Type                                             | Description                                                           |
+| ------------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------- |
+| **handle**                                              | <mark style="color:purple;">**`integer`**</mark> | The handle of the render target to resize.                            |
+| **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new width, or a Vec2 containing both dimensions. `(default: nil)` |
+| **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new height. Not used when Vec2 is provided. `(default: nil)`      |
 
 Resizes an existing render target.\
 If width and height are not provided, it changes the render target to be full screen size.\
