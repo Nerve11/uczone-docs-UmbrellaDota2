@@ -9339,7 +9339,60 @@ The response will contain a direct answer to the question and relevant excerpts 
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
-> ⚠️ Не удалось загрузить: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md -->
+
+# Physical Items
+
+Table to work with list of phisical items.
+
+## <sub>Count</sub>
+
+`PhysicalItems.Count():` <mark style="color:purple;">**`integer`**</mark>
+
+Return size of physical item list.
+
+## <sub>Get</sub>
+
+`PhysicalItems.Get(index):` [<mark style="color:purple;">**`CPhysicalItem`**</mark>](/api-v2.0/game-components/core/physicalitem.md) | <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                             | Description                           |
+| --------- | ------------------------------------------------ | ------------------------------------- |
+| **index** | <mark style="color:purple;">**`integer`**</mark> | Index of physical item in cheat list. |
+
+Return physical item by index in cheat list. Not the same as in-game index.
+
+## <sub>GetAll</sub>
+
+`PhysicalItems.GetAll():` [<mark style="color:purple;">**`CPhysicalItem[]`**</mark>](/api-v2.0/game-components/core/physicalitem.md)
+
+Return all physical items in cheat list.
+
+## <sub>Contains</sub>
+
+`PhysicalItems.Contains(physical):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name         | Type                                                                                                     | Description                  |
+| ------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **physical** | [<mark style="color:purple;">**`CPhysicalItem`**</mark>](/api-v2.0/game-components/core/physicalitem.md) | item Physical item to check. |
+
+Check physical item in cheat list.
+
+---
+
+# Agent Instructions: Querying This Documentation
+
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md -->
 
