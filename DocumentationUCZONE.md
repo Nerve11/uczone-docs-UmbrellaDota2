@@ -828,8 +828,10 @@ Here are some useful links:
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -1482,8 +1484,10 @@ and manual per-color edits via the theme color picker.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3026,8 +3030,10 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3261,8 +3267,10 @@ Returns hex string representing the color.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3373,8 +3381,10 @@ Returns current menu animation duration.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3440,8 +3450,10 @@ Finds the `CSecondTab` by name.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3507,8 +3519,10 @@ Finds the `CTabSection` by name.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3626,8 +3640,10 @@ Links tab to hero and attribute.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -3763,8 +3779,10 @@ tab:Icon( "\u{f007}")
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -4102,8 +4120,10 @@ local isSearchHidden = group:SearchHidden()
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -4356,8 +4376,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -4617,8 +4639,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -4878,8 +4902,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -5088,8 +5114,10 @@ Removes widget's on change callback.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -5353,8 +5381,10 @@ local isAlphaBarHidden = widget:HideAlphaBar()
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -5508,8 +5538,10 @@ Removes widget's on change callback.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -5774,8 +5806,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -6085,8 +6119,10 @@ local isDisabled = widget:Disabled()
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -6334,8 +6370,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -6619,8 +6657,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -6942,8 +6982,10 @@ Updates widget's tooltips
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -7293,8 +7335,10 @@ Gets or sets the ability to bind the mouse button.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -7511,8 +7555,10 @@ Creates `CMenuGearAttachment` and attaches it to the widget.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8049,8 +8095,10 @@ Sets z. The same as Vector.z = value.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8230,8 +8278,10 @@ Sets the pitch. The same as Angle.pitch = value.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8452,8 +8502,10 @@ Sets y. The same as Vec2.y = value.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8530,8 +8582,10 @@ Overload for operator -
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8590,8 +8644,10 @@ Check ability in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8651,8 +8707,10 @@ Return local courier.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8724,8 +8782,10 @@ Accept the Meepo's Divided We Stand ability and return index of Meepo.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8763,8 +8823,10 @@ Check entity in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8839,8 +8901,10 @@ Return local hero.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -8941,8 +9005,10 @@ Check NPC in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9007,8 +9073,10 @@ Check neutral spawner in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9068,8 +9136,10 @@ Return local player.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9123,8 +9193,10 @@ Check rune in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9189,8 +9261,10 @@ Check temp tree in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9257,8 +9331,10 @@ Check tower in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9324,8 +9400,10 @@ Check tree in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9379,8 +9457,10 @@ Check physical item in cheat list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9434,8 +9514,10 @@ Checks if modifiers is in list.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9486,8 +9568,10 @@ return {
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -9763,8 +9847,10 @@ Returns player's active ability.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -10171,8 +10257,10 @@ Returns value of the field.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -10641,8 +10729,10 @@ Returns value of the field.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -11991,8 +12081,10 @@ Returns the hieghest property value for the `CNPC`.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -12268,8 +12360,10 @@ Returns the last visible time from VBE.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -12934,8 +13028,10 @@ Returns the keybind of the ability.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13243,8 +13339,10 @@ Log.Write("Observers available: " .. Item.GetStockCount(42))
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13276,8 +13374,10 @@ Returns `Enum.RuneType` the rune type.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13309,8 +13409,10 @@ Returns `CNPC` that is attacked by the tower now.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13342,8 +13444,10 @@ Returns if the tree is not cut.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13375,8 +13479,10 @@ Returns selected `Enum.Attributes` attribute.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13418,8 +13524,10 @@ Returns camp box as a table with **min** and **max** fields(**Vector**).
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13453,8 +13561,10 @@ Returns the rune inside the bottle.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13526,8 +13636,10 @@ Returns the entity that the courier is currently interacting with.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13559,8 +13671,10 @@ Returns the state of the CDrunkenBrawler ability.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13592,8 +13706,10 @@ Returns `CItem` object from `CPhysicalItem`.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13625,8 +13741,10 @@ Returns selected `Enum.Attributes` attribute.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13658,8 +13776,10 @@ Returns the choices (ability ids) of the `CTierToken`.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -13967,8 +14087,10 @@ Returns current UI state.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14090,8 +14212,10 @@ Returns the string value of the specified event field.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14352,8 +14476,10 @@ Returns time remaining between state changes.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14423,8 +14549,10 @@ TODO
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14551,8 +14679,10 @@ Debug render of current GridNav with GridNavNpcMap (if provided)
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14672,8 +14802,10 @@ Return `true` if key is down once.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14706,8 +14838,10 @@ Returns the ground Z at the given position.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14739,8 +14873,10 @@ Returns `true` if the world position is visible.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14864,8 +15000,10 @@ Assigns new boolean value to the ConVar
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -14942,8 +15080,10 @@ Roll a dice in a channel.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -15006,8 +15146,10 @@ HTTP.Request("GET", url, {
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -15078,8 +15220,10 @@ Returns the handle of the profile picture of the given account id.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -15155,8 +15299,10 @@ NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -15210,8 +15356,10 @@ Returns local player Steam ID as string.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -15312,8 +15460,10 @@ Destroys the particle by index.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -15692,8 +15842,10 @@ Draws a centered notification.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -16344,8 +16496,10 @@ Accepts (handle, w, h), (handle, vec2), or (handle) for full screen.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -16473,8 +16627,10 @@ Returns world position from minimap position. The same as `GetMousePosInWorld`, 
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -16597,8 +16753,10 @@ create_category();
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -17006,8 +17164,10 @@ Removes a class to the panel.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -17106,8 +17266,10 @@ Write a string to a config file.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -17179,8 +17341,10 @@ Forces current user order by minimap. Must be called in OnPrepareUnitOrder
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -17212,8 +17376,10 @@ Writes a message to the console.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -17255,8 +17421,10 @@ Registers key (token) string to localizer.
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
@@ -17344,8 +17512,10 @@ GameLocalizer.FindNPC("npc_dota_hero_necrolyte") -- Necrophos
 
 ---
 
-# Agent Instructions: Querying This Documentation
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
+## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
 Perform an HTTP GET request on the current page URL with the `ask` query parameter:
