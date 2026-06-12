@@ -27,6 +27,8 @@
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md).
+
 # Starting Guide
 
 To execute your script move the `.lua` file into the `%cheat_dir%/scripts` folder.
@@ -852,6 +854,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md).
+
 # Callbacks
 
 Callbacks for lua Scripts should return a table with the following functions. If the table contains one of the functions below, it will be registered as a callback and will be called at the appropriate time.
@@ -1502,6 +1506,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md).
 
 # Enums
 
@@ -3054,6 +3060,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md).
+
 # Color
 
 Color metatable
@@ -3291,6 +3299,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md).
+
 # Menu
 
 Table to work with Menu.
@@ -3400,6 +3410,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md).
+
 # CTabSection
 
 CTabSection metatable
@@ -3469,6 +3481,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md).
+
 # CFirstTab
 
 CFirstTab metatable
@@ -3537,6 +3551,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md).
 
 # CSecondTab
 
@@ -3658,6 +3674,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md).
 
 # CThirdTab
 
@@ -3797,6 +3815,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md).
 
 # CMenuGroup
 
@@ -4144,6 +4164,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md).
+
 # CMenuSwitch
 
 CMenuSwitch metatable.
@@ -4394,6 +4416,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md).
 
 # CMenuSliderFloat
 
@@ -4658,6 +4682,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md).
+
 # CMenuSliderInt
 
 CMenuSliderInt metatable.
@@ -4921,6 +4947,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md).
+
 # CMenuButton
 
 CMenuButton metatable.
@@ -5132,6 +5160,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md).
 
 # CMenuColorPicker
 
@@ -5400,6 +5430,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md).
+
 # CMenuColorPickerAttachment
 
 CMenuColorPickerAttachment metatable.
@@ -5556,6 +5588,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md).
 
 # CMenuComboBox
 
@@ -5824,6 +5858,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md).
 
 # CMenuGearAttachment
 
@@ -6138,6 +6174,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md).
+
 # CMenuInputBox
 
 CMenuInputBox metatable.
@@ -6388,6 +6426,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md).
 
 # CMenuMultiComboBox
 
@@ -6675,6 +6715,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md).
 
 # CMenuMultiSelect
 
@@ -7000,6 +7042,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md).
 
 # CMenuBind
 
@@ -7354,6 +7398,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md).
+
 # CMenuLabel
 
 CMenuLabel metatable.
@@ -7578,6 +7624,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 ### Classes - Math
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md).
 
 # Vector
 
@@ -8114,6 +8162,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md).
+
 # Angle
 
 Angle metatable
@@ -8296,6 +8346,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md).
 
 # Vec2
 
@@ -8521,6 +8573,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md).
+
 # Vertex
 
 Vertex metatable
@@ -8606,6 +8660,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md).
+
 # Abilities
 
 Table to work with ability list.
@@ -8662,6 +8718,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md).
 
 # Couriers
 
@@ -8725,6 +8783,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md).
 
 # CustomEntities
 
@@ -8801,6 +8861,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md).
+
 # Entities
 
 Table to work with entity list.
@@ -8841,6 +8903,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md).
 
 # Heroes
 
@@ -8919,6 +8983,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md).
 
 # NPCs
 
@@ -9024,6 +9090,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md).
+
 # Camps
 
 Table to work with list of neutral spawners.
@@ -9092,6 +9160,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md).
+
 # Players
 
 Table to work with player list.
@@ -9155,6 +9225,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md).
+
 # Runes
 
 Table to work with rune list.
@@ -9211,6 +9283,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md).
 
 # TempTrees
 
@@ -9279,6 +9353,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md).
 
 # Towers
 
@@ -9350,6 +9426,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md).
+
 # Trees
 
 Table to work with list of trees.
@@ -9419,6 +9497,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md).
+
 # Physical Items
 
 Table to work with list of phisical items.
@@ -9476,6 +9556,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md).
+
 # Modifiers
 
 Table to work with list of modifiers.
@@ -9532,6 +9614,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md).
 
 # LinearProjectiles
 
@@ -9591,6 +9675,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 ## Game Components - Core Objects
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/player.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md).
 
 # Player
 
@@ -9865,6 +9951,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md).
 
 # Modifier
 
@@ -10275,6 +10363,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md).
 
 # Entity
 
@@ -10747,6 +10837,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md).
 
 # NPC
 
@@ -12100,6 +12192,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md).
+
 # Hero
 
 Table to work with `CHero`.
@@ -12378,6 +12472,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md).
 
 # Ability
 
@@ -13047,6 +13143,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md).
+
 # Item
 
 Table to work with `CItem`.
@@ -13358,6 +13456,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md).
+
 # Rune
 
 Table to work with `CRune`.<mark style="color:purple;">**`CRune`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
@@ -13392,6 +13492,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md).
 
 # Tower
 
@@ -13428,6 +13530,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md).
+
 # Tree
 
 Table to work with `CTree`.<mark style="color:purple;">**`CTree`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
@@ -13463,6 +13567,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md).
+
 # Vambrace
 
 Table to work with `CVambrace`.<mark style="color:purple;">**`CVambrace`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
@@ -13497,6 +13603,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md).
 
 # Camp
 
@@ -13543,6 +13651,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md).
+
 # Bottle
 
 Table to work with `CBottle`.
@@ -13579,6 +13689,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md).
 
 # Courier
 
@@ -13655,6 +13767,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md).
+
 # DrunkenBrawler
 
 Table to work with `CDrunkenBrawler`.<mark style="color:purple;">**`CDrunkenBrawler`**</mark> extends <mark style="color:purple;">**`CAbility`**</mark>
@@ -13689,6 +13803,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md).
 
 # PhysicalItem
 
@@ -13725,6 +13841,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md).
+
 # PowerTreads
 
 Table to work with `CPowerTreads`.<mark style="color:purple;">**`CTower`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
@@ -13759,6 +13877,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md).
 
 # TierToken
 
@@ -13799,6 +13919,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 ## Game Engine
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md).
 
 # Engine
 
@@ -14106,6 +14228,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md).
+
 # Event
 
 Table to work with game events.
@@ -14230,6 +14354,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md).
 
 # GameRules
 
@@ -14495,6 +14621,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md).
+
 # GlobalVars
 
 Talbe to work with game's global variables.
@@ -14567,6 +14695,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md).
 
 # GridNav
 
@@ -14698,6 +14828,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md).
+
 # Input
 
 Table to work with input system.
@@ -14821,6 +14953,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md).
+
 # World
 
 Table containing functions for interacting with the world.
@@ -14857,6 +14991,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md).
+
 # FogOfWar
 
 Table to work with FogOfWar API.
@@ -14891,6 +15027,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md).
 
 # ConVar
 
@@ -15024,6 +15162,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md).
+
 # Chat
 
 Table to work with chat.
@@ -15099,6 +15239,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md).
+
 # HTTP
 
 Table to work with HTTP requests.
@@ -15164,6 +15306,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md).
 
 # Steam
 
@@ -15238,6 +15382,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md).
 
 # NetChannel
 
@@ -15318,6 +15464,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md).
+
 # Game Coordinator
 
 Table to work with Game Coordinator (GC).
@@ -15379,6 +15527,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 ## Rendering and Visuals
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md).
 
 # Particle
 
@@ -15478,6 +15628,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md).
 
 # Renderer
 
@@ -15860,6 +16012,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md).
 
 # Render
 
@@ -16515,6 +16669,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md).
+
 # MiniMap
 
 Table to work with in-game minimap.
@@ -16651,6 +16807,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md).
+
 # Panorama
 
 Table to work with Dota Panorama system.
@@ -16771,6 +16929,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md).
 
 # UIPanel
 
@@ -17188,6 +17348,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md).
+
 # Config
 
 Table to work with configs that are stored in the `configs` folder with the `.ini` extention.
@@ -17285,6 +17447,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md).
+
 # Humanizer
 
 Table to work with humanizer.
@@ -17360,6 +17524,8 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md -->
 
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md).
+
 # Log
 
 Table to log.
@@ -17394,6 +17560,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md).
 
 # Localizer
 
@@ -17439,6 +17607,8 @@ The response will contain a direct answer to the question and relevant excerpts 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md).
 
 # GameLocalizer
 
