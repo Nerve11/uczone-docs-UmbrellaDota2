@@ -14728,14 +14728,23 @@ Releases allocated memory for `GridNavNpcMap`
 
 ## <sub>IsTraversable</sub>
 
-`GridNav.IsTraversable(pos, [flag]):` <mark style="color:purple;">**`boolean`**</mark>, <mark style="color:purple;">**`integer`**</mark>
+`GridNav.IsTraversable(pos, [flag], [flag_excluded]):` <mark style="color:purple;">**`boolean`**</mark>, <mark style="color:purple;">**`integer`**</mark>
 
-| Name                                                       | Type                                                                                                           | Description                  |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **pos**                                                    | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check            |
-| **flag&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | flag to check `(default: 1)` |
+| Name                                                                 | Type                                                                                                           | Description                                             |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **pos**                                                              | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check                                       |
+| **flag&#x20;**<mark style="color:orange;">**`[?]`**</mark>           | <mark style="color:purple;">**`number`**</mark>                                                                | required cell flag mask (must be set) `(default: 1)`    |
+| **flag\_excluded&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | forbidden cell flag mask (must be clear) `(default: 2)` |
 
-Returns `true` if the world position is traversable.
+Returns `true` if the world position is traversable.\
+\
+Pass `flag_excluded` to replicate per-ability filter masks. Examples:\\
+
+* `IsTraversable(pos, 0x1, 0x002)` - default (engine `BLOCKED` only)\\
+* `IsTraversable(pos, 0x1, 0x102)` - Techies Land Mine semantics\
+  (LOCATION 0x002 + BUILDING 0x100)\\
+* `IsTraversable(pos, 0x1, 0x112)` - strictest variant used by many native\
+  AOE landing checks (LOCATION + PORTAL + BUILDING)
 
 ## <sub>BuildPath</sub>
 
@@ -14910,13 +14919,25 @@ Returns nearest hero to cursor.
 
 Returns `true` if input is captured. e.g. opened console, chat, shop.
 
+## <sub>IsPopupOpen</sub>
+
+Tracks the dashboard popup manager. Same signal the game uses to suppress its own gameplay key binds while a popup is shown.
+
+`Input.IsPopupOpen():` <mark style="color:purple;">**`boolean`**</mark>
+
+Returns `true` if any panorama popup is currently open\
+(settings, accept-match, item picker, party invite, etc.).
+
 ## <sub>IsKeyDown</sub>
 
-`Input.IsKeyDown(KeyCode):` <mark style="color:purple;">**`boolean`**</mark>
+`Input.IsKeyDown(KeyCode, [bIgnoreLock]):` <mark style="color:purple;">**`boolean`**</mark>
 
-| Name        | Type                                                                                                                                                                  | Description |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| **KeyCode** | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) |             |
+| Name                                                                 | Type                                                                                                                                                                  | Description                                                                                       |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **KeyCode**                                                          | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) |                                                                                                   |
+| **bIgnoreLock&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
+| key state. Default `false` preserves the previous behavior - returns |                                                                                                                                                                       |                                                                                                   |
+| `false` while any of those is active. `(default: false)`             |                                                                                                                                                                       |                                                                                                   |
 
 Returns `true` if key is down.
 
@@ -14924,11 +14945,13 @@ Returns `true` if key is down.
 
 This function will return \`true\` only once per key press.
 
-\`Input.IsKeyDownOnce(KeyCode):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
+\`Input.IsKeyDownOnce(KeyCode, \[bIgnoreLock]):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
 
-| Name        | Type                                                                                                                                                                  | Description |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| **KeyCode** | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) |             |
+| Name                                                                                   | Type                                                                                                                                                                  | Description                                                                                       |
+| -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **KeyCode**                                                                            | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) |                                                                                                   |
+| **bIgnoreLock&#x20;**<mark style="color:orange;">**`[?]`**</mark>                      | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
+| key-pressed state. Default `false` preserves the previous behavior. `(default: false)` |                                                                                                                                                                       |                                                                                                   |
 
 Return `true` if key is down once.
 
