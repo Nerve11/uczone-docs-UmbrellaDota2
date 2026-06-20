@@ -1,6 +1,6 @@
 # UCZONE API v2.0 - Полная документация
 
-*Сгенерировано из 85 страниц GitBook*
+*Сгенерировано из 90 страниц GitBook*
 
 ---
 
@@ -15544,6 +15544,112 @@ The response will contain a direct answer to the question and relevant excerpts 
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md).
+
+# Protobuf
+
+Protobuf encoding/decoding module for working with Dota 2 network messages. Loaded as a require-able library: `local protobuf = require('protobuf')`.
+
+Message type names correspond to protobuf definitions from [Dota 2 Protobufs](https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs).
+
+## <sub>encode</sub>
+
+`protobuf.encode(name, data):` <mark style="color:purple;">**`table`**</mark>
+
+| Name     | Type                                            | Description                   |
+| -------- | ----------------------------------------------- | ----------------------------- |
+| **name** | <mark style="color:purple;">**`string`**</mark> | Protobuf message type name    |
+| **data** | <mark style="color:purple;">**`table`**</mark>  | Lua table with message fields |
+
+Encodes a Lua table into a serialized protobuf message. Returns a table with `binary` (userdata pointer) and `size` (number) fields.
+
+## <sub>encodeFromJSON</sub>
+
+`protobuf.encodeFromJSON(name, json):` <mark style="color:purple;">**`table`**</mark>
+
+| Name     | Type                                            | Description                          |
+| -------- | ----------------------------------------------- | ------------------------------------ |
+| **name** | <mark style="color:purple;">**`string`**</mark> | Protobuf message type name           |
+| **json** | <mark style="color:purple;">**`string`**</mark> | JSON string representing the message |
+
+Encodes a JSON string into a serialized protobuf message. Returns a table with `binary` (userdata pointer) and `size` (number) fields.
+
+```lua
+local protobuf = require('protobuf')
+local JSON = require('assets.JSON')
+local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest', JSON:encode({}))
+GC.SendMessage(request.binary, 7197, request.size)
+```
+
+## <sub>decodeToJSON</sub>
+
+`protobuf.decodeToJSON(name, binary, size):` <mark style="color:purple;">**`string`**</mark>
+
+| Name       | Type                                              | Description                          |
+| ---------- | ------------------------------------------------- | ------------------------------------ |
+| **name**   | <mark style="color:purple;">**`string`**</mark>   | Protobuf message type name           |
+| **binary** | <mark style="color:purple;">**`userdata`**</mark> | Pointer to serialized protobuf data  |
+| **size**   | <mark style="color:purple;">**`integer`**</mark>  | Size of the serialized data in bytes |
+
+Decodes a serialized protobuf message (from a raw pointer) into a JSON string.
+
+```lua
+local response = protobuf.decodeToJSON('CMsgDOTAMatchmakingStatsResponse', msg.binary_buffer_recv, msg.size)
+Log.Write(response)
+```
+
+## <sub>decodeToJSONfromString</sub>
+
+`protobuf.decodeToJSONfromString(name, base64data):` <mark style="color:purple;">**`string`**</mark>
+
+| Name           | Type                                            | Description                             |
+| -------------- | ----------------------------------------------- | --------------------------------------- |
+| **name**       | <mark style="color:purple;">**`string`**</mark> | Protobuf message type name              |
+| **base64data** | <mark style="color:purple;">**`string`**</mark> | Base64-encoded serialized protobuf data |
+
+Decodes a base64-encoded protobuf message into a JSON string.
+
+## <sub>decodeToJSONfromObject</sub>
+
+`protobuf.decodeToJSONfromObject(msg_object):` <mark style="color:purple;">**`string`**</mark>
+
+| Name            | Type                                              | Description                     |
+| --------------- | ------------------------------------------------- | ------------------------------- |
+| **msg\_object** | <mark style="color:purple;">**`userdata`**</mark> | Protobuf message object pointer |
+
+Decodes a protobuf message object directly into a JSON string. Useful with callback message objects that provide a direct protobuf pointer.
+
+## <sub>free</sub>
+
+`protobuf.free(binary):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name       | Type                                              | Description                                 |
+| ---------- | ------------------------------------------------- | ------------------------------------------- |
+| **binary** | <mark style="color:purple;">**`userdata`**</mark> | Pointer to previously encoded protobuf data |
+
+Frees memory allocated by `encode` or `encodeFromJSON`. Returns `true` on success.
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 
 --------------------------------------------------------------------------------
 
@@ -17582,6 +17688,105 @@ The response will contain a direct answer to the question and relevant excerpts 
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md).
+
+# Logger
+
+Named logger with per-level methods and per-logger level filtering. Messages are written to the debug log as \[LEVEL] \[LoggerName] message.
+
+## <sub>Logger</sub>
+
+`Logger(name):` <mark style="color:purple;">**`Logger`**</mark>
+
+| Name     | Type                                            | Description |
+| -------- | ----------------------------------------------- | ----------- |
+| **name** | <mark style="color:purple;">**`string`**</mark> |             |
+
+Create a new Logger with the given name. Default level is DEBUG (all messages pass).
+
+## <sub>debug</sub>
+
+`:debug(...):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name    | Type                                         | Description |
+| ------- | -------------------------------------------- | ----------- |
+| **...** | <mark style="color:purple;">**`any`**</mark> |             |
+
+Log a debug-level message. Arguments are converted to strings and joined with spaces.
+
+## <sub>info</sub>
+
+`:info(...):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name    | Type                                         | Description |
+| ------- | -------------------------------------------- | ----------- |
+| **...** | <mark style="color:purple;">**`any`**</mark> |             |
+
+Log an info-level message.
+
+## <sub>warning</sub>
+
+`:warning(...):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name    | Type                                         | Description |
+| ------- | -------------------------------------------- | ----------- |
+| **...** | <mark style="color:purple;">**`any`**</mark> |             |
+
+Log a warning-level message.
+
+## <sub>error</sub>
+
+`:error(...):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name    | Type                                         | Description |
+| ------- | -------------------------------------------- | ----------- |
+| **...** | <mark style="color:purple;">**`any`**</mark> |             |
+
+Log an error-level message.
+
+## <sub>set\_level</sub>
+
+`:set_level(level):` <mark style="color:purple;">**`nil`**</mark>
+
+| Name      | Type                                            | Description  |
+| --------- | ----------------------------------------------- | ------------ |
+| **level** | <mark style="color:purple;">**`number`**</mark> | Logger.DEBUG |
+
+Set the minimum log level. Messages below this level are suppressed.
+
+## <sub>get\_level</sub>
+
+`:get_level():` <mark style="color:purple;">**`number`**</mark>
+
+Get the current minimum log level.
+
+## <sub>get\_name</sub>
+
+`:get_name():` <mark style="color:purple;">**`string`**</mark>
+
+Get the logger name.
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md -->
 
 > For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md).
@@ -17715,6 +17920,366 @@ Perform an HTTP GET request on the current page URL with the `ask` query paramet
 
 ```
 GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md).
+
+# table
+
+Extensions for the built-in Lua `table` library.
+
+## <sub>IsEmpty</sub>
+
+`table.IsEmpty(t):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name  | Type                                           | Description |
+| ----- | ---------------------------------------------- | ----------- |
+| **t** | <mark style="color:purple;">**`table`**</mark> |             |
+
+Returns true if the table has no entries.
+
+## <sub>Length</sub>
+
+`table.Length(t):` <mark style="color:purple;">**`integer`**</mark>
+
+| Name  | Type                                           | Description |
+| ----- | ---------------------------------------------- | ----------- |
+| **t** | <mark style="color:purple;">**`table`**</mark> |             |
+
+Counts ALL entries (array + hash), unlike `#t` which only counts the sequence part.
+
+## <sub>Keys</sub>
+
+`table.Keys(t):` <mark style="color:purple;">**`table`**</mark>
+
+| Name  | Type                                           | Description |
+| ----- | ---------------------------------------------- | ----------- |
+| **t** | <mark style="color:purple;">**`table`**</mark> |             |
+
+Returns a new array containing all keys of the table.
+
+## <sub>Values</sub>
+
+`table.Values(t):` <mark style="color:purple;">**`table`**</mark>
+
+| Name  | Type                                           | Description |
+| ----- | ---------------------------------------------- | ----------- |
+| **t** | <mark style="color:purple;">**`table`**</mark> |             |
+
+Returns a new array containing all values of the table.
+
+## <sub>Sum</sub>
+
+`table.Sum(t):` <mark style="color:purple;">**`number`**</mark>
+
+| Name  | Type                                           | Description |
+| ----- | ---------------------------------------------- | ----------- |
+| **t** | <mark style="color:purple;">**`table`**</mark> |             |
+
+Returns the sum of all numeric values in the table. Non-numeric values are skipped.
+
+## <sub>Reverse</sub>
+
+*Generic: `T`*
+
+`table.Reverse(t):` <mark style="color:purple;">**`T[]`**</mark>
+
+| Name  | Type                                         | Description |
+| ----- | -------------------------------------------- | ----------- |
+| **t** | <mark style="color:purple;">**`T[]`**</mark> |             |
+
+Returns a new array with the sequence part of `t` in reverse order.
+
+## <sub>CopyShallow</sub>
+
+*Generic: `T : table`*
+
+`table.CopyShallow(orig, [ignore_mt]):` <mark style="color:purple;">**`T`**</mark>
+
+| Name                                                             | Type                                             | Description                                             |
+| ---------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------- |
+| **orig**                                                         | <mark style="color:purple;">**`T`**</mark>       |                                                         |
+| **ignore\_mt&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | If true, the metatable is not copied `(default: false)` |
+
+Creates a shallow copy of the table. Copies the metatable unless `ignore_mt` is true.
+
+## <sub>Copy</sub>
+
+*Generic: `T : table`*
+
+`table.Copy(orig):` <mark style="color:purple;">**`T`**</mark>
+
+| Name     | Type                                       | Description |
+| -------- | ------------------------------------------ | ----------- |
+| **orig** | <mark style="color:purple;">**`T`**</mark> |             |
+
+Deep-copies a table with cycle detection. Metatables are preserved.
+
+## <sub>KvSwap</sub>
+
+`table.KvSwap(t, [v_to_true]):` <mark style="color:purple;">**`table`**</mark>
+
+| Name                                                              | Type                                             | Description                                                                   |
+| ----------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
+| **t**                                                             | <mark style="color:purple;">**`table`**</mark>   |                                                                               |
+| **v\_to\_true&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | If true, new values are `true` instead of the original key `(default: false)` |
+
+Swaps keys and values. If `v_to_true` is true, all new values become `true`\
+instead of the original key.
+
+## <sub>Merge</sub>
+
+`table.Merge(...):` <mark style="color:purple;">**`table`**</mark>
+
+| Name    | Type                                           | Description     |
+| ------- | ---------------------------------------------- | --------------- |
+| **...** | <mark style="color:purple;">**`table`**</mark> | Tables to merge |
+
+Concatenates array-part entries from all argument tables into a new array.
+
+## <sub>MergeHm</sub>
+
+`table.MergeHm(...):` <mark style="color:purple;">**`table`**</mark>
+
+| Name    | Type                                           | Description     |
+| ------- | ---------------------------------------------- | --------------- |
+| **...** | <mark style="color:purple;">**`table`**</mark> | Tables to merge |
+
+Merges all key-value pairs from argument tables into a new table.\
+Later tables overwrite earlier ones.
+
+## <sub>Diff</sub>
+
+`table.Diff(new_t, old_t):` <mark style="color:purple;">**`table`**</mark>
+
+| Name       | Type                                           | Description |
+| ---------- | ---------------------------------------------- | ----------- |
+| **new\_t** | <mark style="color:purple;">**`table`**</mark> |             |
+| **old\_t** | <mark style="color:purple;">**`table`**</mark> |             |
+
+Returns entries in `new_t` whose values differ from `old_t` (compared by rawequal).
+
+## <sub>Sorted</sub>
+
+*Generic: `T`*
+
+`table.Sorted(t, [compare_func]):` <mark style="color:purple;">**`T[]`**</mark>
+
+| Name                                                                | Type                                                             | Description                                   |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------- |
+| **t**                                                               | <mark style="color:purple;">**`T[]`**</mark>                     |                                               |
+| **compare\_func&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`fun(a: T, b: T):boolean`**</mark> | Optional comparison function `(default: nil)` |
+
+Sorts the table in-place via the built-in `table.sort`, then returns it.
+
+## <sub>Map</sub>
+
+`table.Map(t, func):` <mark style="color:purple;">**`table`**</mark>
+
+| Name     | Type                                                                   | Description                              |
+| -------- | ---------------------------------------------------------------------- | ---------------------------------------- |
+| **t**    | <mark style="color:purple;">**`table`**</mark>                         |                                          |
+| **func** | <mark style="color:purple;">**`fun(value: any, key: any):any`**</mark> | Callback `func(value, key) -> new_value` |
+
+Applies `func(value, key)` to every entry and returns a new array of results.
+
+## <sub>Filter</sub>
+
+*Generic: `T`*
+
+`table.Filter(t, func):` <mark style="color:purple;">**`T[]`**</mark>
+
+| Name     | Type                                                                         | Description                             |
+| -------- | ---------------------------------------------------------------------------- | --------------------------------------- |
+| **t**    | <mark style="color:purple;">**`T[]`**</mark>                                 |                                         |
+| **func** | <mark style="color:purple;">**`fun(value: T, key: integer):boolean`**</mark> | Predicate `func(value, key) -> boolean` |
+
+Returns a new array containing only entries for which `func(value, key)` returns true.
+
+## <sub>Any</sub>
+
+`table.Any(t, func):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name     | Type                                                                       | Description                             |
+| -------- | -------------------------------------------------------------------------- | --------------------------------------- |
+| **t**    | <mark style="color:purple;">**`table`**</mark>                             |                                         |
+| **func** | <mark style="color:purple;">**`fun(value: any, key: any):boolean`**</mark> | Predicate `func(value, key) -> boolean` |
+
+Returns true if `func(value, key)` returns true for at least one entry.
+
+## <sub>All</sub>
+
+`table.All(t, func):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name     | Type                                                                       | Description                             |
+| -------- | -------------------------------------------------------------------------- | --------------------------------------- |
+| **t**    | <mark style="color:purple;">**`table`**</mark>                             |                                         |
+| **func** | <mark style="color:purple;">**`fun(value: any, key: any):boolean`**</mark> | Predicate `func(value, key) -> boolean` |
+
+Returns true if `func(value, key)` returns true for every entry.
+
+## <sub>Find</sub>
+
+`table.Find(t, element):` <mark style="color:purple;">**`any`**</mark>, <mark style="color:purple;">**`any`**</mark>
+
+| Name        | Type                                           | Description           |
+| ----------- | ---------------------------------------------- | --------------------- |
+| **t**       | <mark style="color:purple;">**`table`**</mark> |                       |
+| **element** | <mark style="color:purple;">**`any`**</mark>   | Element to search for |
+
+Finds the first entry matching `element` by raw equality.\
+Returns `value, key` on match, or `nil` if not found.
+
+## <sub>RemoveElement</sub>
+
+`table.RemoveElement(t, element):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name        | Type                                                                                              | Description                           |
+| ----------- | ------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| **t**       | <mark style="color:purple;">**`table`**</mark>                                                    |                                       |
+| **element** | <mark style="color:purple;">**`any`**</mark> \| <mark style="color:purple;">**`function`**</mark> | Element to find or predicate function |
+
+Removes the first matching element from the array-part of `t`.\
+If `element` is a function, it is used as a predicate `func(value, index) -> boolean`.\
+Otherwise, finds by raw equality. Shifts remaining elements down to maintain order.
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md).
+
+# StringBuilder
+
+Efficient string builder for incremental string construction. Backed by a single pre-allocated C++ buffer. Avoids O(n^2) cost of repeated Lua string concatenation.
+
+## <sub>StringBuilder</sub>
+
+`StringBuilder():` <mark style="color:purple;">**`StringBuilder`**</mark>
+
+Create a new StringBuilder with default capacity (256 bytes).
+
+## <sub>append</sub>
+
+`:append(...):` <mark style="color:purple;">**`StringBuilder`**</mark>
+
+| Name    | Type                                         | Description |
+| ------- | -------------------------------------------- | ----------- |
+| **...** | <mark style="color:purple;">**`any`**</mark> |             |
+
+Append values to the buffer. Each argument is converted to string\
+(strings/numbers handled inline, others via tostring). Returns self for chaining.
+
+## <sub>appendf</sub>
+
+`:appendf(fmt, ...):` <mark style="color:purple;">**`StringBuilder`**</mark>
+
+| Name    | Type                                            | Description |
+| ------- | ----------------------------------------------- | ----------- |
+| **fmt** | <mark style="color:purple;">**`string`**</mark> |             |
+| **...** | <mark style="color:purple;">**`any`**</mark>    |             |
+
+Append formatted string with "{}" placeholders replaced left-to-right.\
+Excess placeholders are kept literal. Returns self for chaining.
+
+## <sub>clear</sub>
+
+`:clear():` <mark style="color:purple;">**`StringBuilder`**</mark>
+
+Clear the buffer contents. Retains allocated memory. Returns self for chaining.
+
+## <sub>\_\_tostring</sub>
+
+`:__tostring():` <mark style="color:purple;">**`string`**</mark>
+
+Returns the accumulated string.
+
+## <sub>\_\_len</sub>
+
+`:__len():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the byte length of the buffer.
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md?ask=<question>
+```
+
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
+
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md -->
+
+> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md).
+
+# Chronos
+
+High-resolution monotonic timer module. Loaded as a require-able library: `local chronos = require('chronos')`.
+
+Uses `QueryPerformanceCounter` on Windows for nanosecond-class precision.
+
+## <sub>nanotime</sub>
+
+`chronos.nanotime():` <mark style="color:purple;">**`number`**</mark>
+
+Returns the current monotonic time in seconds with nanosecond precision. The returned value is relative to an unspecified epoch — only differences between two calls are meaningful.
+
+```lua
+local chronos = require('chronos')
+
+local start = chronos.nanotime()
+-- ... work ...
+local elapsed = chronos.nanotime() - start
+Log.Write("Elapsed: " .. tostring(elapsed) .. " seconds")
+```
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md?ask=<question>
 ```
 
 The question should be specific, self-contained, and written in natural language.
