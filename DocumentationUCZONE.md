@@ -2089,20 +2089,23 @@ Use this mechanism when the answer is not explicitly present in the current page
 
 ## <mark style="color:purple;">Enum.UnitTypeFlags</mark>
 
-| Key                                                      | Value  |
-| -------------------------------------------------------- | ------ |
-| <mark style="color:green;">`TYPE_HERO`</mark>            | 1      |
-| <mark style="color:green;">`TYPE_CONSIDERED_HERO`</mark> | 2      |
-| <mark style="color:green;">`TYPE_TOWER`</mark>           | 4      |
-| <mark style="color:green;">`TYPE_STRUCTURE`</mark>       | 16     |
-| <mark style="color:green;">`TYPE_ANCIENT`</mark>         | 32     |
-| <mark style="color:green;">`TYPE_BARRACKS`</mark>        | 64     |
-| <mark style="color:green;">`TYPE_CREEP`</mark>           | 128    |
-| <mark style="color:green;">`TYPE_COURIER`</mark>         | 256    |
-| <mark style="color:green;">`TYPE_SHOP`</mark>            | 512    |
-| <mark style="color:green;">`TYPE_LANE_CREEP`</mark>      | 1024   |
-| <mark style="color:green;">`TYPE_WARD`</mark>            | 131072 |
-| <mark style="color:green;">`TYPE_ROSHAN`</mark>          | 524288 |
+| Key                                                      | Value   |
+| -------------------------------------------------------- | ------- |
+| <mark style="color:green;">`TYPE_HERO`</mark>            | 1       |
+| <mark style="color:green;">`TYPE_CONSIDERED_HERO`</mark> | 2       |
+| <mark style="color:green;">`TYPE_TOWER`</mark>           | 4       |
+| <mark style="color:green;">`TYPE_STRUCTURE`</mark>       | 16      |
+| <mark style="color:green;">`TYPE_FORT`</mark>            | 32      |
+| <mark style="color:green;">`TYPE_ANCIENT`</mark>         | 32      |
+| <mark style="color:green;">`TYPE_BARRACKS`</mark>        | 64      |
+| <mark style="color:green;">`TYPE_CREEP`</mark>           | 128     |
+| <mark style="color:green;">`TYPE_COURIER`</mark>         | 256     |
+| <mark style="color:green;">`TYPE_SHOP`</mark>            | 512     |
+| <mark style="color:green;">`TYPE_LANE_CREEP`</mark>      | 1024    |
+| <mark style="color:green;">`TYPE_BOSS`</mark>            | 2048    |
+| <mark style="color:green;">`TYPE_WARD`</mark>            | 131072  |
+| <mark style="color:green;">`TYPE_ROSHAN`</mark>          | 524288  |
+| <mark style="color:green;">`TYPE_TORMENTOR`</mark>       | 2097152 |
 
 ## <mark style="color:purple;">Enum.UnitOrder</mark>
 
@@ -11112,6 +11115,38 @@ Returns `true` if it is unit a considered a hero for targeting purposes.
 
 Returns `true` if the `CNPC` is a barracks.
 
+## <sub>IsFort</sub>
+
+`NPC.IsFort(npc):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name    | Type                                                                                   | Description  |
+| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
+
+Returns `true` if the `CNPC` is the Ancient/Throne building (the win-condition structure).\
+Distinct from `IsAncient`, which checks for ancient-tier neutral camps.
+
+## <sub>IsBoss</sub>
+
+`NPC.IsBoss(npc):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name    | Type                                                                                   | Description  |
+| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
+
+Returns `true` if the `CNPC` is a boss-like unit (TYPE\_BOSS bit).
+
+## <sub>IsTormentor</sub>
+
+`NPC.IsTormentor(npc):` <mark style="color:purple;">**`boolean`**</mark>
+
+| Name    | Type                                                                                   | Description  |
+| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
+
+Returns `true` if the `CNPC` is a Tormentor / mini-boss. Renders with the\
+siege-wide healthbar (same as Roshan).
+
 ## <sub>IsAncient</sub>
 
 `NPC.IsAncient(npc):` <mark style="color:purple;">**`boolean`**</mark>
@@ -15277,7 +15312,7 @@ Table to work with HTTP requests.
 | **method**                                                  | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                                                   | HTTP method                                                                                         |
 | **url**                                                     | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                                                   | URL                                                                                                 |
 | **data&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`{headers:table<string>, cookies:string`**</mark> \| <mark style="color:purple;">**`table<string>, data:string`**</mark> \| <mark style="color:purple;">**`table<string>, timeout:number}`**</mark> | data to send `(default: {})`                                                                        |
-| **callback**                                                | <mark style="color:purple;">**`fun(tbl: {response: string, code: string, header: string, param: string}):nil`**</mark>                                                                                                            | callback function to call when request is done. Take 1 argument - response data table, see example. |
+| **callback**                                                | <mark style="color:purple;">**`fun(tbl: {response: string, code: string, header: string, param: string, error_code: number, error_message: string}):nil`**</mark>                                                                 | callback function to call when request is done. Take 1 argument - response data table, see example. |
 | **param&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                                                   | string parameter to pass to callback function to identify request `(default: "")`                   |
 
 Do HTTP request. Returns `true` if request was sent successfully.
