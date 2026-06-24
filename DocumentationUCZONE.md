@@ -836,13 +836,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -1494,13 +1496,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3045,13 +3049,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3284,13 +3290,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3400,13 +3408,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3471,13 +3481,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3542,13 +3554,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3665,13 +3679,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -3806,13 +3822,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -4149,13 +4167,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -4407,13 +4427,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -4672,13 +4694,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -4937,13 +4961,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -5151,13 +5177,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -5420,13 +5448,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -5579,13 +5609,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -5849,13 +5881,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -6164,13 +6198,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -6417,13 +6453,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -6706,13 +6744,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -7033,13 +7073,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -7388,13 +7430,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -7610,13 +7654,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8152,13 +8198,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8337,13 +8385,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8563,13 +8613,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8645,13 +8697,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8709,13 +8763,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8774,13 +8830,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8851,13 +8909,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8894,13 +8954,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -8974,13 +9036,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9080,13 +9144,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9150,13 +9216,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9215,13 +9283,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9274,13 +9344,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9344,13 +9416,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9416,13 +9490,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9487,13 +9563,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9546,13 +9624,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9605,13 +9685,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9661,13 +9743,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -9942,13 +10026,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/player.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/player.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -10354,13 +10440,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -10828,13 +10916,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -12214,13 +12304,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -12495,13 +12587,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13165,13 +13259,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13478,13 +13574,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/item.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/item.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13515,13 +13613,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13552,13 +13652,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13589,13 +13691,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13626,13 +13730,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13673,13 +13779,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13712,13 +13820,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13789,13 +13899,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13826,13 +13938,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13863,13 +13977,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13900,13 +14016,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -13937,13 +14055,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -14250,13 +14370,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -14377,13 +14499,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -14643,13 +14767,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -14718,13 +14844,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -14859,13 +14987,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -14998,13 +15128,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15036,13 +15168,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15073,13 +15207,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15202,13 +15338,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15284,13 +15422,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15352,13 +15492,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15428,13 +15570,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15509,13 +15653,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15568,13 +15714,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15674,13 +15822,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -15780,13 +15930,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -16164,13 +16316,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -16820,13 +16974,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -16953,13 +17109,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17081,13 +17239,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17494,13 +17654,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17598,13 +17760,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17675,13 +17839,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17712,13 +17878,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17811,13 +17979,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17858,13 +18028,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -17951,13 +18123,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -18193,13 +18367,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -18267,13 +18443,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
@@ -18311,13 +18489,15 @@ This documentation is published with GitBook. GitBook is the documentation platf
 ## Querying This Documentation
 If you need additional information that is not directly available in this page, you can query the documentation dynamically by asking a question.
 
-Perform an HTTP GET request on the current page URL with the `ask` query parameter:
+Perform an HTTP GET request on the current page URL with the `ask` query parameter, and the optional `goal` query parameter:
 
 ```
-GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md?ask=<question>
+GET https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md?ask=<question>&goal=<endgoal>
 ```
 
-The question should be specific, self-contained, and written in natural language.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is optional and describes the broader end goal you are ultimately trying to accomplish on behalf of the user. GitBook uses it to tailor the answer towards what is most useful for that goal.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
 Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
