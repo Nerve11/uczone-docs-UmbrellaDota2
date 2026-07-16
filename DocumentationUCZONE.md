@@ -1,17 +1,16 @@
 # UCZONE API v2.0 - Полная документация
 
-*Сгенерировано из 90 страниц GitBook*
+*Сгенерировано из 100 страниц GitBook*
 
 ---
+
+> **Полная документация**: [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt)
+> Markdown-версии доступны путём добавления `.md` к URL.
 
 # Оглавление
 
 - [Starting Guide](#starting-guide)
 - [Cheats Types and Callbacks](#cheats-types-and-callbacks)
-  - [Classes - Color](#classes---color)
-  - [Classes - Menu System](#classes---menu-system)
-  - [Classes - UI Widgets](#classes---ui-widgets)
-  - [Classes - Math](#classes---math)
 - [Game Components - Entity Lists](#game-components---entity-lists)
 - [Game Components - Core Objects](#game-components---core-objects)
 - [Game Engine](#game-engine)
@@ -27,41 +26,28 @@
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/getting-started/getting_started.md).
-
+> 
 # Starting Guide
-
 To execute your script move the `.lua` file into the `%cheat_dir%/scripts` folder.
-
 ***
-
 ## Callbacks
-
 Most of your code will be executed inside the callbacks. To register the callback function, your script should return a table in the following format:
-
 ```lua
 return {
     CallbackName = FuncHandler,
 }
 ```
-
 <details>
-
 <summary>Example</summary>
-
 ```lua
 -- much more convenient way for big scripts
 local script = {}
-
 function script.OnUpdate()
     print("OnUpdate")
 end
-
 return script
 ```
-
 or
-
 ```lua
 return {
     OnUpdate = function() 
@@ -69,33 +55,22 @@ return {
     end,
 }
 ```
-
 </details>
-
 ***
-
 ## Example Scripts
-
 There is example scripts you can rely on:
-
 <details>
-
 <summary>Debug Script</summary>
-
 ```lua
 ---@diagnostic disable: undefined-global, param-type-mismatch, inject-field
 local debug = {}
-
 local tab = Menu.Create("General", "Debug", "Debug", "Debug")
-
 local inworld_group = tab:Create("In-World")
 local callbacks_group = tab:Create("Callbacks")
 local inworld_settings_group = tab:Create("In-World Settings", 1)
 local callbacks_settings_group = tab:Create("Callbacks Settings", 2)
-
 --#region UI
 local ui = {}
-
 ui.inworld = {}
 ui.inworld.global_switch = inworld_group:Switch("In-World Enabled", false)
 ui.inworld.name = inworld_group:Switch("Unit Name", false)
@@ -105,11 +80,9 @@ ui.inworld.ability = inworld_group:Switch("Abilities", false)
 ui.inworld.item = inworld_group:Switch("Items", false)
 ui.inworld.modifier_state = inworld_group:Switch("Modifier State", false)
 ui.inworld.modifier_state_duration = inworld_group:Switch("Modifier State Duration", false)
-
 ui.inworld_settings = {}
 ui.inworld_settings.hero_only = inworld_settings_group:Switch("Only heroes", true)
 ui.inworld_settings.on_draw = inworld_settings_group:Switch("Render in OnDraw \a{primary}fps drop", false)
-
 ui.callbacks = {}
 ui.callbacks.modifier = callbacks_group:Switch("Modifier", false)
 ui.callbacks.animation = callbacks_group:Switch("Animation", false)
@@ -119,29 +92,23 @@ ui.callbacks.particle = callbacks_group:Switch("Particle", false)
 ui.callbacks.gesture = callbacks_group:Switch("Gesture", false)
 ui.callbacks.sound = callbacks_group:Switch("Sound", false)
 ui.callbacks.order = callbacks_group:Switch("Unit Order", false)
-
 ui.callbacks_settings = {}
 ui.callbacks_settings.divider = callbacks_settings_group:Switch("Add 'divider' in the end of the log message", true)
 ui.callbacks_settings.add_more_info = callbacks_settings_group:Switch("More info. Starts with [m] prefix", true)
 --#endregion
-
 local font = Render.LoadFont("Arial", 0, 500)
-
 local function add_divider()
     if ui.callbacks_settings.divider:Get() then
         print("+---+---+---+---+---+---+---+")
     end
 end
-
 -- we can't modify the original table in callbacks, so we need to copy it to add more info
 function table.copy(t)
     local u = { }
     for k, v in pairs(t) do u[k] = v end
     return u
 end
-
 --#region Callbacks
-
 --#region Modifier
 function debug.OnModifierCreate(ent, mod)
     if not ui.callbacks.modifier:Get() then return end
@@ -152,7 +119,6 @@ function debug.OnModifierCreate(ent, mod)
     print(("%s | %s -> %s"):format(modifier_name, owner_name, NPC.GetUnitName(ent)))
     add_divider()
 end
-
 function debug.OnModifierDestroy(ent, mod)
     if not ui.callbacks.modifier:Get() then return end
     print("OnModifierDestroy")
@@ -163,7 +129,6 @@ function debug.OnModifierDestroy(ent, mod)
     add_divider()
 end
 --#endregion
-
 --#region Animation
 function debug.OnUnitAnimation(a)
     if not ui.callbacks.animation:Get() then return end
@@ -176,7 +141,6 @@ function debug.OnUnitAnimation(a)
     print(a)
     add_divider()
 end
-
 function debug.OnUnitAnimationEnd(a)
 	if not ui.callbacks.animation:Get() then return end
     print("OnUnitAnimationEnd")
@@ -189,11 +153,9 @@ function debug.OnUnitAnimationEnd(a)
     add_divider()
 end
 --#endregion
-
 --#region EntityCreate
 function debug.OnEntityCreate(entity)
     if not ui.callbacks.add_entity:Get() then return end
-
     print('OnEntityCreate')
     -- can't use NPC.GetUnitNameor Abilit.GetName because entity is not fully filled in the first tick
     local type = (function ()
@@ -207,14 +169,11 @@ function debug.OnEntityCreate(entity)
             return "Entity"
         end
     end)()
-
     print(("%s | %s | %d"):format(type, Entity.GetClassName(entity), Entity.GetIndex(entity)))
     add_divider()
 end
-
 function debug.OnEntityDestroy(entity)
     if not ui.callbacks.add_entity:Get() then return end
-
 	print('OnEntityDestroy')
     local type = (function ()
         if Entity.IsAbility(entity) then
@@ -227,12 +186,10 @@ function debug.OnEntityDestroy(entity)
             return "Entity"
         end
     end)()
-
     print(("%s | %s | %d"):format(type, Entity.GetClassName(entity), Entity.GetIndex(entity)))
     add_divider()
 end
 --#endregion
-
 --#region Projectile
 function debug.OnProjectile(proj)
     -- range autoatacks, target abilities
@@ -252,7 +209,6 @@ function debug.OnProjectile(proj)
     print(proj)
     add_divider()
 end
-
 function debug.OnLinearProjectileCreate(proj)
     -- mirana's arrow
     if not ui.callbacks.projectile:Get() then return end
@@ -267,22 +223,18 @@ function debug.OnLinearProjectileCreate(proj)
     print(proj)
     add_divider()
 end
-
 function debug.OnProjectileLoc(proj)
     if not ui.callbacks.projectile:Get() then return end
-
     -- tinker's rockets
 	print("OnProjectileLoc")
     print(proj)
     add_divider()
 end
 --#endregion
-
 --#region Particle
 local particle_name_map = {}
 function debug.OnParticleCreate(prt)
     if not ui.callbacks.particle:Get() then return end
-    
     print("OnParticleCreate")
     if ui.callbacks_settings.add_more_info:Get() then
         prt = table.copy(prt)
@@ -294,21 +246,17 @@ function debug.OnParticleCreate(prt)
             local unit_name = NPC.GetUnitName(prt.entityForModifiers)
             prt["[m]entityForModifiers_name"] = unit_name
         end
-
         particle_name_map[prt.index] = prt.name
     end
     print(prt)
     add_divider()
 end
-
 function debug.OnParticleUpdate(prt)
     if not ui.callbacks.particle:Get() then return end
-
     -- wisp's tentacles spam
     if (prt.controlPoint == 2 and prt.position == Vector(1.0, 1.0, 1.0)) then
 		return
 	end
-
     print("OnParticleUpdate")
     if ui.callbacks_settings.add_more_info:Get() then
         prt = table.copy(prt)
@@ -319,10 +267,8 @@ function debug.OnParticleUpdate(prt)
     print(prt)
     add_divider()
 end
-
 function debug.OnParticleUpdateEntity(prt)
     if not ui.callbacks.particle:Get() then return end
-
     print("OnParticleUpdateEntity")
     if ui.callbacks_settings.add_more_info:Get() then
         prt = table.copy(prt)
@@ -330,7 +276,6 @@ function debug.OnParticleUpdateEntity(prt)
             local unit_name = NPC.GetUnitName(prt.entity)
             prt["[m]entity_name"] = unit_name
         end
-
         if particle_name_map[prt.index] then
             prt["[m]name"] = particle_name_map[prt.index]
         end
@@ -338,10 +283,8 @@ function debug.OnParticleUpdateEntity(prt)
     print(prt)
     add_divider()
 end
-
 function debug.OnParticleUpdateFallback(prt)
     if not ui.callbacks.particle:Get() then return end
-
     print("OnParticleUpdateFallback")
     if ui.callbacks_settings.add_more_info:Get() then
         prt = table.copy(prt)
@@ -352,10 +295,8 @@ function debug.OnParticleUpdateFallback(prt)
     print(prt)
     add_divider()
 end
-
 function debug.OnParticleDestroy(prt)
     if not ui.callbacks.particle:Get() then return end
-
     print("OnParticleDestroy")
     if ui.callbacks_settings.add_more_info:Get() then
         prt = table.copy(prt)
@@ -365,26 +306,20 @@ function debug.OnParticleDestroy(prt)
     end
     print(prt)
     add_divider()
-
     particle_name_map[prt.index] = nil
 end
 --#endregion
-
 --#region Gesture
 function debug.OnUnitAddGesture(a)
     if not ui.callbacks.gesture:Get() then return end
-
     print("OnUnitAddGesture")
 	print(a)
     add_divider()
 end
 --#endregion
-
 --#region Sound
 function debug.OnStartSound(obj)
     if not ui.callbacks.sound:Get() then return end
-
-    
     print("OnStartSound")
     if ui.callbacks_settings.add_more_info:Get() then
         obj = table.copy(obj)
@@ -397,21 +332,17 @@ function debug.OnStartSound(obj)
     add_divider()
 end
 --#endregion
-
 --#region Order
 local flipped_order_enum = {}
 for i, v in pairs(Enum.UnitOrder) do
     flipped_order_enum[v] = i
 end
-
 local flipped_issuer_enum = {}
 for i, v in pairs(Enum.PlayerOrderIssuer) do
     flipped_issuer_enum[v] = i
 end
-
 function debug.OnPrepareUnitOrders(order)
     if not ui.callbacks.order:Get() then return end
-
     print("OnPrepareUnitOrders")
     if ui.callbacks_settings.add_more_info:Get() then
         order = table.copy(order)
@@ -427,7 +358,6 @@ function debug.OnPrepareUnitOrders(order)
             local ability_name = Ability.GetName(order.ability)
             order["[m]ability_name"] = ability_name
         end
-
         if (order.order) then
             local order_name = flipped_order_enum[order.order]
             if order_name then
@@ -435,28 +365,21 @@ function debug.OnPrepareUnitOrders(order)
             end
         end
     end
-
 	print(order)
     add_divider()
 end
 --#endregion
-
 --#endregion
-
 local text_color <const> = Color(255, 255, 255, 255)
 local font_size <const> = 14
 local line_height <const> = 18
-
 local floor = math.floor
-
 local flipped_modstate_enum = {}
 for i, v in pairs(Enum.ModifierState) do
     flipped_modstate_enum[v] = i
 end
-
 local function inworld_processing()
     if not ui.inworld.global_switch:Get() then return end
-
     local render_names = ui.inworld.name:Get()
     local render_position = ui.inworld.position:Get()
     local render_modifiers = ui.inworld.modifier:Get()
@@ -464,7 +387,6 @@ local function inworld_processing()
     local render_items = ui.inworld.item:Get()
     local render_modifier_state = ui.inworld.modifier_state:Get()
     local render_modifier_state_duration = ui.inworld.modifier_state_duration:Get()
-
     local list = ui.inworld_settings.hero_only:Get() and Heroes.GetAll() or NPCs.GetAll()
     for i, unit in pairs(list) do
         if unit then
@@ -536,7 +458,6 @@ local function inworld_processing()
                 for i = 0, Enum.ModifierState.MODIFIER_STATE_LAST, 1 do
                     payload[i] = true
                 end
-
                 local states = NPC.GetStatesDuration(unit, payload, false)
                 for mod_state, duration in pairs(states) do
                     if (duration > 0.0) then
@@ -553,168 +474,110 @@ local function inworld_processing()
         ::continue::
     end
 end
-
 function debug.OnDraw()
     if not ui.inworld_settings.on_draw:Get() then
         return
     end
-
     inworld_processing()
 end
-
 function debug.OnUpdate()
     if ui.inworld_settings.on_draw:Get() then
         return
     end
-
     inworld_processing()
 end
-
 return debug
 ```
-
 </details>
-
 <details>
-
 <summary>Example</summary>
-
 ```lua
 local example = {}
-
 --#region UI
-
 local tab = Menu.Create("General", "Main", "Example")
 tab:Icon("\u{f6b6}")
 local group = tab:Create("Main"):Create("Group")
-
 local ui = {}
-
 ui.global_switch = group:Switch("Global Switch", false, "\u{f00c}")
-
 ui.auto_phase = group:Switch("Auto Phase Boots", true, "panorama/images/items/phase_boots_png.vtex_c")
 ui.custom_radius = group:Slider("Custom Radius", 0, 1000, 0, function (value)
-
     if value == 0 then return "Disabled" end
-
     return tostring(value)
 end)
 ui.custom_radius:Icon("\u{f1ce}")
 ui.radius_color = group:ColorPicker("Radius Color", Color(255, 255, 255), "\u{f53f}")
 ui.vbe_render = group:Switch("VBE Render", false, "\u{f06e}")
 ui.particle_notif = group:Switch("Particle Notification", false, "\u{f0f3}")
-
 ui.global_switch:SetCallback(function ()
-
     ui.auto_phase:Disabled(not ui.global_switch:Get())
     ui.custom_radius:Disabled(not ui.global_switch:Get())
     ui.radius_color:Disabled(not ui.global_switch:Get())
     ui.vbe_render:Disabled(not ui.global_switch:Get())
     ui.particle_notif:Disabled(not ui.global_switch:Get())
 end, true)
-
 --#endregion UI
-
 --#region Vars
-
 local my_hero = nil
 local particle = nil
 local need_update_particle = false
 local need_update_color = false
-
 ui.custom_radius:SetCallback(function ()
-
     need_update_particle = true
-
     if ui.global_switch:Get() then
-
         ui.radius_color:Disabled(ui.custom_radius:Get() == 0)
     end
 end, true)
-
 ui.radius_color:SetCallback(function ()
-
     need_update_color = true
 end)
-
 --#endregion Vars
-
 local auto_phase = function ()
-
     if not ui.auto_phase:Get() then return end
-
     local item = NPC.GetItem(my_hero, "item_phase_boots")
-
     if not item then return end
-
     if not Ability.IsCastable(item, NPC.GetMana(my_hero)) then return end
-
     if not NPC.IsRunning(my_hero) then return end
-
     Ability.CastNoTarget(item)
     return true
 end
-
 local custom_radius = function ()
-
     if ui.custom_radius:Get() == 0 or need_update_particle or not Entity.IsAlive(my_hero) then
-
         Particle.Destroy(particle)
         particle = nil
         need_update_particle = false
         return
     end
-
     if not particle then
-
         particle = Particle.Create("particles/ui_mouseactions/drag_selected_ring.vpcf", Enum.ParticleAttachment.PATTACH_ABSORIGIN_FOLLOW, my_hero)
-
         Particle.SetControlPoint(particle, 2, Vector(ui.custom_radius:Get(), 255, 255))
         local color = ui.radius_color:Get()
         color = Vector(color.r, color.g, color.b)
         Particle.SetControlPoint(particle, 1, color)
     end
-
     if particle and need_update_color then
-
         local color = ui.radius_color:Get()
         color = Vector(color.r, color.g, color.b)
         Particle.SetControlPoint(particle, 1, color)
     end
 end
-
 local font = Render.LoadFont("MuseoSansEx", Enum.FontCreate.FONTFLAG_ANTIALIAS)
-
 local vbe_render = function ()
-
     if not ui.vbe_render:Get() then return end
-
     local is_visible = NPC.IsVisibleToEnemies(my_hero)
-
     if not is_visible then return end
-
     local pos = Entity.GetAbsOrigin(my_hero) + Vector(0, 0, NPC.GetHealthBarOffset(my_hero))
     local render_pos, pos_is_visible = Render.WorldToScreen(pos)
-
     if not pos_is_visible then return end
-
     local x, y = render_pos.x, render_pos.y - 80
-
     local text = "Visible"
     local text_size = Render.TextSize(font, 30, text)
-
     x = x - text_size.x / 2
-
     Render.Text(font, 30, text, Vec2(x + 1, y + 1), Color(0, 0, 0))
     Render.Text(font, 30, text, Vec2(x, y), Color(255, 255, 255))
 end
-
 --#region Callbacks
-
 example.OnParticleCreate = function (data)
-
     if not ui.global_switch:Get() or not ui.particle_notif:Get() then return end
-
     --[[ data:
         {
           "index": "4",
@@ -728,12 +591,9 @@ example.OnParticleCreate = function (data)
           "entity_for_modifiers_id": "214"
         }
     ]]
-
     if data.entityForModifiers then
-
         local str = '<img class="HeroIcon" src="file://{images}/heroes/'..Entity.GetUnitName(data.entityForModifiers)..'.png"/>'.." "..data.fullName
         Chat.Print("ConsoleChat", str) --chat
-
         Notification ({ --side
             duration = 3,
             timer = 3,
@@ -747,9 +607,7 @@ example.OnParticleCreate = function (data)
             --sound = "sounds/ui/yoink"
         })
     else
-
         Chat.Print("ConsoleChat", data.fullName) --chat
-
         Notification ({ --side
             duration = 3,
             timer = 3,
@@ -764,67 +622,42 @@ example.OnParticleCreate = function (data)
         })
     end
 end
-
 example.OnDraw = function ()
-
     if not ui.global_switch:Get() or not my_hero then return end
-
     vbe_render()
 end
-
 example.OnUpdate = function ()
-
     if not ui.global_switch:Get() then
-
         if particle then
-
             Particle.Destroy(particle)
             particle = nil
         end
-
         return
     end
-
     if not my_hero then my_hero = Heroes.GetLocal(); return end
-
     custom_radius()
-
     if auto_phase() then return end
 end
-
 --#endregion Callbacks
-
 return example
 ```
-
 </details>
-
 ***
-
 ## Debugging
-
 You can use `print` or `log` function to print messages to the console and `%cheat_dir%/debug.log` file.\
 This is useful for debugging your scripts.
-
 This functions will automaticly stringify your tables
-
 <details>
-
 <summary>Example</summary>
-
 ```lua
 -- print all towers names and their positions
 for _, tower in pairs(Towers.GetAll()) do
 	print(NPC.GetUnitName(tower), Entity.GetAbsOrigin(tower))
 end
 ```
-
 </details>
-
 ## Useful Links
-
 Here are some useful links:
-
 * [Lua 5.4 Manual](https://www.lua.org/manual/5.4/)
 * [VS Code Umbrella Extention](https://marketplace.visualstudio.com/items?itemName=ILKA.umbrella-vscode)
 
@@ -835,154 +668,92 @@ Here are some useful links:
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md).
-
+> 
 # Callbacks
-
 Callbacks for lua Scripts should return a table with the following functions. If the table contains one of the functions below, it will be registered as a callback and will be called at the appropriate time.
-
 ## <sub>OnScriptsLoaded</sub>
-
 `Callbacks.OnScriptsLoaded():` <mark style="color:purple;">**`nil`**</mark>
-
 Called after all scripts are loaded.
-
 ## <sub>OnDraw</sub>
-
 `Callbacks.OnDraw():` <mark style="color:purple;">**`nil`**</mark>
-
 Called when the game is drawing. Works only in the game.\
 Recommended to use for drawing only.
-
 ## <sub>OnFrame</sub>
-
 `Callbacks.OnFrame():` <mark style="color:purple;">**`nil`**</mark>
-
 The same as OnDraw, but called in the menu too.
-
 ## <sub>OnUpdate</sub>
-
 `Callbacks.OnUpdate():` <mark style="color:purple;">**`nil`**</mark>
-
 Called every game update. Works only in the game.\
 Recommended to use for logic.
-
 ## <sub>OnPreHumanizer</sub>
-
 `Callbacks.OnPreHumanizer():` <mark style="color:purple;">**`nil`**</mark>
-
 TODO
-
 ## <sub>OnUpdateEx</sub>
-
 `Callbacks.OnUpdateEx():` <mark style="color:purple;">**`nil`**</mark>
-
 Called every game update. Same as OnUpdate but as well called in the menu.\
 Recommended to use for logic.
-
 ## <sub>OnEntityCreate</sub>
-
 `Callbacks.OnEntityCreate(entity):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description                  |
 | ---------- | -------------------------------------------------------------------------------------------- | ---------------------------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | The entity that was created. |
-
 Called when a new entity is created.
-
 ## <sub>OnNpcSpawned</sub>
-
 `Callbacks.OnNpcSpawned(npc):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                          | Description               |
 | ------- | --------------------------------------------- | ------------------------- |
 | **npc** | <mark style="color:purple;">**`CNpc`**</mark> | The npc that was created. |
-
 Called when a npc is spawned. Unlike OnAddEntity, the entity is fully initialized here.
-
 ## <sub>OnEntityDestroy</sub>
-
 `Callbacks.OnEntityDestroy(entity):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description                    |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------------------ |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | The entity that was destroyed. |
-
 Called when an entity is destroyed.
-
 ## <sub>OnModifierCreate</sub>
-
 `Callbacks.OnModifierCreate(entity, modifier):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description                       |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | **entity**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)           | The entity that has the modifier. |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | The modifier that was created.    |
-
 Called when a modifier is created.
-
 ## <sub>OnModifierDestroy</sub>
-
 `Callbacks.OnModifierDestroy(entity, modifier):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description                       |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | **entity**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)           | The entity that has the modifier. |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | The modifier that was destroyed.  |
-
 Called when a modifier is destroyed.
-
 ## <sub>OnModifierUpdate</sub>
-
 `Callbacks.OnModifierUpdate(entity, modifier):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description                       |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | **entity**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)           | The entity that has the modifier. |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | The modifier that was updated.    |
-
 Called when a modifier is updated/refreshed.
-
 ## <sub>OnEntityHurt</sub>
-
 This callback is called only in unsafe mode.
-
 `Callbacks.OnEntityHurt(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                                                                                                                                                                                       | Description               |
 | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data** | <mark style="color:purple;">**`{source:CEntity`**</mark> \| <mark style="color:purple;">**`nil, target:CEntity`**</mark> \| <mark style="color:purple;">**`nil, ability:CAbility`**</mark> \| <mark style="color:purple;">**`nil, damage:number}`**</mark> | The data about the event. |
-
 Called when an entity is hurt.
-
 ## <sub>OnEntityKilled</sub>
-
 This callback is called only in unsafe mode.
-
 `Callbacks.OnEntityKilled(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                                                                                                                                                                        | Description               |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data** | <mark style="color:purple;">**`{source:CEntity`**</mark> \| <mark style="color:purple;">**`nil, target:CEntity`**</mark> \| <mark style="color:purple;">**`nil, ability:CAbility`**</mark> \| <mark style="color:purple;">**`nil}`**</mark> | The data about the event. |
-
 Called when an entity is killed.
-
 ## <sub>OnFireEventClient</sub>
-
 This callback is called only in unsafe mode.
-
 \`Callbacks.OnFireEventClient(data):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name     | Type                                                                | Description               |
 | -------- | ------------------------------------------------------------------- | ------------------------- |
 | **data** | <mark style="color:purple;">**`{name:string, event:Event}`**</mark> | The data about the event. |
-
 Called when a game event is fired.
-
 ## <sub>OnUnitAnimation</sub>
-
 `Callbacks.OnUnitAnimation(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                          | Type                                                                                   | Description                         |
 | ----------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
 | **data**                      | <mark style="color:purple;">**`table`**</mark>                                         | The data about the event.           |
@@ -995,25 +766,17 @@ Called when a game event is fired.
 |  .**sequence**                | <mark style="color:purple;">**`integer`**</mark>                                       | The sequence.                       |
 |  .**sequenceName**            | <mark style="color:purple;">**`string`**</mark>                                        | The sequence name.                  |
 |  .**lag\_compensation\_time** | <mark style="color:purple;">**`number`**</mark>                                        | The lag compensation time.          |
-
 Called when a unit animation is played.
-
 ## <sub>OnUnitAnimationEnd</sub>
-
 `Callbacks.OnUnitAnimationEnd(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                   | Description                         |
 | ---------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
 | **data**   | <mark style="color:purple;">**`table`**</mark>                                         | The data about the event.           |
 |  .**unit** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The unit that played the animation. |
 |  .**snap** | <mark style="color:purple;">**`boolean`**</mark>                                       | The snap.                           |
-
 Called when a unit animation ends.
-
 ## <sub>OnProjectile</sub>
-
 `Callbacks.OnProjectile(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                        | Type                                                                                                           | Description                           |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | **data**                    | <mark style="color:purple;">**`table`**</mark>                                                                 | The data about the event.             |
@@ -1034,13 +797,9 @@ Called when a unit animation ends.
 |  .**handle**                | <mark style="color:purple;">**`integer`**</mark>                                                               | The handle of projectile.             |
 |  .**target\_loc**           | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the target.           |
 |  .**original\_move\_speed** | <mark style="color:purple;">**`integer`**</mark>                                                               | The original move speed.              |
-
 Called when new projectile is created.
-
 ## <sub>OnProjectileLoc</sub>
-
 `Callbacks.OnProjectileLoc(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                           | Type                                                                                                           | Description                         |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **data**                                                       | <mark style="color:purple;">**`table`**</mark>                                                                 | The data about the event.           |
@@ -1058,13 +817,9 @@ Called when new projectile is created.
 |  .**handle**                                                   | <mark style="color:purple;">**`integer`**</mark>                                                               | The handle of projectile.           |
 |  .**fullName**                                                 | <mark style="color:purple;">**`string`**</mark>                                                                | The full name of projectile.        |
 |  .**name**                                                     | <mark style="color:purple;">**`string`**</mark>                                                                | The short name of projectile.       |
-
 Called when new projectile loc is created.
-
 ## <sub>OnLinearProjectileCreate</sub>
-
 `Callbacks.OnLinearProjectileCreate(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                | Type                                                                                                           | Description                   |
 | ------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | **data**            | <mark style="color:purple;">**`table`**</mark>                                                                 | The data about the event.     |
@@ -1080,24 +835,16 @@ Called when new projectile loc is created.
 |  .**colorGemColor** | <mark style="color:purple;">**`integer`**</mark>                                                               | The color gem color.          |
 |  .**fullName**      | <mark style="color:purple;">**`string`**</mark>                                                                | The full name of projectile.  |
 |  .**name**          | <mark style="color:purple;">**`string`**</mark>                                                                | The short name of projectile. |
-
 Called when new linear projectile is created.
-
 ## <sub>OnLinearProjectileDestroy</sub>
-
 `Callbacks.OnLinearProjectileDestroy(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                             | Description               |
 | ------------ | ------------------------------------------------ | ------------------------- |
 | **data**     | <mark style="color:purple;">**`table`**</mark>   | The data about the event. |
 |  .**handle** | <mark style="color:purple;">**`integer`**</mark> | The handle of projectile. |
-
 Called when linear projectile is destroyed.
-
 ## <sub>OnParticleCreate</sub>
-
 `Callbacks.OnParticleCreate(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                       | Type                                                                                                                                                                                 | Description                                |
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
 | **data**                                                                   | <mark style="color:purple;">**`table`**</mark>                                                                                                                                       | The data about the event.                  |
@@ -1111,39 +858,27 @@ Called when linear projectile is destroyed.
 |  .**name**                                                                 | <mark style="color:purple;">**`string`**</mark>                                                                                                                                      | The short name of particle.                |
 |  .**hash**                                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                     | The hash of particle.                      |
 |  .**particleNameIndex**                                                    | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                     | The particle name index.                   |
-
 Called when new particle is created.
-
 ## <sub>OnParticleUpdate</sub>
-
 `Callbacks.OnParticleUpdate(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name               | Type                                                                                                           | Description               |
 | ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data**           | <mark style="color:purple;">**`table`**</mark>                                                                 | The data about the event. |
 |  .**index**        | <mark style="color:purple;">**`integer`**</mark>                                                               | The index of particle.    |
 |  .**controlPoint** | <mark style="color:purple;">**`integer`**</mark>                                                               | The control point.        |
 |  .**position**     | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The position.             |
-
 Called when particle is updated.
-
 ## <sub>OnParticleUpdateFallback</sub>
-
 `Callbacks.OnParticleUpdateFallback(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name               | Type                                                                                                           | Description               |
 | ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data**           | <mark style="color:purple;">**`table`**</mark>                                                                 | The data about the event. |
 |  .**index**        | <mark style="color:purple;">**`integer`**</mark>                                                               | The index of particle.    |
 |  .**controlPoint** | <mark style="color:purple;">**`integer`**</mark>                                                               | The control point.        |
 |  .**position**     | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The position.             |
-
 Called when particle is updated. Alternative version for some particles.
-
 ## <sub>OnParticleUpdateEntity</sub>
-
 `Callbacks.OnParticleUpdateEntity(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                   | Type                                                                                                                                                                                 | Description               |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
 | **data**               | <mark style="color:purple;">**`table`**</mark>                                                                                                                                       | The data about the event. |
@@ -1155,25 +890,17 @@ Called when particle is updated. Alternative version for some particles.
 |  .**attachmentName**   | <mark style="color:purple;">**`string`**</mark>                                                                                                                                      | The attachment name.      |
 |  .**position**         | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                       | The position.             |
 |  .**includeWearables** | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                     | Include wearables.        |
-
 Called when particle is updated on entity.
-
 ## <sub>OnParticleDestroy</sub>
-
 `Callbacks.OnParticleDestroy(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                     | Type                                             | Description                      |
 | ------------------------ | ------------------------------------------------ | -------------------------------- |
 | **data**                 | <mark style="color:purple;">**`table`**</mark>   | The data about the event.        |
 |  .**index**              | <mark style="color:purple;">**`integer`**</mark> | The index of destroyed particle. |
 |  .**destroyImmediately** | <mark style="color:purple;">**`boolean`**</mark> | Destroy immediately.             |
-
 Called when particle is destroyed.
-
 ## <sub>OnStartSound</sub>
-
 `Callbacks.OnStartSound(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                           | Type                                                                                                           | Description                           |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | **data**                                                       | <mark style="color:purple;">**`table`**</mark>                                                                 | The data about the event.             |
@@ -1183,25 +910,17 @@ Called when particle is destroyed.
 |  .**seed**                                                     | <mark style="color:purple;">**`integer`**</mark>                                                               | The seed of sound.                    |
 |  .**name**                                                     | <mark style="color:purple;">**`string`**</mark>                                                                | The name of sound.                    |
 |  .**position**                                                 | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The position of sound.                |
-
 Called when sound is started.
-
 ## <sub>OnSpeak</sub>
-
 `Callbacks.OnSpeak(data):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                                                                   | Description               |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data**     | <mark style="color:purple;">**`table`**</mark>                                                                                         | The data about the event. |
 |  .**source** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) \| <mark style="color:purple;">**`nil`**</mark> | The unit who speak.       |
 |  .**name**   | <mark style="color:purple;">**`string`**</mark>                                                                                        | The name of the sound.    |
-
 Called every time unit/announcer talk. You could return false to prevent the sound from being played.
-
 ## <sub>OnChatEvent</sub>
-
 `Callbacks.OnChatEvent(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name              | Type                                             | Description                    |
 | ----------------- | ------------------------------------------------ | ------------------------------ |
 | **data**          | <mark style="color:purple;">**`table`**</mark>   | The data about the event.      |
@@ -1215,23 +934,15 @@ Called every time unit/announcer talk. You could return false to prevent the sou
 |  .**playerid\_4** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_4 of chat event. |
 |  .**playerid\_5** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_5 of chat event. |
 |  .**playerid\_6** | <mark style="color:purple;">**`integer`**</mark> | The playerid\_6 of chat event. |
-
 Called on chat event.
-
 ## <sub>OnOverHeadEvent</sub>
-
 `Callbacks.OnOverHeadEvent(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                                                                                                                                                    | Description                    |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **data** | <mark style="color:purple;">**`{player_source:CPlayer`**</mark> \| <mark style="color:purple;">**`nil, player_target:CPlayer`**</mark> \| <mark style="color:purple;">**`nil, target_npc:CNPC, value:integer}`**</mark> | The table with the event info. |
-
 Called on event above the hero's head.
-
 ## <sub>OnUnitAddGesture</sub>
-
 `Callbacks.OnUnitAddGesture(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                        | Type                                                                                   | Description                                           |
 | ----------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | **data**                                                    | <mark style="color:purple;">**`table`**</mark>                                         | The data about the event.                             |
@@ -1243,13 +954,9 @@ Called on event above the hero's head.
 |  .**slot**                                                  | <mark style="color:purple;">**`integer`**</mark>                                       | The slot.                                             |
 |  .**activity**                                              | <mark style="color:purple;">**`integer`**</mark>                                       | The activity.                                         |
 |  .**sequenceName**                                          | <mark style="color:purple;">**`string`**</mark>                                        | The sequence name.                                    |
-
 Called when a unit is added to a gesture.
-
 ## <sub>OnPrepareUnitOrders</sub>
-
 `Callbacks.OnPrepareUnitOrders(data):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                            | Type                                                                                                                                                                               | Description                                |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | **data**                                                        | <mark style="color:purple;">**`table`**</mark>                                                                                                                                     | The data about the event.                  |
@@ -1262,13 +969,9 @@ Called when a unit is added to a gesture.
 |  .**npc**                                                       | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order.                     |
 |  .**queue**                                                     | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                   | If the order is queued.                    |
 |  .**showEffects**                                               | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                   | The show effects of the order.             |
-
 Called on every player order. Return false to prevent the order from being executed.
-
 ## <sub>OnGCMessage</sub>
-
 `Callbacks.OnGCMessage(data):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                                         | Type                                              | Description                                                 |
 | ---------------------------------------------------------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
 | **data**                                                                     | <mark style="color:purple;">**`table`**</mark>    |                                                             |
@@ -1276,41 +979,31 @@ Called on every player order. Return false to prevent the order from being execu
 |  .**size**                                                                   | <mark style="color:purple;">**`number`**</mark>   | The size of the message.                                    |
 |  .**binary\_buffer\_send&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`userdata`**</mark> | The binary buffer of the send message. `(default: nil)`     |
 |  .**binary\_buffer\_recv&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`userdata`**</mark> | The binary buffer of the recieved message. `(default: nil)` |
-
 Called when a game coordinator protobuff message is received. Return false to prevent the message\
 from being sent (doesnt work with recieved messages). For more look at GC table description.
-
 #### Example
-
 ```lua
 -- ongc_message.lua
 -- import protobuf and json libraries
 local protobuf = require('protobuf');
 local JSON = require('assets.JSON');
-
 -- do the stats request
 local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest', JSON:encode({}));
 GC.SendMessage( request.binary, 7197, request.size );
-
 return {
     OnGCMessage = function(msg)
         if (msg.msg_type ~= 7198) then
             return true;
         end
-
         -- decode the response and print it
         local response = protobuf.decodeToJSON('CMsgDOTAMatchmakingStatsResponse', msg.binary_buffer_recv, msg.size);
         Log.Write(response);
-
         return true;
     end
 }
 ```
-
 ## <sub>OnSendNetMessage</sub>
-
 `Callbacks.OnSendNetMessage(data):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                | Type                                                   | Description                        |
 | ------------------- | ------------------------------------------------------ | ---------------------------------- |
 | **data**            | <mark style="color:purple;">**`table`**</mark>         | The data about the event.          |
@@ -1318,17 +1011,13 @@ return {
 |  .**message\_name** | <mark style="color:purple;">**`string`**</mark>        | The message name.                  |
 |  .**buffer**        | <mark style="color:purple;">**`lightuserdata`**</mark> | The encoded buffer of the message. |
 |  .**size**          | <mark style="color:purple;">**`number`**</mark>        | The size of the message.           |
-
 Called when a net message is sent. Return false to prevent the message from being sent. See\
 example
-
 #### Example
-
 ```lua
 -- onsend_netmsg.lua
 -- anti-mute script for dota 2
 -- redirects all chat messages to console command 'say' or 'say_team'
-
 -- import protobuf and json libraries
 local protobuf = require('protobuf');
 local JSON = require('assets.JSON');
@@ -1337,24 +1026,20 @@ return {
         if msg.message_id ~= 394 then
             return true;
         end
-
         -- decode protobuf message to json
         local json_message = JSON:decode(protobuf.decodeToJSONfromObject(msg));
         if not json_message then
             return true;
         end
-
         -- message CDOTAClientMsg_ChatMessage {
         --     optional uint32 channel_type = 1;
         --     optional string message_text = 2;
         -- }
-
         local text_message = json_message.message_text;
         -- skip commands starting with '-'
         if text_message:find("-") == 1 then
             return true;
         end
-    
         -- 11 - all chat 
         if (json_message.channel_type == 11) then
             Engine.ExecuteCommand('say "'..text_message..'"');
@@ -1367,21 +1052,15 @@ return {
     end
 }
 ```
-
 ## <sub>OnPostReceivedNetMessage</sub>
-
 `Callbacks.OnPostReceivedNetMessage(data):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name              | Type                                                   | Description                        |
 | ----------------- | ------------------------------------------------------ | ---------------------------------- |
 | **data**          | <mark style="color:purple;">**`table`**</mark>         | The data about the event.          |
 |  .**message\_id** | <mark style="color:purple;">**`number`**</mark>        | The message id.                    |
 |  .**msg\_object** | <mark style="color:purple;">**`lightuserdata`**</mark> | The encoded buffer of the message. |
-
 Called when a net message is received. Return false to prevent the message from being recieved
-
 #### Example
-
 ```lua
 -- onrecv_netmsg.lua
 local protobuf = require('protobuf')
@@ -1396,85 +1075,55 @@ return {
         end
     end
 }
-
 ```
-
 ## <sub>OnGameEnd</sub>
-
 `Callbacks.OnGameEnd():` <mark style="color:purple;">**`nil`**</mark>
-
 Called on game end.\
 Recommended to use for zeroing.
-
 ## <sub>OnKeyEvent</sub>
-
 `Callbacks.OnKeyEvent(data):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                                                                                                 | Description               |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data**    | <mark style="color:purple;">**`table`**</mark>                                                                                                                       | The data about the event. |
 |  .**key**   | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) | The key code.             |
 |  .**event** | [<mark style="color:purple;">**`Enum.EKeyEvent`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/pages/VwVljl88Qnl7u9hhqRdw#enum.ekeyevent)   | Key event.                |
-
 Called on key and mouse input. Return false to prevent the event from being processed.
-
 ## <sub>OnUnitInventoryUpdated</sub>
-
 `Callbacks.OnUnitInventoryUpdated(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                   | Description               |
 | -------- | -------------------------------------------------------------------------------------- | ------------------------- |
 | **data** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The data about the event. |
-
 Called on unit inventory updated.
-
 ## <sub>OnSetDormant</sub>
-
 `Callbacks.OnSetDormant(npc, type):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                                                                                                     | Description         |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                                   | The target npc.     |
 | **type** | [<mark style="color:purple;">**`Enum.DormancyType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/pages/VwVljl88Qnl7u9hhqRdw#enum.dormancytype) | The type of change. |
-
 Called on NPC dormancy state changed.
-
 ## <sub>OnGameRulesStateChange</sub>
-
 `Callbacks.OnGameRulesStateChange(data):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                        | Description                         |
 | -------- | ------------------------------------------- | ----------------------------------- |
 | **data** | <mark style="color:purple;">**`{}`**</mark> | The table with new game state info. |
-
 Called on gamestate change.
-
 ## <sub>OnNpcDying</sub>
-
 `Callbacks.OnNpcDying(npc):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target npc. |
-
 Called on NPC dying.
-
 ## <sub>OnThemeUpdate</sub>
-
 `Callbacks.OnThemeUpdate():` <mark style="color:purple;">**`nil`**</mark>
-
 Called when the UI theme colors are changed.\
 This includes animated theme transitions (called every frame during animation)\
 and manual per-color edits via the theme color picker.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md).
-
+> 
 # Enums
-
 ## <mark style="color:purple;">Enum.ShopType</mark>
-
 | Key                                                    | Value |
 | ------------------------------------------------------ | ----- |
 | <mark style="color:green;">`DOTA_SHOP_HOME`</mark>     | 0     |
@@ -1486,18 +1135,14 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_SHOP_CUSTOM`</mark>   | 6     |
 | <mark style="color:green;">`DOTA_SHOP_NEUTRALS`</mark> | 7     |
 | <mark style="color:green;">`DOTA_SHOP_NONE`</mark>     | 8     |
-
 ## <mark style="color:purple;">Enum.AbilityTypes</mark>
-
 | Key                                                         | Value |
 | ----------------------------------------------------------- | ----- |
 | <mark style="color:green;">`ABILITY_TYPE_BASIC`</mark>      | 0     |
 | <mark style="color:green;">`ABILITY_TYPE_ULTIMATE`</mark>   | 1     |
 | <mark style="color:green;">`ABILITY_TYPE_ATTRIBUTES`</mark> | 2     |
 | <mark style="color:green;">`ABILITY_TYPE_HIDDEN`</mark>     | 3     |
-
 ## <mark style="color:purple;">Enum.AbilityBehavior</mark>
-
 | Key                                                                                      | Value         |
 | ---------------------------------------------------------------------------------------- | ------------- |
 | <mark style="color:green;">`DOTA_ABILITY_BEHAVIOR_NONE`</mark>                           | 0             |
@@ -1542,9 +1187,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_ABILITY_BEHAVIOR_IGNORE_MUTED`</mark>                   | 549755813888  |
 | <mark style="color:green;">`DOTA_ABILITY_BEHAVIOR_ALT_CASTABLE`</mark>                   | 1099511627776 |
 | <mark style="color:green;">`DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS`</mark>              | 4398046511104 |
-
 ## <mark style="color:purple;">Enum.TargetTeam</mark>
-
 | Key                                                                | Value |
 | ------------------------------------------------------------------ | ----- |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_TEAM_NONE`</mark>     | 0     |
@@ -1552,9 +1195,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_UNIT_TARGET_TEAM_ENEMY`</mark>    | 2     |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_TEAM_CUSTOM`</mark>   | 4     |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_TEAM_BOTH`</mark>     | 3     |
-
 ## <mark style="color:purple;">Enum.TargetType</mark>
-
 | Key                                                                    | Value |
 | ---------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_NONE`</mark>              | 0     |
@@ -1569,9 +1210,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_UNIT_TARGET_BASIC`</mark>             | 18    |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_ALL`</mark>               | 55    |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_HEROES_AND_CREEPS`</mark> | 19    |
-
 ## <mark style="color:purple;">Enum.TargetFlags</mark>
-
 | Key                                                                               | Value   |
 | --------------------------------------------------------------------------------- | ------- |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_FLAG_NONE`</mark>                    | 0       |
@@ -1596,9 +1235,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_UNIT_TARGET_FLAG_NOT_NIGHTMARED`</mark>          | 524288  |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_FLAG_PREFER_ENEMIES`</mark>          | 1048576 |
 | <mark style="color:green;">`DOTA_UNIT_TARGET_FLAG_RESPECT_OBSTRUCTIONS`</mark>    | 2097152 |
-
 ## <mark style="color:purple;">Enum.DamageTypes</mark>
-
 | Key                                                        | Value |
 | ---------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DAMAGE_TYPE_NONE`</mark>       | 0     |
@@ -1607,9 +1244,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DAMAGE_TYPE_PURE`</mark>       | 4     |
 | <mark style="color:green;">`DAMAGE_TYPE_HP_REMOVAL`</mark> | 8     |
 | <mark style="color:green;">`DAMAGE_TYPE_ALL`</mark>        | 7     |
-
 ## <mark style="color:purple;">Enum.TalentTypes</mark>
-
 | Key                                          | Value |
 | -------------------------------------------- | ----- |
 | <mark style="color:green;">`TALENT_1`</mark> | 1     |
@@ -1620,9 +1255,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`TALENT_6`</mark> | 32    |
 | <mark style="color:green;">`TALENT_7`</mark> | 64    |
 | <mark style="color:green;">`TALENT_8`</mark> | 128   |
-
 ## <mark style="color:purple;">Enum.ImmunityTypes</mark>
-
 | Key                                                                      | Value |
 | ------------------------------------------------------------------------ | ----- |
 | <mark style="color:green;">`SPELL_IMMUNITY_NONE`</mark>                  | 0     |
@@ -1631,44 +1264,34 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`SPELL_IMMUNITY_ENEMIES_YES`</mark>           | 3     |
 | <mark style="color:green;">`SPELL_IMMUNITY_ENEMIES_NO`</mark>            | 4     |
 | <mark style="color:green;">`SPELL_IMMUNITY_ALLIES_YES_ENEMIES_NO`</mark> | 5     |
-
 ## <mark style="color:purple;">Enum.DispellableTypes</mark>
-
 | Key                                                              | Value |
 | ---------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`SPELL_DISPELLABLE_NONE`</mark>       | 0     |
 | <mark style="color:green;">`SPELL_DISPELLABLE_YES_STRONG`</mark> | 1     |
 | <mark style="color:green;">`SPELL_DISPELLABLE_YES`</mark>        | 2     |
 | <mark style="color:green;">`SPELL_DISPELLABLE_NO`</mark>         | 3     |
-
 ## <mark style="color:purple;">Enum.TeamType</mark>
-
 | Key                                             | Value |
 | ----------------------------------------------- | ----- |
 | <mark style="color:green;">`TEAM_ENEMY`</mark>  | 0     |
 | <mark style="color:green;">`TEAM_FRIEND`</mark> | 1     |
 | <mark style="color:green;">`TEAM_BOTH`</mark>   | 2     |
-
 ## <mark style="color:purple;">Enum.ECampType</mark>
-
 | Key                                                   | Value |
 | ----------------------------------------------------- | ----- |
 | <mark style="color:green;">`ECampType_SMALL`</mark>   | 0     |
 | <mark style="color:green;">`ECampType_MEDIUM`</mark>  | 1     |
 | <mark style="color:green;">`ECampType_LARGE`</mark>   | 2     |
 | <mark style="color:green;">`ECampType_ANCIENT`</mark> | 3     |
-
 ## <mark style="color:purple;">Enum.EKeyEvent</mark>
-
 | Key                                                       | Value |
 | --------------------------------------------------------- | ----- |
 | <mark style="color:green;">`EKeyEvent_SCROLL_DOWN`</mark> | 0     |
 | <mark style="color:green;">`EKeyEvent_SCROLL_UP`</mark>   | 1     |
 | <mark style="color:green;">`EKeyEvent_KEY_DOWN`</mark>    | 2     |
 | <mark style="color:green;">`EKeyEvent_KEY_UP`</mark>      | 3     |
-
 ## <mark style="color:purple;">Enum.CourierState</mark>
-
 | Key                                                                    | Value      |
 | ---------------------------------------------------------------------- | ---------- |
 | <mark style="color:green;">`COURIER_STATE_INIT`</mark>                 | 4294967295 |
@@ -1681,9 +1304,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`COURIER_STATE_GOING_TO_SECRET_SHOP`</mark> | 6          |
 | <mark style="color:green;">`COURIER_STATE_AT_SECRET_SHOP`</mark>       | 7          |
 | <mark style="color:green;">`COURIER_NUM_STATES`</mark>                 | 8          |
-
 ## <mark style="color:purple;">Enum.RuneType</mark>
-
 | Key                                                        | Value      |
 | ---------------------------------------------------------- | ---------- |
 | <mark style="color:green;">`DOTA_RUNE_INVALID`</mark>      | 4294967295 |
@@ -1698,9 +1319,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_RUNE_XP`</mark>           | 8          |
 | <mark style="color:green;">`DOTA_RUNE_SHIELD`</mark>       | 9          |
 | <mark style="color:green;">`DOTA_RUNE_COUNT`</mark>        | 10         |
-
 ## <mark style="color:purple;">Enum.ModifierState</mark>
-
 | Key                                                                                   | Value |
 | ------------------------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`MODIFIER_STATE_ROOTED`</mark>                             | 0     |
@@ -1767,9 +1386,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`MODIFIER_STATE_CASTS_IGNORE_CHANNELING`</mark>            | 61    |
 | <mark style="color:green;">`MODIFIER_STATE_ATTACKS_DONT_REVEAL`</mark>                | 62    |
 | <mark style="color:green;">`MODIFIER_STATE_LAST`</mark>                               | 64    |
-
 ## <mark style="color:purple;">Enum.GameActivity</mark>
-
 | Key                                                                        | Value |
 | -------------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`ACT_DOTA_IDLE`</mark>                          | 1500  |
@@ -2037,9 +1654,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`ACT_DOTA_VIPER_DIVE`</mark>                    | 1762  |
 | <mark style="color:green;">`ACT_DOTA_VIPER_DIVE_END`</mark>                | 1763  |
 | <mark style="color:green;">`ACT_DOTA_MK_STRIKE_END`</mark>                 | 1764  |
-
 ## <mark style="color:purple;">Enum.Attributes</mark>
-
 | Key                                                          | Value      |
 | ------------------------------------------------------------ | ---------- |
 | <mark style="color:green;">`DOTA_ATTRIBUTE_STRENGTH`</mark>  | 0          |
@@ -2048,9 +1663,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_ATTRIBUTE_ALL`</mark>       | 3          |
 | <mark style="color:green;">`DOTA_ATTRIBUTE_MAX`</mark>       | 4          |
 | <mark style="color:green;">`DOTA_ATTRIBUTE_INVALID`</mark>   | 4294967295 |
-
 ## <mark style="color:purple;">Enum.UnitTypeFlags</mark>
-
 | Key                                                      | Value   |
 | -------------------------------------------------------- | ------- |
 | <mark style="color:green;">`TYPE_HERO`</mark>            | 1       |
@@ -2068,9 +1681,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`TYPE_WARD`</mark>            | 131072  |
 | <mark style="color:green;">`TYPE_ROSHAN`</mark>          | 524288  |
 | <mark style="color:green;">`TYPE_TORMENTOR`</mark>       | 2097152 |
-
 ## <mark style="color:purple;">Enum.UnitOrder</mark>
-
 | Key                                                                                   | Value |
 | ------------------------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DOTA_UNIT_ORDER_NONE`</mark>                              | 0     |
@@ -2115,18 +1726,14 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_UNIT_ORDER_MOVE_RELATIVE`</mark>                     | 39    |
 | <mark style="color:green;">`DOTA_UNIT_ORDER_CAST_TOGGLE_ALT`</mark>                   | 40    |
 | <mark style="color:green;">`DOTA_UNIT_ORDER_CONSUME_ITEM`</mark>                      | 41    |
-
 ## <mark style="color:purple;">Enum.PlayerOrderIssuer</mark>
-
 | Key                                                                     | Value |
 | ----------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DOTA_ORDER_ISSUER_SELECTED_UNITS`</mark>    | 0     |
 | <mark style="color:green;">`DOTA_ORDER_ISSUER_CURRENT_UNIT_ONLY`</mark> | 1     |
 | <mark style="color:green;">`DOTA_ORDER_ISSUER_HERO_ONLY`</mark>         | 2     |
 | <mark style="color:green;">`DOTA_ORDER_ISSUER_PASSED_UNIT_ONLY`</mark>  | 3     |
-
 ## <mark style="color:purple;">Enum.GameState</mark>
-
 | Key                                                                               | Value |
 | --------------------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DOTA_GAMERULES_STATE_INIT`</mark>                     | 0     |
@@ -2141,9 +1748,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP`</mark>        | 9     |
 | <mark style="color:green;">`DOTA_GAMERULES_STATE_WAIT_FOR_MAP_TO_LOAD`</mark>     | 10    |
 | <mark style="color:green;">`DOTA_GAMERULES_STATE_LAST`</mark>                     | 13    |
-
 ## <mark style="color:purple;">Enum.GameMode</mark>
-
 | Key                                                                 | Value |
 | ------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DOTA_GAMEMODE_NONE`</mark>              | 0     |
@@ -2170,17 +1775,13 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`DOTA_GAMEMODE_TURBO`</mark>             | 23    |
 | <mark style="color:green;">`DOTA_GAMEMODE_MUTATION`</mark>          | 24    |
 | <mark style="color:green;">`DOTA_GAMEMODE_COACHES_CHALLENGE`</mark> | 25    |
-
 ## <mark style="color:purple;">Enum.Flow</mark>
-
 | Key                                               | Value |
 | ------------------------------------------------- | ----- |
 | <mark style="color:green;">`FLOW_OUTGOING`</mark> | 0     |
 | <mark style="color:green;">`FLOW_INCOMING`</mark> | 1     |
 | <mark style="color:green;">`MAX_FLOWS`</mark>     | 2     |
-
 ## <mark style="color:purple;">Enum.ParticleAttachment</mark>
-
 | Key                                                             | Value      |
 | --------------------------------------------------------------- | ---------- |
 | <mark style="color:green;">`PATTACH_INVALID`</mark>             | 4294967295 |
@@ -2201,9 +1802,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`PATTACH_CUSTOM_GAME_STATE_1`</mark> | 14         |
 | <mark style="color:green;">`PATTACH_HEALTHBAR`</mark>           | 15         |
 | <mark style="color:green;">`MAX_PATTACH_TYPES`</mark>           | 16         |
-
 ## <mark style="color:purple;">Enum.ButtonCode</mark>
-
 | Key                                                      | Value |
 | -------------------------------------------------------- | ----- |
 | <mark style="color:green;">`BUTTON_CODE_INVALID`</mark>  | -1    |
@@ -2335,9 +1934,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`KEY_MOUSE5`</mark>           | 123   |
 | <mark style="color:green;">`KEY_MWHEELUP`</mark>         | 124   |
 | <mark style="color:green;">`KEY_MWHEELDOWN`</mark>       | 125   |
-
 ## <mark style="color:purple;">Enum.FontCreate</mark>
-
 | Key                                                       | Value |
 | --------------------------------------------------------- | ----- |
 | <mark style="color:green;">`FONTFLAG_NONE`</mark>         | 0     |
@@ -2353,9 +1950,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`FONTFLAG_OUTLINE`</mark>      | 512   |
 | <mark style="color:green;">`FONTFLAG_CUSTOM`</mark>       | 1024  |
 | <mark style="color:green;">`FONTFLAG_BITMAP`</mark>       | 2048  |
-
 ## <mark style="color:purple;">Enum.FontWeight</mark>
-
 | Key                                            | Value |
 | ---------------------------------------------- | ----- |
 | <mark style="color:green;">`THIN`</mark>       | 100   |
@@ -2367,9 +1962,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`BOLD`</mark>       | 700   |
 | <mark style="color:green;">`EXTRABOLD`</mark>  | 800   |
 | <mark style="color:green;">`HEAVY`</mark>      | 900   |
-
 ## <mark style="color:purple;">Enum.WidgetType</mark>
-
 | Key                                                    | Value |
 | ------------------------------------------------------ | ----- |
 | <mark style="color:green;">`MenuFirstTab`</mark>       | 0     |
@@ -2394,18 +1987,14 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`MenuCustomBind`</mark>     | 22    |
 | <mark style="color:green;">`MenuTypesCount`</mark>     | 25    |
 | <mark style="color:green;">`MenuTypeInvalid`</mark>    | 26    |
-
 ## <mark style="color:purple;">Enum.GroupSide</mark>
-
 | Key                                           | Value |
 | --------------------------------------------- | ----- |
 | <mark style="color:green;">`Default`</mark>   | -1    |
 | <mark style="color:green;">`Left`</mark>      | 1     |
 | <mark style="color:green;">`Right`</mark>     | 2     |
 | <mark style="color:green;">`FullWidth`</mark> | 3     |
-
 ## <mark style="color:purple;">Enum.PingType</mark>
-
 | Key                                                       | Value |
 | --------------------------------------------------------- | ----- |
 | <mark style="color:green;">`PINGTYPE_INFO`</mark>         | 0     |
@@ -2416,9 +2005,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`PINGTYPE_ENEMY_VISION`</mark> | 5     |
 | <mark style="color:green;">`PINGTYPE_OWN_VISION`</mark>   | 6     |
 | <mark style="color:green;">`PINGTYPE_LIKE`</mark>         | 7     |
-
 ## <mark style="color:purple;">Enum.DotaChatMessage</mark>
-
 | Key                                                                                        | Value |
 | ------------------------------------------------------------------------------------------ | ----- |
 | <mark style="color:green;">`CHAT_MESSAGE_INVALID`</mark>                                   | -1    |
@@ -2531,9 +2118,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`CHAT_MESSAGE_MINIBOSS_KILL`</mark>                             | 117   |
 | <mark style="color:green;">`CHAT_MESSAGE_PLAYER_IN_GAME_BAN_TEXT`</mark>                   | 118   |
 | <mark style="color:green;">`CHAT_MESSAGE_BANNER_PLANTED`</mark>                            | 119   |
-
 ## <mark style="color:purple;">Enum.AbilityLearnResult</mark>
-
 | Key                                                                           | Value |
 | ----------------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`ABILITY_CAN_BE_UPGRADED`</mark>                   | 0     |
@@ -2541,9 +2126,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`ABILITY_CANNOT_BE_UPGRADED_AT_MAX`</mark>         | 2     |
 | <mark style="color:green;">`ABILITY_CANNOT_BE_UPGRADED_REQUIRES_LEVEL`</mark> | 3     |
 | <mark style="color:green;">`ABILITY_NOT_LEARNABLE`</mark>                     | 4     |
-
 ## <mark style="color:purple;">Enum.AbilityCastResult</mark>
-
 | Key                                             | Value |
 | ----------------------------------------------- | ----- |
 | <mark style="color:green;">`READY`</mark>       | -1    |
@@ -2553,9 +2136,7 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`PASSIVE`</mark>     | 17    |
 | <mark style="color:green;">`HIDDEN`</mark>      | 60    |
 | <mark style="color:green;">`ITEM_CD`</mark>     | 61    |
-
 ## <mark style="color:purple;">Enum.ModifierFunction</mark>
-
 | Key                                                                                              | Value |
 | ------------------------------------------------------------------------------------------------ | ----- |
 | <mark style="color:green;">`MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE`</mark>                     | 0     |
@@ -2900,17 +2481,13 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`MODIFIER_EVENT_ON_ABILITY_TOGGLED`</mark>                            | 368   |
 | <mark style="color:green;">`MODIFIER_FUNCTION_LAST`</mark>                                       | 399   |
 | <mark style="color:green;">`MODIFIER_FUNCTION_INVALID`</mark>                                    | 65535 |
-
 ## <mark style="color:purple;">Enum.DrunkenBrawlerState</mark>
-
 | Key                                                             | Value |
 | --------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DRUNKEN_BRAWLER_STATE_EARTH`</mark> | 0     |
 | <mark style="color:green;">`DRUNKEN_BRAWLER_STATE_STORM`</mark> | 1     |
 | <mark style="color:green;">`DRUNKEN_BRAWLER_STATE_FIRE`</mark>  | 2     |
-
 ## <mark style="color:purple;">Enum.OverHeadAlert</mark>
-
 | Key                                                                    | Value |
 | ---------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`OVERHEAD_ALERT_GOLD`</mark>                | 0     |
@@ -2935,52 +2512,40 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`OVERHEAD_ALERT_ITEM_RECEIVED`</mark>       | 22    |
 | <mark style="color:green;">`OVERHEAD_ALERT_SHARD`</mark>               | 23    |
 | <mark style="color:green;">`OVERHEAD_ALERT_DEADLY_BLOW`</mark>         | 24    |
-
 ## <mark style="color:purple;">Enum.ShareAbility</mark>
-
 | Key                                                          | Value |
 | ------------------------------------------------------------ | ----- |
 | <mark style="color:green;">`ITEM_FULLY_SHAREABLE`</mark>     | 0     |
 | <mark style="color:green;">`ITEM_PARTIALLY_SHAREABLE`</mark> | 1     |
 | <mark style="color:green;">`ITEM_NOT_SHAREABLE`</mark>       | 2     |
-
 ## <mark style="color:purple;">Enum.TeamNum</mark>
-
 | Key                                              | Value |
 | ------------------------------------------------ | ----- |
 | <mark style="color:green;">`TEAM_NONE`</mark>    | 0     |
 | <mark style="color:green;">`TEAM_DIRE`</mark>    | 3     |
 | <mark style="color:green;">`TEAM_RADIANT`</mark> | 2     |
 | <mark style="color:green;">`TEAM_NEUTRAL`</mark> | 4     |
-
 ## <mark style="color:purple;">Enum.UIState</mark>
-
 | Key                                                                   | Value |
 | --------------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`DOTA_GAME_UI_STATE_INVALID`</mark>        | 0     |
 | <mark style="color:green;">`DOTA_GAME_UI_STATE_LOADING_SCREEN`</mark> | 1     |
 | <mark style="color:green;">`DOTA_GAME_UI_DOTA_INGAME`</mark>          | 2     |
 | <mark style="color:green;">`DOTA_GAME_UI_STATE_DASHBOARD`</mark>      | 3     |
-
 ## <mark style="color:purple;">Enum.DormancyType</mark>
-
 | Key                                                    | Value |
 | ------------------------------------------------------ | ----- |
 | <mark style="color:green;">`ENTITY_NOT_DORMANT`</mark> | 0     |
 | <mark style="color:green;">`ENTITY_DORMANT`</mark>     | 1     |
 | <mark style="color:green;">`ENTITY_SUSPENDED`</mark>   | 2     |
-
 ## <mark style="color:purple;">Enum.ECourierState</mark>
-
 | Key                                             | Value |
 | ----------------------------------------------- | ----- |
 | <mark style="color:green;">`k_eIdle`</mark>     | 0     |
 | <mark style="color:green;">`k_eGoToShop`</mark> | 2     |
 | <mark style="color:green;">`k_eGoToUnit`</mark> | 3     |
 | <mark style="color:green;">`k_eManual`</mark>   | 4     |
-
 ## <mark style="color:purple;">Enum.DrawFlags</mark>
-
 | Key                                                             | Value |
 | --------------------------------------------------------------- | ----- |
 | <mark style="color:green;">`None`</mark>                        | 0     |
@@ -2999,243 +2564,179 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`RoundCornersMask_`</mark>           | 496   |
 | <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> | 512   |
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes.md -->
 
---------------------------------------------------------------------------------
-
-### Classes - Color
+> 
+# Classes
+- [Color](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)
+- [Menu](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md)
+- [CTabSection](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md)
+- [CFirstTab](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md)
+- [CSecondTab](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md)
+- [CThirdTab](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md)
+- [CMenuGroup](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md)
+- [Widgets](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets.md)
+- [CMenuSwitch](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
+- [CMenuSliderFloat](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
+- [CMenuSliderInt](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
+- [CMenuButton](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
+- [CMenuColorPicker](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
+- [CMenuColorPickerAttachment](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
+- [CMenuComboBox](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
+- [CMenuGearAttachment](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
+- [CMenuInputBox](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
+- [CMenuMultiComboBox](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
+- [CMenuMultiSelect](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
+- [CMenuBind](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
+- [CMenuLabel](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
+- [Math](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math.md)
+- [Vector](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
+- [Angle](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
+- [Vec2](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
+- [Vertex](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md).
-
+> 
 # Color
-
 Color metatable
-
 ### Fields
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **r** | <mark style="color:purple;">**`number`**</mark> | red         |
 | **g** | <mark style="color:purple;">**`number`**</mark> | green       |
 | **b** | <mark style="color:purple;">**`number`**</mark> | blue        |
 | **a** | <mark style="color:purple;">**`number`**</mark> | alpha       |
-
 ## <sub>\_\_eq</sub>
-
 `:__eq(other):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                                    | Description |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
-
 Compares two colors for equality.
-
 ## <sub>Set</sub>
-
 `:Set(r, g, b, [a]):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name                                                    | Type                                            | Description      |
 | ------------------------------------------------------- | ----------------------------------------------- | ---------------- |
 | **r**                                                   | <mark style="color:purple;">**`number`**</mark> |                  |
 | **g**                                                   | <mark style="color:purple;">**`number`**</mark> |                  |
 | **b**                                                   | <mark style="color:purple;">**`number`**</mark> |                  |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
-
 Sets r, g, b, a components. Returns self for chaining.
-
 ## <sub>LerpInPlace</sub>
-
 `:LerpInPlace(other, t):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name      | Type                                                                                                    | Description |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
 | **t**     | <mark style="color:purple;">**`number`**</mark>                                                         |             |
-
 Linearly interpolates this color towards other in-place. Returns self for chaining.
-
 ## <sub>IsZero</sub>
-
 `:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                            | Type                                            | Description       |
 | --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
 | **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
-
 Returns true if all components are near zero within tolerance.
-
 ## <sub>Color</sub>
-
 `Color([r], [g], [b], [a]):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name                                                    | Type                                            | Description      |
 | ------------------------------------------------------- | ----------------------------------------------- | ---------------- |
 | **r&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
 | **g&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
 | **b&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 255)` |
-
 Create a new Color.
-
 ## <sub>Color</sub>
-
 `Color(hex):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name    | Type                                            | Description                        |
 | ------- | ----------------------------------------------- | ---------------------------------- |
 | **hex** | <mark style="color:purple;">**`string`**</mark> | Hex string. Do not use "#" symbol. |
-
 Create a new Color from hex string.
-
 ## <sub>AsFraction</sub>
-
 `:AsFraction(r, g, b, a):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name  | Type                                            | Description                                                |
 | ----- | ----------------------------------------------- | ---------------------------------------------------------- |
 | **r** | <mark style="color:purple;">**`number`**</mark> | New R color range as a percentage in the range \[0.0, 1.0] |
 | **g** | <mark style="color:purple;">**`number`**</mark> | New G color range as a percentage in the range \[0.0, 1.0] |
 | **b** | <mark style="color:purple;">**`number`**</mark> | New B color range as a percentage in the range \[0.0, 1.0] |
 | **a** | <mark style="color:purple;">**`number`**</mark> | New A color range as a percentage in the range \[0.0, 1.0] |
-
 Overwrites the color's ranges using the fraction values. Returns itself.
-
 ## <sub>AsInt</sub>
-
 `:AsInt(value):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name      | Type                                            | Description     |
 | --------- | ----------------------------------------------- | --------------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> | int color value |
-
 Overwrites the color's ranges converting the int value to RGBA values. Returns\
 itself.
-
 ## <sub>AsHsv</sub>
-
 `:AsHsv(h, s, v, a):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name  | Type                                            | Description                        |
 | ----- | ----------------------------------------------- | ---------------------------------- |
 | **h** | <mark style="color:purple;">**`number`**</mark> | Hue color range \[0.0, 1.0]        |
 | **s** | <mark style="color:purple;">**`number`**</mark> | Saturation color range \[0.0, 1.0] |
 | **v** | <mark style="color:purple;">**`number`**</mark> | Value color range \[0.0, 1.0]      |
 | **a** | <mark style="color:purple;">**`number`**</mark> | Alpha color range \[0.0, 1.0]      |
-
 Overwrites the color's ranges converting the HSV to RGBA values. Returns itself.
-
 ## <sub>AsHsl</sub>
-
 `:AsHsl(h, s, l, a):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name  | Type                                            | Description                        |
 | ----- | ----------------------------------------------- | ---------------------------------- |
 | **h** | <mark style="color:purple;">**`number`**</mark> | Hue color range \[0.0, 1.0]        |
 | **s** | <mark style="color:purple;">**`number`**</mark> | Saturation color range \[0.0, 1.0] |
 | **l** | <mark style="color:purple;">**`number`**</mark> | Lightness color range \[0.0, 1.0]  |
 | **a** | <mark style="color:purple;">**`number`**</mark> | Alpha color range \[0.0, 1.0]      |
-
 Overwrites the color's ranges converting the HSL to RGBA values. Returns itself.
-
 ## <sub>ToFraction</sub>
-
 `:ToFraction():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns the r, g, b, and a ranges of the color as a percentage in the range of\
 \[0.0, 1.0].
-
 ## <sub>ToInt</sub>
-
 `:ToInt():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the int value representing the color.
-
 ## <sub>ToHsv</sub>
-
 `:ToHsv():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns the HSV representation of the color.
-
 ## <sub>ToHsl</sub>
-
 `:ToHsl():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns the ToHsl representation of the color.
-
 ## <sub>ToHex</sub>
-
 `:ToHex():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the hex string representing the color.
-
 ## <sub>Lerp</sub>
-
 `:Lerp(other, weight):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name       | Type                                                                                                    | Description                                                    |
 | ---------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **other**  | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | The color to interpolate to                                    |
 | **weight** | <mark style="color:purple;">**`number`**</mark>                                                         | A value between 0 and 1 that indicates the weight of **other** |
-
 Returns the linearly interpolated color between two colors by the specified weight.
-
 ## <sub>Grayscale</sub>
-
 `:Grayscale(weight):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name       | Type                                            | Description                                                        |
 | ---------- | ----------------------------------------------- | ------------------------------------------------------------------ |
 | **weight** | <mark style="color:purple;">**`number`**</mark> | A value between 0 and 1 that indicates the weight of **grayscale** |
-
 Returns the grayscaled color.
-
 ## <sub>AlphaModulate</sub>
-
 `:AlphaModulate(alpha):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name      | Type                                            | Description                   |
 | --------- | ----------------------------------------------- | ----------------------------- |
 | **alpha** | <mark style="color:purple;">**`number`**</mark> | Alpha color range \[0.0, 1.0] |
-
 Returns the alpha modulated color.
-
 ## <sub>Clone</sub>
-
 `:Clone():` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 Creates and returns a copy of the color object.
-
 ## <sub>Unpack</sub>
-
 `:Unpack():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns the r, g, b, and a values of the color. Note that these fields can be\
 accessed by indexing r, g, b, and a.
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`string`**</mark>
-
 Returns hex string representing the color.
-
-
---------------------------------------------------------------------------------
-
-### Classes - Menu System
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu.md).
-
+> 
 # Menu
-
 Table to work with Menu.
-
 ## <sub>Find</sub>
-
 `Menu.Find(firstTabName, sectionName, secondTabName, thirdTabName, groupTabName, widgetName, attachmentName, widgetInGearName):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md) | [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md) | [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md) | [<mark style="color:purple;">**`CMenuComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md) | [<mark style="color:purple;">**`CMenuButton`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md) | [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name                 | Type                                            | Description |
 | -------------------- | ----------------------------------------------- | ----------- |
 | **firstTabName**     | <mark style="color:purple;">**`string`**</mark> |             |
@@ -3246,13 +2747,9 @@ Table to work with Menu.
 | **widgetName**       | <mark style="color:purple;">**`string`**</mark> |             |
 | **attachmentName**   | <mark style="color:purple;">**`string`**</mark> |             |
 | **widgetInGearName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns menu item.
-
 ## <sub>Create</sub>
-
 `Menu.Create(firstTabName, sectionName, secondTabName, thirdTabName, groupTabName):` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md)
-
 | Name              | Type                                            | Description |
 | ----------------- | ----------------------------------------------- | ----------- |
 | **firstTabName**  | <mark style="color:purple;">**`string`**</mark> |             |
@@ -3260,387 +2757,231 @@ Returns menu item.
 | **secondTabName** | <mark style="color:purple;">**`string`**</mark> |             |
 | **thirdTabName**  | <mark style="color:purple;">**`string`**</mark> |             |
 | **groupTabName**  | <mark style="color:purple;">**`string`**</mark> |             |
-
 Creates tab/section/group. Returns menu item.
-
 ## <sub>Style</sub>
-
 `Menu.Style(styleColor):` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 | Name           | Type                                            | Description |
 | -------------- | ----------------------------------------------- | ----------- |
 | **styleColor** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Creates tab/section/group. Returns color of specified style var or table of all style colors\
 depends on param.
-
 ## <sub>Opened</sub>
-
 `Menu.Opened():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns current menu open state.
-
 ## <sub>VisualsIsEnabled</sub>
-
 `Menu.VisualsIsEnabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns current visuals enabled state.
-
 ## <sub>Alpha</sub>
-
 `Menu.Alpha():` <mark style="color:purple;">**`number`**</mark>
-
 Returns current menu alpha.
-
 ## <sub>Pos</sub>
-
 `Menu.Pos():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 Returns current menu pos.
-
 ## <sub>Size</sub>
-
 `Menu.Size():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 Returns current menu size.
-
 ## <sub>Scale</sub>
-
 `Menu.Scale():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns current menu scale percentage.
-
 ## <sub>AnimDuration</sub>
-
 `Menu.AnimDuration():` <mark style="color:purple;">**`number`**</mark>
-
 Returns current menu animation duration.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md).
-
+> 
 # CTabSection
-
 CTabSection metatable
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns tab's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CFirstTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md)
-
 Returns tab's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>Create</sub>
-
 `:Create(sectionName):` [<mark style="color:purple;">**`CSecondTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md)
-
 | Name            | Type                                            | Description |
 | --------------- | ----------------------------------------------- | ----------- |
 | **sectionName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Creates new `CSecondTab`.
-
 ## <sub>Find</sub>
-
 `:Find(sectionName):` [<mark style="color:purple;">**`CSecondTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name            | Type                                            | Description |
 | --------------- | ----------------------------------------------- | ----------- |
 | **sectionName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds the `CSecondTab` by name.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md).
-
+> 
 # CFirstTab
-
 CFirstTab metatable
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns tab's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` <mark style="color:purple;">**`nil`**</mark>
-
 Returns parent. It's `nil` for CFirstTab.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>Create</sub>
-
 `:Create(sectionName):` [<mark style="color:purple;">**`CTabSection`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md)
-
 | Name            | Type                                            | Description |
 | --------------- | ----------------------------------------------- | ----------- |
 | **sectionName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Creates new `CTabSection`.
-
 ## <sub>Find</sub>
-
 `:Find(sectionName):` [<mark style="color:purple;">**`CTabSection`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name            | Type                                            | Description |
 | --------------- | ----------------------------------------------- | ----------- |
 | **sectionName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds the `CTabSection` by name.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md).
-
+> 
 # CSecondTab
-
 CSecondTab metatable
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns tab's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CTabSection`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/ctabsection.md)
-
 Returns tab's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>Create</sub>
-
 `:Create(tabName):` [<mark style="color:purple;">**`CThirdTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md)
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **tabName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Creates new `CThirdTab`.
-
 ## <sub>Find</sub>
-
 `:Find(tabName):` [<mark style="color:purple;">**`CThirdTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **tabName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds the `CThirdTab` by name.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets tab's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 -- https://fontawesome.com/icons/user?f=classic&s=solid
 tab:Icon( "\u{f007}" )
 ```
-
 ## <sub>LinkHero</sub>
-
 `:LinkHero(heroId, attribute):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name          | Type                                                                                                                                                                              | Description                  |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | **heroId**    | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                  | See `Engine.GetHeroIDByName` |
 | **attribute** | [<mark style="color:purple;">**`Enum.Attributes`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.attributes) |                              |
-
 Links tab to hero and attribute.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md).
-
+> 
 # CThirdTab
-
 CThirdTab metatable
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns tab's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CSecondTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md)
-
 Returns tab's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>Create</sub>
-
 `:Create(groupName, [side]):` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md)
-
 | Name                                                       | Type                                                                                                                                                                            | Description                         |
 | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **groupName**                                              | <mark style="color:purple;">**`string`**</mark>                                                                                                                                 |                                     |
 | **side&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.GroupSide`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.groupside) | `(default: Enum.GroupSide.Default)` |
-
 Creates new `CMenuGroup`.
-
 ## <sub>Find</sub>
-
 `:Find(groupName):` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name          | Type                                            | Description |
 | ------------- | ----------------------------------------------- | ----------- |
 | **groupName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds the `CMenuGroup` by name.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets third tab's visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 third_tab:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = third_tab:Visible()
 ```
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets tab's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 -- https://fontawesome.com/icons/user?f=classic&s=solid
 tab:Icon( "\u{f007}")
@@ -3648,87 +2989,53 @@ tab:Icon( "\u{f007}")
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md).
-
+> 
 # CMenuGroup
-
 CMenuGroup metatable
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns group's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CThirdTab`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cthirdtab.md)
-
 Returns group's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>Find</sub>
-
 `:Find(widgetName):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md) | [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md) | [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md) | [<mark style="color:purple;">**`CMenuComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md) | [<mark style="color:purple;">**`CMenuButton`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md) | [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                            | Description |
 | -------------- | ----------------------------------------------- | ----------- |
 | **widgetName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds the widget by name.
-
 ## <sub>Switch</sub>
-
 `:Switch(switchName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
-
 | Name                                                               | Type                                             | Description                                                |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------------------- |
 | **switchName**                                                     | <mark style="color:purple;">**`string`**</mark>  |                                                            |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | `(default: false)`                                         |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>  | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuSwitch`.
-
 ## <sub>Bind</sub>
-
 `:Bind(bindName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
-
 | Name                                                               | Type                                                                                                                                                                              | Description                                                |
 | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | **bindName**                                                       | <mark style="color:purple;">**`string`**</mark>                                                                                                                                   |                                                            |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                                                                                                   | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuBind`.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 \`:ForceLocalization(newText):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the group header. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>Slider</sub>
-
 `:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
-
 | Name                                                         | Type                                                                                                                   | Description                                                               |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | **sliderName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                        |                                                                           |
@@ -3736,12 +3043,9 @@ May be used for dynamic text customization or recolor.
 | **maxValue**                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
 | **defaultValue**                                             | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
 | **format&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`fun(value: integer):string`**</mark> | Format string or function to format value. See example. `(default: "%d")` |
-
 Creates new `CMenuSliderInt` or `CMenuSliderFloat` depents on arg types.\
 `minValue`, `maxValue` and `defaultValue` should be integer to create `CMenuSliderInt`.
-
 #### Example
-
 ```lua
 -- Create slider with integer values
 group:Slider( "slider", 0, 100, 50, "%d" )
@@ -3749,11 +3053,8 @@ group:Slider( "slider", 0, 100, 50, "%d" )
 group:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- turns into
 "50%"
 ```
-
 ## <sub>Slider</sub>
-
 `:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
-
 | Name                                                         | Type                                                                                                                  | Description                                                               |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | **sliderName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                       |                                                                           |
@@ -3761,11 +3062,8 @@ group:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- tur
 | **maxValue**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
 | **defaultValue**                                             | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
 | **format&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`fun(value: number):string`**</mark> | Format string or function to format value. See example. `(default: "%f")` |
-
 Creates new `CMenuSliderFloat`.
-
 #### Example
-
 ```lua
 -- Create slider with float values
 group:Slider( "slider", 0.0, 1.0, 0.5, "%.2f" ) -- turns into "0.50"
@@ -3778,1369 +3076,874 @@ group:Slider( "slider", 0.0, 100.0, 50.0, function( value )
   end
 end )
 ```
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(colorPickerName, color, [imageIcon]):` [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
-
 | Name                                                            | Type                                                                                                    | Description                                                |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | **colorPickerName**                                             | <mark style="color:purple;">**`string`**</mark>                                                         |                                                            |
 | **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) |                                                            |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark>                                                         | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuColorPicker`.
-
 ## <sub>Button</sub>
-
 `:Button(buttonName, callback, [altStyle], [widthPercent]):` [<mark style="color:purple;">**`CMenuButton`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
-
 | Name                                                               | Type                                                                | Description                                            |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------ |
 | **buttonName**                                                     | <mark style="color:purple;">**`string`**</mark>                     |                                                        |
 | **callback**                                                       | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to call on button click.                      |
 | **altStyle&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                    | Use alternative button style. `(default: false)`       |
 | **widthPercent&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                     | Button width in percents. \[0.0, 1.0] `(default: 1.0)` |
-
 Creates new `CMenuButton`.
-
 #### Example
-
 ```lua
 group:Button( "button", function( this )
 	Log.Write( "Button '" .. this:Name() .. "' has been clicked."  )
 end )
 ```
-
 ## <sub>Combo</sub>
-
 `:Combo(comboName, items, [defaultValue]):` [<mark style="color:purple;">**`CMenuComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
-
 | Name                                                               | Type                                              | Description                                           |
 | ------------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------- |
 | **comboName**                                                      | <mark style="color:purple;">**`string`**</mark>   |                                                       |
 | **items**                                                          | <mark style="color:purple;">**`string[]`**</mark> |                                                       |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark>  | Index of default item. (starts from 0) `(default: 0)` |
-
 Creates new `CMenuComboBox`.
-
 ## <sub>MultiCombo</sub>
-
 `:MultiCombo(multiComboName, items, enabledItems):` [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
-
 | Name               | Type                                              | Description            |
 | ------------------ | ------------------------------------------------- | ---------------------- |
 | **multiComboName** | <mark style="color:purple;">**`string`**</mark>   |                        |
 | **items**          | <mark style="color:purple;">**`string[]`**</mark> |                        |
 | **enabledItems**   | <mark style="color:purple;">**`string[]`**</mark> | table of enabled items |
-
 Creates new `CMenuMultiComboBox`.
-
 #### Example
-
 ```lua
 group:MultiCombo( "multiCombo", { "item1", "item2", "item3" }, { "item1", "item3" } )
 ```
-
 ## <sub>MultiSelect</sub>
-
 `:MultiSelect(multiSelectName, items, [expanded]):` [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
-
 | Name                                                           | Type                                                                                               | Description                                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | **multiSelectName**                                            | <mark style="color:purple;">**`string`**</mark>                                                    |                                                                                |
 | **items**                                                      | <mark style="color:purple;">**`{nameId: string, imagePath: string, isEnabled: boolean}[]`**</mark> | See example.                                                                   |
 | **expanded&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                   | false if you want to create MultiSelect in collapsed state. `(default: false)` |
-
 Creates new `CMenuMultiSelect`.
-
 #### Example
-
 ```lua
 group:MultiSelect( "multiSelect", {
  	{ "1", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
  	{ "2", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
 }, true )
 ```
-
 ## <sub>Input</sub>
-
 `:Input(inputName, defaultValue, [imageIcon]):` [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
-
 | Name                                                            | Type                                            | Description                                                |
 | --------------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------- |
 | **inputName**                                                   | <mark style="color:purple;">**`string`**</mark> |                                                            |
 | **defaultValue**                                                | <mark style="color:purple;">**`string`**</mark> |                                                            |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuInputBox`.
-
 ## <sub>Label</sub>
-
 `:Label(labelText, [imageIcon]):` [<mark style="color:purple;">**`CMenuLabel`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
-
 | Name                                                            | Type                                            | Description                                                |
 | --------------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------- |
 | **labelText**                                                   | <mark style="color:purple;">**`string`**</mark> |                                                            |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuLabel`.
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets group's disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 group:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = group:Disabled()
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets group's visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 group:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = group:Visible()
 ```
-
 ## <sub>SearchHidden</sub>
-
 `:SearchHidden(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets group's search state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 group:SearchHidden(false)
 ```
-
 ## <sub>SearchHidden</sub>
-
 `:SearchHidden():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isSearchHidden = group:SearchHidden()
 ```
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets.md -->
 
---------------------------------------------------------------------------------
-
-### Classes - UI Widgets
+> 
+# Widgets
+- [CMenuSwitch](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
+- [CMenuSliderFloat](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
+- [CMenuSliderInt](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
+- [CMenuButton](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
+- [CMenuColorPicker](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
+- [CMenuColorPickerAttachment](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
+- [CMenuComboBox](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
+- [CMenuGearAttachment](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
+- [CMenuInputBox](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
+- [CMenuMultiComboBox](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
+- [CMenuMultiSelect](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
+- [CMenuBind](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
+- [CMenuLabel](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md).
-
+> 
 # CMenuSwitch
-
 CMenuSwitch metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = switch:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = switch:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns widget's value.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Sets widget's value.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 switch:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                | Description                                                              |
 | --------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuSwitch):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                    | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                | Description                                     |
 | ------------ | ------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuSwitch):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md).
-
+> 
 # CMenuSliderFloat
-
 CMenuSliderFloat metatable.
-
 ## <sub>Update</sub>
-
 `:Update(minValue, maxValue, defaultValue):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                            | Description |
 | ---------------- | ----------------------------------------------- | ----------- |
 | **minValue**     | <mark style="color:purple;">**`number`**</mark> |             |
 | **maxValue**     | <mark style="color:purple;">**`number`**</mark> |             |
 | **defaultValue** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Updates the slider values.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = switch:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = switch:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`number`**</mark>
-
 Returns widget's value.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets widget's value.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 switch:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                     | Description                                                              |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuSliderFloat):nil`**</mark> | function to be called on widget change.\\                                |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                         | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                     | Description                                     |
 | ------------ | ------------------------------------------------------------------------ | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuSliderFloat):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md).
-
+> 
 # CMenuSliderInt
-
 CMenuSliderInt metatable.
-
 ## <sub>Update</sub>
-
 `:Update(minValue, maxValue, defaultValue):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                             | Description |
 | ---------------- | ------------------------------------------------ | ----------- |
 | **minValue**     | <mark style="color:purple;">**`integer`**</mark> |             |
 | **maxValue**     | <mark style="color:purple;">**`integer`**</mark> |             |
 | **defaultValue** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Updates the slider values.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = switch:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = switch:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns widget's value.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Sets widget's value.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 switch:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                   | Description                                                              |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuSliderInt):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                       | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                   | Description                                     |
 | ------------ | ---------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuSliderInt):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md).
-
+> 
 # CMenuButton
-
 CMenuButton metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 widget:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                | Description                                                              |
 | --------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                    | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                | Description                                     |
 | ------------ | ------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md).
-
+> 
 # CMenuColorPicker
-
 CMenuColorPicker metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get():` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 Returns widget's value.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                                    | Description |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
 | **value** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
-
 Sets widget's value.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 widget:Icon("\u{f007}")
 ```
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                     | Description                                                              |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuColorPicker):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                         | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                     | Description                                     |
 | ------------ | ------------------------------------------------------------------------ | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuColorPicker):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>HideAlphaBar</sub>
-
 `:HideAlphaBar(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets alpha bar state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:HideAlphaBar( true )
 ```
-
 ## <sub>HideAlphaBar</sub>
-
 `:HideAlphaBar():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isAlphaBarHidden = widget:HideAlphaBar()
@@ -5148,478 +3951,293 @@ local isAlphaBarHidden = widget:HideAlphaBar()
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md).
-
+> 
 # CMenuColorPickerAttachment
-
 CMenuColorPickerAttachment metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/menu/CMenuLabel.md) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md) | [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Get</sub>
-
 `:Get():` [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)
-
 Returns widget's value.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                                    | Description |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
 | **value** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
-
 Sets widget's value.
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                               | Description                                                              |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuColorPickerAttachment):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                   | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                               | Description                                     |
 | ------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuColorPickerAttachment):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md).
-
+> 
 # CMenuComboBox
-
 CMenuComboBox metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Update</sub>
-
 `:Update(items, [defaultValue]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                               | Type                                              | Description                                           |
 | ------------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------- |
 | **items**                                                          | <mark style="color:purple;">**`string[]`**</mark> |                                                       |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark>  | Index of default item. (starts from 0) `(default: 0)` |
-
 Update the combo box values.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns index of the selected item. It starts from 0.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Sets widget's value.
-
 ## <sub>List</sub>
-
 `:List():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns array of the items.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 widget:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                  | Description                                                              |
 | --------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuComboBox):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                      | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                  | Description                                     |
 | ------------ | --------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuComboBox):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md).
-
+> 
 # CMenuGearAttachment
-
 CMenuGearAttachment metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md) | [<mark style="color:purple;">**`CMenuComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md) | [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 \`:ForceLocalization(newText):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>Find</sub>
-
 `:Find(widgetName):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md) | [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md) | [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md) | [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md) | [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md) | [<mark style="color:purple;">**`CMenuComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md) | [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md) | [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md) | [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md) | [<mark style="color:purple;">**`CMenuLabel`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                            | Description |
 | -------------- | ----------------------------------------------- | ----------- |
 | **widgetName** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds the widget by name.
-
 ## <sub>Switch</sub>
-
 `:Switch(switchName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuSwitch`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md)
-
 | Name                                                               | Type                                             | Description                                                |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------------------- |
 | **switchName**                                                     | <mark style="color:purple;">**`string`**</mark>  |                                                            |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | `(default: false)`                                         |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>  | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuSwitch`.
-
 ## <sub>Bind</sub>
-
 `:Bind(bindName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuBind`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
-
 | Name                                                               | Type                                                                                                                                                                                 | Description                                                |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
 | **bindName**                                                       | <mark style="color:purple;">**`string`**</mark>                                                                                                                                      |                                                            |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                                                                                                      | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuBind`.
-
 ## <sub>Slider</sub>
-
 `:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [<mark style="color:purple;">**`CMenuSliderInt`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md)
-
 | Name                                                         | Type                                                                                                                   | Description                                                               |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | **sliderName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                        |                                                                           |
@@ -5627,12 +4245,9 @@ Creates new `CMenuBind`.
 | **maxValue**                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
 | **defaultValue**                                             | <mark style="color:purple;">**`integer`**</mark>                                                                       |                                                                           |
 | **format&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`fun(value: integer):string`**</mark> | Format string or function to format value. See example. `(default: "%d")` |
-
 Creates new `CMenuSliderInt` or `CMenuSliderFloat` depents on arg types.\
 `minValue`, `maxValue` and `defaultValue` should be integer to create `CMenuSliderInt`.
-
 #### Example
-
 ```lua
 -- Create slider with integer values
 gear:Slider( "slider", 0, 100, 50, "%d" )
@@ -5640,11 +4255,8 @@ gear:Slider( "slider", 0, 100, 50, "%d" )
 gear:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- turns into
 "50%"
 ```
-
 ## <sub>Slider</sub>
-
 `:Slider(sliderName, minValue, maxValue, defaultValue, [format]):` [<mark style="color:purple;">**`CMenuSliderFloat`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md)
-
 | Name                                                         | Type                                                                                                                  | Description                                                               |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | **sliderName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                       |                                                                           |
@@ -5652,11 +4264,8 @@ gear:Slider( "slider", 0, 100, 50, function( value ) return "%d%%" end ) -- turn
 | **maxValue**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
 | **defaultValue**                                             | <mark style="color:purple;">**`number`**</mark>                                                                       |                                                                           |
 | **format&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`fun(value: number):string`**</mark> | Format string or function to format value. See example. `(default: "%f")` |
-
 Creates new `CMenuSliderFloat`.
-
 #### Example
-
 ```lua
 -- Create slider with float values
 gear:Slider( "slider", 0.0, 1.0, 0.5, "%.2f" ) -- turns into "0.50"
@@ -5669,165 +4278,111 @@ gear:Slider( "slider", 0.0, 100.0, 50.0, function( value )
   end
 end )
 ```
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(colorPickerName, color, [imageIcon]):` [<mark style="color:purple;">**`CMenuColorPicker`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
-
 | Name                                                            | Type                                                                                                    | Description                                                |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | **colorPickerName**                                             | <mark style="color:purple;">**`string`**</mark>                                                         |                                                            |
 | **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) |                                                            |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark>                                                         | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuColorPicker`.
-
 ## <sub>Button</sub>
-
 `:Button(buttonName, callback, [altStyle], [widthPercent]):` [<mark style="color:purple;">**`CMenuButton`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubutton.md)
-
 | Name                                                               | Type                                                                | Description                                            |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------ |
 | **buttonName**                                                     | <mark style="color:purple;">**`string`**</mark>                     |                                                        |
 | **callback**                                                       | <mark style="color:purple;">**`fun(this: CMenuButton):nil`**</mark> | function to call on button click.                      |
 | **altStyle&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                    | Use alternative button style. `(default: false)`       |
 | **widthPercent&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                     | Button width in percents. \[0.0, 1.0] `(default: 1.0)` |
-
 Creates new `CMenuButton`.
-
 #### Example
-
 ```lua
 gear:Button( "button", function( this )
 	Log.Write( "Button '" .. this:Name() .. "' has been clicked."  )
 end )
 ```
-
 ## <sub>Combo</sub>
-
 `:Combo(comboName, items, [defaultValue]):` [<mark style="color:purple;">**`CMenuComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md)
-
 | Name                                                               | Type                                              | Description                                           |
 | ------------------------------------------------------------------ | ------------------------------------------------- | ----------------------------------------------------- |
 | **comboName**                                                      | <mark style="color:purple;">**`string`**</mark>   |                                                       |
 | **items**                                                          | <mark style="color:purple;">**`string[]`**</mark> |                                                       |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark>  | Index of default item. (starts from 0) `(default: 0)` |
-
 Creates new `CMenuComboBox`.
-
 ## <sub>MultiCombo</sub>
-
 `:MultiCombo(multiComboName, items, enabledItems):` [<mark style="color:purple;">**`CMenuMultiComboBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md)
-
 | Name               | Type                                              | Description            |
 | ------------------ | ------------------------------------------------- | ---------------------- |
 | **multiComboName** | <mark style="color:purple;">**`string`**</mark>   |                        |
 | **items**          | <mark style="color:purple;">**`string[]`**</mark> |                        |
 | **enabledItems**   | <mark style="color:purple;">**`string[]`**</mark> | table of enabled items |
-
 Creates new `CMenuMultiComboBox`.
-
 #### Example
-
 ```lua
 gear:MultiCombo( "multiCombo", { "item1", "item2", "item3" }, { "item1", "item3" } )
 ```
-
 ## <sub>MultiSelect</sub>
-
 `:MultiSelect(multiSelectName, items, [expanded]):` [<mark style="color:purple;">**`CMenuMultiSelect`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
-
 | Name                                                           | Type                                                                                               | Description                                                                    |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | **multiSelectName**                                            | <mark style="color:purple;">**`string`**</mark>                                                    |                                                                                |
 | **items**                                                      | <mark style="color:purple;">**`{nameId: string, imagePath: string, isEnabled: boolean}[]`**</mark> | See example.                                                                   |
 | **expanded&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                   | false if you want to create MultiSelect in collapsed state. `(default: false)` |
-
 Creates new `CMenuMultiSelect`.
-
 #### Example
-
 ```lua
 gear:MultiSelect( "multiSelect", {
  	{ "1", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
  	{ "2", "panorama/images/heroes/icons/npc_dota_hero_antimage_png.vtex_c", false },
 }, true )
 ```
-
 ## <sub>Input</sub>
-
 `:Input(inputName, [defaultValue], [imageIcon]):` [<mark style="color:purple;">**`CMenuInputBox`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md)
-
 | Name                                                               | Type                                            | Description                                                |
 | ------------------------------------------------------------------ | ----------------------------------------------- | ---------------------------------------------------------- |
 | **inputName**                                                      | <mark style="color:purple;">**`string`**</mark> |                                                            |
 | **defaultValue&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | `(default: "")`                                            |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark> | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuInputBox`.
-
 ## <sub>Label</sub>
-
 `:Label(labelText, [imageIcon]):` [<mark style="color:purple;">**`CMenuLabel`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
-
 | Name                                                            | Type                                            | Description                                                |
 | --------------------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------- |
 | **labelText**                                                   | <mark style="color:purple;">**`string`**</mark> |                                                            |
 | **imageIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | Path to image or FontAwesome icon unicode. `(default: "")` |
-
 Creates new `CMenuLabel`.
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
@@ -5835,2310 +4390,1424 @@ local isDisabled = widget:Disabled()
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuinputbox.md).
-
+> 
 # CMenuInputBox
-
 CMenuInputBox metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = switch:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 switch:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = switch:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's value.
-
 ## <sub>Set</sub>
-
 `:Set(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Sets widget's value.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 switch:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                  | Description                                                              |
 | --------------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuInputBox):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                      | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                  | Description                                     |
 | ------------ | --------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuInputBox):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumulticombobox.md).
-
+> 
 # CMenuMultiComboBox
-
 CMenuMultiComboBox metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Update</sub>
-
 `:Update(items, enabledItems):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                              | Description            |
 | ---------------- | ------------------------------------------------- | ---------------------- |
 | **items**        | <mark style="color:purple;">**`string[]`**</mark> |                        |
 | **enabledItems** | <mark style="color:purple;">**`string[]`**</mark> | table of enabled items |
-
 Updates the multicombo values.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get(itemId):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                            | Description |
 | ---------- | ----------------------------------------------- | ----------- |
 | **itemId** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns enable state of the item in combo box.
-
 ## <sub>Set</sub>
-
 `:Set(enabledItems):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                              | Description                                             |
 | ---------------- | ------------------------------------------------- | ------------------------------------------------------- |
 | **enabledItems** | <mark style="color:purple;">**`string[]`**</mark> | A table of enabled items; other items will be disabled. |
-
 Sets a new value for the item by itemId or sets a new list of enabled items
-
 ## <sub>Set</sub>
-
 `:Set(itemId, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description |
 | ---------- | ------------------------------------------------ | ----------- |
 | **itemId** | <mark style="color:purple;">**`string`**</mark>  |             |
 | **value**  | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 ## <sub>List</sub>
-
 `:List():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns array of itemIds.
-
 ## <sub>ListEnabled</sub>
-
 `:ListEnabled():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns array of enabled itemIds.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 widget:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                       | Description                                                              |
 | --------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuMultiComboBox):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                           | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                       | Description                                     |
 | ------------ | -------------------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuMultiComboBox):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md).
-
+> 
 # CMenuMultiSelect
-
 CMenuMultiSelect metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Update</sub>
-
 `:Update(items, [expanded], [saveToConfig]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                               | Type                                                                                               | Description                                                                    |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | **items**                                                          | <mark style="color:purple;">**`{nameId: string, imagePath: string, isEnabled: boolean}[]`**</mark> | See `CMenuGroup:MultiSelect`.                                                  |
 | **expanded&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                                                   | false if you want to create MultiSelect in collapsed state. `(default: false)` |
 | **saveToConfig&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                   | true if you want to save to config `(default: false)`                          |
-
 Updates the multiselect values.
-
 ## <sub>OneItemSelection</sub>
-
 `:OneItemSelection(newState):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                             | Description |
 | ------------ | ------------------------------------------------ | ----------- |
 | **newState** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets one item selection state. One item selection allows only one item to be\
 selected. Depends on the argument.
-
 ## <sub>OneItemSelection</sub>
-
 `:OneItemSelection():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>DragAllowed</sub>
-
 `:DragAllowed(newState):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                             | Description |
 | ------------ | ------------------------------------------------ | ----------- |
 | **newState** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets drag allowed state. Drag allows items to be ordered by cursor.\
 Depends on the argument.
-
 ## <sub>DragAllowed</sub>
-
 `:DragAllowed():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get(itemId):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                            | Description |
 | ---------- | ----------------------------------------------- | ----------- |
 | **itemId** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns enable state of the item in multiselect.
-
 ## <sub>Set</sub>
-
 `:Set(enabledItems):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                              | Description                                             |
 | ---------------- | ------------------------------------------------- | ------------------------------------------------------- |
 | **enabledItems** | <mark style="color:purple;">**`string[]`**</mark> | A table of enabled items; other items will be disabled. |
-
 Sets a new value for the item by itemId or sets a new list of enabled items
-
 ## <sub>Set</sub>
-
 `:Set(itemId, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description |
 | ---------- | ------------------------------------------------ | ----------- |
 | **itemId** | <mark style="color:purple;">**`string`**</mark>  |             |
 | **value**  | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 ## <sub>List</sub>
-
 `:List():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns array of itemIds.
-
 ## <sub>ListEnabled</sub>
-
 `:ListEnabled():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns array of enabled itemIds.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 widget:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetCallback(callback, \[forceCall]):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name                                                            | Type                                                                     | Description                                                              |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuMultiSelect):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                         | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                     | Description                                     |
 | ------------ | ------------------------------------------------------------------------ | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuMultiSelect):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>UpdateBackgroundColors</sub>
-
 `:UpdateBackgroundColors(colors):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                   | Description                   |
 | ---------- | ------------------------------------------------------ | ----------------------------- |
 | **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with background colors. |
-
 Updates widget's background colors.
-
 ## <sub>UpdateImageColors</sub>
-
 `:UpdateImageColors(colors):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                   | Description              |
 | ---------- | ------------------------------------------------------ | ------------------------ |
 | **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with image colors. |
-
 Updates widget's image colors.
-
 ## <sub>UpdateToolTips</sub>
-
 `:UpdateToolTips(colors):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                   | Description             |
 | ---------- | ------------------------------------------------------ | ----------------------- |
 | **colors** | <mark style="color:purple;">**`table<string>`**</mark> | Table with new tooltips |
-
 Updates widget's tooltips
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md).
-
+> 
 # CMenuBind
-
 CMenuBind metatable.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 Returns widget's name.
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget's type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 `:ForceLocalization(newText):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Get</sub>
-
 `:Get([idx]):` [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode)
-
 | Name                                                      | Type                                                                                     | Description                                          |
 | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | **idx&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`0`**</mark> \| <mark style="color:purple;">**`1`**</mark> | index of the button to get value from `(default: 0)` |
-
 Returns widget's value. To get both of the buttons use `Buttons` method.
-
 ## <sub>Set</sub>
-
 `:Set(key1, [key2]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                       | Type                                                                                                                                                                                 | Description                                                 |
 | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | **key1**                                                   | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) | primary button code                                         |
 | **key2&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) | secondary button code `(default: Enum.ButtonCode.KEY_NONE)` |
-
 Sets widget's value.
-
 ## <sub>Buttons</sub>
-
 `:Buttons():` [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode), [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode)
-
 Returns widget's buttons value.
-
 ## <sub>IsDown</sub>
-
 `:IsDown():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` when the key or both keys is down.
-
 ## <sub>IsPressed</sub>
-
 `:IsPressed():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` when the key or both keys is pressed for the first time.
-
 ## <sub>IsToggled</sub>
-
 `:IsToggled():` <mark style="color:purple;">**`boolean`**</mark>
-
 Bind stores it's toggle state and switches it when the key is pressed. This method\
 returns this state.
-
 ## <sub>SetToggled</sub>
-
 `:SetToggled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Sets the toggle state manually.
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 switch:Icon("\u{f007}")
 ```
-
 ## <sub>SetCallback</sub>
-
 Multiple callbacks could be set.
-
 `:SetCallback(callback, [forceCall]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                              | Description                                                              |
 | --------------------------------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **callback**                                                    | <mark style="color:purple;">**`fun(this: CMenuBind):nil`**</mark> | function to be called on widget change.                                  |
 | **forceCall&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                  | true if you want to call callback on widget creation. `(default: false)` |
-
 Sets widget's on change callback.
-
 ## <sub>UnsetCallback</sub>
-
 `:UnsetCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                              | Description                                     |
 | ------------ | ----------------------------------------------------------------- | ----------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuBind):nil`**</mark> | function to be removed from widget's callbacks. |
-
 Removes widget's on change callback.
-
 ## <sub>SetKeyCallback</sub>
-
 Multiple callbacks could be set.
-
 \`:SetKeyCallback(callback):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name         | Type                                                                                                           | Description                                 |
 | ------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuBind, key: Enum.ButtonCode, event: Enum.EKeyEvent):nil`**</mark> | function to be called on key press/release. |
-
 Sets widget's on key press/release callback.
-
 ## <sub>UnsetKeyCallback</sub>
-
 `:UnsetKeyCallback(callback):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                                           | Description             |
 | ------------ | -------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **callback** | <mark style="color:purple;">**`fun(this: CMenuBind, key: Enum.ButtonCode, event: Enum.EKeyEvent):nil`**</mark> | function to be removed. |
-
 Removes widget's on key press/release callback.
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
-
 ## <sub>Properties</sub>
-
 `:Properties([name], [value], [markAsToggle]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                               | Type                                             | Description                                                                                                                                                                                                                |
 | ------------------------------------------------------------------ | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **name&#x20;**<mark style="color:orange;">**`[?]`**</mark>         | <mark style="color:purple;">**`string`**</mark>  | Overridden name to display in bind list. `(default: nil)`                                                                                                                                                                  |
 | **value&#x20;**<mark style="color:orange;">**`[?]`**</mark>        | <mark style="color:purple;">**`string`**</mark>  | Overridden value to display alongside the name in the bind list. This can be used to provide additional context about the bind. `(default: nil)`                                                                           |
 | **markAsToggle&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Indicates whether the bind should be marked as a toggle, which is particularly useful if the bind's functionality includes toggling states. Recommended to be used in conjunction with the IsToggled(). `(default: false)` |
-
 Updates the properties of a widget for display in the bind list.
-
 ## <sub>ShowInBindIsland</sub>
-
 `:ShowInBindIsland(newStatus):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name          | Type                                             | Description |
 | ------------- | ------------------------------------------------ | ----------- |
 | **newStatus** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets the visibility of the bind in the bind island.
-
 ## <sub>ShowInBindIsland</sub>
-
 `:ShowInBindIsland():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>MouseBinding</sub>
-
 `:MouseBinding(newStatus):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name          | Type                                             | Description |
 | ------------- | ------------------------------------------------ | ----------- |
 | **newStatus** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets the ability to bind the mouse button.
-
 ## <sub>MouseBinding</sub>
-
 `:MouseBinding():` <mark style="color:purple;">**`boolean`**</mark>
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md).
-
+> 
 # CMenuLabel
-
 CMenuLabel metatable.
-
 ## <sub>Name</sub>
-
 `:Name(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns widget's name.
-
 ## <sub>Name</sub>
-
 `:Name():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Parent</sub>
-
 `:Parent():` [<mark style="color:purple;">**`CMenuGroup`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md) | [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 Returns widget's parent.
-
 ## <sub>Type</sub>
-
 `:Type():` [<mark style="color:purple;">**`Enum.WidgetType`**</mark>](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/pages/VwVljl88Qnl7u9hhqRdw#enum.widgettype)
-
 Returns widget type.
-
 ## <sub>Open</sub>
-
 `:Open():` <mark style="color:purple;">**`nil`**</mark>
-
 Opens parent tabs.
-
 ## <sub>ForceLocalization</sub>
-
 Not recommended for use due to its complexity
-
 \`:ForceLocalization(newText):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Changes text in the widget. The path to the widget is not affected.\
 May be used for dynamic text customization or recolor.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip(newText):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **newText** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Gets or sets tooltip. Tooltip is displayed when mouse cursor is over the widget.\
 Depends on the argument.
-
 ## <sub>ToolTip</sub>
-
 `:ToolTip():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>Visible</sub>
-
 `:Visible(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets visible state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Visible(false)
 ```
-
 ## <sub>Visible</sub>
-
 `:Visible():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isVisible = widget:Visible()
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets disabled state. Depends on argument.
-
 #### Example
-
 ```lua
 -- setter
 widget:Disabled( false )
 ```
-
 ## <sub>Disabled</sub>
-
 `:Disabled():` <mark style="color:purple;">**`boolean`**</mark>
-
 #### Example
-
 ```lua
 -- getter
 local isDisabled = widget:Disabled()
 ```
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **value** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Gets or sets unsafe state. Unsafe widgets have warning sign.\
 Depends on argument.
-
 ## <sub>Unsafe</sub>
-
 `:Unsafe():` <mark style="color:purple;">**`boolean`**</mark>
-
 ## <sub>Image</sub>
-
 `:Image(imagePath, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imagePath**                                                | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.                             |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets widget's image.
-
 ## <sub>ImageHandle</sub>
-
 `:ImageHandle(imageHandle, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                    |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | **imageHandle**                                              | <mark style="color:purple;">**`integer`**</mark>                                                           |                                                |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
-
 Sets tab's image by already created handle.
-
 ## <sub>Icon</sub>
-
 `:Icon(icon, [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                       | Description                                   |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **icon**                                                     | <mark style="color:purple;">**`string`**</mark>                                                            | icon unicode.                                 |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
-
 Sets widget's icon.\
 [Icons list](https://fontawesome.com/search?o=r\&s=solid\&f=classic)
-
 #### Example
-
 ```lua
 --https://fontawesome.com/icons/user?f=classic&s=solid
 widget:Icon("\u{f007}")
 ```
-
 ## <sub>ColorPicker</sub>
-
 `:ColorPicker(name, color):` [<mark style="color:purple;">**`CMenuColorPickerAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
-
 | Name      | Type                                                                                                    | Description             |
 | --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **name**  | <mark style="color:purple;">**`string`**</mark>                                                         | Name of the attachment. |
 | **color** | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
-
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
-
 ## <sub>Gear</sub>
-
 `:Gear(name, [gearIcon], [useSmallFont]):` [<mark style="color:purple;">**`CMenuGearAttachment`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md)
-
 | Name                                                               | Type                                             | Description                                     |
 | ------------------------------------------------------------------ | ------------------------------------------------ | ----------------------------------------------- |
 | **name**                                                           | <mark style="color:purple;">**`string`**</mark>  | Name of the attachment.                         |
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
-
 Creates `CMenuGearAttachment` and attaches it to the widget.
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math.md -->
 
---------------------------------------------------------------------------------
-
-### Classes - Math
+> 
+# Math
+- [Vector](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
+- [Angle](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
+- [Vec2](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
+- [Vertex](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md).
-
+> 
 # Vector
-
 Vector metatable
-
 ### Fields
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
 | **z** | <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>AddInPlace</sub>
-
 `:AddInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Adds other to this vector in-place. Returns self for chaining.
-
 ## <sub>SubInPlace</sub>
-
 `:SubInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Subtracts other from this vector in-place. Returns self for chaining.
-
 ## <sub>MulInPlace</sub>
-
 `:MulInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Multiplies this vector by other in-place. Returns self for chaining.
-
 ## <sub>DivInPlace</sub>
-
 `:DivInPlace(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Divides this vector by other in-place. Returns self for chaining.
-
 ## <sub>Set</sub>
-
 `:Set(x, y, z):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
 | **z** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets x, y, z components. Returns self for chaining.
-
 ## <sub>SetGroundZ</sub>
-
 `:SetGroundZ():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Sets .z = World.GetGroundZ(.x, .y). Returns self for chaining.
-
 ## <sub>LerpInPlace</sub>
-
 `:LerpInPlace(b, t):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name  | Type                                                                                                           | Description |
 | ----- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **b** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 | **t** | <mark style="color:purple;">**`number`**</mark>                                                                |             |
-
 Linearly interpolates this vector towards other in-place. Returns self for chaining.
-
 ## <sub>CopyFrom</sub>
-
 `:CopyFrom(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                           | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Copies values from another vector without allocating. Returns self for chaining.
-
 ## <sub>Clone</sub>
-
 `:Clone():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Creates a new vector with the same values as the original.
-
 ## <sub>DirectionTo</sub>
-
 `:DirectionTo(other, [dist]):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name                                                       | Type                                                                                                           | Description                            |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **other**                                                  | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |                                        |
 | **dist&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | optional scale factor `(default: 1.0)` |
-
 Returns a normalized direction vector from this point to other, optionally scaled by distance.\
 Equivalent to `(other - self):Normalized():Scaled(dist)` but with a single allocation.
-
 ## <sub>AngleBetween2D</sub>
-
 `:AngleBetween2D(middle, point3):` <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                                           | Description                                         |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | **middle** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | the vertex point (this is point1, middle is point2) |
 | **point3** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |                                                     |
-
 Returns the angle in radians between two 2D vectors formed by three points.\
 Equivalent to the angle at point2 in the triangle point1-point2-point3, ignoring Z.
-
 ## <sub>ClosestToPoint</sub>
-
 `:ClosestToPoint(entities):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                           | Description |
 | ------------ | ---------------------------------------------------------------------------------------------- | ----------- |
 | **entities** | [<mark style="color:purple;">**`CEntity[]`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Finds the closest entity to this position from a table of entities.\
 Returns the entity and the distance. Uses Distance2D.
-
 ## <sub>DistanceSqr2D</sub>
-
 `:DistanceSqr2D(other):` <mark style="color:purple;">**`number`**</mark>
-
 | Name      | Type                                                                                                           | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Returns the squared 2D distance to another vector. Cheaper than Distance2D (no sqrt).\
 Use for distance comparisons: `a:DistanceSqr2D(b) < range * range`.
-
 ## <sub>IsInRange2D</sub>
-
 `:IsInRange2D(other, range):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                                           | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 | **range** | <mark style="color:purple;">**`number`**</mark>                                                                |             |
-
 Returns true if this position is within range of another position (2D, no sqrt).
-
 ## <sub>Extend2D</sub>
-
 `:Extend2D(target, distance):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name         | Type                                                                                                           | Description |
 | ------------ | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **target**   | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 | **distance** | <mark style="color:purple;">**`number`**</mark>                                                                |             |
-
 Extends this position towards target by distance (2D, ignores Z). Single allocation.\
 Equivalent to `self + (target - self):Normalized() * distance` without intermediate vectors.
-
 ## <sub>Perpendicular2D</sub>
-
 `:Perpendicular2D():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns a 2D perpendicular vector (-y, x, z). Zero allocation if called in-place.
-
 ## <sub>Negate</sub>
-
 `:Negate():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Negates this vector in-place (-x, -y, -z). Returns self for chaining.
-
 ## <sub>IsZero</sub>
-
 `:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                            | Type                                            | Description       |
 | --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
 | **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
-
 Returns true if all components are near zero within tolerance.
-
 ## <sub>Extrapolate</sub>
-
 `:Extrapolate(direction, scalar):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name          | Type                                                                                                           | Description |
 | ------------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **direction** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 | **scalar**    | <mark style="color:purple;">**`number`**</mark>                                                                |             |
-
 Returns `self + direction * scalar`. Single allocation.\
 Useful for position extrapolation: `start:Extrapolate(velocity, dt * speed)`.
-
 ## <sub>Vector</sub>
-
 `Vector([x], [y], [z]):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name                                                    | Type                                            | Description      |
 | ------------------------------------------------------- | ----------------------------------------------- | ---------------- |
 | **x&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
 | **y&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
 | **z&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
-
 Create a new Vector.
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>\_\_add</sub>
-
 Overload for operator +
-
 `:__add(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                                                                                                                                            | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_sub</sub>
-
 Overload for operator -
-
 `:__sub(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                                                                                                                                            | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_div</sub>
-
 Overload for operator /
-
 `:__div(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                                                                                                                                            | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_mul</sub>
-
 Overload for operator \*
-
 `:__mul(other):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                                                                                                                                            | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_eq</sub>
-
 Overload for operator ==
-
 \`:\_\_eq(other):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
-
 | Name      | Type                                                                                                           | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 ## <sub>Distance</sub>
-
 `:Distance(other):` <mark style="color:purple;">**`number`**</mark>
-
 | Name      | Type                                                                                                           | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Computes the distance from this vector to other.
-
 ## <sub>Distance2D</sub>
-
 `:Distance2D(other):` <mark style="color:purple;">**`number`**</mark>
-
 | Name      | Type                                                                                                           | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Computes the distance from this vector to other ignoring Z axis.
-
 ## <sub>Normalized</sub>
-
 `:Normalized():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns this vector with a length of 1.\
 When normalized, a vector keeps the same direction but its length is 1.0.\
 Note that the current vector is unchanged and a new normalized vector is returned. If you want to normalize the current vector, use `Vector:Normalize` function.
-
 ## <sub>Normalize</sub>
-
 `:Normalize():` <mark style="color:purple;">**`nil`**</mark>
-
 Makes this vector have a length of 1.\
 When normalized, a vector keeps the same direction but its length is 1.0.\
 Note that this function will change the current vector. If you want to keep the current vector unchanged, use `Vector:Normalized` function.
-
 ## <sub>Dot</sub>
-
 `:Dot(vector):` <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                                           | Description |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vector** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Dot Product of two vectors.\
 The dot product is a float value equal to the magnitudes of the two vectors multiplied together and then multiplied by the cosine of the angle between them.\
 For normalized vectors Dot returns 1 if they point in exactly the same direction, -1 if they point in completely opposite directions and zero if the vectors are perpendicular.\
 \
 [More](https://medium.com/@r.w.overdijk/unity-vector3-dot-what-11feb258052e)
-
 ## <sub>Dot2D</sub>
-
 `:Dot2D(vector):` <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                                           | Description |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vector** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Dot Product of two vectors ignoring Z axis.
-
 ## <sub>Scaled</sub>
-
 `:Scaled(scale):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **scale** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Returns this vector multiplied by the given number. The same as `Vector * number`.
-
 ## <sub>Scale</sub>
-
 `:Scale(scale):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **scale** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Multiplies this vector by the given number. The same as `Vector = Vector * number`.
-
 ## <sub>Length</sub>
-
 `:Length():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the length of this vector.\
 The length of the vector is `math.sqrt(x*x+y*y+z*z)`.\
 If you only need to compare length of some vectors, you can compare squared magnitudes of them using LengthSqr (computing squared length is faster).
-
 ## <sub>LengthSqr</sub>
-
 `:LengthSqr():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the squared length of this vector.\
 This method is faster than Length because it avoids computing a square root. Use this method if you need to compare vectors.
-
 ## <sub>Length2D</sub>
-
 `:Length2D():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the length of this vector ignoring Z axis.
-
 ## <sub>Length2DSqr</sub>
-
 `:Length2DSqr():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the squared length of this vector ignoring Z axis.\
 This method is faster than Length2D because it avoids computing a square root. Use this method if you need to compare vectors.
-
 ## <sub>Rotated</sub>
-
 `:Rotated(angle):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                                                                                            | Description |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **angle** | <mark style="color:purple;">**`number`**</mark> \| [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
-
 Returns the new vector rotated counterclockwise by the given angle in the XY-plane, leaving the Z-axis unaffected.
-
 ## <sub>Rotate</sub>
-
 `:Rotate(angle):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                                                                                            | Description |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **angle** | <mark style="color:purple;">**`number`**</mark> \| [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
-
 Rotates this vector counterclockwise by the given angle in the XY-plane, leaving the Z-axis unaffected.
-
 ## <sub>Lerp</sub>
-
 `:Lerp(b, t):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name  | Type                                                                                                           | Description                                |
 | ----- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | **b** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | end value, returned when t = 1             |
 | **t** | <mark style="color:purple;">**`number`**</mark>                                                                | value used to interpolate between a and b. |
-
 Returns linearly interpolated vector between two vectors.\
 The value returned equals **a + (b - a) \* t** (which can also be written **a \* (1-t) + b\*t**).\
 When `t = 0`, **a:Lerp(b, t)** returns `a`.\
 When `t = 1`, **a:Lerp(b, t)** returns `b`.\
 When `t = 0.5`, **a:Lerp(b, t)** returns the point midway between `a` and `b`.
-
 ## <sub>Cross</sub>
-
 `:Cross(vector):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name       | Type                                                                                                           | Description |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vector** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-
 Returns cross product of two vectors.\
 \
 [More](https://docs.unity3d.com/ScriptReference/Vector3.Cross.html)\
 [Visualization](https://www.youtube.com/watch?v=kz92vvioeng)
-
 ## <sub>MoveForward</sub>
-
 `:MoveForward(angle, distance):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name         | Type                                                                                                         | Description      |
 | ------------ | ------------------------------------------------------------------------------------------------------------ | ---------------- |
 | **angle**    | [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |                  |
 | **distance** | <mark style="color:purple;">**`number`**</mark>                                                              | distance to move |
-
 Moves vector forward by a specified distance in the direction defined by a given Angle.
-
 #### Example
-
 ```lua
 -- entity position moved forward by 300
 local pos = Entity.GetAbsOrigin(entity):MoveForward(Entity.GetRotation(entity), 300);
 ```
-
 ## <sub>ToAngle</sub>
-
 `:ToAngle():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Converts Vector to Angle. See\
 <https://github.com/ValveSoftware/source-sdk-2013/blob/0565403b153dfcde602f6f58d8f4d13483696a13/src/mathlib/mathlib\\_base.cpp#L535>
-
 ## <sub>ToScreen</sub>
-
 `:ToScreen():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md), <mark style="color:purple;">**`boolean`**</mark>
-
 Converts Vector to screen coordinate
-
 ## <sub>IsVisible</sub>
-
 `:IsVisible():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if position visible on screen.\
 To get screen position use :ToScreen method
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns x, y and z of this vector.
-
 ## <sub>GetX</sub>
-
 `:GetX():` <mark style="color:purple;">**`number`**</mark>
-
 Returns x of this vector. The same as Vector.x.
-
 ## <sub>GetY</sub>
-
 `:GetY():` <mark style="color:purple;">**`number`**</mark>
-
 Returns y of this vector. The same as Vector.y.
-
 ## <sub>GetZ</sub>
-
 `:GetZ():` <mark style="color:purple;">**`number`**</mark>
-
 Returns z of this vector. The same as Vector.z.
-
 ## <sub>SetX</sub>
-
 `:SetX(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets x. The same as Vector.x = value.
-
 ## <sub>SetY</sub>
-
 `:SetY(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets y. The same as Vector.y = value.
-
 ## <sub>SetZ</sub>
-
 `:SetZ(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets z. The same as Vector.z = value.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md).
-
+> 
 # Angle
-
 Angle metatable
-
 ### Fields
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **pitch** | <mark style="color:purple;">**`number`**</mark> |             |
 | **yaw**   | <mark style="color:purple;">**`number`**</mark> |             |
 | **roll**  | <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_eq</sub>
-
 `:__eq(other):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                                         | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
-
 Compares two angles for equality.
-
 ## <sub>\_\_add</sub>
-
 `:__add(other):` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 | Name      | Type                                                                                                         | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
-
 Adds two angles together. Returns a new Angle.
-
 ## <sub>\_\_sub</sub>
-
 `:__sub(other):` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 | Name      | Type                                                                                                         | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
-
 Subtracts one angle from another. Returns a new Angle.
-
 ## <sub>Set</sub>
-
 `:Set(pitch, yaw, roll):` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **pitch** | <mark style="color:purple;">**`number`**</mark> |             |
 | **yaw**   | <mark style="color:purple;">**`number`**</mark> |             |
 | **roll**  | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets pitch, yaw, roll. Returns self for chaining.
-
 ## <sub>CopyFrom</sub>
-
 `:CopyFrom(other):` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 | Name      | Type                                                                                                         | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
-
 Copies values from another angle without allocating. Returns self for chaining.
-
 ## <sub>Clone</sub>
-
 `:Clone():` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 Creates a new angle with the same values as the original.
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns pitch, yaw, roll as three numbers.
-
 ## <sub>IsZero</sub>
-
 `:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                            | Type                                            | Description       |
 | --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
 | **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
-
 Returns true if all components are near zero within tolerance.
-
 ## <sub>Angle</sub>
-
 `Angle([pitch], [yaw], [roll]):` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 | Name                                                        | Type                                            | Description      |
 | ----------------------------------------------------------- | ----------------------------------------------- | ---------------- |
 | **pitch&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
 | **yaw&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
 | **roll&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`number`**</mark> | `(default: 0.0)` |
-
 Create a new Angle.
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>GetForward</sub>
-
 `:GetForward():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns the forward vector from a given Angle.
-
 ## <sub>GetVectors</sub>
-
 `:GetVectors():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md), [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md), [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns the forward, right and up.
-
 ## <sub>GetYaw</sub>
-
 `:GetYaw():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the yaw. The same as Angle.yaw.
-
 ## <sub>GetRoll</sub>
-
 `:GetRoll():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the roll. The same as Angle.roll.
-
 ## <sub>GetPitch</sub>
-
 `:GetPitch():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the pitch. The same as Angle.pitch.
-
 ## <sub>SetYaw</sub>
-
 `:SetYaw(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets the yaw. The same as Angle.yaw = value.
-
 ## <sub>SetRoll</sub>
-
 `:SetRoll(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets the roll. The same as Angle.roll = value.
-
 ## <sub>SetPitch</sub>
-
 `:SetPitch(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets the pitch. The same as Angle.pitch = value.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md).
-
+> 
 # Vec2
-
 Vec2 metatable
-
 ### Fields
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>AddInPlace</sub>
-
 `:AddInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Adds other to this Vec2 in-place. Returns self for chaining.
-
 ## <sub>SubInPlace</sub>
-
 `:SubInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Subtracts other from this Vec2 in-place. Returns self for chaining.
-
 ## <sub>MulInPlace</sub>
-
 `:MulInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Multiplies this Vec2 by other in-place. Returns self for chaining.
-
 ## <sub>DivInPlace</sub>
-
 `:DivInPlace(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 Divides this Vec2 by other in-place. Returns self for chaining.
-
 ## <sub>CopyFrom</sub>
-
 `:CopyFrom(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                       | Description |
 | --------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
-
 Copies values from another Vec2 without allocating. Returns self for chaining.
-
 ## <sub>Clone</sub>
-
 `:Clone():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 Creates a new Vec2 with the same values as the original.
-
 ## <sub>Set</sub>
-
 `:Set(x, y):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets x, y components. Returns self for chaining.
-
 ## <sub>IsZero</sub>
-
 `:IsZero([tolerance]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                            | Type                                            | Description       |
 | --------------------------------------------------------------- | ----------------------------------------------- | ----------------- |
 | **tolerance&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | `(default: 0.01)` |
-
 Returns true if all components are near zero within tolerance.
-
 ## <sub>Vec2</sub>
-
 `Vec2(x, y):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Create a new Vec2.
-
 ## <sub>Vec2</sub>
-
 `Vec2():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 Create a new Vec2(0,0).
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>\_\_add</sub>
-
 Overload for operator +
-
 `:__add(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_sub</sub>
-
 Overload for operator -
-
 `:__sub(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_div</sub>
-
 Overload for operator /
-
 `:__div(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_mul</sub>
-
 Overload for operator \*
-
 `:__mul(other):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name      | Type                                                                                                                                                          | Description |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_eq</sub>
-
 Overload for operator ==
-
 \`:\_\_eq(other):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
-
 | Name      | Type                                                                                                       | Description |
 | --------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
-
 ## <sub>Length</sub>
-
 `:Length():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the length of the vector.
-
 ## <sub>Get</sub>
-
 `:Get():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns x, y of this vector.
-
 ## <sub>GetX</sub>
-
 `:GetX():` <mark style="color:purple;">**`number`**</mark>
-
 Returns x of this vector. The same as Vec2.x.
-
 ## <sub>GetY</sub>
-
 `:GetY():` <mark style="color:purple;">**`number`**</mark>
-
 Returns y of this vector. The same as Vec2.y.
-
 ## <sub>SetX</sub>
-
 `:SetX(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets x. The same as Vec2.x = value.
-
 ## <sub>SetY</sub>
-
 `:SetY(value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **value** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Sets y. The same as Vec2.y = value.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md).
-
+> 
 # Vertex
-
 Vertex metatable
-
 ### Fields
-
 | Name    | Type                                                                                                       | Description |
 | ------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
 | **pos** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | screen pos  |
 | **uv**  | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | texture uv  |
-
 ## <sub>Vertex</sub>
-
 `Vertex(pos, uv):` [<mark style="color:purple;">**`Vertex`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
-
 | Name    | Type                                                                                                       | Description |
 | ------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
 | **pos** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
 | **uv**  | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
-
 Create a new Vertex.
-
 ## <sub>Vertex</sub>
-
 `Vertex(posx, posy, uvx, uvy):` [<mark style="color:purple;">**`Vertex`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
-
 | Name     | Type                                            | Description |
 | -------- | ----------------------------------------------- | ----------- |
 | **posx** | <mark style="color:purple;">**`number`**</mark> |             |
 | **posy** | <mark style="color:purple;">**`number`**</mark> |             |
 | **uvx**  | <mark style="color:purple;">**`number`**</mark> |             |
 | **uvy**  | <mark style="color:purple;">**`number`**</mark> |             |
-
 Create a new Vertex(0,0).
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`string`**</mark>
-
 ## <sub>\_\_add</sub>
-
 Overload for operator +
-
 `:__add(other):` [<mark style="color:purple;">**`Vertex`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
-
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vertex`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) \| <mark style="color:purple;">**`number`**</mark> |             |
-
 ## <sub>\_\_sub</sub>
-
 Overload for operator -
-
 \`:\_\_sub(other):\` \[<mark style="color:purple;">\*\*\`Vertex\`\*\*</mark>]\(Vertex.md)
-
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vertex`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) \| <mark style="color:purple;">**`number`**</mark> |             |
@@ -8148,218 +5817,153 @@ Overload for operator -
 
 ## Game Components - Entity Lists
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists.md -->
+
+> 
+# Lists
+- [Abilities](https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md)
+- [Couriers](https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md)
+- [CustomEntities](https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md)
+- [Entities](https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md)
+- [Heroes](https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md)
+- [NPCs](https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md)
+- [Camps](https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md)
+- [Players](https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md)
+- [Runes](https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md)
+- [TempTrees](https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md)
+- [Towers](https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md)
+- [Trees](https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md)
+- [Physical Items](https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md)
+- [Modifiers](https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md)
+- [LinearProjectiles](https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/abilities.md).
-
+> 
 # Abilities
-
 Table to work with ability list.
-
 ## <sub>Count</sub>
-
 `Abilities.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of ability list.
-
 ## <sub>Get</sub>
-
 `Abilities.Get(index):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                     |
 | --------- | ------------------------------------------------ | ------------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of ability in cheat list. |
-
 Return ability by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Abilities.GetAll():` [<mark style="color:purple;">**`CAbility[]`**</mark>](/api-v2.0/game-components/core/ability.md)
-
 Return all abilities in cheat list.
-
 ## <sub>Contains</sub>
-
 `Abilities.Contains(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description       |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | Ability to check. |
-
 Check ability in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/couriers.md).
-
+> 
 # Couriers
-
 Table to work with courier list.
-
 ## <sub>Count</sub>
-
 `Couriers.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of courier list.
-
 ## <sub>Get</sub>
-
 `Couriers.Get(index):` [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                     |
 | --------- | ------------------------------------------------ | ------------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of courier in cheat list. |
-
 Return courier by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Couriers.GetAll():` [<mark style="color:purple;">**`CCourier[]`**</mark>](/api-v2.0/game-components/core/courier.md)
-
 Return all couriers in cheat list.
-
 ## <sub>Contains</sub>
-
 `Couriers.Contains(courier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description       |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------------- |
 | **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | Courier to check. |
-
 Check courier in cheat list.
-
 ## <sub>GetLocal</sub>
-
 `Couriers.GetLocal():` [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | <mark style="color:purple;">**`nil`**</mark>
-
 Return local courier.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/customentities.md).
-
+> 
 # CustomEntities
-
 Table to work with specific abilities.
-
 ## <sub>GetSpiritBear</sub>
-
 `CustomEntities.GetSpiritBear(spiritBear):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                                                                           | Description              |
 | -------------- | ---------------------------------------------------------------------------------------------- | ------------------------ |
 | **spiritBear** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | The Spirit Bear ability. |
-
 Accept the Spirit Bear ability and return linked Bear.
-
 ## <sub>GetVengeIllusion</sub>
-
 `CustomEntities.GetVengeIllusion(commandAura):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name            | Type                                                                                           | Description               |
 | --------------- | ---------------------------------------------------------------------------------------------- | ------------------------- |
 | **commandAura** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | The Command Aura ability. |
-
 Accept the Vengeful Spirit's Command Aura ability and return scepter linked illusion.
-
 ## <sub>GetTetheredUnit</sub>
-
 `CustomEntities.GetTetheredUnit(tether):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                           | Description         |
 | ---------- | ---------------------------------------------------------------------------------------------- | ------------------- |
 | **tether** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | The Tether ability. |
-
 Accept the Wisp's Tether ability and return linked unit.
-
 ## <sub>GetTempestDouble</sub>
-
 `CustomEntities.GetTempestDouble(tempestDouble):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name              | Type                                                                                           | Description                 |
 | ----------------- | ---------------------------------------------------------------------------------------------- | --------------------------- |
 | **tempestDouble** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | The Tempest Double ability. |
-
 Accept the Arc Warden's Tempest Double ability and return linked clone.
-
 ## <sub>GetMeepoIndex</sub>
-
 `CustomEntities.GetMeepoIndex(dividedWeStand):` <mark style="color:purple;">**`integer`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name               | Type                                                                                           | Description                   |
 | ------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------- |
 | **dividedWeStand** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | The Divided We Stand ability. |
-
 Accept the Meepo's Divided We Stand ability and return index of Meepo.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/entities.md).
-
+> 
 # Entities
-
 Table to work with entity list.
-
 ## <sub>GetAll</sub>
-
 `Entities.GetAll():` [<mark style="color:purple;">**`CEntity[]`**</mark>](/api-v2.0/game-components/core/entity.md)
-
 Get all entities on the map.
-
 ## <sub>Contains</sub>
-
 `Entities.Contains(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description      |
 | ---------- | -------------------------------------------------------------------------------------------- | ---------------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | Entity to check. |
-
 Check entity in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/heroes.md).
-
+> 
 # Heroes
-
 Table to work with hero list.
-
 ## <sub>Count</sub>
-
 `Heroes.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of hero list.
-
 ## <sub>Get</sub>
-
 `Heroes.Get(index):` [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                  |
 | --------- | ------------------------------------------------ | ---------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of hero in cheat list. |
-
 Return hero by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Heroes.GetAll():` [<mark style="color:purple;">**`CHero[]`**</mark>](/api-v2.0/game-components/core/hero.md)
-
 Return all heroes in cheat list.
-
 ## <sub>Contains</sub>
-
 `Heroes.Contains(hero):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description    |
 | -------- | ---------------------------------------------------------------------------------------- | -------------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) | Hero to check. |
-
 Check hero in cheat list.
-
 ## <sub>InRadius</sub>
-
 `Heroes.InRadius(pos, radius, teamNum, teamType, [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CHero[]`**</mark>](/api-v2.0/game-components/core/hero.md)
-
 | Name                                                                | Type                                                                                                                                                        | Description                                                             |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **pos**                                                             | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                              | Position to check.                                                      |
@@ -8368,52 +5972,33 @@ Check hero in cheat list.
 | **teamType**                                                        | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/lists/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | Team type to filter by. Relative to teamNum param.                      |
 | **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                            | `true` if you want to get table without illusions `(default: false)`    |
 | **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                                                            | `true` if you want to get table without dormant units `(default: true)` |
-
 Return all heroes in radius.
-
 ## <sub>GetLocal</sub>
-
 `Heroes.GetLocal():` [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md)
-
 Return local hero.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/npcs.md).
-
+> 
 # NPCs
-
 Table to work with NPC list.
-
 ## <sub>Count</sub>
-
 `NPCs.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of NPC list.
-
 ## <sub>Get</sub>
-
 `NPCs.Get(index):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                 |
 | --------- | ------------------------------------------------ | --------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of NPC in cheat list. |
-
 Return NPC by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `NPCs.GetAll([filter]):` [<mark style="color:purple;">**`CNPC[]`**</mark>](/api-v2.0/game-components/core/npc.md)
-
 | Name                                                         | Type                                                                                                                                                                                                                                     | Description      |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **filter&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.UnitTypeFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/lists/pages/VwVljl88Qnl7u9hhqRdw#enum.unittypeflags) \| <mark style="color:purple;">**`fun(npc: CNPC):boolean`**</mark> | `(default: nil)` |
-
 Return all NPCs in cheat list. Can be filtered by unit type or custom function.\
 Unit type filter is a much faster than custom function and can be or'ed to filter multiple types.
-
 #### Example
-
 ```lua
 -- filter function to get all structures except towers
 for _, v in pairs(NPCs.GetAll(function (npc)
@@ -8421,28 +6006,20 @@ for _, v in pairs(NPCs.GetAll(function (npc)
 end)) do
      print(NPC.GetUnitName(v))
 end
-
 -- get all towers and heroes (x5 times faster than filter function)
 for _, v in pairs(NPCs.GetAll(Enum.UnitTypeFlags.TYPE_TOWER | Enum.UnitTypeFlags.TYPE_HERO)) do
 		print(NPC.GetUnitName(v))
 end
 ```
-
 ## <sub>GetInScreen</sub>
-
 `NPCs.GetInScreen([filter], [skipDormant]):` <mark style="color:purple;">**`{entity:CNPC, position:Vec2}[]`**</mark>
-
 | Name                                                              | Type                                                                                                                                                                                                                  | Description                                                             |
 | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **filter&#x20;**<mark style="color:orange;">**`[?]`**</mark>      | [<mark style="color:purple;">**`Enum.UnitTypeFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/lists/pages/VwVljl88Qnl7u9hhqRdw#enum.unittypeflags) \| <mark style="color:purple;">**`nil`**</mark> | `(default: nil)`                                                        |
 | **skipDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                                                      | `true` if you want to get table without dormant units `(default: true)` |
-
 Return all NPCs in cheat list that visible on your screen. Can be filtered by unit type argument.
-
 ## <sub>InRadius</sub>
-
 `NPCs.InRadius(pos, radius, teamNum, teamType, [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CNPC[]`**</mark>](/api-v2.0/game-components/core/npc.md)
-
 | Name                                                                | Type                                                                                                                                                        | Description                                                             |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **pos**                                                             | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                              | Position to check.                                                      |
@@ -8451,415 +6028,255 @@ Return all NPCs in cheat list that visible on your screen. Can be filtered by un
 | **teamType**                                                        | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/lists/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | Team type to filter by. Relative to teamNum param.                      |
 | **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                            | `true` if you want to get table without illusions `(default: false)`    |
 | **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                                                            | `true` if you want to get table without dormant units `(default: true)` |
-
 Return all NPCs in radius.
-
 ## <sub>Contains</sub>
-
 `NPCs.Contains(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description   |
 | ------- | -------------------------------------------------------------------------------------- | ------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | NPC to check. |
-
 Check NPC in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/camps.md).
-
+> 
 # Camps
-
 Table to work with list of neutral spawners.
-
 ## <sub>Count</sub>
-
 `Camps.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of neutral spawner list.
-
 ## <sub>Get</sub>
-
 `Camps.Get(index):` [<mark style="color:purple;">**`CCamp`**</mark>](/api-v2.0/game-components/core/camp.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                             |
 | --------- | ------------------------------------------------ | --------------------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of neutral spawner in cheat list. |
-
 Return neutral spawner by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Camps.GetAll():` [<mark style="color:purple;">**`CCamp[]`**</mark>](/api-v2.0/game-components/core/camp.md)
-
 Return all neutral spawners in cheat list.
-
 ## <sub>InRadius</sub>
-
 `Camps.InRadius(pos, radius):` [<mark style="color:purple;">**`CCamp[]`**</mark>](/api-v2.0/game-components/core/camp.md)
-
 | Name       | Type                                                                                                           | Description        |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **pos**    | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check. |
 | **radius** | <mark style="color:purple;">**`number`**</mark>                                                                | Radius to check.   |
-
 Return all neutral spawners in radius.
-
 ## <sub>Contains</sub>
-
 `Camps.Contains(camp):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description               |
 | -------- | ---------------------------------------------------------------------------------------- | ------------------------- |
 | **camp** | [<mark style="color:purple;">**`CCamp`**</mark>](/api-v2.0/game-components/core/camp.md) | Neutral spawner to check. |
-
 Check neutral spawner in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/players.md).
-
+> 
 # Players
-
 Table to work with player list.
-
 ## <sub>Count</sub>
-
 `Players.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of player list.
-
 ## <sub>Get</sub>
-
 `Players.Get(index):` [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                    |
 | --------- | ------------------------------------------------ | ------------------------------ |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of player in cheat list. |
-
 Return player by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Players.GetAll():` [<mark style="color:purple;">**`CPlayer[]`**</mark>](/api-v2.0/game-components/core/player.md)
-
 Return all players in cheat list.
-
 ## <sub>Contains</sub>
-
 `Players.Contains(player):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description      |
 | ---------- | -------------------------------------------------------------------------------------------- | ---------------- |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | Player to check. |
-
 Check player in cheat list.
-
 ## <sub>GetLocal</sub>
-
 `Players.GetLocal():` [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md)
-
 Return local player.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/runes.md).
-
+> 
 # Runes
-
 Table to work with rune list.
-
 ## <sub>Count</sub>
-
 `Runes.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of rune list.
-
 ## <sub>Get</sub>
-
 `Runes.Get(index):` [<mark style="color:purple;">**`CRune`**</mark>](/api-v2.0/game-components/core/rune.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                  |
 | --------- | ------------------------------------------------ | ---------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of rune in cheat list. |
-
 Return rune by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Runes.GetAll():` [<mark style="color:purple;">**`CRune[]`**</mark>](/api-v2.0/game-components/core/rune.md)
-
 Return all runes in cheat list.
-
 ## <sub>Contains</sub>
-
 `Runes.Contains(rune):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description    |
 | -------- | ---------------------------------------------------------------------------------------- | -------------- |
 | **rune** | [<mark style="color:purple;">**`CRune`**</mark>](/api-v2.0/game-components/core/rune.md) | Rune to check. |
-
 Check rune in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/temptrees.md).
-
+> 
 # TempTrees
-
 Table to work with list of temp trees.
-
 ## <sub>Count</sub>
-
 `TempTrees.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of temp trees list.
-
 ## <sub>Get</sub>
-
 `TempTrees.Get(index):` [<mark style="color:purple;">**`CTree`**</mark>](/api-v2.0/game-components/core/tree.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                       |
 | --------- | ------------------------------------------------ | --------------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of temp tree in cheat list. |
-
 Return temp tree by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `TempTrees.GetAll():` [<mark style="color:purple;">**`CTree[]`**</mark>](/api-v2.0/game-components/core/tree.md)
-
 Return all temp trees in cheat list.
-
 ## <sub>InRadius</sub>
-
 `TempTrees.InRadius(pos, radius):` [<mark style="color:purple;">**`CTree[]`**</mark>](/api-v2.0/game-components/core/tree.md)
-
 | Name       | Type                                                                                                           | Description        |
 | ---------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **pos**    | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check. |
 | **radius** | <mark style="color:purple;">**`number`**</mark>                                                                | Radius to check.   |
-
 Return all temp trees in radius.
-
 ## <sub>Contains</sub>
-
 `TempTrees.Contains(tree):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description         |
 | -------- | ---------------------------------------------------------------------------------------- | ------------------- |
 | **tree** | [<mark style="color:purple;">**`CTree`**</mark>](/api-v2.0/game-components/core/tree.md) | Temp tree to check. |
-
 Check temp tree in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/towers.md).
-
+> 
 # Towers
-
 Table to work with tower list.
-
 ## <sub>Count</sub>
-
 `Towers.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of tower list.
-
 ## <sub>Get</sub>
-
 `Towers.Get(index):` [<mark style="color:purple;">**`CTower`**</mark>](/api-v2.0/game-components/core/tower.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                   |
 | --------- | ------------------------------------------------ | ----------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of tower in cheat list. |
-
 Return tower by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Towers.GetAll():` [<mark style="color:purple;">**`CTower[]`**</mark>](/api-v2.0/game-components/core/tower.md)
-
 Return all towers in cheat list.
-
 ## <sub>InRadius</sub>
-
 `Towers.InRadius(pos, radius, teamNum, [teamType]):` [<mark style="color:purple;">**`CTower[]`**</mark>](/api-v2.0/game-components/core/tower.md)
-
 | Name                                                           | Type                                                                                                                                                        | Description                                                 |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | **pos**                                                        | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                              | Position to check.                                          |
 | **radius**                                                     | <mark style="color:purple;">**`number`**</mark>                                                                                                             | Radius to check.                                            |
 | **teamNum**                                                    | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/lists/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum)   | Team number to check.                                       |
 | **teamType&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/lists/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | Team number to check. `(default: Enum.TeamType.TEAM_ENEMY)` |
-
 Return all towers in radius.
-
 ## <sub>Contains</sub>
-
 `Towers.Contains(tower):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                       | Description     |
 | --------- | ------------------------------------------------------------------------------------------ | --------------- |
 | **tower** | [<mark style="color:purple;">**`CTower`**</mark>](/api-v2.0/game-components/core/tower.md) | Tower to check. |
-
 Check tower in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/trees.md).
-
+> 
 # Trees
-
 Table to work with list of trees.
-
 ## <sub>Count</sub>
-
 `Trees.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of tree list.
-
 ## <sub>Get</sub>
-
 `Trees.Get(index):` [<mark style="color:purple;">**`CTree`**</mark>](/api-v2.0/game-components/core/tree.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                  |
 | --------- | ------------------------------------------------ | ---------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of tree in cheat list. |
-
 Return tree by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Trees.GetAll():` [<mark style="color:purple;">**`CTree[]`**</mark>](/api-v2.0/game-components/core/tree.md)
-
 Return all trees in cheat list.
-
 ## <sub>InRadius</sub>
-
 `Trees.InRadius(pos, radius, [active]):` [<mark style="color:purple;">**`CTree[]`**</mark>](/api-v2.0/game-components/core/tree.md)
-
 | Name                                                         | Type                                                                                                           | Description                              |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **pos**                                                      | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check.                       |
 | **radius**                                                   | <mark style="color:purple;">**`number`**</mark>                                                                | Radius to check.                         |
 | **active&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                               | Active state to check. `(default: true)` |
-
 Return all trees in radius.
-
 ## <sub>Contains</sub>
-
 `Trees.Contains(tree):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description    |
 | -------- | ---------------------------------------------------------------------------------------- | -------------- |
 | **tree** | [<mark style="color:purple;">**`CTree`**</mark>](/api-v2.0/game-components/core/tree.md) | Tree to check. |
-
 Check tree in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/physicalitems.md).
-
+> 
 # Physical Items
-
 Table to work with list of phisical items.
-
 ## <sub>Count</sub>
-
 `PhysicalItems.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Return size of physical item list.
-
 ## <sub>Get</sub>
-
 `PhysicalItems.Get(index):` [<mark style="color:purple;">**`CPhysicalItem`**</mark>](/api-v2.0/game-components/core/physicalitem.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                           |
 | --------- | ------------------------------------------------ | ------------------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of physical item in cheat list. |
-
 Return physical item by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `PhysicalItems.GetAll():` [<mark style="color:purple;">**`CPhysicalItem[]`**</mark>](/api-v2.0/game-components/core/physicalitem.md)
-
 Return all physical items in cheat list.
-
 ## <sub>Contains</sub>
-
 `PhysicalItems.Contains(physical):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                                     | Description                  |
 | ------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | **physical** | [<mark style="color:purple;">**`CPhysicalItem`**</mark>](/api-v2.0/game-components/core/physicalitem.md) | item Physical item to check. |
-
 Check physical item in cheat list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/modifiers.md).
-
+> 
 # Modifiers
-
 Table to work with list of modifiers.
-
 ## <sub>Count</sub>
-
 `Modifiers.Count():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns size of modifiers list.
-
 ## <sub>Get</sub>
-
 `Modifiers.Get(index):` [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description                       |
 | --------- | ------------------------------------------------ | --------------------------------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> | Index of temp tree in cheat list. |
-
 Returns modifiers by index in cheat list. Not the same as in-game index.
-
 ## <sub>GetAll</sub>
-
 `Modifiers.GetAll():` [<mark style="color:purple;">**`CModifier[]`**</mark>](/api-v2.0/game-components/core/modifier.md)
-
 Returns all modifiers in cheat list.
-
 ## <sub>Contains</sub>
-
 `Modifiers.Contains(tree):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                             | Description         |
 | -------- | ------------------------------------------------------------------------------------------------ | ------------------- |
 | **tree** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | Temp tree to check. |
-
 Checks if modifiers is in list.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/lists/linearprojectiles.md).
-
+> 
 # LinearProjectiles
-
 Table to work linear projectiles.
-
 ## <sub>GetAll</sub>
-
 `LinearProjectiles.GetAll():` <mark style="color:purple;">**`{handle: integer, max_speed: number, max_dist: number, start_position: Vector, position: Vector, velocity: Vector, original_velocity: Vector, acceleration: Vector, fow_radius: number, source: CEntity}[]`**</mark>
-
 Returns the 1-based indexed table with all existing projectiles. See example.
-
 #### Example
-
 ```lua
 -- linearprojectiles_getall.lua
 return {
     OnUpdate = function ()
         local linears = LinearProjectiles.GetAll();
         if (not linears) then return end;
-        
         for i, projectile in pairs(linears) do
             Log.Write("+++++++++++++++++++++++")
             Log.Write(projectile['max_dist']);
@@ -8879,18 +6296,36 @@ return {
 
 ## Game Components - Core Objects
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core.md -->
+
+> 
+# Core
+- [Player](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)
+- [Modifier](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md)
+- [Entity](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)
+- [NPC](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)
+- [Hero](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md)
+- [Ability](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)
+- [Item](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md)
+- [Rune](https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md)
+- [Tower](https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md)
+- [Tree](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md)
+- [Vambrace](https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md)
+- [Camp](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md)
+- [Bottle](https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md)
+- [Courier](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md)
+- [DrunkenBrawler](https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md)
+- [PhysicalItem](https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md)
+- [PowerTreads](https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md)
+- [TierToken](https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/player.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md).
-
+> 
 # Player
-
 Table to work with `CPlayer`. <mark style="color:purple;">**`CPlayer`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>PrepareUnitOrders</sub>
-
 `Player.PrepareUnitOrders(player, type, target, pos, ability, issuer, issuer_npc, [queue], [show_effects], [callback], [execute_fast], [identifier], [force_minimap]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                 | Type                                                                                                                                                                               | Description                                                                                       |
 | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **player**                                                           | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md)                                                                                       | The player issuing the order.                                                                     |
@@ -8906,13 +6341,9 @@ Table to work with `CPlayer`. <mark style="color:purple;">**`CPlayer`**</mark> e
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                   | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>                                                                                                                                    | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
 | **force\_minimap&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                   | If true, the order will be forced by the minimap if possible. `(default: true)`                   |
-
 Provides ability to execute such game actions as moving, attacking, or casting spells etc.
-
 ## <sub>HoldPosition</sub>
-
 `Player.HoldPosition(player, issuer_npc, [queue], [push], [execute_fast], [identifier]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                         | Description                                                                                       |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **player**                                                          | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The player issuing the order.                                                                     |
@@ -8921,13 +6352,9 @@ Provides ability to execute such game actions as moving, attacking, or casting s
 | **push&#x20;**<mark style="color:orange;">**`[?]`**</mark>          | <mark style="color:purple;">**`boolean`**</mark>                                             | If true, the order will be pushed to the OnPrepareUnitOrders callback. `(default: false)`         |
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                             | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                              | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
-
 Sends the hold position action.
-
 ## <sub>AttackTarget</sub>
-
 `Player.AttackTarget(player, issuer_npc, target, [queue], [push], [execute_fast], [identifier], [force_minimap]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                 | Type                                                                                         | Description                                                                                       |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **player**                                                           | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The player issuing the order.                                                                     |
@@ -8938,671 +6365,410 @@ Sends the hold position action.
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`boolean`**</mark>                                             | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>                                              | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
 | **force\_minimap&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                             | If true, the order will be forced by the minimap if possible. `(default: true)`                   |
-
 Sends the attack target position.
-
 ## <sub>GetPlayerID</sub>
-
 `Player.GetPlayerID(player):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns the player ID within the current game session.\
 If the player ID is not valid, it will return -1.
-
 ## <sub>GetPlayerSlot</sub>
-
 `Player.GetPlayerSlot(player):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns the player slot number within the current game session.
-
 ## <sub>GetPlayerTeamSlot</sub>
-
 `Player.GetPlayerTeamSlot(player):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns the team slot number assigned to the player within their respective team.
-
 ## <sub>GetName</sub>
-
 `Player.GetName(player):` <mark style="color:purple;">**`string`**</mark>, <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns the player nickname and his proname
-
 ## <sub>GetProName</sub>
-
 `Player.GetProName(steamId):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                             | Description |
 | ----------- | ------------------------------------------------ | ----------- |
 | **steamId** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Returns cached player's proname. Works only in game callbacks
-
 ## <sub>GetPlayerData</sub>
-
 `Player.GetPlayerData(player, [output]):` <mark style="color:purple;">**`{valid:boolean, fullyJoined:boolean, fakeClient:boolean, connectionState:integer, steamid:integer, PlusSubscriber:boolean, MVPLastGame:boolean, PlayerName:string, ProName:string}`**</mark>
-
 | Name                                                         | Type                                                                                         | Description                                                                         |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | **player**                                                   | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player.                                                                  |
 | **output&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark>                                               | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
-
 Returns the player data table.
-
 ## <sub>GetTeamData</sub>
-
 `Player.GetTeamData(player):` <mark style="color:purple;">**`{selected_hero_id:integer, kills:integer, assists:integer, deaths:integer, streak:integer, respawnTime:integer, selected_hero_variant:integer, lane_selection_flags:integer, last_buyback_time:number}`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns the player team data table.\
 Team data is only available for players on the local team.
-
 ## <sub>GetNeutralStashItems</sub>
-
 `Player.GetNeutralStashItems(player):` <mark style="color:purple;">**`{item: CItem }[]`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns table with `CItem`s available in the neutral stash.
-
 ## <sub>GetTeamPlayer</sub>
-
 `Player.GetTeamPlayer(player, [output]):` <mark style="color:purple;">**`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, meta_level:integer, meta_experience:integer, meta_experience_awarded:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity, override_selection_entity:CEntity, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:integer, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**</mark>
-
 | Name                                                         | Type                                                                                         | Description                                                                         |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | **player**                                                   | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player.                                                                  |
 | **output&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark>                                               | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
-
 Returns **Team Player Data** table
-
 ## <sub>GetPlayerNeutralInfo</sub>
-
 `Player.GetPlayerNeutralInfo(player):` <mark style="color:purple;">**`nil`**</mark> | <mark style="color:purple;">**`{acquired_madstone:integer, current_madstone:integer, trinket_choices:integer[], enhancement_choices:integer[], selected_trinkets:integer[], selected_enhancements:integer[], times_crafted:integer[]}`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns info about player's neutral items
-
 ## <sub>IsMuted</sub>
-
 `Player.IsMuted(player):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns the player mute status.
-
 ## <sub>GetSelectedUnits</sub>
-
 `Player.GetSelectedUnits(player):` [<mark style="color:purple;">**`CNPC[]`**</mark>](/api-v2.0/game-components/core/npc.md)
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns table of selected units by player.
-
 ## <sub>AddSelectedUnit</sub>
-
 `Player.AddSelectedUnit(player, NPC):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
 | **NPC**    | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)       | To select.         |
-
 Adds unit to player selection.
-
 ## <sub>ClearSelectedUnits</sub>
-
 `Player.ClearSelectedUnits(player):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Clears player selection.
-
 ## <sub>GetQuickBuyInfo</sub>
-
 `Player.GetQuickBuyInfo(player):` <mark style="color:purple;">**`{m_quickBuyItems:integer[], m_quickBuyIsPurchasable:boolean[]}`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns table with m\_quickBuyItems(item ids) and m\_quickBuyIsPurchasable(table of booleans).
-
 ## <sub>GetCourierControllerInfo</sub>
-
 `Player.GetCourierControllerInfo(player):` <mark style="color:purple;">**`{state:integer, shop:integer}`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns table with m\_CourierController structure
-
 ## <sub>GetTotalGold</sub>
-
 `Player.GetTotalGold(player):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns total gold of player.
-
 ## <sub>GetAssignedHero</sub>
-
 `Player.GetAssignedHero(player):` [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns player's assigned hero.
-
 ## <sub>GetActiveAbility</sub>
-
 `Player.GetActiveAbility(player):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
-
 Returns player's active ability.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md).
-
+> 
 # Modifier
-
 Table to work with `CModifier`. You can get modifiers from `NPC.GetModifier`function.
-
 ## <sub>GetName</sub>
-
 `Modifier.GetName(modifier):` <mark style="color:purple;">**`string`**</mark>
-
 | Name         | Type                                                                                             | Description             |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get name of |
-
 Returns the name of the modifier.
-
 ## <sub>GetClass</sub>
-
 `Modifier.GetClass(modifier):` <mark style="color:purple;">**`string`**</mark>
-
 | Name         | Type                                                                                             | Description |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) |             |
-
 Returns the name of the modifier's class.
-
 ## <sub>GetModifierAura</sub>
-
 Deprecated.
-
 `Modifier.GetModifierAura(modifier):` <mark style="color:purple;">**`string`**</mark>
-
 | Name         | Type                                                                                             | Description             |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get aura of |
-
 Should return the name of the modifier's aura, but instead, it returns an empty string in all\
 the cases I have tested.
-
 ## <sub>GetSerialNumber</sub>
-
 Deprecated.
-
 `Modifier.GetSerialNumber(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                      |
 | ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get serial number of |
-
 Should return the serial number of the modifier, but instead, it returns 0 in all the cases I\
 have tested.
-
 ## <sub>GetStringIndex</sub>
-
 Deprecated.
-
 `Modifier.GetStringIndex(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                     |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get string index of |
-
 Should return the string index of the modifier, but instead, it returns 0 in all the cases I\
 have tested.
-
 ## <sub>GetIndex</sub>
-
 `Modifier.GetIndex(modifier):` <mark style="color:purple;">**`GetIndex`**</mark>
-
 | Name         | Type                                                                                             | Description              |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------ |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get index of |
-
 Returns the hero's modifier index. The index is an incrementable value with each new modifier\
 the NPC gets
-
 ## <sub>GetCreationTime</sub>
-
 `Modifier.GetCreationTime(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                      |
 | ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get creation time of |
-
 Returns the game time when the modifier was created.
-
 ## <sub>GetCreationFrame</sub>
-
 `Modifier.GetCreationFrame(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                       |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get creation frame of |
-
 Returns the frame when the modifier was created. You could get current frame count from\
 `GlobalVars.GetFrameCount` function.
-
 ## <sub>GetLastAppliedTime</sub>
-
 `Modifier.GetLastAppliedTime(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                          |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------ |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get last applied time of |
-
 Returns the game time when the modifier was last applied. Don't know cases when it can be\
 different from `GetCreationTime`.
-
 ## <sub>GetDuration</sub>
-
 `Modifier.GetDuration(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                 |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get duration of |
-
 Returns the duration of the modifier.
-
 ## <sub>GetDieTime</sub>
-
 `Modifier.GetDieTime(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                        |
 | ------------ | ------------------------------------------------------------------------------------------------ | ---------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get expiration time of |
-
 Returns the game time when the modifier will expire.
-
 ## <sub>GetStackCount</sub>
-
 `Modifier.GetStackCount(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                    |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------ |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get stack count of |
-
 If there are stacks of the modifier, it returns the amount of stacks; otherwise, it returns\
 0\.
-
 ## <sub>GetAuraSearchTeam</sub>
-
 Deprecated.
-
 `Modifier.GetAuraSearchTeam(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                         |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get aura search team of |
-
 Returns aura search team of the modifier.
-
 ## <sub>GetAuraSearchType</sub>
-
 Deprecated.
-
 `Modifier.GetAuraSearchType(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                         |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get aura search type of |
-
 Returns aura search type of the modifier.
-
 ## <sub>GetAuraSearchFlags</sub>
-
 Deprecated.
-
 `Modifier.GetAuraSearchFlags(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                          |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------ |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get aura search flags of |
-
 Returns aura search flags of the modifier.
-
 ## <sub>GetAuraRadius</sub>
-
 Deprecated.
-
 `Modifier.GetAuraRadius(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                    |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------ |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get aura radius of |
-
 Returns aura radius of the modifier.
-
 ## <sub>GetTeam</sub>
-
 `Modifier.GetTeam(modifier):` [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum)
-
 | Name         | Type                                                                                             | Description             |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get team of |
-
 Returns team of the modifier.
-
 ## <sub>GetAttributes</sub>
-
 Deprecated.
-
 `Modifier.GetAttributes(modifier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name         | Type                                                                                             | Description                   |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get attributes of |
-
 Returns the attributes of the modifier.
-
 ## <sub>IsAura</sub>
-
 Deprecated.
-
 `Modifier.IsAura(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if the modifier is an aura.
-
 ## <sub>IsAuraActiveOnDeath</sub>
-
 Deprecated.
-
 `Modifier.IsAuraActiveOnDeath(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if the modifier aura active on death.
-
 ## <sub>GetMarkedForDeletion</sub>
-
 Deprecated.
-
 `Modifier.GetMarkedForDeletion(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if the modifier is marked for deletion.
-
 ## <sub>GetAuraIsHeal</sub>
-
 Deprecated.
-
 `Modifier.GetAuraIsHeal(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if aura is heal.
-
 ## <sub>GetProvidedByAura</sub>
-
 `Modifier.GetProvidedByAura(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if modifier is provided by an aura.
-
 ## <sub>GetPreviousTick</sub>
-
 `Modifier.GetPreviousTick(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                       |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get last tick time of |
-
 Returns the game time of the last modifier tick (\~0.033 seconds).
-
 ## <sub>GetThinkInterval</sub>
-
 Deprecated.
-
 `Modifier.GetThinkInterval(modifier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description                       |
 | ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get think interval of |
-
 Returns the modifier's think interval.
-
 ## <sub>GetThinkTimeAccumulator</sub>
-
 Deprecated.
-
 \`Modifier.GetThinkTimeAccumulator(modifier):\` <mark style="color:purple;">\*\*\`number\`\*\*</mark>
-
 | Name         | Type                                                                                             | Description                               |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get think time accumulator of |
-
 Return the modifier's think interval time accumulator.
-
 ## <sub>IsCurrentlyInAuraRange</sub>
-
 `Modifier.IsCurrentlyInAuraRange(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if is in aura range.
-
 ## <sub>GetAbility</sub>
-
 `Modifier.GetAbility(modifier):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description                |
 | ------------ | ------------------------------------------------------------------------------------------------ | -------------------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get ability of |
-
 Returns the modifier's ability or nil if ability not in the cheat's ability list
-
 ## <sub>GetAuraOwner</sub>
-
 `Modifier.GetAuraOwner(modifier):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier    |
-
 Returns the owner of aura
-
 ## <sub>GetParent</sub>
-
 `Modifier.GetParent(modifier):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier    |
-
 Returns the parent of modifier
-
 ## <sub>GetCaster</sub>
-
 `Modifier.GetCaster(modifier):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                             | Description |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier    |
-
 Returns caster of modifier
-
 ## <sub>GetState</sub>
-
 `Modifier.GetState(modifier):` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                             | Description              |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------ |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get state of |
-
 Returns the modifier state masks. See the example.
-
 #### Example
-
 ```lua
 local m_nEnabledStateMask, m_nDisabledStateMask = Modifier.GetState(mod)
 local mod_is_hex = (m_nEnabledStateMask >> Enum.ModifierState.MODIFIER_STATE_HEXED & 1) > 0
 local mod_is_stun = (m_nEnabledStateMask >> Enum.ModifierState.MODIFIER_STATE_STUNNED & 1) > 0
 ```
-
 ## <sub>IsDebuff</sub>
-
 `Modifier.IsDebuff(modifier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                             | Description       |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
 | **modifier** | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to check |
-
 Returns `true` if the modifier is a debuff.
-
 ## <sub>GetField</sub>
-
 `Modifier.GetField(modifier, fieldName, [dbgPrint]):` <mark style="color:purple;">**`any`**</mark>
-
 | Name                                                           | Type                                                                                             | Description                              |
 | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------- |
 | **modifier**                                                   | [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | modifier to get field from               |
 | **fieldName**                                                  | <mark style="color:purple;">**`string`**</mark>                                                  | field name                               |
 | **dbgPrint&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                 | print possible errors `(default: false)` |
-
 Returns value of the field.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md).
-
+> 
 # Entity
-
 Table to work with `CEntity`.
-
 <mark style="color:purple;">**`CEntity`**</mark> is base class for all entities in the game e.g. <mark style="color:purple;">**`CNPC`**</mark>, <mark style="color:purple;">**`Hero`**</mark>, <mark style="color:purple;">**`CPlayer`**</mark>, <mark style="color:purple;">**`CAbility`**</mark>
-
 ## <sub>IsEntity</sub>
-
 `Entity.IsEntity(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is in entity list. Search in unordered set.
-
 ## <sub>IsNPC</sub>
-
 `Entity.IsNPC(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is in NPC list. Search in unordered set.
-
 ## <sub>IsHero</sub>
-
 `Entity.IsHero(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is in hero list. Search in unordered set.
-
 ## <sub>IsPlayer</sub>
-
 `Entity.IsPlayer(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is in player list. Search in unordered set.
-
 ## <sub>IsAbility</sub>
-
 `Entity.IsAbility(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is in ability list. Search in unordered set. Item is ability.
-
 ## <sub>Get</sub>
-
 Not the same as Entities.Get(index). See example.
-
 `Entity.Get(index):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description |
 | --------- | ------------------------------------------------ | ----------- |
 | **index** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Returns entity by game index.
-
 #### Example
-
 ```lua
 -- get_by_index.lua
 local hero = Heroes.GetLocal();
@@ -9610,100 +6776,62 @@ local index = Entity.GetIndex(hero);
 local entity_by_index = Entity.Get(index);
 assert(hero == entity_by_index, "Entity.Get() is broken!"); -- true
 ```
-
 ## <sub>GetIndex</sub>
-
 `Entity.GetIndex(entity):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns game index of entity.
-
 ## <sub>GetClassName</sub>
-
 `Entity.GetClassName(entity):` <mark style="color:purple;">**`string`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's class name.
-
 ## <sub>GetUnitName</sub>
-
 `Entity.GetUnitName(entity):` <mark style="color:purple;">**`string`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's name.
-
 ## <sub>GetUnitDesignerName</sub>
-
 `Entity.GetUnitDesignerName(entity):` <mark style="color:purple;">**`string`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's designerName field.
-
 ## <sub>GetTeamNum</sub>
-
 `Entity.GetTeamNum(entity):` [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum)
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's team number.
-
 ## <sub>IsSameTeam</sub>
-
 `Entity.IsSameTeam(entity1, entity2):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                         | Description |
 | ----------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity1** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
 | **entity2** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entities are in the same team.
-
 ## <sub>GetAbsOrigin</sub>
-
 `Entity.GetAbsOrigin(entity):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's position.
-
 ## <sub>GetNetOrigin</sub>
-
 `Entity.GetNetOrigin(entity):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's net position.
-
 ## <sub>GetRotation</sub>
-
 `Entity.GetRotation(entity):` [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's rotation.
-
 #### Example
-
 ```lua
 -- forward_pos.lua
 return {
@@ -9726,115 +6854,72 @@ return {
     end
 }
 ```
-
 ## <sub>GetAbsOriginXYZ</sub>
-
 `Entity.GetAbsOriginXYZ(entity):` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's position as three numbers (zero allocation).
-
 ## <sub>GetRotationPYR</sub>
-
 `Entity.GetRotationPYR(entity):` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's rotation as three numbers (zero allocation).
-
 ## <sub>IsAlive</sub>
-
 `Entity.IsAlive(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is alive.
-
 ## <sub>IsDormant</sub>
-
 `Entity.IsDormant(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns `true` if the entity is not visible to the local player.
-
 ## <sub>GetHealth</sub>
-
 `Entity.GetHealth(entity):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's health.
-
 ## <sub>GetMaxHealth</sub>
-
 `Entity.GetMaxHealth(entity):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's max health.
-
 ## <sub>GetOwner</sub>
-
 `Entity.GetOwner(entity):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's owner or `nil` if the entity has no owner.\ e.g. for <mark style="color:purple;">**`CPlayer`**</mark> -> `npc_dota_hero_ember_spirit` -> `npc_dota_hero_ember_spirit_fire_remnant`\
 ownership chain `Entity.GetOwner(remnant)` will return Ember Spirit's entity.
-
 ## <sub>OwnedBy</sub>
-
 `Entity.OwnedBy(entity, owner):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description            |
 | ---------- | -------------------------------------------------------------------------------------------- | ---------------------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | - entity to check      |
 | **owner**  | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | - owner for comparison |
-
 Returns `true` if the entity is owned by another entity-owner. It will check the first owner only.
-
 ## <sub>RecursiveGetOwner</sub>
-
 `Entity.RecursiveGetOwner(entity):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns the entity's last owner.\ e.g. for <mark style="color:purple;">**`CPlayer`**</mark> -> `npc_dota_hero_ember_spirit` -> `npc_dota_hero_ember_spirit_fire_remnant`\
 ownership chain `Entity.GetOwner(remnant)` will return <mark style="color:purple;">**`CPlayer`**</mark>.
-
 ## <sub>RecursiveOwnedBy</sub>
-
 `Entity.RecursiveOwnedBy(entity, owner):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description          |
 | ---------- | -------------------------------------------------------------------------------------------- | -------------------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to check      |
 | **owner**  | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | owner for comparison |
-
 Returns `true` if the entity is owned by another entity-owner. It will check the whole ownership chain.
-
 ## <sub>GetHeroesInRadius</sub>
-
 `Entity.GetHeroesInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CHero[]`**</mark>](/api-v2.0/game-components/core/hero.md)
-
 | Name                                                                | Type                                                                                                                                                       | Description                                                             |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **entity**                                                          | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md)                                                               | entity to get position                                                  |
@@ -9842,11 +6927,8 @@ Returns `true` if the entity is owned by another entity-owner. It will check the
 | **teamType&#x20;**<mark style="color:orange;">**`[?]`**</mark>      | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
 | **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                           | `true` if you want to get table without illusions `(default: false)`    |
 | **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                                                           | `true` if you want to get table without dormant units `(default: true)` |
-
 Returns an array of all alive and visible heroes in radius of the entity. Exclude illusion.
-
 #### Example
-
 ```lua
 local hero = Heroes.GetLocal()
 -- get all enemy heroes in 1200 radius
@@ -9856,11 +6938,8 @@ for i = 1, #heroes_around do
 	Log.Write(NPC.GetUnitName(hero) .. " is near!");
 end
 ```
-
 ## <sub>GetUnitsInRadius</sub>
-
 `Entity.GetUnitsInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [<mark style="color:purple;">**`CNPC[]`**</mark>](/api-v2.0/game-components/core/npc.md)
-
 | Name                                                                | Type                                                                                                                                                       | Description                                                             |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **entity**                                                          | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md)                                                               | entity to get position                                                  |
@@ -9868,11 +6947,8 @@ end
 | **teamType&#x20;**<mark style="color:orange;">**`[?]`**</mark>      | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
 | **omitIllusions&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                           | `true` if you want to get table without illusions `(default: false)`    |
 | **omitDormant&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`boolean`**</mark>                                                                                                           | `true` if you want to get table without dormant units `(default: true)` |
-
 Returns an array of all alive and visible NPCs in radius of the entity.
-
 #### Example
-
 ```lua
 local hero = Heroes.GetLocal()
 -- get all ally NPCs in 1200 radius
@@ -9882,23 +6958,16 @@ for i = 1, #units_around do
 	Log.Write(NPC.GetUnitName(unit) .. " is near!");
 end
 ```
-
 ## <sub>GetTreesInRadius</sub>
-
 Active means that tree is not destroyed.
-
 `Entity.GetTreesInRadius(entity, radius, [active]):` [<mark style="color:purple;">**`CTree[]`**</mark>](/api-v2.0/game-components/core/tree.md)
-
 | Name                                                         | Type                                                                                         | Description                                                                                            |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | **entity**                                                   | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to get position                                                                                 |
 | **radius**                                                   | <mark style="color:purple;">**`number`**</mark>                                              | radius to search around                                                                                |
 | **active&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                             | `true` if you want to get table with active trees only, otherwise for inactive trees `(default: true)` |
-
 Returns an array of all not temporary trees in radius of the entity.
-
 #### Example
-
 ```lua
 local hero = Heroes.GetLocal()
 -- get all trees in 400 radius
@@ -9908,22 +6977,15 @@ for i = 1, #trees_around do
 	Log.Write(Entity.GetClassName(tree) .. " is near!");
 end
 ```
-
 ## <sub>GetTempTreesInRadius</sub>
-
 Temporary trees are trees planted by abilities or items.
-
 \`Entity.GetTempTreesInRadius(entity, radius):\` \[<mark style="color:purple;">\*\*\`CTree\[]\`\*\*</mark>]\(Tree.md)
-
 | Name       | Type                                                                                         | Description             |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------------------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to get position  |
 | **radius** | <mark style="color:purple;">**`number`**</mark>                                              | radius to search around |
-
 Returns an array of all temporary trees in radius of the entity.
-
 #### Example
-
 ```lua
 local hero = Heroes.GetLocal()
 -- get all trees in 400 radius
@@ -9933,193 +6995,126 @@ for i = 1, #trees_around do
 	Log.Write(Entity.GetClassName(tree) .. " is near!");
 end
 ```
-
 ## <sub>IsControllableByPlayer</sub>
-
 `Entity.IsControllableByPlayer(entity, playerId):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                         | Description     |
 | ------------ | -------------------------------------------------------------------------------------------- | --------------- |
 | **entity**   | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to check |
 | **playerId** | <mark style="color:purple;">**`integer`**</mark>                                             | player id       |
-
 Returns `true` if entity is controllable by player.
-
 ## <sub>GetRoshanHealth</sub>
-
 `Entity.GetRoshanHealth():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns Roshan's health. Onyly works in unsafe mode.
-
 ## <sub>GetForwardPosition</sub>
-
 `Entity.GetForwardPosition(entity, distance):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name         | Type                                                                                         | Description              |
 | ------------ | -------------------------------------------------------------------------------------------- | ------------------------ |
 | **entity**   | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to get position   |
 | **distance** | <mark style="color:purple;">**`number`**</mark>                                              | distance to move forward |
-
 Returns position in front of entity or (0,0,0) if entity is invalid.
-
 ## <sub>GetClassID</sub>
-
 `Entity.GetClassID(entity):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                         | Description            |
 | ---------- | -------------------------------------------------------------------------------------------- | ---------------------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to get class id |
-
 Returns entity class id. Could be as a optimized way to check entity type.
-
 ## <sub>GetField</sub>
-
 `Entity.GetField(entity, fieldName, [dbgPrint]):` <mark style="color:purple;">**`any`**</mark>
-
 | Name                                                           | Type                                                                                         | Description                              |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **entity**                                                     | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | entity to get field from                 |
 | **fieldName**                                                  | <mark style="color:purple;">**`string`**</mark>                                              | field name                               |
 | **dbgPrint&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                             | print possible errors `(default: false)` |
-
 Returns value of the field.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md).
-
+> 
 # NPC
-
 Table to work with `CNPC`. <mark style="color:purple;">**`CNPC`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>GetOwnerNPC</sub>
-
 `NPC.GetOwnerNPC(npc):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                                                                   | Description           |
 | ------- | -------------------------------------------------------------------------------------- | --------------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to get owner from |
-
 Returns owner of the `CNPC`. Works for spirit bear.
-
 ## <sub>GetItem</sub>
-
 `NPC.GetItem(npc, name, [isReal]):` [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                   | Description                                                                                                                    |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **npc**                                                      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to get item from                                                                                                           |
 | **name**                                                     | <mark style="color:purple;">**`string`**</mark>                                        | name of the item                                                                                                               |
 | **isReal&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
-
 Returns `CItem` by name.
-
 ## <sub>HasItem</sub>
-
 `NPC.HasItem(npc, name, [isReal]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                         | Type                                                                                   | Description                                                                                                                    |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **npc**                                                      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                   |
 | **name**                                                     | <mark style="color:purple;">**`string`**</mark>                                        | name of the item                                                                                                               |
 | **isReal&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
-
 Returns `true` if the `CNPC` has item with specified name.
-
 ## <sub>HasModifier</sub>
-
 `NPC.HasModifier(npc, name):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                   | Description          |
 | -------- | -------------------------------------------------------------------------------------- | -------------------- |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check         |
 | **name** | <mark style="color:purple;">**`string`**</mark>                                        | name of the modifier |
-
 Returns `true` if the `CNPC` has modifier with specified name.
-
 ## <sub>GetModifier</sub>
-
 `NPC.GetModifier(npc, name):` [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                   | Description              |
 | -------- | -------------------------------------------------------------------------------------- | ------------------------ |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to get modifier from |
 | **name** | <mark style="color:purple;">**`string`**</mark>                                        | name of the modifier     |
-
 Returns `CModifier` by name.
-
 ## <sub>GetModifiers</sub>
-
 \`poperty\_filter\` doesn\`t filter all modifiers every call, it uses already prefiltered list.  \`NPC.GetModifiers(npc, \[poperty\_filter]):\` \[<mark style="color:purple;">\*\*\`CModifier\[]\`\*\*</mark>]\(Modifier.md)
-
 | Name                                                                  | Type                                                                                                                                                                       | Description                                                                                         |
 | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | **npc**                                                               | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                                     | npc to get modifiers from                                                                           |
 | **poperty\_filter&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ModifierFunction`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.modifierfunction) | Filter modifiers by specified property `(default: Enum.ModifierFunction.MODIFIER_FUNCTION_INVALID)` |
-
 Returns an array of all NPC's `CModifier`s.
-
 ## <sub>HasAnyModifier</sub>
-
 `NPC.HasAnyModifier(npc, names):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                                                 | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                               |             |
 | **names** | <mark style="color:purple;">**`string[]`**</mark> \| <mark style="color:purple;">**`table<string, boolean>`**</mark> |             |
-
 Returns `true` if the NPC has any modifier from the given set.\
 Accepts either an array `{"mod_a", "mod_b"}` or a hash set `{mod_a = true, mod_b = true}`.\
 The hash set form is faster: O(M) hash lookups vs O(M\*N) strcmp, where M = modifier count, N = names count.
-
 ## <sub>GetModifierByIndex</sub>
-
 `NPC.GetModifierByIndex(npc, index):` [<mark style="color:purple;">**`CModifier`**</mark>](/api-v2.0/game-components/core/modifier.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                   | Description   |
 | --------- | -------------------------------------------------------------------------------------- | ------------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) |               |
 | **index** | <mark style="color:purple;">**`integer`**</mark>                                       | 1-based index |
-
 Returns the modifier at the given 1-based index, or nil if out of range.\
 Use with `NPC.GetModifiers` count or iterate until nil.
-
 ## <sub>HasInventorySlotFree</sub>
-
 `NPC.HasInventorySlotFree(npc, [isReal]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                         | Type                                                                                   | Description                                                                                                                    |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **npc**                                                      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                   |
 | **isReal&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
-
 Returns `true` if the `CNPC` has free inventory slot.
-
 ## <sub>HasState</sub>
-
 `NPC.HasState(npc, state):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                                                                                                 | Description    |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                               | npc to check   |
 | **state** | [<mark style="color:purple;">**`Enum.ModifierState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.modifierstate) | state to check |
-
 Returns `true` if the `CNPC` has state. The best way to check if the `CNPC` is stunned, silenced, hexed, has BKB immune etc.
-
 ## <sub>GetStatesDuration</sub>
-
 `NPC.GetStatesDuration(npc, states, [only_active_states]):` <mark style="color:purple;">**`table`**</mark>
-
 | Name                                                                       | Type                                                                                   | Description                                                                                                                         |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **npc**                                                                    | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                        |
 | **states**                                                                 | <mark style="color:purple;">**`integer[]`**</mark>                                     | states to check                                                                                                                     |
 | **only\_active\_states&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | if `true` then check only states that active on unit, otherwise check all states. e.g. rooted while debuff immune `(default: true)` |
-
 Returns table of remaining modifier states duration. See the example
-
 #### Example
-
 ```lua
 local states_to_check = {
 		[Enum.ModifierState.MODIFIER_STATE_STUNNED] = true,
@@ -10129,667 +7124,406 @@ local states = NPC.GetStatesDuration(unit, states_to_check)
 local hex_duration = states[Enum.ModifierState.MODIFIER_STATE_HEXED]
 local stun_duration = states[Enum.ModifierState.MODIFIER_STATE_STUNNED]
 ```
-
 ## <sub>IsWaitingToSpawn</sub>
-
 `NPC.IsWaitingToSpawn(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if waiting to spawn. For example, creeps are waiting to spawn under the ground near the barracks.
-
 ## <sub>IsIllusion</sub>
-
 `NPC.IsIllusion(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is illusion.
-
 ## <sub>IsVisible</sub>
-
 `NPC.IsVisible(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is visible to local player.
-
 ## <sub>IsVisibleToEnemies</sub>
-
 `NPC.IsVisibleToEnemies(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is visible enemies.
-
 ## <sub>IsCourier</sub>
-
 `NPC.IsCourier(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a courier.
-
 ## <sub>IsRanged</sub>
-
 `NPC.IsRanged(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a ranged unit.
-
 ## <sub>IsCreep</sub>
-
 `NPC.IsCreep(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a creep.
-
 ## <sub>IsLaneCreep</sub>
-
 `NPC.IsLaneCreep(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a lane creep.
-
 ## <sub>IsStructure</sub>
-
 `NPC.IsStructure(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a structure.
-
 ## <sub>IsTower</sub>
-
 `NPC.IsTower(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a tower.
-
 ## <sub>GetUnitType</sub>
-
 `NPC.GetUnitType(npc):` [<mark style="color:purple;">**`Enum.UnitTypeFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.unittypeflags)
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns unit type flags.
-
 ## <sub>IsConsideredHero</sub>
-
 `NPC.IsConsideredHero(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if it is unit a considered a hero for targeting purposes.
-
 ## <sub>IsBarracks</sub>
-
 `NPC.IsBarracks(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a barracks.
-
 ## <sub>IsFort</sub>
-
 `NPC.IsFort(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is the Ancient/Throne building (the win-condition structure).\
 Distinct from `IsAncient`, which checks for ancient-tier neutral camps.
-
 ## <sub>IsBoss</sub>
-
 `NPC.IsBoss(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a boss-like unit (TYPE\_BOSS bit).
-
 ## <sub>IsTormentor</sub>
-
 `NPC.IsTormentor(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a Tormentor / mini-boss. Renders with the\
 siege-wide healthbar (same as Roshan).
-
 ## <sub>IsAncient</sub>
-
 `NPC.IsAncient(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is an ancient creeps.
-
 ## <sub>IsRoshan</sub>
-
 `NPC.IsRoshan(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a Roshan.
-
 ## <sub>IsNeutral</sub>
-
 `NPC.IsNeutral(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a neutral. Neutral creeps, ancient creeps.
-
 ## <sub>IsHero</sub>
-
 `NPC.IsHero(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a hero.
-
 ## <sub>IsWard</sub>
-
 `NPC.IsWard(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a ward.
-
 ## <sub>IsMeepoClone</sub>
-
 `NPC.IsMeepoClone(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is a meepo clone.
-
 ## <sub>IsEntityInRange</sub>
-
 `NPC.IsEntityInRange(npc, npc2, range):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                   | Description    |
 | --------- | -------------------------------------------------------------------------------------- | -------------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check   |
 | **npc2**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check   |
 | **range** | <mark style="color:purple;">**`number`**</mark>                                        | range to check |
-
 Returns `true` if the `CNPC` in range of other `CNPC`.
-
 ## <sub>IsPositionInRange</sub>
-
 `NPC.IsPositionInRange(npc, pos, range, [hull]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                       | Type                                                                                                           | Description                               |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | **npc**                                                    | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                         | npc to check                              |
 | **pos**                                                    | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check                         |
 | **range**                                                  | <mark style="color:purple;">**`number`**</mark>                                                                | range to check                            |
 | **hull&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | hull just added to range `(default: 0.0)` |
-
 Returns `true` if the `CNPC` in range of position.
-
 ## <sub>IsLinkensProtected</sub>
-
 `NPC.IsLinkensProtected(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is protected by Linkens Sphere.
-
 ## <sub>IsMirrorProtected</sub>
-
 `NPC.IsMirrorProtected(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is protected by Mirror Shield.
-
 ## <sub>IsChannellingAbility</sub>
-
 Do not work for items.
-
 `NPC.IsChannellingAbility(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description  |
 | ------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
-
 Returns `true` if the `CNPC` is channeling ability. Black Hole, Life Drain, etc.
-
 ## <sub>GetChannellingAbility</sub>
-
 `NPC.GetChannellingAbility(npc):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the currently channelling `CAbility`.
-
 ## <sub>IsRunning</sub>
-
 `NPC.IsRunning(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns `true` if the `CNPC` is running.
-
 ## <sub>IsAttacking</sub>
-
 `NPC.IsAttacking(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns `true` if the `CNPC` is attacking.
-
 ## <sub>IsSilenced</sub>
-
 `NPC.IsSilenced(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns `true` if the `CNPC` is silenced.
-
 ## <sub>IsStunned</sub>
-
 `NPC.IsStunned(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns `true` if the `CNPC` is stunned.
-
 ## <sub>HasAegis</sub>
-
 `NPC.HasAegis(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns `true` if the `CNPC` has aegis.
-
 ## <sub>IsKillable</sub>
-
 `NPC.IsKillable(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns `true` if the `CNPC` has killable. Example: false if affected by Eul.
-
 ## <sub>GetActivity</sub>
-
 `NPC.GetActivity(npc):` [<mark style="color:purple;">**`Enum.GameActivity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.gameactivity)
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the `CNPC` activity, such as running, attacking, casting, etc.
-
 ## <sub>GetAnimationInfo</sub>
-
 `NPC.GetAnimationInfo(npc):` <mark style="color:purple;">**`{sequence:integer, cycle:number, name:string, mdl_name:string}`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns information about the current animation of the `CNPC`.
-
 ## <sub>GetAttackRange</sub>
-
 `NPC.GetAttackRange(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the base attack range of the `CNPC`.
-
 ## <sub>GetAttackRangeBonus</sub>
-
 `NPC.GetAttackRangeBonus(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the bonus attack range of the `CNPC`.
-
 ## <sub>GetCastRangeBonus</sub>
-
 `NPC.GetCastRangeBonus(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the bonus cast range of the `CNPC`.
-
 ## <sub>GetPhysicalArmorValue</sub>
-
 `NPC.GetPhysicalArmorValue(npc, [excludeWhiteArmor]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                                    | Type                                                                                   | Description                           |
 | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------- |
 | **npc**                                                                 | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                            |
 | **excludeWhiteArmor&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | exclude white armor `(default: true)` |
-
 Returns the physical armor value of the `CNPC`.
-
 ## <sub>GetPhysicalDamageReduction</sub>
-
 `NPC.GetPhysicalDamageReduction(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the physical damage reduction value of the `CNPC`.
-
 ## <sub>GetArmorDamageMultiplier</sub>
-
 `NPC.GetArmorDamageMultiplier(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the physical damage multiplier value of the `CNPC`.
-
 ## <sub>GetMagicalArmorValue</sub>
-
 `NPC.GetMagicalArmorValue(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the magical armor value of the `CNPC`.
-
 ## <sub>GetMagicalArmorDamageMultiplier</sub>
-
 `NPC.GetMagicalArmorDamageMultiplier(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the magical damage multiplier value of the `CNPC`.
-
 ## <sub>GetIncreasedAttackSpeed</sub>
-
 `NPC.GetIncreasedAttackSpeed(npc, [ignore_temp_attack_speed]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                                              | Type                                                                                   | Description                                      |
 | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**                                                                           | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                                       |
 | **ignore\_temp\_attack\_speed&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | ignore temporary attack speed `(default: false)` |
-
 Returns increased attack speed of the `CNPC`.
-
 ## <sub>GetAttacksPerSecond</sub>
-
 `NPC.GetAttacksPerSecond(npc, [ignore_temp_attack_speed]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                                              | Type                                                                                   | Description                                      |
 | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**                                                                           | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                                       |
 | **ignore\_temp\_attack\_speed&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | ignore temporary attack speed `(default: false)` |
-
 Returns the number of attacks per second that the `CNPC` can deal.
-
 ## <sub>GetAttackTime</sub>
-
 `NPC.GetAttackTime(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the amount of time needed for the `CNPC` to perform an attack.
-
 ## <sub>GetAttackSpeed</sub>
-
 `NPC.GetAttackSpeed(npc, [ignore_temp_attack_speed]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                                              | Type                                                                                   | Description                                      |
 | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**                                                                           | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                                       |
 | **ignore\_temp\_attack\_speed&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | ignore temporary attack speed `(default: false)` |
-
 Returns the attack speed of the `CNPC`.
-
 ## <sub>GetBaseAttackSpeed</sub>
-
 `NPC.GetBaseAttackSpeed(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the base attack speed of the `CNPC`.
-
 ## <sub>GetHullRadius</sub>
-
 `NPC.GetHullRadius(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the model interaction radius of the `CNPC`.
-
 ## <sub>GetPaddedCollisionRadius</sub>
-
 `NPC.GetPaddedCollisionRadius(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the collision hull radius (including padding) of this `NPC`.
-
 ## <sub>GetCollisionPadding</sub>
-
 `NPC.GetCollisionPadding(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the collision including padding of this `NPC`.
-
 ## <sub>GetPaddedCollisionRadius</sub>
-
 `NPC.GetPaddedCollisionRadius(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the ring radius of this `NPC`.
-
 ## <sub>GetProjectileCollisionSize</sub>
-
 see: <https://dota2.fandom.com/wiki/Unit\\_Size#Collision\\_Size>
-
 `NPC.GetProjectileCollisionSize(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the collision size of the `CNPC`. Collision size is the internal size that prevents other units from passing through.
-
 ## <sub>GetTurnRate</sub>
-
 see: <https://dota2.fandom.com/wiki/Turn\\_rate>
-
 `NPC.GetTurnRate(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the turn rate, which is the speed at which the `CNPC` can turn.
-
 ## <sub>GetAttackAnimPoint</sub>
-
 see: <https://dota2.fandom.com/wiki/Attack\\_animation>
-
 `NPC.GetAttackAnimPoint(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the attack animation point, `nil` if not found.
-
 ## <sub>GetAttackProjectileSpeed</sub>
-
 see: <https://dota2.fandom.com/wiki/Projectile\\_Speed>
-
 `NPC.GetAttackProjectileSpeed(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the attack projectile speed, `nil` if not found.
-
 ## <sub>IsTurning</sub>
-
 `NPC.IsTurning(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns true if the `CNPC` is turning.
-
 ## <sub>GetAngleDiff</sub>
-
 doesn't work for creeps
-
 `NPC.GetAngleDiff(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the remaining degree angle needed to complete the turn of the `CNPC`.
-
 ## <sub>GetPhysicalArmorMainValue</sub>
-
 `NPC.GetPhysicalArmorMainValue(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the (main) white armor of the `CNPC`.
-
 ## <sub>GetTimeToFace</sub>
-
 `NPC.GetTimeToFace(npc, target):` <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                   | Description |
 | ---------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc**    | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | source npc  |
 | **target** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the amount of time needed for the source `CNPC` to face the target `CNPC`.
-
 ## <sub>FindRotationAngle</sub>
-
 `NPC.FindRotationAngle(npc, pos):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                                           | Description                         |
 | ------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                         | source npc                          |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to find the rotation angle |
-
 Returns the rotation angle of the `CNPC`.
-
 ## <sub>GetTimeToFacePosition</sub>
-
 `NPC.GetTimeToFacePosition(npc, pos):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                                           | Description     |
 | ------- | -------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                         | source npc      |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | target position |
-
 Returns the amount of time needed for the source `CNPC` to face a specific position.
-
 ## <sub>FindFacingNPC</sub>
-
 `NPC.FindFacingNPC(npc, ignoreNpc, [team_type], [angle], [distance]):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                             | Type                                                                                                                                                       | Description                            |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **npc**                                                          | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                     | source npc                             |
@@ -10797,252 +7531,155 @@ Returns the amount of time needed for the source `CNPC` to face a specific posit
 | **team\_type&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | team type `(default: TEAM_BOTH)`       |
 | **angle&#x20;**<mark style="color:orange;">**`[?]`**</mark>      | <mark style="color:purple;">**`number`**</mark>                                                                                                            | max angle to check `(default: 0.0)`    |
 | **distance&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`number`**</mark>                                                                                                            | max distance to check `(default: 0.0)` |
-
 Returns the `CNPC` that the source `CNPC` is currently facing.
-
 ## <sub>GetBaseSpeed</sub>
-
 `NPC.GetBaseSpeed(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the base move speed of the `CNPC`.
-
 ## <sub>GetMoveSpeed</sub>
-
 `NPC.GetMoveSpeed(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the move speed of the `CNPC`.
-
 ## <sub>GetMinDamage</sub>
-
 `NPC.GetMinDamage(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the minumum attack damage of the `CNPC`.
-
 ## <sub>GetBonusDamage</sub>
-
 `NPC.GetBonusDamage(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the bonus attack damage of the `CNPC`.
-
 ## <sub>GetTrueDamage</sub>
-
 `NPC.GetTrueDamage(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the minumum attack damage + bonus damage of the `CNPC`.
-
 ## <sub>GetTrueMaximumDamage</sub>
-
 `NPC.GetTrueMaximumDamage(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the maximum attack damage + bonus damage of the `CNPC`.
-
 ## <sub>GetItemByIndex</sub>
-
 `NPC.GetItemByIndex(npc, index):` [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                   | Description |
 | --------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
 | **index** | <mark style="color:purple;">**`integer`**</mark>                                       | item index  |
-
 Returns the `CItem` by index.
-
 ## <sub>GetAbilityByIndex</sub>
-
 `NPC.GetAbilityByIndex(npc, index):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                   | Description   |
 | --------- | -------------------------------------------------------------------------------------- | ------------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc    |
 | **index** | <mark style="color:purple;">**`integer`**</mark>                                       | ability index |
-
 Returns the `CAbility` by index.
-
 ## <sub>GetAbilityByActivity</sub>
-
 `NPC.GetAbilityByActivity(npc, activity):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                                                                                               | Description             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
 | **npc**      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                             | npc to get ability from |
 | **activity** | [<mark style="color:purple;">**`Enum.GameActivity`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.gameactivity) | game activity           |
-
 Returns the `CAbility` by game activity.
-
 ## <sub>GetAbility</sub>
-
 `NPC.GetAbility(npc, name):` [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                   | Description  |
 | -------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc   |
 | **name** | <mark style="color:purple;">**`string`**</mark>                                        | ability name |
-
 Returns the `CAbility` by name.
-
 ## <sub>HasAbility</sub>
-
 `NPC.HasAbility(npc, name):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                   | Description  |
 | -------- | -------------------------------------------------------------------------------------- | ------------ |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc   |
 | **name** | <mark style="color:purple;">**`string`**</mark>                                        | ability name |
-
 Returns `true` if the `CNPC` has this ability.
-
 ## <sub>GetMana</sub>
-
 `NPC.GetMana(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the current mana of the `CNPC`.
-
 ## <sub>GetMaxMana</sub>
-
 `NPC.GetMaxMana(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the maximum mana of the `CNPC`.
-
 ## <sub>GetManaRegen</sub>
-
 `NPC.GetManaRegen(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the mana regeneration rate of the `CNPC`.
-
 ## <sub>GetHealthRegen</sub>
-
 `NPC.GetHealthRegen(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the health regeneration rate of the `CNPC`.
-
 ## <sub>CalculateHealthRegen</sub>
-
 Works for creeps but really slow.
-
 `NPC.CalculateHealthRegen(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Iterate over all modifiers and returns the health regeneration rate of the `CNPC`.
-
 ## <sub>GetCurrentLevel</sub>
-
 `NPC.GetCurrentLevel(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the current level of the `CNPC`.
-
 ## <sub>GetDayTimeVisionRange</sub>
-
 `NPC.GetDayTimeVisionRange(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the day-time vision range of the `CNPC`.
-
 ## <sub>GetNightTimeVisionRange</sub>
-
 `NPC.GetNightTimeVisionRange(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the night-time vision range of the `CNPC`.
-
 ## <sub>GetUnitName</sub>
-
 `NPC.GetUnitName(npc):` <mark style="color:purple;">**`string`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the unit-name of the `CNPC`.
-
 ## <sub>GetHealthBarOffset</sub>
-
 `NPC.GetHealthBarOffset(npc, [checkOverride]):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                                | Type                                                                                   | Description                                            |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | **npc**                                                             | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                                             |
 | **checkOverride&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                       | returns override offset if it exists `(default: true)` |
-
 Returns the health bar offset of the `CNPC`.
-
 ## <sub>GetUnitNameIndex</sub>
-
 index can change when new unit are added
-
 `NPC.GetUnitNameIndex(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns unit-name index of the `CNPC`.
-
 ## <sub>GetAttachment</sub>
-
 `NPC.GetAttachment(npc, name):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name     | Type                                                                                   | Description                            |
 | -------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                             |
 | **name** | <mark style="color:purple;">**`string`**</mark>                                        | attachment name. e.g. "attach\_hitloc" |
-
 Returns the attachment position of the `CNPC` by the name.
-
 #### Example
-
 ```lua
 -- attachments.txt
 attach_hitloc
@@ -11101,63 +7738,40 @@ attach_fx
 attach_portcullis
 attach_gem
 ```
-
 ## <sub>GetAttachmentByIndex</sub>
-
 `NPC.GetAttachmentByIndex(npc, index):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name      | Type                                                                                   | Description      |
 | --------- | -------------------------------------------------------------------------------------- | ---------------- |
 | **npc**   | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc       |
 | **index** | <mark style="color:purple;">**`integer`**</mark>                                       | attachment index |
-
 Returns the attachment position of the `CNPC` by the specified index.
-
 ## <sub>GetAttachmentIndexByName</sub>
-
 `NPC.GetAttachmentIndexByName(npc, name):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                   | Description                            |
 | -------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
 | **npc**  | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc                             |
 | **name** | <mark style="color:purple;">**`string`**</mark>                                        | attachment name. e.g. "attach\_hitloc" |
-
 Returns the attachment index of the `CNPC` by the name.
-
 ## <sub>GetBountyXP</sub>
-
 `NPC.GetBountyXP(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the amount of experience points (XP) you can earn for killing the `CNPC`.
-
 ## <sub>GetGoldBountyMin</sub>
-
 `NPC.GetGoldBountyMin(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the minimum amount gold you can earn for killing the `CNPC`.
-
 ## <sub>GetGoldBountyMax</sub>
-
 `NPC.GetGoldBountyMax(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | target npc  |
-
 Returns the maximum amount gold you can earn for killing the `CNPC`.
-
 ## <sub>MoveTo</sub>
-
 `NPC.MoveTo(npc, position, [queue], [show], [callback], [executeFast], [identifier], [force_minimap]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                 | Type                                                                                                           | Description                                                                             |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **npc**                                                              | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                         | The target NPC.                                                                         |
@@ -11168,106 +7782,66 @@ Returns the maximum amount gold you can earn for killing the `CNPC`.
 | **executeFast&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`boolean`**</mark>                                                               | Place the order at the top of the queue. `(default: false)`                             |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>                                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
 | **force\_minimap&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                               | If true, the order will be forced by the minimap if possible. `(default: true)`         |
-
 Initiates an order for the `CNPC` to move to a specified position.
-
 ## <sub>SetZDelta</sub>
-
 `NPC.SetZDelta(npc, z):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
 | **z**   | <mark style="color:purple;">**`number`**</mark>                                        | Z pos           |
-
 Sets the Z position of the `CNPC` model.
-
 ## <sub>HasScepter</sub>
-
 `NPC.HasScepter(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns `true` if the `CNPC` has or consumed Aghanim Scepter.
-
 ## <sub>HasShard</sub>
-
 `NPC.HasShard(npc):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns `true` if the `CNPC` has or consumed Aghanim Shard.
-
 ## <sub>GetScepterUpgradeID</sub>
-
 `NPC.GetScepterUpgradeID(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns index of selected scepter upgrade.
-
 ## <sub>GetShardUpgradeID</sub>
-
 `NPC.GetShardUpgradeID(npc):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns index of selected shard upgrade.
-
 ## <sub>SequenceDuration</sub>
-
 `NPC.SequenceDuration(npc, sequence):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                   | Description         |
 | ------------ | -------------------------------------------------------------------------------------- | ------------------- |
 | **npc**      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC.     |
 | **sequence** | <mark style="color:purple;">**`integer`**</mark>                                       | The sequence index. |
-
 Returns sequence duration of the npc with the specified sequence index.
-
 ## <sub>GetSecondsPerAttack</sub>
-
 `NPC.GetSecondsPerAttack(npc, bIgnoreTempAttackSpeed):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                       | Type                                                                                   | Description                    |
 | -------------------------- | -------------------------------------------------------------------------------------- | ------------------------------ |
 | **npc**                    | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC.                |
 | **bIgnoreTempAttackSpeed** | <mark style="color:purple;">**`boolean`**</mark>                                       | Ignore temporary attack speed. |
-
 Returns the seconds per attack of the npc.
-
 ## <sub>GetBarriers</sub>
-
 `NPC.GetBarriers(npc):` <mark style="color:purple;">**`{physical:{total:number, current:number}, magic:{total:number, current:number}, all:{total:number, current:number}}`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns a table with information about the barriers of the `CNPC`.
-
 ## <sub>GetGlow</sub>
-
 `NPC.GetGlow(npc):` <mark style="color:purple;">**`{m_bSuppressGlow:boolean, m_bFlashing:boolean, m_bGlowing:boolean, m_iGlowType:integer, r:integer, g:integer, b:integer}`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns a table with information about the current glow effect of the `CNPC`.
-
 ## <sub>SetGlow</sub>
-
 `NPC.SetGlow(npc, suppress_glow, flashing, glowing, glow_type, r, g, b):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name               | Type                                                                                   | Description     |
 | ------------------ | -------------------------------------------------------------------------------------- | --------------- |
 | **npc**            | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
@@ -11278,679 +7852,421 @@ Returns a table with information about the current glow effect of the `CNPC`.
 | **r**              | <mark style="color:purple;">**`integer`**</mark>                                       | r factor        |
 | **g**              | <mark style="color:purple;">**`integer`**</mark>                                       | g factor        |
 | **b**              | <mark style="color:purple;">**`integer`**</mark>                                       | b factor        |
-
 Sets the `CNPC` glow effect.
-
 ## <sub>SetColor</sub>
-
 `NPC.SetColor(npc, r, g, b):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
 | **r**   | <mark style="color:purple;">**`integer`**</mark>                                       | r factor        |
 | **g**   | <mark style="color:purple;">**`integer`**</mark>                                       | g factor        |
 | **b**   | <mark style="color:purple;">**`integer`**</mark>                                       | b factor        |
-
 Sets the `CNPC` model color.
-
 ## <sub>IsInRangeOfShop</sub>
-
 `NPC.IsInRangeOfShop(npc, shop_type, [specific]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                           | Type                                                                                                                                                       | Description                              |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **npc**                                                        | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                     | The target NPC.                          |
 | **shop\_type**                                                 | [<mark style="color:purple;">**`Enum.ShopType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.shoptype) | Shop type to check.                      |
 | **specific&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                           | No idea what is that. `(default: false)` |
-
 Checks if the `CNPC` is in range of a shop.
-
 ## <sub>GetBaseSpellAmp</sub>
-
 `NPC.GetBaseSpellAmp(npc):` <mark style="color:purple;">**`number`**</mark>
-
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | The target NPC. |
-
 Returns the base spell amplification of the `CNPC`.
-
 ## <sub>GetModifierProperty</sub>
-
 `NPC.GetModifierProperty(npc, property):` <mark style="color:purple;">**`number`**</mark>
-
 | Name         | Type                                                                                                                                                                       | Description     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc**      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                                     | The target NPC. |
 | **property** | [<mark style="color:purple;">**`Enum.ModifierFunction`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.modifierfunction) | Property enum.  |
-
 Returns the property value for the `CNPC`.
-
 ## <sub>IsControllableByPlayer</sub>
-
 `NPC.IsControllableByPlayer(npc, playerId):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name         | Type                                                                                   | Description  |
 | ------------ | -------------------------------------------------------------------------------------- | ------------ |
 | **npc**      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | npc to check |
 | **playerId** | <mark style="color:purple;">**`integer`**</mark>                                       | player id    |
-
 Returns `true` if npc is controllable by player.
-
 ## <sub>GetModifierPropertyHighest</sub>
-
 Fixes the issue when you have multiple Kaya items that actually don't stack.
-
 \`NPC.GetModifierPropertyHighest(npc, property):\` <mark style="color:purple;">\*\*\`number\`\*\*</mark>
-
 | Name         | Type                                                                                                                                                                       | Description     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc**      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                                     | The target NPC. |
 | **property** | [<mark style="color:purple;">**`Enum.ModifierFunction`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.modifierfunction) | Property enum.  |
-
 Returns the hieghest property value for the `CNPC`.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md).
-
+> 
 # Hero
-
 Table to work with `CHero`.
-
 <mark style="color:purple;">**`CHero`**</mark> extends <mark style="color:purple;">**`CNPC`**</mark>
-
 ## <sub>GetCurrentXP</sub>
-
 `Hero.GetCurrentXP(hero):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the hero's current XP.
-
 ## <sub>GetAbilityPoints</sub>
-
 `Hero.GetAbilityPoints(hero):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the hero's available ability points.
-
 ## <sub>GetRespawnTime</sub>
-
 Could be less than current game time if hero is already alive.
-
 \`Hero.GetRespawnTime(hero):\` <mark style="color:purple;">\*\*\`number\`\*\*</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the game time when the hero will respawn.
-
 ## <sub>GetRespawnTimePenalty</sub>
-
 `Hero.GetRespawnTimePenalty(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the next respawn time penalty, e.g. buyback.
-
 ## <sub>GetPrimaryAttribute</sub>
-
 `Hero.GetPrimaryAttribute(hero):` [<mark style="color:purple;">**`Enum.Attributes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.attributes)
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the hero's primary attribute type.
-
 ## <sub>GetStrength</sub>
-
 `Hero.GetStrength(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns `white` value of strength.
-
 ## <sub>GetAgility</sub>
-
 `Hero.GetAgility(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns `white` value of agility.
-
 ## <sub>GetIntellect</sub>
-
 `Hero.GetIntellect(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns `white` value of intellect.
-
 ## <sub>GetStrengthTotal</sub>
-
 `Hero.GetStrengthTotal(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns total value of strength.
-
 ## <sub>GetAgilityTotal</sub>
-
 `Hero.GetAgilityTotal(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns total value of agility.
-
 ## <sub>GetIntellectTotal</sub>
-
 `Hero.GetIntellectTotal(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns total value of intellect.
-
 ## <sub>GetLastHurtTime</sub>
-
 `Hero.GetLastHurtTime(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the time when the hero was last hurt.
-
 ## <sub>GetHurtAmount</sub>
-
 `Hero.GetHurtAmount(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the amount of damage the hero last received.
-
 ## <sub>GetRecentDamage</sub>
-
 `Hero.GetRecentDamage(hero):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the damage taken by the hero in the last in \~1 second.
-
 ## <sub>GetPainFactor</sub>
-
 `Hero.GetPainFactor(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the pain factor of the hero. Not sure what it is.
-
 ## <sub>GetTargetPainFactor</sub>
-
 `Hero.GetTargetPainFactor(hero):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the pain factor of the hero's target. Not sure what it is.
-
 ## <sub>GetLifeState</sub>
-
 `Hero.GetLifeState(hero):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns `true` if the hero is alive. Recommended to use `Entity.IsAlive` instead.
-
 ## <sub>GetPlayerID</sub>
-
 `Hero.GetPlayerID(hero):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the ID of the hero player.
-
 ## <sub>GetReplicatingOtherHeroModel</sub>
-
 `Hero.GetReplicatingOtherHeroModel(hero):` [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 If the hero is an illusion, Arc's copy, Meepo clone, etc. returns the original hero, otherwise returns nil.
-
 ## <sub>TalentIsLearned</sub>
-
 `Hero.TalentIsLearned(hero, talent):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                                                                                             | Description |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero**   | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md)                                                                         |             |
 | **talent** | [<mark style="color:purple;">**`Enum.TalentTypes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.talenttypes) |             |
-
 Returns `true` if talent is learned.
-
 #### Example
-
 ```lua
 TALENT_8 <=> TALENT_7
 TALENT_6 <=> TALENT_5
 TALENT_4 <=> TALENT_3
 TALENT_2 <=> TALENT_1
 ```
-
 ## <sub>GetFacetAbilities</sub>
-
 `Hero.GetFacetAbilities(hero):` [<mark style="color:purple;">**`CAbility[]`**</mark>](/api-v2.0/game-components/core/ability.md)
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns facet ability array.
-
 ## <sub>GetFacetID</sub>
-
 `Hero.GetFacetID(hero):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns facet id. Start from 1.
-
 ## <sub>GetLastMaphackPos</sub>
-
 `Hero.GetLastMaphackPos(hero):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the last hero pos from maphack.
-
 ## <sub>GetLastVisibleTime</sub>
-
 `Hero.GetLastVisibleTime(hero):` <mark style="color:purple;">**`float`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) |             |
-
 Returns the last visible time from VBE.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md).
-
+> 
 # Ability
-
 Table to work with `CAbility`.
-
 <mark style="color:purple;">**`CAbility`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>GetOwner</sub>
-
 `Ability.GetOwner(ability):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability owner.
-
 ## <sub>IsBasic</sub>
-
 `Ability.IsBasic(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is basic.
-
 ## <sub>IsUltimate</sub>
-
 `Ability.IsUltimate(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is an ultimate.
-
 ## <sub>IsAttributes</sub>
-
 `Ability.IsAttributes(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is an attribute or a talent.
-
 ## <sub>GetType</sub>
-
 `Ability.GetType(ability):` [<mark style="color:purple;">**`Enum.AbilityTypes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.abilitytypes)
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability type.
-
 ## <sub>GetBehavior</sub>
-
 `Ability.GetBehavior(ability, [from_static_data]):` [<mark style="color:purple;">**`Enum.AbilityBehavior`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.abilitybehavior)
-
 | Name                                                                     | Type                                                                                           | Description                                                      |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                  |
 | **from\_static\_data&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | if `true` will check from ability static data `(default: false)` |
-
 Returns the ability type.
-
 ## <sub>IsPassive</sub>
-
 `Ability.IsPassive(ability, [from_static_data]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                                     | Type                                                                                           | Description                                                      |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                  |
 | **from\_static\_data&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | if `true` will check from ability static data `(default: false)` |
-
 Returns `true` if the ability is passive.
-
 ## <sub>GetTargetTeam</sub>
-
 `Ability.GetTargetTeam(ability, [from_static_data]):` [<mark style="color:purple;">**`Enum.TargetTeam`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.targetteam)
-
 | Name                                                                     | Type                                                                                           | Description                                                      |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                  |
 | **from\_static\_data&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | if `true` will check from ability static data `(default: false)` |
-
 Returns the target team of this Ability.
-
 ## <sub>GetTargetType</sub>
-
 `Ability.GetTargetType(ability, [from_static_data]):` [<mark style="color:purple;">**`Enum.TargetType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.targettype)
-
 | Name                                                                     | Type                                                                                           | Description                                                      |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                  |
 | **from\_static\_data&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | if `true` will check from ability static data `(default: false)` |
-
 Returns the target type of this Ability.
-
 ## <sub>GetTargetFlags</sub>
-
 `Ability.GetTargetFlags(ability):` [<mark style="color:purple;">**`Enum.TargetFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.targetflags)
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the target flags of this Ability.
-
 ## <sub>GetDamageType</sub>
-
 `Ability.GetDamageType(ability):` [<mark style="color:purple;">**`Enum.DamageTypes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.damagetypes)
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the damage type of this Ability.
-
 ## <sub>GetImmunityType</sub>
-
 `Ability.GetImmunityType(ability, [from_static_data]):` [<mark style="color:purple;">**`Enum.ImmunityTypes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.immunitytypes)
-
 | Name                                                                     | Type                                                                                           | Description                                                      |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                  |
 | **from\_static\_data&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | if `true` will check from ability static data `(default: false)` |
-
 Returns the immunity type of this Ability.
-
 ## <sub>GetDispellableType</sub>
-
 `Ability.GetDispellableType(ability, [from_static_data]):` [<mark style="color:purple;">**`Enum.DispellableTypes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.dispellabletypes)
-
 | Name                                                                     | Type                                                                                           | Description                                                      |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                  |
 | **from\_static\_data&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | if `true` will check from ability static data `(default: false)` |
-
 Returns the dispel type of this Ability.
-
 ## <sub>GetLevelSpecialValueFor</sub>
-
 `Ability.GetLevelSpecialValueFor(ability, name, [lvl]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                      | Type                                                                                           | Description                                                                                 |
 | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | **ability**                                               | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                                             |
 | **name**                                                  | <mark style="color:purple;">**`string`**</mark>                                                | Special value name. Can be found in the ability KV file. (`assets/data/npc_abilities.json`) |
 | **lvl&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark>                                               | Ability level, if -1 will automatically get lvl. `(default: -1)`                            |
-
 WRONG API FIX ME IT MUST BE GetSpecialValueFor.
-
 ## <sub>IsReady</sub>
-
 `Ability.IsReady(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is ready to use.
-
 ## <sub>SecondsSinceLastUse</sub>
-
 `Ability.SecondsSinceLastUse(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the number of seconds passed from the last usage of the ability. Will return -1 if\
 the ability is not on the cooldown.
-
 ## <sub>GetDamage</sub>
-
 `Ability.GetDamage(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability damage from assets/data/npc\_abilities.json field. Will return 0.0 if the\
 ability doesn't contain this field.
-
 ## <sub>GetHealthCost</sub>
-
 `Ability.GetHealthCost(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability's health cost.
-
 ## <sub>GetLevel</sub>
-
 `Ability.GetLevel(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the current ability level.
-
 ## <sub>GetCastPoint</sub>
-
 `Ability.GetCastPoint(ability, [include_modifiers]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                                     | Type                                                                                           | Description       |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------- |
 | **ability**                                                              | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                   |
 | **include\_modifiers&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | `(default: true)` |
-
 Gets the cast delay of this Ability.
-
 ## <sub>GetCastPointModifier</sub>
-
 `Ability.GetCastPointModifier(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Gets the cast delay modifier of this Ability.
-
 ## <sub>IsCastable</sub>
-
 `Ability.IsCastable(ability, [mana]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                       | Type                                                                                           | Description      |
 | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------- |
 | **ability**                                                | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                  |
 | **mana&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                | `(default: 0.0)` |
-
 Returns `true` if the ability is currently castable. Checks for mana cost, cooldown, level,\
 and slot for items.
-
 ## <sub>IsChannelling</sub>
-
 `Ability.IsChannelling(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is in channeling state. Example: teleport, rearm, powershot\
 etc.
-
 ## <sub>GetName</sub>
-
 `Ability.GetName(ability):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability name or empty string.
-
 ## <sub>GetBaseName</sub>
-
 `Ability.GetBaseName(ability):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability base name or empty string.
-
 ## <sub>IsInnate</sub>
-
 `Ability.IsInnate(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is innate.
-
 ## <sub>IsInnatePassive</sub>
-
 `Ability.IsInnatePassive(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is passive innate.
-
 ## <sub>GetMaxLevel</sub>
-
 `Ability.GetMaxLevel(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns ability's max level.
-
 ## <sub>IsGrantedByFacet</sub>
-
 `Ability.IsGrantedByFacet(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` when abiliti is granted by facet.
-
 ## <sub>CanBeExecuted</sub>
-
 `Ability.CanBeExecuted(ability):` [<mark style="color:purple;">**`Enum.AbilityCastResult`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.abilitycastresult)
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `-1` if ability can be executed.
-
 ## <sub>IsOwnersManaEnough</sub>
-
 `Ability.IsOwnersManaEnough(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if enough mana for cast.
-
 ## <sub>CastNoTarget</sub>
-
 `Ability.CastNoTarget(ability, [queue], [push], [execute_fast], [identifier]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                           | Description                                                                             |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                                         |
@@ -11958,13 +8274,9 @@ Returns `true` if enough mana for cast.
 | **push&#x20;**<mark style="color:orange;">**`[?]`**</mark>          | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to start of the order's list. `(default: false)`                        |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
-
 Casts the ability that doesn't require a target or position.
-
 ## <sub>CastPosition</sub>
-
 `Ability.CastPosition(ability, pos, [queue], [push], [execute_fast], [identifier], [force_minimap]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                 | Type                                                                                                           | Description                                                                             |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                          | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md)                 |                                                                                         |
@@ -11974,13 +8286,9 @@ Casts the ability that doesn't require a target or position.
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`boolean`**</mark>                                                               | Will push order to start of the order's list. `(default: false)`                        |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>                                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
 | **force\_minimap&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                               | If true, the order will be forced by the minimap if possible. `(default: true)`         |
-
 Casts the ability at a specified position.
-
 ## <sub>CastTarget</sub>
-
 `Ability.CastTarget(ability, target, [queue], [push], [execute_fast], [identifier]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                           | Description                                                                             |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                                         |
@@ -11989,13 +8297,9 @@ Casts the ability at a specified position.
 | **push&#x20;**<mark style="color:orange;">**`[?]`**</mark>          | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to start of the order's list. `(default: false)`                        |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
-
 Casts the ability on a specified target.
-
 ## <sub>Toggle</sub>
-
 `Ability.Toggle(ability, [queue], [push], [execute_fast], [identifier]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                           | Description                                                                             |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                                         |
@@ -12003,13 +8307,9 @@ Casts the ability on a specified target.
 | **push&#x20;**<mark style="color:orange;">**`[?]`**</mark>          | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to start of the order's list. `(default: false)`                        |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
-
 Toggles the ability. Example: Armlet.
-
 ## <sub>ToggleMod</sub>
-
 `Ability.ToggleMod(ability, [queue], [push], [execute_fast], [identifier]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                           | Description                                                                             |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |                                                                                         |
@@ -12017,541 +8317,329 @@ Toggles the ability. Example: Armlet.
 | **push&#x20;**<mark style="color:orange;">**`[?]`**</mark>          | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
 | **execute\_fast&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                               | Will push order to start of the order's list. `(default: false)`                        |
 | **identifier&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`string`**</mark>                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
-
 Toggles the ability modifier. Example: Frost Arrows, Medusa's Shield.
-
 ## <sub>GetDefaultName</sub>
-
 `Ability.GetDefaultName(ability_name):` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name              | Type                                            | Description |
 | ----------------- | ----------------------------------------------- | ----------- |
 | **ability\_name** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns the default ability icon name from items\_game.txt
-
 ## <sub>CanBeUpgraded</sub>
-
 `Ability.CanBeUpgraded(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns if the ability is upgradable with a specific reason.
-
 ## <sub>GetAbilityID</sub>
-
 `Ability.GetAbilityID(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns ability id
-
 ## <sub>GetIndex</sub>
-
 `Ability.GetIndex(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the index of the ability in the ability owner's list. The index can be used in\
 NPC.GetAbilityByIndex later.
-
 ## <sub>GetCastRange</sub>
-
 `Ability.GetCastRange(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the cast range of the ability.
-
 ## <sub>IsHidden</sub>
-
 `Ability.IsHidden(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if ability is hidden. Example: Zeus's Nimbus before purchasing agh.
-
 ## <sub>IsActivated</sub>
-
 `Ability.IsActivated(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is in an activated state.
-
 ## <sub>GetDirtyButtons</sub>
-
 `Ability.GetDirtyButtons(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns we don't know what :).
-
 ## <sub>GetToggleState</sub>
-
 `Ability.GetToggleState(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns if the ability is toggled. Example: Medusa's Shield.
-
 ## <sub>IsInAbilityPhase</sub>
-
 `Ability.IsInAbilityPhase(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is in the cast state. Examples: Nature's Prophet's Teleport,\
 Meepo's Poof.
-
 ## <sub>GetCooldown</sub>
-
 `Ability.GetCooldown(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the amount of time before the ability can be cast.
-
 ## <sub>GetCooldownLength</sub>
-
 `Ability.GetCooldownLength(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the amount of time the ability couldn't be cast after being used.
-
 ## <sub>GetManaCost</sub>
-
 `Ability.GetManaCost(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the ability mana cost.
-
 ## <sub>GetAutoCastState</sub>
-
 `Ability.GetAutoCastState(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the autocast state of the ability.
-
 ## <sub>GetAltCastState</sub>
-
 `Ability.GetAltCastState(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the alt cast state of the ability. Example: Doom's Devour.
-
 ## <sub>GetChannelStartTime</sub>
-
 `Ability.GetChannelStartTime(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the gametime the channeling of the ability will start. Requires the ability to be in\
 the cast state when called.
-
 ## <sub>GetCastStartTime</sub>
-
 `Ability.GetCastStartTime(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the gametime the ability will be casted. Requires the ability to be in the cast state\
 when called.
-
 ## <sub>IsInIndefinateCooldown</sub>
-
 `Ability.IsInIndefinateCooldown(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the cooldown of the ability is indefinite.
-
 ## <sub>IsInIndefinateCooldown</sub>
-
 `Ability.IsInIndefinateCooldown(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the cooldown of the ability is frozen.
-
 ## <sub>GetOverrideCastPoint</sub>
-
 `Ability.GetOverrideCastPoint(ability):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the overridden cast point. Example: Arcane Blink.
-
 ## <sub>IsStolen</sub>
-
 `Ability.IsStolen(ability):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns `true` if the ability is stolen.
-
 ## <sub>GetCurrentCharges</sub>
-
 `Ability.GetCurrentCharges(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the number of charges available.
-
 ## <sub>ChargeRestoreTimeRemaining</sub>
-
 `Ability.ChargeRestoreTimeRemaining(ability):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the remaining time for the next charge to restore.
-
 ## <sub>GetKeybind</sub>
-
 `Ability.GetKeybind(ability):` <mark style="color:purple;">**`string`**</mark>
-
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
-
 Returns the keybind of the ability.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md).
-
+> 
 # Item
-
 Table to work with `CItem`.
-
 <mark style="color:purple;">**`CItem`**</mark> extends <mark style="color:purple;">**`CAbility`**</mark>
-
 ## <sub>IsCombinable</sub>
-
 `Item.IsCombinable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is combinable. I'm not sure if non-combinable items even exist.
-
 ## <sub>IsPermanent</sub>
-
 `Item.IsPermanent(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is permanent. I'm not sure what permanent items is, but for items with stacks this function returns `false`.
-
 ## <sub>IsStackable</sub>
-
 `Item.IsStackable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is stackable. e.g tangoes, wards, etc.
-
 ## <sub>IsRecipe</sub>
-
 `Item.IsRecipe(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is recipe.
-
 ## <sub>GetSharability</sub>
-
 `Item.GetSharability(item):` [<mark style="color:purple;">**`Enum.ShareAbility`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.shareability)
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns item's sharability type.
-
 ## <sub>IsDroppable</sub>
-
 `Item.IsDroppable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is droppable.
-
 ## <sub>IsPurchasable</sub>
-
 `Item.IsPurchasable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is purchasable.
-
 ## <sub>IsSellable</sub>
-
 `Item.IsSellable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item is sellable.
-
 ## <sub>RequiresCharges</sub>
-
 `Item.RequiresCharges(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if the item requires charges. e.g. urn, vessel etc.
-
 ## <sub>IsKillable</sub>
-
 `Item.IsKillable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if item is destroyable by autoatack.
-
 ## <sub>IsDisassemblable</sub>
-
 `Item.IsDisassemblable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if item is disassemblable.
-
 ## <sub>IsAlertable</sub>
-
 `Item.IsAlertable(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if item is alertable. e.g. smoke, mekansm, arcane boots etc.
-
 ## <sub>GetInitialCharges</sub>
-
 `Item.GetInitialCharges(item):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns initial charges of the item. e.g. 3 for bottle, 1 for dust etc.
-
 ## <sub>CastsOnPickup</sub>
-
 `Item.CastsOnPickup(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 No idea what this function does.
-
 ## <sub>GetCurrentCharges</sub>
-
 `Item.GetCurrentCharges(item):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns amount of current charges.
-
 ## <sub>GetSecondaryCharges</sub>
-
 `Item.GetSecondaryCharges(item):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns amount of secondary charges. e.g. pack of both type of wards.
-
 ## <sub>IsCombineLocked</sub>
-
 `Item.IsCombineLocked(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if item locked for combining.
-
 ## <sub>IsMarkedForSell</sub>
-
 `Item.IsMarkedForSell(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if item is marked for sell.
-
 ## <sub>GetPurchaseTime</sub>
-
 `Item.GetPurchaseTime(item):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns the game time when the item was purchased. If the item was assembled from other items, It returns the purchase time of the item that had the lowest\
 index at the moment of assembling.
-
 ## <sub>GetAssembledTime</sub>
-
 `Item.GetAssembledTime(item):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns the game time when the item was assembled. If the item was not assembled, returns time when the item was purchased.
-
 ## <sub>PurchasedWhileDead</sub>
-
 `Item.PurchasedWhileDead(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `true` if item was purchased while dead.
-
 ## <sub>CanBeUsedOutOfInventory</sub>
-
 `Item.CanBeUsedOutOfInventory(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 No idea which specific item example could be used out of inventory.
-
 ## <sub>IsItemEnabled</sub>
-
 `Item.IsItemEnabled(item):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns `false` if item has CD after moving from stash.
-
 ## <sub>GetEnableTime</sub>
-
 Could be less than current game time if item is already enabled.
-
 `Item.GetEnableTime(item):` <mark style="color:purple;">**`number`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns game time when item will be enabled.
-
 ## <sub>GetPlayerOwnerID</sub>
-
 `Item.GetPlayerOwnerID(item):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns player ID who owns the item.
-
 ## <sub>GetCost</sub>
-
 `Item.GetCost(item):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **item** | [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) |             |
-
 Returns item cost.
-
 ## <sub>GetStockCount</sub>
-
 Item id can be found in \`assets/data/items.json\` file in cheat folder.
-
 \`Item.GetStockCount(item\_id, \[team]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
-
 | Name                                                       | Type                                                                                                                                                     | Description                                                                        |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | **item\_id**                                               | <mark style="color:purple;">**`integer`**</mark>                                                                                                         |                                                                                    |
 | **team&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
-
 Returns amount of remaining items in shop by item id.
-
 #### Example
-
 ```lua
 -- "item_ward_observer": {
 --     "ID": "42",
@@ -12560,252 +8648,165 @@ Log.Write("Observers available: " .. Item.GetStockCount(42))
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md).
-
+> 
 # Rune
-
 Table to work with `CRune`.<mark style="color:purple;">**`CRune`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>GetRuneType</sub>
-
 `Rune.GetRuneType(rune):` [<mark style="color:purple;">**`Enum.RuneType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.runetype)
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **rune** | [<mark style="color:purple;">**`CRune`**</mark>](/api-v2.0/game-components/core/rune.md) |             |
-
 Returns `Enum.RuneType` the rune type.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md).
-
+> 
 # Tower
-
 Table to work with `CTower`.<mark style="color:purple;">**`CTower`**</mark> extends <mark style="color:purple;">**`CNPC`**</mark>
-
 ## <sub>GetAttackTarget</sub>
-
 `Tower.GetAttackTarget(tower):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                                                                       | Description |
 | --------- | ------------------------------------------------------------------------------------------ | ----------- |
 | **tower** | [<mark style="color:purple;">**`CTower`**</mark>](/api-v2.0/game-components/core/tower.md) |             |
-
 Returns `CNPC` that is attacked by the tower now.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md).
-
+> 
 # Tree
-
 Table to work with `CTree`.<mark style="color:purple;">**`CTree`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>IsActive</sub>
-
 `Tree.IsActive(tree):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
 | **tree** | [<mark style="color:purple;">**`CTree`**</mark>](/api-v2.0/game-components/core/tree.md) |             |
-
 Returns if the tree is not cut.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md).
-
+> 
 # Vambrace
-
 Table to work with `CVambrace`.<mark style="color:purple;">**`CVambrace`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
-
 ## <sub>GetStats</sub>
-
 `Vambrace.GetStats(vambrace):` [<mark style="color:purple;">**`Enum.Attributes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.attributes)
-
 | Name         | Type                                                                                             | Description |
 | ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
 | **vambrace** | [<mark style="color:purple;">**`CVambrace`**</mark>](/api-v2.0/game-components/core/vambrace.md) |             |
-
 Returns selected `Enum.Attributes` attribute.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md).
-
+> 
 # Camp
-
 Table to work with `CCamp`.<mark style="color:purple;">**`CCamp`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>GetType</sub>
-
 `Camp.GetType(camp):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                     | Description        |
 | -------- | ---------------------------------------------------------------------------------------- | ------------------ |
 | **camp** | [<mark style="color:purple;">**`CCamp`**</mark>](/api-v2.0/game-components/core/camp.md) | The camp to check. |
-
 Returns the camp type.
-
 ## <sub>GetCampBox</sub>
-
 `Camp.GetCampBox(camp):` <mark style="color:purple;">**`{min:Vector, max:Vector}`**</mark>
-
 | Name     | Type                                                                                     | Description        |
 | -------- | ---------------------------------------------------------------------------------------- | ------------------ |
 | **camp** | [<mark style="color:purple;">**`CCamp`**</mark>](/api-v2.0/game-components/core/camp.md) | The camp to check. |
-
 Returns camp box as a table with **min** and **max** fields(**Vector**).
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md).
-
+> 
 # Bottle
-
 Table to work with `CBottle`.
-
 <mark style="color:purple;">**`CBottle`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
-
 ## <sub>GetRuneType</sub>
-
 `Bottle.GetRuneType(bottle):` [<mark style="color:purple;">**`Enum.RuneType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.runetype)
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **bottle** | [<mark style="color:purple;">**`CBottle`**</mark>](/api-v2.0/game-components/core/bottle.md) |             |
-
 Returns the rune inside the bottle.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md).
-
+> 
 # Courier
-
 Table to work with `CCourier`.<mark style="color:purple;">**`CCourier`**</mark> extends <mark style="color:purple;">**`CNPC`**</mark>
-
 ## <sub>IsFlyingCourier</sub>
-
 `Courier.IsFlyingCourier(courier):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                           | Description           |
 | ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | The courier to check. |
-
 Returns `true` if the courier is flying.
-
 ## <sub>GetRespawnTime</sub>
-
 `Courier.GetRespawnTime(courier):` <mark style="color:purple;">**`number`**</mark>
-
 | Name        | Type                                                                                           | Description           |
 | ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | The courier to check. |
-
 Returns the game time when the courier will respawn.
-
 ## <sub>GetCourierState</sub>
-
 `Courier.GetCourierState(courier):` [<mark style="color:purple;">**`Enum.CourierState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.courierstate)
-
 | Name        | Type                                                                                           | Description           |
 | ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | The courier to check. |
-
 Returns the courier state.
-
 ## <sub>GetPlayerID</sub>
-
 `Courier.GetPlayerID(courier):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                           | Description           |
 | ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | The courier to check. |
-
 Returns owner's player id.
-
 ## <sub>GetCourierStateEntity</sub>
-
 `Courier.GetCourierStateEntity(courier):` [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                                                                           | Description           |
 | ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [<mark style="color:purple;">**`CCourier`**</mark>](/api-v2.0/game-components/core/courier.md) | The courier to check. |
-
 Returns the entity that the courier is currently interacting with.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md).
-
+> 
 # DrunkenBrawler
-
 Table to work with `CDrunkenBrawler`.<mark style="color:purple;">**`CDrunkenBrawler`**</mark> extends <mark style="color:purple;">**`CAbility`**</mark>
-
 ## <sub>GetState</sub>
-
 `DrunkenBrawler.GetState(ability):` [<mark style="color:purple;">**`Enum.DrunkenBrawlerState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.drunkenbrawlerstate)
-
 | Name        | Type                                                                                                         | Description |
 | ----------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
 | **ability** | [<mark style="color:purple;">**`CDrunkenBrawler`**</mark>](/api-v2.0/game-components/core/drunkenbrawler.md) |             |
-
 Returns the state of the CDrunkenBrawler ability.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md).
-
+> 
 # PhysicalItem
-
 Table to work with `CPhysicalItem`.<mark style="color:purple;">**`CPhysicalItem`**</mark> extends <mark style="color:purple;">**`CEntity`**</mark>
-
 ## <sub>GetItem</sub>
-
 `PhysicalItem.GetItem(physical_item):` [<mark style="color:purple;">**`CItem`**</mark>](/api-v2.0/game-components/core/item.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name               | Type                                                                                                     | Description |
 | ------------------ | -------------------------------------------------------------------------------------------------------- | ----------- |
 | **physical\_item** | [<mark style="color:purple;">**`CPhysicalItem`**</mark>](/api-v2.0/game-components/core/physicalitem.md) |             |
-
 Returns `CItem` object from `CPhysicalItem`.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md).
-
+> 
 # PowerTreads
-
 Table to work with `CPowerTreads`.<mark style="color:purple;">**`CTower`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
-
 ## <sub>GetStats</sub>
-
 `PowerTreads.GetStats(power_tread):` [<mark style="color:purple;">**`Enum.Attributes`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.attributes)
-
 | Name             | Type                                                                                                   | Description |
 | ---------------- | ------------------------------------------------------------------------------------------------------ | ----------- |
 | **power\_tread** | [<mark style="color:purple;">**`CPowerTreads`**</mark>](/api-v2.0/game-components/core/powertreads.md) |             |
-
 Returns selected `Enum.Attributes` attribute.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md).
-
+> 
 # TierToken
-
 Table to work with `CTierToken`.<mark style="color:purple;">**`CTierToken`**</mark> extends <mark style="color:purple;">**`CItem`**</mark>
-
 ## <sub>GetChoices</sub>
-
 `TierToken.GetChoices(tier_token):` <mark style="color:purple;">**`integer[]`**</mark>
-
 | Name            | Type                                                                                               | Description                              |
 | --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **tier\_token** | [<mark style="color:purple;">**`CTierToken`**</mark>](/api-v2.0/game-components/core/tiertoken.md) | The `TierToken` to get the choices from. |
-
 Returns the choices (ability ids) of the `CTierToken`.
 
 
@@ -12813,105 +8814,83 @@ Returns the choices (ability ids) of the `CTierToken`.
 
 ## Game Engine
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine.md -->
+
+> 
+# Game Engine
+- [Engine](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md)
+- [Event](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md)
+- [GameRules](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md)
+- [GlobalVars](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md)
+- [GridNav](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md)
+- [Input](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md)
+- [World](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md)
+- [FogOfWar](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md)
+- [ConVar](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md).
-
+> 
 # Engine
-
 Table to work with game engine.
-
 ## <sub>IsInGame</sub>
-
 `Engine.IsInGame():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if the game is in progress.
-
 ## <sub>IsShopOpen</sub>
-
 `Engine.IsShopOpen():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if the shop is open.
-
 ## <sub>SetQuickBuy</sub>
-
 `Engine.SetQuickBuy(item_name, [reset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                        | Type                                             | Description                                                |
 | ----------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------------- |
 | **item\_name**                                              | <mark style="color:purple;">**`string`**</mark>  | The name of the item to quick buy. (e.g. `blink`, `relic`) |
 | **reset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Reset the quick buy list. `(default: true)`                |
-
 Add item to quick buy list.
-
 ## <sub>RunScript</sub>
-
 `Engine.RunScript(script, [contextPanel]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                               | Type                                                                                                                                                                       | Description                                                                            |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | **script**                                                         | <mark style="color:purple;">**`string`**</mark>                                                                                                                            | The script to run.                                                                     |
 | **contextPanel&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> \| [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | The id of the panel or the panel itself to run the script in. `(default: "Dashboard")` |
-
 Run a JS script in the panorama context. Return `true` if the script was executed\
 successfully. [JS\
 documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Panorama/Javascript)
-
 #### Example
-
 ```lua
 -- in dota console, you should see "Hello from Lua!"
 Engine.RunScript("$.Msg('Hello from Lua!')");
 ```
-
 ## <sub>ExecuteCommand</sub>
-
 `Engine.ExecuteCommand(command):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description             |
 | ----------- | ----------------------------------------------- | ----------------------- |
 | **command** | <mark style="color:purple;">**`string`**</mark> | The command to execute. |
-
 Execute a console command.
-
 #### Example
-
 ```lua
 -- in dota chat, you should see "Hello from Lua!"
 Engine.ExecuteCommand("say \"Hello from Lua!\"");
 ```
-
 ## <sub>PlayVol</sub>
-
 `Engine.PlayVol(sound, [volume]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                            | Description                                                               |
 | ------------------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------------------------- |
 | **sound**                                                    | <mark style="color:purple;">**`string`**</mark> | The sound to play. Could find in `sounds` folder in `pak01_dir.vpk` file. |
 | **volume&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The volume of the sound. `(default: 0.1)`                                 |
-
 Play a sound with a specific volume.
-
 #### Example
-
 ```lua
 -- play a sound with a volume of 0.5 (very loud)
 Engine.PlayVol("sounds/npc/courier/courier_acknowledge.vsnd_c", 0.5);
 ```
-
 ## <sub>CreateConfig</sub>
-
 `Engine.CreateConfig(config_name, categories):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                                                                                                                | Description             |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **config\_name** | <mark style="color:purple;">**`string`**</mark>                                                                                     | The name of the config. |
 | **categories**   | <mark style="color:purple;">**`{name: string, hero_ids: integer[], x: number, y: number, width: number, height: number}[]`**</mark> |                         |
-
 Creates a new hero grid config.
-
 #### Example
-
 ```lua
 Engine.CreateConfig("From lua", {
 {
@@ -12932,78 +8911,45 @@ Engine.CreateConfig("From lua", {
 }
 });
 ```
-
 ## <sub>GetCurrentConfigName</sub>
-
 `Engine.GetCurrentConfigName():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the current hero grid config name
-
 ## <sub>SetNewGridConfig</sub>
-
 `Engine.SetNewGridConfig(config_name):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name             | Type                                            | Description                   |
 | ---------------- | ----------------------------------------------- | ----------------------------- |
 | **config\_name** | <mark style="color:purple;">**`string`**</mark> | The name of the config to set |
-
 Set the new hero grid config by name
-
 ## <sub>LookAt</sub>
-
 `Engine.LookAt(x, y):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Move camera to a specific position.
-
 ## <sub>CanAcceptMatch</sub>
-
 `Engine.CanAcceptMatch():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if the player can accept the match.
-
 ## <sub>GetGameDirectory</sub>
-
 `Engine.GetGameDirectory():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the current game directory. (e.g. `dota 2 beta`)
-
 ## <sub>GetCheatDirectory</sub>
-
 `Engine.GetCheatDirectory():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the current cheat directory.
-
 ## <sub>GetLevelName</sub>
-
 `Engine.GetLevelName():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the current level name. (e.g. `maps/hero_demo_main.vpk`)
-
 ## <sub>GetLevelNameShort</sub>
-
 `Engine.GetLevelNameShort():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the current level name without the extension and folder. (e.g. `hero_demo_main`)
-
 ## <sub>AcceptMatch</sub>
-
 `Engine.AcceptMatch(state):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                             | Description         |
 | --------- | ------------------------------------------------ | ------------------- |
 | **state** | <mark style="color:purple;">**`integer`**</mark> | DOTALobbyReadyState |
-
 Accept match.
-
 ## <sub>ConsoleColorPrintf</sub>
-
 `Engine.ConsoleColorPrintf(r, g, b, [a], text):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                    | Type                                             | Description                   |
 | ------------------------------------------------------- | ------------------------------------------------ | ----------------------------- |
 | **r**                                                   | <mark style="color:purple;">**`integer`**</mark> | Red value.                    |
@@ -13011,575 +8957,335 @@ Accept match.
 | **b**                                                   | <mark style="color:purple;">**`integer`**</mark> | Blue value.                   |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Alpha value. `(default: 255)` |
 | **text**                                                | <mark style="color:purple;">**`string`**</mark>  | Text to print.                |
-
 Print a message to the dota console.
-
 ## <sub>GetMMR</sub>
-
 `Engine.GetMMR():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns the current MMR.
-
 ## <sub>GetMMRV2</sub>
-
 `Engine.GetMMRV2():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns the current MMR. Works better than `Engine.GetMMR`.\
 Must be called from the game thread. Ex: OnNetUpdateEx, OnGCMessage, not OnFrame or on\
 initialization.
-
 ## <sub>ReloadScriptSystem</sub>
-
 `Engine.ReloadScriptSystem():` <mark style="color:purple;">**`nil`**</mark>
-
 Executes script system reload.
-
 ## <sub>ShowDotaWindow</sub>
-
 `Engine.ShowDotaWindow():` <mark style="color:purple;">**`nil`**</mark>
-
 Brings the game window to the forefront if it is minimized.\
 Use this function to make the game window the topmost window.
-
 ## <sub>IsInLobby</sub>
-
 `Engine.IsInLobby():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if the player is in a lobby.
-
 ## <sub>GetBuildVersion</sub>
-
 `Engine.GetBuildVersion():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the cheat version.
-
 ## <sub>GetHeroIDByName</sub>
-
 `Engine.GetHeroIDByName(unitName):` <mark style="color:purple;">**`integer`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                            | Description                             |
 | ------------ | ----------------------------------------------- | --------------------------------------- |
 | **unitName** | <mark style="color:purple;">**`string`**</mark> | Can be retrieved from `NPC.GetUnitName` |
-
 Returns hero ID by unit name.
-
 #### Example
-
 ```lua
 local abaddonId = Engine.GetHeroIDByName( "npc_dota_hero_abaddon" )
 ```
-
 ## <sub>GetDisplayNameByUnitName</sub>
-
 `Engine.GetDisplayNameByUnitName(unitName):` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                            | Description                             |
 | ------------ | ----------------------------------------------- | --------------------------------------- |
 | **unitName** | <mark style="color:purple;">**`string`**</mark> | Can be retrieved from `NPC.GetUnitName` |
-
 Returns hero display name by unit name.
-
 #### Example
-
 ```lua
 local nevermore_name = Engine.GetDisplayNameByUnitName( "npc_dota_hero_nevermore" )
 -- nevermore_name == "Shadow Fiend"
 ```
-
 ## <sub>GetHeroNameByID</sub>
-
 `Engine.GetHeroNameByID(heroID):` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description |
 | ---------- | ------------------------------------------------ | ----------- |
 | **heroID** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Returns hero name by ID.
-
 ## <sub>GetUIState</sub>
-
 `Engine.GetUIState():` [<mark style="color:purple;">**`Enum.UIState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.uistate)
-
 Returns current UI state.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md).
-
+> 
 # Event
-
 Table to work with game events.
-
 When you install events, you send the subscribe message to the server, which is potentially unsafe.\
 Therefore, you won't be able to install new listeners when you have unsafe features disabled in the Settings -> Security tab.
-
 The list of events can be found in the "pak01\_dir.vpk" under "resource/game.gameevents."
-
 ## <sub>AddListener</sub>
-
 `Event.AddListener(name):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                            | Description |
 | -------- | ----------------------------------------------- | ----------- |
 | **name** | <mark style="color:purple;">**`string`**</mark> | Event name  |
-
 Installs an event listener for the desired event.
-
 ## <sub>IsReliable</sub>
-
 `Event.IsReliable(event):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
-
 Checks if the event is reliable.
-
 ## <sub>IsLocal</sub>
-
 `Event.IsLocal(event):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
-
 Checks if the event is local or networked.
-
 ## <sub>IsEmpty</sub>
-
 `Event.IsEmpty(event):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
-
 Checks if the event is empty.
-
 ## <sub>GetBool</sub>
-
 `Event.GetBool(event, field):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                   | Field name  |
-
 Returns the boolean value of the specified event field.
-
 ## <sub>GetInt</sub>
-
 `Event.GetInt(event, field):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                   | Field name  |
-
 Returns the integer value of the specified event field.
-
 ## <sub>GetUint64</sub>
-
 `Event.GetUint64(event, field):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                   | Field name  |
-
 Returns the uint64 value of the specified event field.
-
 ## <sub>GetFloat</sub>
-
 `Event.GetFloat(event, field):` <mark style="color:purple;">**`number`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                   | Field name  |
-
 Returns the floating value of the specified event field.
-
 ## <sub>GetString</sub>
-
 `Event.GetString(event, field):` <mark style="color:purple;">**`string`**</mark>
-
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                   | Field name  |
-
 Returns the string value of the specified event field.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md).
-
+> 
 # GameRules
-
 Table to work with GameRules.
-
 ## <sub>GetServerGameState</sub>
-
 `GameRules.GetServerGameState():` [<mark style="color:purple;">**`Enum.GameState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.gamestate)
-
 Returns the current server game state.
-
 ## <sub>GetGameState</sub>
-
 `GameRules.GetGameState():` [<mark style="color:purple;">**`Enum.GameState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.gamestate)
-
 Returns the current game state.
-
 ## <sub>GetGameMode</sub>
-
 `GameRules.GetGameMode():` [<mark style="color:purple;">**`Enum.GameMode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.gamemode)
-
 Returns the current game mode.
-
 ## <sub>GetPreGameStartTime</sub>
-
 Pregame time is the time before the game starts, e.g. ban phase, pick time.
-
 `GameRules.GetPreGameStartTime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns pregame duration or 0 if now is pregame time.
-
 ## <sub>GetGameStartTime</sub>
-
 Game start time is 0:00 on ingame timer.
-
 `GameRules.GetGameStartTime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns game start time duration or 0 if game is not start yet.
-
 ## <sub>GetGameEndTime</sub>
-
 `GameRules.GetGameEndTime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns game end time or 0 if game is not end yet.
-
 ## <sub>GetGameLoadTime</sub>
-
 `GameRules.GetGameLoadTime():` <mark style="color:purple;">**`number`**</mark>
-
 No idea what this function does. Returns 0 in all cases what I've tested.
-
 ## <sub>GetGameTime</sub>
-
 Can be used to calculate time in an in-game timer. See the example.
-
 `GameRules.GetGameTime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the current game time. Starts counting from pregame state.
-
 #### Example
-
 ```lua
 local game_time = GameRules.GetGameTime();
 local ingame_timer = game_time - GameRules.GetGameStartTime();
 Log.Write(string.format("Current time: %d:%02d", math.floor(ingame_timer / 60),
 math.floor(ingame_timer % 60)))
 ```
-
 ## <sub>IsPaused</sub>
-
 `GameRules.IsPaused():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if game is paused.
-
 ## <sub>IsTemporaryDay</sub>
-
 Example: Phoenix's Supernova.
-
 `GameRules.IsTemporaryDay():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if it's temporary day.
-
 ## <sub>IsTemporaryNight</sub>
-
 Example: Luna's Eclipse.
-
 `GameRules.IsTemporaryNight():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if it's temporary night.
-
 ## <sub>IsNightstalkerNight</sub>
-
 `GameRules.IsNightstalkerNight():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if it's nightstalker's night.
-
 ## <sub>GetMatchID</sub>
-
 `GameRules.GetMatchID():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns current match id.
-
 ## <sub>GetLobbyID</sub>
-
 `GameRules.GetLobbyID():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns current lobby id.
-
 ## <sub>GetGoodGlyphCD</sub>
-
 Could be less than current game time if glyph is already available.
-
 `GameRules.GetGoodGlyphCD():` <mark style="color:purple;">**`number`**</mark>
-
 Returns game time when next radiant glyph will be available.
-
 ## <sub>GetBadGlyphCD</sub>
-
 Could be less than current game time if glyph is already available.
-
 `GameRules.GetBadGlyphCD():` <mark style="color:purple;">**`number`**</mark>
-
 Returns game time when next dire glyph will be available.
-
 ## <sub>GetGoodScanCD</sub>
-
 Could be less than current game time if scan is already available.
-
 `GameRules.GetGoodScanCD():` <mark style="color:purple;">**`number`**</mark>
-
 Returns game time when next radiant scan will be available.
-
 ## <sub>GetBadScanCD</sub>
-
 Could be less than current game time if scan is already available.
-
 `GameRules.GetBadScanCD():` <mark style="color:purple;">**`number`**</mark>
-
 Returns game time when next dire scan will be available.
-
 ## <sub>GetGoodScanCharges</sub>
-
 `GameRules.GetGoodScanCharges():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns current radiant scan charges.
-
 ## <sub>GetGoodScanCharges</sub>
-
 `GameRules.GetGoodScanCharges():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns current dire scan charges.
-
 ## <sub>GetStockCount</sub>
-
 Item id can be found in \`assets/data/items.json\` file in cheat folder.
-
 \`GameRules.GetStockCount(item\_id, \[team]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
-
 | Name                                                       | Type                                                                                                                                                            | Description                                                                        |
 | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | **item\_id**                                               | <mark style="color:purple;">**`integer`**</mark>                                                                                                                |                                                                                    |
 | **team&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
-
 Returns amount of remaining items in shop by item id.
-
 #### Example
-
 ```lua
 -- "item_ward_observer": {
 --     "ID": "42",
 Log.Write("Observers available: " .. GameRules.GetStockCount(42))
 ```
-
 ## <sub>GetNextCycleTime</sub>
-
 `GameRules.GetNextCycleTime():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`boolean`**</mark>
-
 Return time remaining to the next cycle.
-
 ## <sub>GetDaytimeStart</sub>
-
 `GameRules.GetDaytimeStart():` <mark style="color:purple;">**`number`**</mark>
-
 Returns day start time. To work with it use `GameRules.GetTimeOfDay`
-
 ## <sub>GetNighttimeStart</sub>
-
 `GameRules.GetNighttimeStart():` <mark style="color:purple;">**`number`**</mark>
-
 Returns night start time. To work with it use `GameRules.GetTimeOfDay`
-
 ## <sub>GetTimeOfDay</sub>
-
 `GameRules.GetTimeOfDay():` <mark style="color:purple;">**`number`**</mark>
-
 Returns current time of day time.
-
 ## <sub>IsInBanPhase</sub>
-
 `GameRules.IsInBanPhase():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if game is in ban phase.
-
 ## <sub>GetAllDraftPhase</sub>
-
 `GameRules.GetAllDraftPhase():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns index of the current draft phase.
-
 ## <sub>IsAllDraftPhaseRadiantFirst</sub>
-
 `GameRules.IsAllDraftPhaseRadiantFirst():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if Radiant picks first.
-
 ## <sub>GetDOTATime</sub>
-
 `GameRules.GetDOTATime([pregame], [negative]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                           | Type                                             | Description                                          |
 | -------------------------------------------------------------- | ------------------------------------------------ | ---------------------------------------------------- |
 | **pregame&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`boolean`**</mark> | If `true` includes pregame time. `(default: false)`  |
 | **negative&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | If `true` includes negative time. `(default: false)` |
-
 Returns the actual DOTA in-game clock time.
-
 ## <sub>GetLobbyObjectJson</sub>
-
 `GameRules.GetLobbyObjectJson():` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 Returns CSODOTALobby protobuf object as JSON string.
-
 ## <sub>GetBannedHeroes</sub>
-
 `GameRules.GetBannedHeroes():` <mark style="color:purple;">**`integer[]`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 Returns zero-based array of banned heroes where index corresponds to the player id.
-
 ## <sub>GetStateTransitionTime</sub>
-
 `GameRules.GetStateTransitionTime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns time remaining between state changes.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md).
-
+> 
 # GlobalVars
-
 Talbe to work with game's global variables.
-
 ## <sub>GetFrameCount</sub>
-
 `GlobalVars.GetFrameCount():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns absolute frame counter. Continues to increase even if game is paused.
-
 ## <sub>GetAbsFrameTime</sub>
-
 `GlobalVars.GetAbsFrameTime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns absolute frame time.
-
 ## <sub>GetAbsFrameTimeDev</sub>
-
 `GlobalVars.GetAbsFrameTimeDev():` <mark style="color:purple;">**`number`**</mark>
-
 Returns absolute frame time. No idea what's the difference between this and `GetAbsFrameTime`.
-
 ## <sub>GetMapName</sub>
-
 `GlobalVars.GetMapName():` <mark style="color:purple;">**`string`**</mark>
-
 Returns full name of the current map. For example, "maps/dota.vpk" or "maps/hero\_demo\_main.vpk".
-
 ## <sub>GetMapGroupName</sub>
-
 `GlobalVars.GetMapGroupName():` <mark style="color:purple;">**`string`**</mark>
-
 Returns short name of the current map. For example, "dota" or "hero\_demo\_main".
-
 ## <sub>GetCurTime</sub>
-
 `GlobalVars.GetCurTime():` <mark style="color:purple;">**`number`**</mark>
-
 TODO
-
 ## <sub>GetServerTick</sub>
-
 `GlobalVars.GetServerTick():` <mark style="color:purple;">**`integer`**</mark>
-
 TODO
-
 ## <sub>GetIntervalPerTick</sub>
-
 `GlobalVars.GetIntervalPerTick():` <mark style="color:purple;">**`number`**</mark>
-
 TODO
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gridnav.md).
-
+> 
 # GridNav
-
 Table to work with in-game navigation API.
-
 ## <sub>CreateNpcMap</sub>
-
 You should always call \`GridNav.ReleaseNpcMap\` after you done with your build pathing
-
 \`GridNav.CreateNpcMap(\[excluded\_npcs], \[includeTempTrees], \[customCollisionSizes]):\` \[<mark style="color:purple;">\*\*\`GridNavNpcMap\`\*\*</mark>]\(GridNavNpcMap.md)
-
 | Name                                                                       | Type                                                                                                                                           | Description                                                                                                                                    |
 | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | **excluded\_npcs&#x20;**<mark style="color:orange;">**`[?]`**</mark>       | [<mark style="color:purple;">**`CEntity[]`**</mark>](/api-v2.0/game-components/core/entity.md) \| <mark style="color:purple;">**`nil`**</mark> | table with npc to exclude from the map. for example you want to exclude local hero if you build path from local hero position `(default: nil)` |
 | **includeTempTrees&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`boolean`**</mark>                                                                                               | `true` if you want include temp trees to the map e.g. furion's 1st spell, iron branch `(default: true)`                                        |
 | **customCollisionSizes&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`table`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                                                 | table where key is entity userdata and value is {left, top, right, bottom} offsets from entity position `(default: nil)`                       |
-
 Creates a new `GridNavNpcMap`
-
 ## <sub>ReleaseNpcMap</sub>
-
 `GridNav.ReleaseNpcMap(npc_map):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                                                                           | Description               |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **npc\_map** | [<mark style="color:purple;">**`GridNavNpcMap`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) | map to release to release |
-
 Releases allocated memory for `GridNavNpcMap`
-
 ## <sub>IsTraversable</sub>
-
 `GridNav.IsTraversable(pos, [flag], [flag_excluded]):` <mark style="color:purple;">**`boolean`**</mark>, <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                                 | Type                                                                                                           | Description                                             |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | **pos**                                                              | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check                                       |
 | **flag&#x20;**<mark style="color:orange;">**`[?]`**</mark>           | <mark style="color:purple;">**`number`**</mark>                                                                | required cell flag mask (must be set) `(default: 1)`    |
 | **flag\_excluded&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | forbidden cell flag mask (must be clear) `(default: 2)` |
-
 Returns `true` if the world position is traversable.\
 \
 Pass `flag_excluded` to replicate per-ability filter masks. Examples:\\
-
 * `IsTraversable(pos, 0x1, 0x002)` - default (engine `BLOCKED` only)\\
 * `IsTraversable(pos, 0x1, 0x102)` - Techies Land Mine semantics\
   (LOCATION 0x002 + BUILDING 0x100)\\
 * `IsTraversable(pos, 0x1, 0x112)` - strictest variant used by many native\
   AOE landing checks (LOCATION + PORTAL + BUILDING)
-
 ## <sub>BuildPath</sub>
-
 `GridNav.BuildPath(start, end_, [ignoreTrees], [npc_map]):` [<mark style="color:purple;">**`Vector[]`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name                                                              | Type                                                                                                                                                                                           | Description                                                                                  |
 | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | **start**                                                         | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to start                                                                            |
 | **end\_**                                                         | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to end                                                                              |
 | **ignoreTrees&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                               | `true` if you want to exclude static trees from the pathing `(default: false)`               |
 | **npc\_map&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | [<mark style="color:purple;">**`GridNavNpcMap`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) \| <mark style="color:purple;">**`nil`**</mark> | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
-
 Build path from start to end. Returns an array with builded positions.
-
 #### Example
-
 ```lua
 -- build_path.lua
 return {
@@ -13588,10 +9294,8 @@ return {
         local my_hero = Heroes.GetLocal();
         local start_pos = Entity.GetAbsOrigin(my_hero);
         local end_pos = Input.GetWorldCursorPos();
-
         -- create npc map with the temp trees but with no local hero in it
         local npc_map = GridNav.CreateNpcMap({Heroes.GetLocal()}, not ignore_trees);
-
         local path = GridNav.BuildPath(start_pos, end_pos, ignore_trees, npc_map);
         local prev_x, prev_y = nil, nil;
         for i, pos in pairs(path) do
@@ -13602,304 +9306,198 @@ return {
             end
             prev_x, prev_y = x, y;
         end
-
         -- releasing allocated npc map after we done with build pathing
         GridNav.ReleaseNpcMap(npc_map)
     end
 }
-
 ```
-
 ## <sub>IsTraversableFromTo</sub>
-
 `GridNav.IsTraversableFromTo(start, end_, [ignoreTrees], [npc_map]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                              | Type                                                                                                                                                                                           | Description                                                                                  |
 | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | **start**                                                         | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to start                                                                            |
 | **end\_**                                                         | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to end                                                                              |
 | **ignoreTrees&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                               | `true` if you want to exclude static trees from the pathing `(default: false)`               |
 | **npc\_map&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | [<mark style="color:purple;">**`GridNavNpcMap`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) \| <mark style="color:purple;">**`nil`**</mark> | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
-
 Lite version of GridNav.BuildPath function which just cheking if the path is exists.
-
 ## <sub>DebugRender</sub>
-
 `GridNav.DebugRender([grid_range], [npc_map], [render_cell_flags]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                                      | Type                                                                                                                                                                                           | Description                                                                                                                                  |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **grid\_range&#x20;**<mark style="color:orange;">**`[?]`**</mark>         | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                               | grid radius in "cell units" from Vector(0,0,0) `(default: 50)`                                                                               |
 | **npc\_map&#x20;**<mark style="color:orange;">**`[?]`**</mark>            | [<mark style="color:purple;">**`GridNavNpcMap`**</mark>](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) \| <mark style="color:purple;">**`nil`**</mark> | map with the npc's positions which works as additional mask for terrain map `(default: nil)`                                                 |
 | **render\_cell\_flags&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                               | render the flags value for each not approachable cell (don't think you ever want to see this numbers, so ignore this arg) `(default: false)` |
-
 Debug render of current GridNav with GridNavNpcMap (if provided)
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md).
-
+> 
 # Input
-
 Table to work with input system.
-
 ## <sub>GetWorldCursorPos</sub>
-
 `Input.GetWorldCursorPos():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns world cursor position.
-
 ## <sub>GetCursorPos</sub>
-
 `Input.GetCursorPos():` <mark style="color:purple;">**`number`**</mark>, <mark style="color:purple;">**`number`**</mark>
-
 Returns screen cursor position (x, y). See example.
-
 #### Example
-
 ```lua
 local x, y =	Input.GetCursorPos()
 ```
-
 ## <sub>IsCursorInRect</sub>
-
 `Input.IsCursorInRect(x, y, w, h):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name  | Type                                            | Description |
 | ----- | ----------------------------------------------- | ----------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> | x position  |
 | **y** | <mark style="color:purple;">**`number`**</mark> |             |
 | **w** | <mark style="color:purple;">**`number`**</mark> | width       |
 | **h** | <mark style="color:purple;">**`number`**</mark> | height      |
-
 Returns `true` if cursor is in rect.
-
 ## <sub>IsCursorInBounds</sub>
-
 `Input.IsCursorInBounds(x0, y0, x1, y1):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name   | Type                                            | Description |
 | ------ | ----------------------------------------------- | ----------- |
 | **x0** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y0** | <mark style="color:purple;">**`number`**</mark> |             |
 | **x1** | <mark style="color:purple;">**`number`**</mark> |             |
 | **y1** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Returns `true` if cursor is in bounds.
-
 ## <sub>GetNearestUnitToCursor</sub>
-
 Excludes not visible, illusions and dead units.
-
 `Input.GetNearestUnitToCursor(teamNum, teamType):` [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                                                                                              | Description                                        |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | **teamNum**  | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
 | **teamType** | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | team type to search relative to teamNum param      |
-
 Returns nearest unit to cursor.
-
 ## <sub>GetNearestHeroToCursor</sub>
-
 Excludes not visible, illusions and dead heroes.
-
 `Input.GetNearestHeroToCursor(teamNum, teamType):` [<mark style="color:purple;">**`CHero`**</mark>](/api-v2.0/game-components/core/hero.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                                                                                              | Description                                        |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | **teamNum**  | [<mark style="color:purple;">**`Enum.TeamNum`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
 | **teamType** | [<mark style="color:purple;">**`Enum.TeamType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.teamtype) | team type to search relative to teamNum param      |
-
 Returns nearest hero to cursor.
-
 ## <sub>IsInputCaptured</sub>
-
 `Input.IsInputCaptured():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if input is captured. e.g. opened console, chat, shop.
-
 ## <sub>IsPopupOpen</sub>
-
 Tracks the dashboard popup manager. Same signal the game uses to suppress its own gameplay key binds while a popup is shown.
-
 `Input.IsPopupOpen():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if any panorama popup is currently open\
 (settings, accept-match, item picker, party invite, etc.).
-
 ## <sub>IsKeyDown</sub>
-
 `Input.IsKeyDown(KeyCode, [bIgnoreLock]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                                 | Type                                                                                                                                                                  | Description                                                                                       |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **KeyCode**                                                          | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) |                                                                                                   |
 | **bIgnoreLock&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
 | key state. Default `false` preserves the previous behavior - returns |                                                                                                                                                                       |                                                                                                   |
 | `false` while any of those is active. `(default: false)`             |                                                                                                                                                                       |                                                                                                   |
-
 Returns `true` if key is down.
-
 ## <sub>IsKeyDownOnce</sub>
-
 This function will return \`true\` only once per key press.
-
 \`Input.IsKeyDownOnce(KeyCode, \[bIgnoreLock]):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
-
 | Name                                                                                   | Type                                                                                                                                                                  | Description                                                                                       |
 | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **KeyCode**                                                                            | [<mark style="color:purple;">**`Enum.ButtonCode`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.buttoncode) |                                                                                                   |
 | **bIgnoreLock&#x20;**<mark style="color:orange;">**`[?]`**</mark>                      | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
 | key-pressed state. Default `false` preserves the previous behavior. `(default: false)` |                                                                                                                                                                       |                                                                                                   |
-
 Return `true` if key is down once.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md).
-
+> 
 # World
-
 Table containing functions for interacting with the world.
-
 ## <sub>GetGroundZ</sub>
-
 `World.GetGroundZ(x, y):` <mark style="color:purple;">**`number`**</mark>
-
 | Name  | Type                                            | Description                              |
 | ----- | ----------------------------------------------- | ---------------------------------------- |
 | **x** | <mark style="color:purple;">**`number`**</mark> | The X position to get the ground Z from. |
 | **y** | <mark style="color:purple;">**`number`**</mark> | The Y position to get the ground Z from. |
-
 Returns the ground Z at the given position.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md).
-
+> 
 # FogOfWar
-
 Table to work with FogOfWar API.
-
 ## <sub>IsPointVisible</sub>
-
 `FogOfWar.IsPointVisible(pos):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                                           | Description       |
 | ------- | -------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check |
-
 Returns `true` if the world position is visible.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md).
-
+> 
 # ConVar
-
 Table to work with `CConVars`.\
 ConVars are game variable that can be used to retrieve or change some game engine settings.
-
 ## <sub>Find</sub>
-
 `ConVar.Find(name):` [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                            | Description |
 | -------- | ----------------------------------------------- | ----------- |
 | **name** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns the found ConVar.
-
 #### Example
-
 ```lua
 local convar = ConVar.Find("dota_camera_distance")
 local camera_distance = ConVar.GetFloat(convar)
 ```
-
 ## <sub>GetString</sub>
-
 `ConVar.GetString(convar):` <mark style="color:purple;">**`string`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
-
 Returns string value of the Convar
-
 ## <sub>GetInt</sub>
-
 `ConVar.GetInt(convar):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
-
 Returns int value of the Convar
-
 ## <sub>GetFloat</sub>
-
 `ConVar.GetFloat(convar):` <mark style="color:purple;">**`number`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
-
 Returns float value of the Convar
-
 ## <sub>GetBool</sub>
-
 `ConVar.GetBool(convar):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
-
 Returns boolean value of the Convar
-
 ## <sub>SetString</sub>
-
 `ConVar.SetString(convar, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
 | **value**  | <mark style="color:purple;">**`string`**</mark>                                                     |             |
-
 Assigns new string value to the ConVar
-
 ## <sub>SetInt</sub>
-
 `ConVar.SetInt(convar, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
 | **value**  | <mark style="color:purple;">**`integer`**</mark>                                                    |             |
-
 Assigns new int value to the ConVar
-
 ## <sub>SetFloat</sub>
-
 `ConVar.SetFloat(convar, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
 | **value**  | <mark style="color:purple;">**`number`**</mark>                                                     |             |
-
 Assigns new float value to the ConVar
-
 ## <sub>SetBool</sub>
-
 `ConVar.SetBool(convar, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
 | **value**  | <mark style="color:purple;">**`boolean`**</mark>                                                    |             |
-
 Assigns new boolean value to the ConVar
 
 
@@ -13907,76 +9505,61 @@ Assigns new boolean value to the ConVar
 
 ## Networking and APIs
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis.md -->
+
+> 
+# Networking & APIs
+- [Chat](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md)
+- [HTTP](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md)
+- [Steam](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md)
+- [NetChannel](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md)
+- [Game Coordinator](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md)
+- [Protobuf](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md).
-
+> 
 # Chat
-
 Table to work with chat.
-
 ## <sub>GetChannels</sub>
-
 `Chat.GetChannels():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns an array of channel names.
-
 ## <sub>Print</sub>
-
 `Chat.Print(channel, text):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description                             |
 | ----------- | ----------------------------------------------- | --------------------------------------- |
 | **channel** | <mark style="color:purple;">**`string`**</mark> | The channel name to say the message in. |
 | **text**    | <mark style="color:purple;">**`string`**</mark> | The message to say.                     |
-
 Print a message in a channel. This message will not be sent to the server.
-
 ## <sub>Say</sub>
-
 `Chat.Say(channel, text):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description                             |
 | ----------- | ----------------------------------------------- | --------------------------------------- |
 | **channel** | <mark style="color:purple;">**`string`**</mark> | The channel name to say the message in. |
 | **text**    | <mark style="color:purple;">**`string`**</mark> | The message to say.                     |
-
 Say a message in a channel.
-
 ## <sub>Flip</sub>
-
 `Chat.Flip(channel):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description                           |
 | ----------- | ----------------------------------------------- | ------------------------------------- |
 | **channel** | <mark style="color:purple;">**`string`**</mark> | The channel name to flip the coin in. |
-
 Flip the coin in a channel.
-
 ## <sub>Roll</sub>
-
 `Chat.Roll(channel, [min], [max]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                      | Type                                            | Description                                  |
 | --------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------- |
 | **channel**                                               | <mark style="color:purple;">**`string`**</mark> | The channel name to roll the dice in.        |
 | **min&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The minimum number to roll. `(default: 0)`   |
 | **max&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The maximum number to roll. `(default: 100)` |
-
 Roll a dice in a channel.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md).
-
+> 
 # HTTP
-
 Table to work with HTTP requests.
-
 ## <sub>Request</sub>
-
 `HTTP.Request(method, url, [data], callback, [param]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                        | Type                                                                                                                                                                                                                              | Description                                                                                         |
 | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | **method**                                                  | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                                                   | HTTP method                                                                                         |
@@ -13984,31 +9567,24 @@ Table to work with HTTP requests.
 | **data&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`{headers:table<string>, cookies:string`**</mark> \| <mark style="color:purple;">**`table<string>, data:string`**</mark> \| <mark style="color:purple;">**`table<string>, timeout:number}`**</mark> | data to send `(default: {})`                                                                        |
 | **callback**                                                | <mark style="color:purple;">**`fun(tbl: {response: string, code: string, header: string, param: string, error_code: number, error_message: string}):nil`**</mark>                                                                 | callback function to call when request is done. Take 1 argument - response data table, see example. |
 | **param&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                                                   | string parameter to pass to callback function to identify request `(default: "")`                   |
-
 Do HTTP request. Returns `true` if request was sent successfully.
-
 #### Example
-
 ```lua
 -- http_request.lua
 local url = "https://reqres.in/api/users/2";
-
 local headers = {
     ["User-Agent"] = "Umbrella/1.0",
     ['Connection'] = 'Keep-Alive',
 }
-
 local JSON = require('assets.JSON')
 local callback = function(response)
     Log.Write(response["response"]);
     Log.Write(response["code"]);
     Log.Write(response["header"]);
     Log.Write(response["param"]);
-
     local json = JSON:decode(response["response"]);
     Log.Write(json["data"]["email"]);
 end
-
 HTTP.Request("GET", url, { 
 		headers = headers,
 	}, callback, "reqres_get");
@@ -14016,109 +9592,69 @@ HTTP.Request("GET", url, {
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md).
-
+> 
 # Steam
-
 Table to with Steam API functions
-
 ## <sub>SetPersonaName</sub>
-
 `Steam.SetPersonaName(name):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                            | Description     |
 | -------- | ----------------------------------------------- | --------------- |
 | **name** | <mark style="color:purple;">**`string`**</mark> | The name to set |
-
 Sets the player name, stores it on the server and publishes the changes to all friends who\
 are online.
-
 ## <sub>GetPersonaName</sub>
-
 `Steam.GetPersonaName():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the local players name. This is the same name as on the users community profile page.
-
 ## <sub>GetGameLanguage</sub>
-
 `Steam.GetGameLanguage():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the current game language.
-
 ## <sub>GetProfilePictureBySteamId</sub>
-
 This function works only if you already got player's user information (EMsg\_ClientRequestFriendData). That means you should be in the same game with the player or he should be in your friend list.
-
 `Steam.GetProfilePictureBySteamId(steamID64, [large]):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                        | Type                                             | Description                                                 |
 | ----------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------- |
 | **steamID64**                                               | <mark style="color:purple;">**`integer`**</mark> | The Steam ID of the player                                  |
 | **large&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Whether to get the large profile picture `(default: false)` |
-
 Returns the handle of the profile picture of the given Steam ID.
-
 ## <sub>GetProfilePictureByAccountId</sub>
-
 This function works only if you already got player's user information (EMsg\_ClientRequestFriendData). That means you should be in the same game with the player or he should be in your friend list.
-
 \`Steam.GetProfilePictureByAccountId(steamID64, \[large]):\` <mark style="color:purple;">\*\*\`integer\`\*\*</mark>
-
 | Name                                                        | Type                                             | Description                                                 |
 | ----------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------- |
 | **steamID64**                                               | <mark style="color:purple;">**`integer`**</mark> | The account id of the player                                |
 | **large&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Whether to get the large profile picture `(default: false)` |
-
 Returns the handle of the profile picture of the given account id.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md).
-
+> 
 # NetChannel
-
 Table to work with game's net channel.
-
 ## <sub>GetLatency</sub>
-
 `NetChannel.GetLatency([flow]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                       | Type                                                                                                                                                              | Description                                                 |
 | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | **flow&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.Flow`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/pages/VwVljl88Qnl7u9hhqRdw#enum.flow) | flow to get latency of `(default: Enum.Flow.FLOW_OUTGOING)` |
-
 Returns the latency/ping of the net channel in seconds.
-
 ## <sub>GetAvgLatency</sub>
-
 `NetChannel.GetAvgLatency([flow]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                       | Type                                                                                                                                                              | Description                                                         |
 | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **flow&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.Flow`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/pages/VwVljl88Qnl7u9hhqRdw#enum.flow) | flow to get average latency of `(default: Enum.Flow.FLOW_OUTGOING)` |
-
 Returns the average latency/ping of the net channel in seconds.
-
 ## <sub>SendNetMessage</sub>
-
 You can repeat the same message from OnSendNetMessage if you want to know the format of the message.
-
 \`NetChannel.SendNetMessage(name, json):\` <mark style="color:purple;">\*\*\`boolean\`\*\*</mark>
-
 | Name     | Type                                            | Description             |
 | -------- | ----------------------------------------------- | ----------------------- |
 | **name** | <mark style="color:purple;">**`string`**</mark> | name of the net message |
 | **json** | <mark style="color:purple;">**`string`**</mark> | json of the net message |
-
 Sends a protobuff message to the game server. [List of messages](https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs),
-
 #### Example
-
 ```lua
 -- send_netmsg.lua
 -- import json encoder
 local JSON = require('assets.JSON');
-
 -- https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs/dota_clientmessages.proto#L395
 -- message CDOTAClientMsg_RollDice {
 -- 	optional uint32 channel_type = 1;
@@ -14130,35 +9666,25 @@ NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
     roll_min = 11,
     roll_max = 222
 }));
-
 ```
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md).
-
+> 
 # Game Coordinator
-
 Table to work with Game Coordinator (GC).
-
 Possible message types and message bodies could be found at [here](https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs)\
 Message type id starts with `k_E` prefix, for example `k_EMsgGCMatchmakingStatsRequest = 7197;`.\
 Message body starts with with `C` prefix instead of "k\_E", for example `message CMsgDOTAMatchmakingStatsRequest {}`.
-
 ## <sub>SendMessage</sub>
-
 `GC.SendMessage(msg, msg_type, msg_size):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name          | Type                                              | Description                         |
 | ------------- | ------------------------------------------------- | ----------------------------------- |
 | **msg**       | <mark style="color:purple;">**`userdata`**</mark> | Pointer to protobuf message buffer. |
 | **msg\_type** | <mark style="color:purple;">**`integer`**</mark>  | Protobuf message type ID.           |
 | **msg\_size** | <mark style="color:purple;">**`integer`**</mark>  | Size of the protobuf message.       |
-
 Sends protobuff message to game coordinator. Response will be received in `OnGCMessage` callback.
-
 #### Example
-
 ```lua
 local protobuf = require('protobuf')
 local JSON = require('assets.JSON')
@@ -14166,98 +9692,66 @@ local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest',
 	                JSON:encode({}));
 GC.SendMessage( request.binary, 7197, request.size )
 ```
-
 ## <sub>GetSteamID</sub>
-
 `GC.GetSteamID():` <mark style="color:purple;">**`string`**</mark>
-
 Returns local player Steam ID as string.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md).
-
+> 
 # Protobuf
-
 Protobuf encoding/decoding module for working with Dota 2 network messages. Loaded as a require-able library: `local protobuf = require('protobuf')`.
-
 Message type names correspond to protobuf definitions from [Dota 2 Protobufs](https://github.com/SteamDatabase/GameTracking-Dota2/blob/master/Protobufs).
-
 ## <sub>encode</sub>
-
 `protobuf.encode(name, data):` <mark style="color:purple;">**`table`**</mark>
-
 | Name     | Type                                            | Description                   |
 | -------- | ----------------------------------------------- | ----------------------------- |
 | **name** | <mark style="color:purple;">**`string`**</mark> | Protobuf message type name    |
 | **data** | <mark style="color:purple;">**`table`**</mark>  | Lua table with message fields |
-
 Encodes a Lua table into a serialized protobuf message. Returns a table with `binary` (userdata pointer) and `size` (number) fields.
-
 ## <sub>encodeFromJSON</sub>
-
 `protobuf.encodeFromJSON(name, json):` <mark style="color:purple;">**`table`**</mark>
-
 | Name     | Type                                            | Description                          |
 | -------- | ----------------------------------------------- | ------------------------------------ |
 | **name** | <mark style="color:purple;">**`string`**</mark> | Protobuf message type name           |
 | **json** | <mark style="color:purple;">**`string`**</mark> | JSON string representing the message |
-
 Encodes a JSON string into a serialized protobuf message. Returns a table with `binary` (userdata pointer) and `size` (number) fields.
-
 ```lua
 local protobuf = require('protobuf')
 local JSON = require('assets.JSON')
 local request = protobuf.encodeFromJSON('CMsgDOTAMatchmakingStatsRequest', JSON:encode({}))
 GC.SendMessage(request.binary, 7197, request.size)
 ```
-
 ## <sub>decodeToJSON</sub>
-
 `protobuf.decodeToJSON(name, binary, size):` <mark style="color:purple;">**`string`**</mark>
-
 | Name       | Type                                              | Description                          |
 | ---------- | ------------------------------------------------- | ------------------------------------ |
 | **name**   | <mark style="color:purple;">**`string`**</mark>   | Protobuf message type name           |
 | **binary** | <mark style="color:purple;">**`userdata`**</mark> | Pointer to serialized protobuf data  |
 | **size**   | <mark style="color:purple;">**`integer`**</mark>  | Size of the serialized data in bytes |
-
 Decodes a serialized protobuf message (from a raw pointer) into a JSON string.
-
 ```lua
 local response = protobuf.decodeToJSON('CMsgDOTAMatchmakingStatsResponse', msg.binary_buffer_recv, msg.size)
 Log.Write(response)
 ```
-
 ## <sub>decodeToJSONfromString</sub>
-
 `protobuf.decodeToJSONfromString(name, base64data):` <mark style="color:purple;">**`string`**</mark>
-
 | Name           | Type                                            | Description                             |
 | -------------- | ----------------------------------------------- | --------------------------------------- |
 | **name**       | <mark style="color:purple;">**`string`**</mark> | Protobuf message type name              |
 | **base64data** | <mark style="color:purple;">**`string`**</mark> | Base64-encoded serialized protobuf data |
-
 Decodes a base64-encoded protobuf message into a JSON string.
-
 ## <sub>decodeToJSONfromObject</sub>
-
 `protobuf.decodeToJSONfromObject(msg_object):` <mark style="color:purple;">**`string`**</mark>
-
 | Name            | Type                                              | Description                     |
 | --------------- | ------------------------------------------------- | ------------------------------- |
 | **msg\_object** | <mark style="color:purple;">**`userdata`**</mark> | Protobuf message object pointer |
-
 Decodes a protobuf message object directly into a JSON string. Useful with callback message objects that provide a direct protobuf pointer.
-
 ## <sub>free</sub>
-
 `protobuf.free(binary):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                              | Description                                 |
 | ---------- | ------------------------------------------------- | ------------------------------------------- |
 | **binary** | <mark style="color:purple;">**`userdata`**</mark> | Pointer to previously encoded protobuf data |
-
 Frees memory allocated by `encode` or `encodeFromJSON`. Returns `true` on success.
 
 
@@ -14265,53 +9759,48 @@ Frees memory allocated by `encode` or `encodeFromJSON`. Returns `true` on succes
 
 ## Rendering and Visuals
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals.md -->
+
+> 
+# Rendering & Visuals
+- [Particle](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md)
+- [Renderer](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md)
+- [Render](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md)
+- [MiniMap](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md)
+- [Panorama](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama.md)
+- [Panorama](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md)
+- [UIPanel](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md).
-
+> 
 # Particle
-
 Table to work with particles.
-
 ## <sub>Create</sub>
-
 `Particle.Create(particle, [attach_type], [entity]):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                               | Type                                                                                                                                                                                            | Description                                                                                                   |
 | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | **particle**                                                       | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                 | Particle path                                                                                                 |
 | **attach\_type&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.ParticleAttachment`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.particleattachment) | attach\_type Attach type `(default: Enum.ParticleAttachment.PATTACH_WORLDORIGIN)`                             |
 | **entity&#x20;**<mark style="color:orange;">**`[?]`**</mark>       | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md)                                                                                                    | Entity to own of the particle. If not specified, the local hero will be used. `(default: Players.GetLocal())` |
-
 Creates a particle and returns its index.
-
 ## <sub>SetControlPoint</sub>
-
 `Particle.SetControlPoint(particle_index, control_point, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                | Type                                                                                                           | Description         |
 | ------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- |
 | **particle\_index** | <mark style="color:purple;">**`integer`**</mark>                                                               | Particle index      |
 | **control\_point**  | <mark style="color:purple;">**`integer`**</mark>                                                               | Control point       |
 | **value**           | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Control point value |
-
 Sets the control point value of a particle.
-
 ## <sub>SetShouldDraw</sub>
-
 `Particle.SetShouldDraw(particle_index, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                | Type                                             | Description    |
 | ------------------- | ------------------------------------------------ | -------------- |
 | **particle\_index** | <mark style="color:purple;">**`integer`**</mark> | Particle index |
 | **value**           | <mark style="color:purple;">**`boolean`**</mark> | set value      |
-
 Enables or disables the drawing of a particle.
-
 ## <sub>SetControlPointEnt</sub>
-
 `Particle.SetControlPointEnt(particle_index, control_point, entity, attach_type, attach_name, position, lock_orientation):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                  | Type                                                                                                                                                                                            | Description                                   |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | **particle\_index**   | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                                | Particle index                                |
@@ -14321,141 +9810,95 @@ Enables or disables the drawing of a particle.
 | **attach\_name**      | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                                                                                                 | Attach name. See `NPC.GetAttachment` function |
 | **position**          | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                  | Control point position                        |
 | **lock\_orientation** | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                                                | Lock orientation. No idea what it does        |
-
 Sets the control point entity value of a particle.
-
 ## <sub>SetParticleControlTransform</sub>
-
 `Particle.SetParticleControlTransform(particle_index, control_point, position, angle):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                | Type                                                                                                           | Description            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | **particle\_index** | <mark style="color:purple;">**`integer`**</mark>                                                               | Particle index         |
 | **control\_point**  | <mark style="color:purple;">**`integer`**</mark>                                                               | Control point          |
 | **position**        | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Control point position |
 | **angle**           | [<mark style="color:purple;">**`Angle`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)   | Control point angle    |
-
 Sets the control point's position and angle.
-
 ## <sub>Destroy</sub>
-
 `Particle.Destroy(particle_index):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                | Type                                             | Description    |
 | ------------------- | ------------------------------------------------ | -------------- |
 | **particle\_index** | <mark style="color:purple;">**`integer`**</mark> | Particle index |
-
 Destroys the particle by index.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md).
-
+> 
 # Renderer
-
 Table to work with renderer.
-
 ## <sub>SetDrawColor</sub>
-
 `Renderer.SetDrawColor([r], [g], [b], [a]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                    | Type                                             | Description                   |
 | ------------------------------------------------------- | ------------------------------------------------ | ----------------------------- |
 | **r&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Red color. `(default: 255)`   |
 | **g&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Green color. `(default: 255)` |
 | **b&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Blue color. `(default: 255)`  |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | Alpha color. `(default: 255)` |
-
 Sets the color of the renderer.
-
 ## <sub>DrawLine</sub>
-
 `Renderer.DrawLine(x0, y0, x1, y1):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name   | Type                                             | Description                       |
 | ------ | ------------------------------------------------ | --------------------------------- |
 | **x0** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the first point.  |
 | **y0** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the first point.  |
 | **x1** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the second point. |
 | **y1** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the second point. |
-
 Draws a line.
-
 ## <sub>DrawPolyLine</sub>
-
 `Renderer.DrawPolyLine(points):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                           | Description      |
 | ---------- | ---------------------------------------------- | ---------------- |
 | **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
-
 Draws a polyline.
-
 ## <sub>DrawPolyLineFilled</sub>
-
 `Renderer.DrawPolyLineFilled(points):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                           | Description      |
 | ---------- | ---------------------------------------------- | ---------------- |
 | **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
-
 Draws a filled polyline.
-
 ## <sub>DrawFilledRect</sub>
-
 `Renderer.DrawFilledRect(x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name  | Type                                             | Description                    |
 | ----- | ------------------------------------------------ | ------------------------------ |
 | **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
 | **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
 | **w** | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
 | **h** | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
-
 Draws a filled rectangle.
-
 ## <sub>DrawOutlineRect</sub>
-
 `Renderer.DrawOutlineRect(x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name  | Type                                             | Description                    |
 | ----- | ------------------------------------------------ | ------------------------------ |
 | **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
 | **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the rectangle. |
 | **w** | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
 | **h** | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
-
 Draws an outlined rectangle.
-
 ## <sub>DrawOutlineCircle</sub>
-
 `Renderer.DrawOutlineCircle(x, y, r, s):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name  | Type                                             | Description                 |
 | ----- | ------------------------------------------------ | --------------------------- |
 | **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the circle. |
 | **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the circle. |
 | **r** | <mark style="color:purple;">**`integer`**</mark> | Radius of the circle.       |
 | **s** | <mark style="color:purple;">**`integer`**</mark> | Segments of the circle.     |
-
 Draws an outlined circle.
-
 ## <sub>DrawFilledCircle</sub>
-
 `Renderer.DrawFilledCircle(x, y, r):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name  | Type                                             | Description                 |
 | ----- | ------------------------------------------------ | --------------------------- |
 | **x** | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the circle. |
 | **y** | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the circle. |
 | **r** | <mark style="color:purple;">**`integer`**</mark> | Radius of the circle.       |
-
 Draws a filled circle.
-
 ## <sub>DrawOutlineRoundedRect</sub>
-
 `Renderer.DrawOutlineRoundedRect(x, y, w, h, radius):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description                    |
 | ---------- | ------------------------------------------------ | ------------------------------ |
 | **x**      | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
@@ -14463,13 +9906,9 @@ Draws a filled circle.
 | **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
 | **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
 | **radius** | <mark style="color:purple;">**`integer`**</mark> | Radius of the rectangle.       |
-
 Draws an outlined rounded rectangle.
-
 ## <sub>DrawFilledRoundedRect</sub>
-
 `Renderer.DrawFilledRoundedRect(x, y, w, h, radius):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description                    |
 | ---------- | ------------------------------------------------ | ------------------------------ |
 | **x**      | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
@@ -14477,107 +9916,68 @@ Draws an outlined rounded rectangle.
 | **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.        |
 | **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
 | **radius** | <mark style="color:purple;">**`integer`**</mark> | Radius of the rectangle.       |
-
 Draws a filled rounded rectangle.
-
 ## <sub>DrawOutlineTriangle</sub>
-
 `Renderer.DrawOutlineTriangle(points):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                           | Description      |
 | ---------- | ---------------------------------------------- | ---------------- |
 | **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
-
 Draws an outlined triangle.
-
 ## <sub>DrawFilledTriangle</sub>
-
 `Renderer.DrawFilledTriangle(points):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                           | Description      |
 | ---------- | ---------------------------------------------- | ---------------- |
 | **points** | <mark style="color:purple;">**`table`**</mark> | Table of points. |
-
 Draws a filled triangle.
-
 ## <sub>DrawTexturedPolygon</sub>
-
 `Renderer.DrawTexturedPolygon(points, texture):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                             | Description      |
 | ----------- | ------------------------------------------------ | ---------------- |
 | **points**  | <mark style="color:purple;">**`table`**</mark>   | Table of points. |
 | **texture** | <mark style="color:purple;">**`integer`**</mark> | Texture handle.  |
-
 Draws a textured polygon.
-
 ## <sub>LoadFont</sub>
-
 `Renderer.LoadFont(name, size, flags, weight):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                             | Description       |
 | ---------- | ------------------------------------------------ | ----------------- |
 | **name**   | <mark style="color:purple;">**`string`**</mark>  | Name of the font. |
 | **size**   | <mark style="color:purple;">**`integer`**</mark> | Size of the font. |
 | **flags**  | <mark style="color:purple;">**`integer`**</mark> | Font flags.       |
 | **weight** | <mark style="color:purple;">**`integer`**</mark> | Font weight.      |
-
 Loads a font.
-
 ## <sub>DrawText</sub>
-
 `Renderer.DrawText(font, x, y, text):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                             | Description               |
 | -------- | ------------------------------------------------ | ------------------------- |
 | **font** | <mark style="color:purple;">**`integer`**</mark> | Font handle.              |
 | **x**    | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the text. |
 | **y**    | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the text. |
 | **text** | <mark style="color:purple;">**`string`**</mark>  | Text to draw.             |
-
 Draws a text.
-
 ## <sub>WorldToScreen</sub>
-
 `Renderer.WorldToScreen(pos):` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                                           | Description        |
 | ------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | World coordinates. |
-
 Converts world coordinates to screen coordinates. Returns x, y and visible.
-
 ## <sub>GetScreenSize</sub>
-
 `Renderer.GetScreenSize():` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>
-
 Returns screen size.
-
 ## <sub>GetTextSize</sub>
-
 `Renderer.GetTextSize(font, text):` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                             | Description      |
 | -------- | ------------------------------------------------ | ---------------- |
 | **font** | <mark style="color:purple;">**`integer`**</mark> | Font handle.     |
 | **text** | <mark style="color:purple;">**`string`**</mark>  | Text to measure. |
-
 Returns text size.
-
 ## <sub>LoadImage</sub>
-
 `Renderer.LoadImage(path):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                            | Description        |
 | -------- | ----------------------------------------------- | ------------------ |
 | **path** | <mark style="color:purple;">**`string`**</mark> | Path to the image. |
-
 Loads an image. Returns image handle.
-
 ## <sub>DrawImage</sub>
-
 `Renderer.DrawImage(handle, x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description                |
 | ---------- | ------------------------------------------------ | -------------------------- |
 | **handle** | <mark style="color:purple;">**`integer`**</mark> | Image handle.              |
@@ -14585,13 +9985,9 @@ Loads an image. Returns image handle.
 | **y**      | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the image. |
 | **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the image.        |
 | **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the image.       |
-
 Draws an image.
-
 ## <sub>DrawImageCentered</sub>
-
 `Renderer.DrawImageCentered(handle, x, y, w, h):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description                |
 | ---------- | ------------------------------------------------ | -------------------------- |
 | **handle** | <mark style="color:purple;">**`integer`**</mark> | Image handle.              |
@@ -14599,23 +9995,15 @@ Draws an image.
 | **y**      | <mark style="color:purple;">**`integer`**</mark> | Y coordinate of the image. |
 | **w**      | <mark style="color:purple;">**`integer`**</mark> | Width of the image.        |
 | **h**      | <mark style="color:purple;">**`integer`**</mark> | Height of the image.       |
-
 Draws an image centered.
-
 ## <sub>GetImageSize</sub>
-
 `Renderer.GetImageSize(handle):` <mark style="color:purple;">**`integer`**</mark>, <mark style="color:purple;">**`integer`**</mark>
-
 | Name       | Type                                             | Description   |
 | ---------- | ------------------------------------------------ | ------------- |
 | **handle** | <mark style="color:purple;">**`integer`**</mark> | Image handle. |
-
 Returns image size.
-
 ## <sub>DrawFilledRectFade</sub>
-
 `Renderer.DrawFilledRectFade(x0, y0, x1, y1, alpha0, alpha1, bHorizontal):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name            | Type                                             | Description                    |
 | --------------- | ------------------------------------------------ | ------------------------------ |
 | **x0**          | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
@@ -14625,13 +10013,9 @@ Returns image size.
 | **alpha0**      | <mark style="color:purple;">**`integer`**</mark> | Alpha of the first point.      |
 | **alpha1**      | <mark style="color:purple;">**`integer`**</mark> | Alpha of the second point.     |
 | **bHorizontal** | <mark style="color:purple;">**`boolean`**</mark> | Horizontal fade.               |
-
 Draws a filled rectangle with fade.
-
 ## <sub>DrawFilledGradRect</sub>
-
 `Renderer.DrawFilledGradRect(x0, y0, x1, y1, r, g, b, a, r2, g2, b2, a2, bHorizontal):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name            | Type                                             | Description                      |
 | --------------- | ------------------------------------------------ | -------------------------------- |
 | **x0**          | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle.   |
@@ -14647,13 +10031,9 @@ Draws a filled rectangle with fade.
 | **b2**          | <mark style="color:purple;">**`integer`**</mark> | Blue color of the second point.  |
 | **a2**          | <mark style="color:purple;">**`integer`**</mark> | Alpha color of the second point. |
 | **bHorizontal** | <mark style="color:purple;">**`boolean`**</mark> | Horizontal gradient.             |
-
 Draws a filled gradient rectangle.
-
 ## <sub>DrawGlow</sub>
-
 `Renderer.DrawGlow(x0, y0, w, h, thickness, obj_rounding):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name              | Type                                             | Description                    |
 | ----------------- | ------------------------------------------------ | ------------------------------ |
 | **x0**            | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle. |
@@ -14662,13 +10042,9 @@ Draws a filled gradient rectangle.
 | **h**             | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.       |
 | **thickness**     | <mark style="color:purple;">**`integer`**</mark> | Thickness of the glow.         |
 | **obj\_rounding** | <mark style="color:purple;">**`integer`**</mark> | Rounding of the glow.          |
-
 Draws a glow.
-
 ## <sub>DrawBlur</sub>
-
 `Renderer.DrawBlur(x0, y0, w, h, strength, rounding, alpha):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                            | Description                    |
 | ------------ | ----------------------------------------------- | ------------------------------ |
 | **x0**       | <mark style="color:purple;">**`number`**</mark> | X coordinate of the rectangle. |
@@ -14678,13 +10054,9 @@ Draws a glow.
 | **strength** | <mark style="color:purple;">**`number`**</mark> | Strength of the blur.          |
 | **rounding** | <mark style="color:purple;">**`number`**</mark> | Rounding of the blur.          |
 | **alpha**    | <mark style="color:purple;">**`number`**</mark> | Alpha of the blur.             |
-
 Draws a blur.
-
 ## <sub>PushClip</sub>
-
 `Renderer.PushClip(x, y, w, h, intersect):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name          | Type                                             | Description                       |
 | ------------- | ------------------------------------------------ | --------------------------------- |
 | **x**         | <mark style="color:purple;">**`integer`**</mark> | X coordinate of the rectangle.    |
@@ -14692,38 +10064,25 @@ Draws a blur.
 | **w**         | <mark style="color:purple;">**`integer`**</mark> | Width of the rectangle.           |
 | **h**         | <mark style="color:purple;">**`integer`**</mark> | Height of the rectangle.          |
 | **intersect** | <mark style="color:purple;">**`boolean`**</mark> | Intersect with the previous clip. |
-
 Pushes a clip rect.
-
 ## <sub>PopClip</sub>
-
 `Renderer.PopClip():` <mark style="color:purple;">**`nil`**</mark>
-
 Pops a clip rect.
-
 ## <sub>DrawCenteredNotification</sub>
-
 `Renderer.DrawCenteredNotification(text, duration):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                            | Description                   |
 | ------------ | ----------------------------------------------- | ----------------------------- |
 | **text**     | <mark style="color:purple;">**`string`**</mark> | Text to draw.                 |
 | **duration** | <mark style="color:purple;">**`number`**</mark> | Duration of the notification. |
-
 Draws a centered notification.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md).
-
+> 
 # Render
-
 Table to work with render v2.
-
 ## <sub>FilledRect</sub>
-
 `Render.FilledRect(start, end_, color, [rounding], [flags]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                           | Type                                                                                                                                                                          | Description                                                    |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **start**                                                      | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the rectangle.                           |
@@ -14731,13 +10090,9 @@ Table to work with render v2.
 | **color**                                                      | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the rectangle.                                    |
 | **rounding&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
-
 Draws a filled rectangle.
-
 ## <sub>Rect</sub>
-
 `Render.Rect(start, end_, color, [rounding], [flags], [thickness]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                                                                                          | Description                                                    |
 | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **start**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the rectangle.                           |
@@ -14746,13 +10101,9 @@ Draws a filled rectangle.
 | **rounding&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
 | **thickness&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The thickness of the rectangle's border. `(default: 1.0)`      |
-
 Draws an unfilled rectangle.
-
 ## <sub>RoundedProgressRect</sub>
-
 `Render.RoundedProgressRect(start, end_, color, percent, rounding, [thickness]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                       | Description                                               |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | **start**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the rectangle.                      |
@@ -14761,13 +10112,9 @@ Draws an unfilled rectangle.
 | **percent**                                                     | <mark style="color:purple;">**`number`**</mark>                                                            | The percentage of the rectangle to fill \[0..1].          |
 | **rounding**                                                    | <mark style="color:purple;">**`number`**</mark>                                                            | The rounding radius of the rectangle corners.             |
 | **thickness&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                            | The thickness of the rectangle's border. `(default: 1.0)` |
-
 Draw a progress rectangle.
-
 ## <sub>DonutChart</sub>
-
 `Render.DonutChart(center, radius, thickness, segments, [options]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                          | Type                                                                                                                                                                                                                                                                                                             | Description                                                  |
 | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | **center**                                                    | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                                                                                                                                                       | The center position of the chart.                            |
@@ -14775,38 +10122,26 @@ Draw a progress rectangle.
 | **thickness**                                                 | <mark style="color:purple;">**`number`**</mark>                                                                                                                                                                                                                                                                  | The thickness of the donut ring.                             |
 | **segments**                                                  | <mark style="color:purple;">**`{value: number, color: Color, icon: number`**</mark> \| <mark style="color:purple;">**`nil, icon_color: Color`**</mark> \| <mark style="color:purple;">**`nil, font_icon: {font: number, size: number, text: string}`**</mark> \| <mark style="color:purple;">**`nil}[]`**</mark> | List of data segments.                                       |
 | **options&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`{separator_color:Color`**</mark> \| <mark style="color:purple;">**`nil, separator_thickness:number`**</mark> \| <mark style="color:purple;">**`nil}`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                                                                     | Optional settings for the chart appearance. `(default: nil)` |
-
 Draw a donut chart.
-
 ## <sub>Line</sub>
-
 `Render.Line(start, end_, color, [thickness]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                       | Description                                 |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | **start**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the line.             |
 | **end\_**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the line.               |
 | **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the line.                      |
 | **thickness&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                            | The thickness of the line. `(default: 1.0)` |
-
 Draws a line between two points.
-
 ## <sub>PolyLine</sub>
-
 `Render.PolyLine(points, color, [thickness]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                         | Description                                     |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
 | **points**                                                      | [<mark style="color:purple;">**`Vec2[]`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | A table of Vec2 points to connect with lines.   |
 | **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the polyline.                      |
 | **thickness&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                              | The thickness of the polyline. `(default: 1.0)` |
-
 Draws a series of connected lines (polyline).
-
 ## <sub>Circle</sub>
-
 `Render.Circle(pos, radius, color, [thickness], [startDeg], [percentage], [rounded], [segments]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                             | Type                                                                                                       | Description                                                                                                          |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **pos**                                                          | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position of the circle.                                                                                   |
@@ -14817,13 +10152,9 @@ Draws a series of connected lines (polyline).
 | **percentage&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                            | The percentage of the circle to draw, in the range \[0.0-1.0]. `(default: 1.0)`                                      |
 | **rounded&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`boolean`**</mark>                                                           | Whether the circle is rounded. `(default: false)`                                                                    |
 | **segments&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`integer`**</mark>                                                           | The number of segments used for drawing the circle. `(default: 32)`                                                  |
-
 Draws a circle.
-
 ## <sub>FilledCircle</sub>
-
 `Render.FilledCircle(pos, radius, color, [startDeg], [percentage], [segments]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                             | Type                                                                                                       | Description                                                                                                          |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **pos**                                                          | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position of the circle.                                                                                   |
@@ -14832,13 +10163,9 @@ Draws a circle.
 | **startDeg&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`number`**</mark>                                                            | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
 | **percentage&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                            | The percentage of the circle to draw, in the range \[0.0-1.0]. `(default: 1.0)`                                      |
 | **segments&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`integer`**</mark>                                                           | The number of segments used for drawing the circle. `(default: 32)`                                                  |
-
 Draws a filled circle.
-
 ## <sub>CircleGradient</sub>
-
 `Render.CircleGradient(pos, radius, colorOuter, colorInner, [startDeg], [percentage]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                             | Type                                                                                                       | Description                                                                                                          |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **pos**                                                          | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position of the circle.                                                                                   |
@@ -14847,61 +10174,41 @@ Draws a filled circle.
 | **colorInner**                                                   | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The inner color of the gradient.                                                                                     |
 | **startDeg&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`number`**</mark>                                                            | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
 | **percentage&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                            | The percentage of the circle to draw, in the range \[0.0-1.0]. `(default: 1.0)`                                      |
-
 Draws a circle with a gradient.
-
 ## <sub>Triangle</sub>
-
 `Render.Triangle(points, color, [thickness]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                         | Description                                                         |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
 | **points**                                                      | [<mark style="color:purple;">**`Vec2[]`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | A table of three Vec2 points defining the vertices of the triangle. |
 | **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the triangle's outline.                                |
 | **thickness&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                              | The thickness of the triangle's outline. `(default: 1.0)`           |
-
 Draws a triangle outline.
-
 ## <sub>FilledTriangle</sub>
-
 `Render.FilledTriangle(points, color):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                                                                                         | Description                                                         |
 | ---------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
 | **points** | [<mark style="color:purple;">**`Vec2[]`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | A table of three Vec2 points defining the vertices of the triangle. |
 | **color**  | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the triangle.                                          |
-
 Draws a filled triangle.
-
 ## <sub>TexturedPoly</sub>
-
 `Render.TexturedPoly(points, textureHandle, color, [grayscale]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                             | Description                                                                                                                            |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **points**                                                      | [<mark style="color:purple;">**`Vertex[]`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) | A table of Vertex points defining the vertices of the polygon. Each Vertex contains a position (Vec2) and a texture coordinate (Vec2). |
 | **textureHandle**                                               | <mark style="color:purple;">**`integer`**</mark>                                                                 | The handle to the texture to be applied to the polygon.                                                                                |
 | **color**                                                       | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)          | The color to apply over the texture. This can be used to tint the texture.                                                             |
 | **grayscale&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                  | The grayscale of the image. `(default: 0.0)`                                                                                           |
-
 Draws a textured polygon.
-
 ## <sub>LoadFont</sub>
-
 `Render.LoadFont(fontName, [fontFlag], [weight]):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                           | Type                                                                                                                                                                                                                                | Description                                                                               |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | **fontName**                                                   | <mark style="color:purple;">**`string`**</mark>                                                                                                                                                                                     | The name of the font to load.                                                             |
 | **fontFlag&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Enum.FontCreate`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.fontcreate) \| <mark style="color:purple;">**`integer`**</mark> | Flags for font creation, such as antialiasing. `(default: Enum.FontCreate.FONTFLAG_NONE)` |
 | **weight&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | <mark style="color:purple;">**`integer`**</mark>                                                                                                                                                                                    | The weight (thickness) of the font. Typically, 0 means default weight. `(default: 400)`   |
-
 Loads a font and returns its handle. Returns handle to the loaded font.
-
 ## <sub>Text</sub>
-
 `Render.Text(font, fontSize, text, pos, color):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                                                                                       | Description                                       |
 | ------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | **font**     | <mark style="color:purple;">**`integer`**</mark>                                                           | The handle to the font used for drawing the text. |
@@ -14909,21 +10216,14 @@ Loads a font and returns its handle. Returns handle to the loaded font.
 | **text**     | <mark style="color:purple;">**`string`**</mark>                                                            | The text to be drawn.                             |
 | **pos**      | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The position where the text will be drawn.        |
 | **color**    | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the text.                            |
-
 Draws text at a specified position.
-
 ## <sub>WorldToScreen</sub>
-
 `Render.WorldToScreen(pos):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md), <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                                           | Description                            |
 | ------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The 3D world position to be converted. |
-
 Converts a 3D world position to a 2D screen position. Returns A Vec2 representing the 2D screen position and a boolean indicating visibility on the screen.
-
 #### Example
-
 ```lua
 -- Example: Convert the center of the map (0,0,0) to screen coordinates.
 local worldPos = Vector(0.0, 0.0, 0.0)
@@ -14934,62 +10234,40 @@ else
     Log.Write("Position is not visible on the screen")
 end
 ```
-
 ## <sub>ScreenSize</sub>
-
 `Render.ScreenSize():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 Retrieves the current screen size, returning it as a Vec2 where x is the width and y is the height of the screen.
-
 ## <sub>TextSize</sub>
-
 `Render.TextSize(font, fontSize, text):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name         | Type                                             | Description                                         |
 | ------------ | ------------------------------------------------ | --------------------------------------------------- |
 | **font**     | <mark style="color:purple;">**`integer`**</mark> | The handle to the font used for measuring the text. |
 | **fontSize** | <mark style="color:purple;">**`number`**</mark>  | The size of the font.                               |
 | **text**     | <mark style="color:purple;">**`string`**</mark>  | The text to measure.                                |
-
 Calculates the size of the given text using the specified font, returning the size as a Vec2 where x is the width and y is the height of the text.
-
 ## <sub>LoadImage</sub>
-
 `Render.LoadImage(path):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                            | Description        |
 | -------- | ----------------------------------------------- | ------------------ |
 | **path** | <mark style="color:purple;">**`string`**</mark> | Path to the image. |
-
 Loads an image and returns its handle.
-
 ## <sub>LoadSvg</sub>
-
 `Render.LoadSvg(path, size):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name     | Type                                                                                                       | Description             |
 | -------- | ---------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **path** | <mark style="color:purple;">**`string`**</mark>                                                            | Path to the image.      |
 | **size** | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Size of image to scale. |
-
 Loads svg image and returns its handle.
-
 ## <sub>LoadSvgString</sub>
-
 `Render.LoadSvgString(svg, size, cacheId):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name        | Type                                                                                                       | Description                                                  |
 | ----------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | **svg**     | <mark style="color:purple;">**`string`**</mark>                                                            | Svg text itself.                                             |
 | **size**    | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Size of image to scale.                                      |
 | **cacheId** | <mark style="color:purple;">**`string`**</mark>                                                            | Texture of image creates only once for every unique cache id |
-
 Loads svg image from string and returns its handle.
-
 ## <sub>Image</sub>
-
 `Render.Image(imageHandle, pos, size, color, [rounding], [flags], [uvMin], [uvMax], [grayscale]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                                                                                          | Description                                                             |
 | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **imageHandle**                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                                                                              | The handle to the image.                                                |
@@ -15001,13 +10279,9 @@ Loads svg image from string and returns its handle.
 | **uvMin&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The minimum UV coordinates for texture mapping. `(default: {0.0, 0.0})` |
 | **uvMax&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The maximum UV coordinates for texture mapping. `(default: {1.0, 1.0})` |
 | **grayscale&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The grayscale of the image. `(default: 0.0)`                            |
-
 Draws an image at a specified position and size.
-
 ## <sub>ImageCentered</sub>
-
 `Render.ImageCentered(imageHandle, pos, size, color, [rounding], [flags], [uvMin], [uvMax], [grayscale]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                                                                                          | Description                                                             |
 | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **imageHandle**                                                 | <mark style="color:purple;">**`integer`**</mark>                                                                                                                              | The handle to the image.                                                |
@@ -15019,23 +10293,15 @@ Draws an image at a specified position and size.
 | **uvMin&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The minimum UV coordinates for texture mapping. `(default: {0.0, 0.0})` |
 | **uvMax&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The maximum UV coordinates for texture mapping. `(default: {1.0, 1.0})` |
 | **grayscale&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The grayscale of the image. `(default: 0.0)`                            |
-
 Draws an image centered at a specified position and size.
-
 ## <sub>ImageSize</sub>
-
 `Render.ImageSize(imageHandle):` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 | Name            | Type                                             | Description              |
 | --------------- | ------------------------------------------------ | ------------------------ |
 | **imageHandle** | <mark style="color:purple;">**`integer`**</mark> | The handle to the image. |
-
 Retrieves the size of an image. Returns the size of the image as a Vec2.
-
 ## <sub>OutlineGradient</sub>
-
 `Render.OutlineGradient(start, end_, topLeft, topRight, bottomLeft, bottomRight, [rounding], [flags], [thickness]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                                                                                          | Description                                                    |
 | --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **start**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the gradient rectangle.                  |
@@ -15047,13 +10313,9 @@ Retrieves the size of an image. Returns the size of the image as a Vec2.
 | **rounding&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
 | **thickness&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The thickness of the outline. `(default: 1.0)`                 |
-
 Draws a outlined gradient rectangle.
-
 ## <sub>Gradient</sub>
-
 `Render.Gradient(start, end_, topLeft, topRight, bottomLeft, bottomRight, [rounding], [flags]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                           | Type                                                                                                                                                                          | Description                                                    |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **start**                                                      | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the gradient rectangle.                  |
@@ -15064,13 +10326,9 @@ Draws a outlined gradient rectangle.
 | **bottomRight**                                                | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the bottom-right corner.                          |
 | **rounding&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
-
 Draws a filled gradient rectangle.
-
 ## <sub>Shadow</sub>
-
 `Render.Shadow(start, end_, color, thickness, [obj_rounding], [flags], [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                                                                                                          | Description                                                                                  |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | **start**                                                           | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the shadow rectangle.                                                  |
@@ -15080,13 +10338,9 @@ Draws a filled gradient rectangle.
 | **obj\_rounding&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The rounding radius of the shadow rectangle corners. `(default: 0.0)`                        |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>         | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark>        | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the original rectangle. `(default: {0.0, 0.0})`                |
-
 Draws a shadow effect within a specified rectangular area.
-
 ## <sub>ShadowCircle</sub>
-
 `Render.ShadowCircle(center, radius, color, thickness, [num_segments], [flags], [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                | Type                                                                                                                                                                          | Description                                                                                  |
 | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | **center**                                                          | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The center point of the circle.                                                              |
@@ -15096,13 +10350,9 @@ Draws a shadow effect within a specified rectangular area.
 | **num\_segments&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark>                                                                                                                              | The number of segments for drawing the circle. `(default: 12)`                               |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>         | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark>        | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the circle. `(default: {0.0, 0.0})`                            |
-
 Draws a circle shadow effect.
-
 ## <sub>ShadowConvexPoly</sub>
-
 `Render.ShadowConvexPoly(points, color, thickness, [flags], [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                                                                                          | Description                                                                                  |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | **points**                                                   | [<mark style="color:purple;">**`Vec2[]`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                  | Table of Vec2 points defining the convex polygon. Should be more than 2 points.              |
@@ -15110,13 +10360,9 @@ Draws a circle shadow effect.
 | **thickness**                                                | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The thickness of the shadow.                                                                 |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the polygon. `(default: {0.0, 0.0})`                           |
-
 Draws a shadow convex polygon effect.
-
 ## <sub>ShadowNGon</sub>
-
 `Render.ShadowNGon(center, radius, color, thickness, num_segments, [flags], [offset]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                         | Type                                                                                                                                                                          | Description                                                                                  |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | **center**                                                   | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The center point of the n-gon.                                                               |
@@ -15126,13 +10372,9 @@ Draws a shadow convex polygon effect.
 | **num\_segments**                                            | <mark style="color:purple;">**`integer`**</mark>                                                                                                                              | The number of segments (sides) of the n-gon.                                                 |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>  | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
 | **offset&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the n-gon. `(default: {0.0, 0.0})`                             |
-
 Draws a shadow n-gon (polygon with n sides) effect.
-
 ## <sub>Blur</sub>
-
 `Render.Blur(start, end_, [strength], [alpha], [rounding], [flags]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                           | Type                                                                                                                                                                          | Description                                                         |
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **start**                                                      | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the blur rectangle.                           |
@@ -15141,76 +10383,46 @@ Draws a shadow n-gon (polygon with n sides) effect.
 | **alpha&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The alpha value of the blur effect. `(default: 1.0)`                |
 | **rounding&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                                                                               | The rounding radius of the blur rectangle corners. `(default: 0.0)` |
 | **flags&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | [<mark style="color:purple;">**`Enum.DrawFlags`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.drawflags) | Custom flags for the blur effect. `(default: Enum.DrawFlags.None)`  |
-
 Applies a blur effect within a specified rectangular area.
-
 ## <sub>PushClip</sub>
-
 `Render.PushClip(start, end_, [intersect]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                                                                                       | Description                                                                                      |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | **start**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the clipping rectangle.                                                    |
 | **end\_**                                                       | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the clipping rectangle.                                                      |
 | **intersect&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                                           | If true, the new clipping area is intersected with the current clipping area. `(default: false)` |
-
 Begins a new clipping region. Only the rendering within the specified rectangular area will be displayed.
-
 ## <sub>PopClip</sub>
-
 `Render.PopClip():` <mark style="color:purple;">**`nil`**</mark>
-
 Ends the most recently begun clipping region, restoring the previous clipping region.
-
 ## <sub>StartRotation</sub>
-
 `Render.StartRotation(angle):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description         |
 | --------- | ----------------------------------------------- | ------------------- |
 | **angle** | <mark style="color:purple;">**`number`**</mark> | The rotation angle. |
-
 Begins a new rotation.
-
 ## <sub>StopRotation</sub>
-
 `Render.StopRotation():` <mark style="color:purple;">**`nil`**</mark>
-
 End the rotation.
-
 ## <sub>SetGlobalAlpha</sub>
-
 Do not forget to reset the global alpha value after your rendering.
-
 \`Render.SetGlobalAlpha(alpha):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name      | Type                                            | Description                    |
 | --------- | ----------------------------------------------- | ------------------------------ |
 | **alpha** | <mark style="color:purple;">**`number`**</mark> | The alpha value to set \[0..1] |
-
 Set the global alpha value for rendering.
-
 ## <sub>ResetGlobalAlpha</sub>
-
 `Render.ResetGlobalAlpha():` <mark style="color:purple;">**`nil`**</mark>
-
 Reset the global alpha value for rendering to 1.0.
-
 ## <sub>CenteredNotification</sub>
-
 `Render.CenteredNotification(text, duration):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                            | Description                   |
 | ------------ | ----------------------------------------------- | ----------------------------- |
 | **text**     | <mark style="color:purple;">**`string`**</mark> | Text to draw.                 |
 | **duration** | <mark style="color:purple;">**`number`**</mark> | Duration of the notification. |
-
 Draws a centered notification.
-
 ## <sub>Logo</sub>
-
 `Render.Logo(center, radius, [angle], [primary_color], [secondary_color]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                                   | Type                                                                                                       | Description                        |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **center**                                                             | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |                                    |
@@ -15218,37 +10430,25 @@ Draws a centered notification.
 | **angle&#x20;**<mark style="color:orange;">**`[?]`**</mark>            | <mark style="color:purple;">**`number`**</mark>                                                            | rotation angle `(default: -45)`    |
 | **primary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark>   | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | `(default: Menu.Style("primary"))` |
 | **secondary\_color&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Color`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | `(default: {227, 227, 227, 255})`  |
-
 Draws umbrella logo
-
 ## <sub>FindOrCreateRT</sub>
-
 `Render.FindOrCreateRT(name, [w], [h]):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                    | Type                                            | Description                                                 |
 | ------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------- |
 | **name**                                                | <mark style="color:purple;">**`string`**</mark> | The unique name of the render target.                       |
 | **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The width of the render target. Optional. `(default: nil)`  |
 | **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The height of the render target. Optional. `(default: nil)` |
-
 Creates a new render target or retrieves an existing one by name.\
 If width or height are not provided, the render target will be full screen size.
-
 ## <sub>MarkDirtyRT</sub>
-
 `Render.MarkDirtyRT(handle):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description                      |
 | ---------- | ------------------------------------------------ | -------------------------------- |
 | **handle** | <mark style="color:purple;">**`integer`**</mark> | The handle of the render target. |
-
 Marks a render target as dirty, causing the next Render.RenderRT call to re-bake it.\
 Safe across frame drops: the dirty state is only cleared once the bake is actually processed.
-
 ## <sub>RenderRT</sub>
-
 `Render.RenderRT(callback, handle, pos, color, [scale], [uvSizeMin], [uvSizeMax]):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name                                                            | Type                                                                                                       | Description                                                                |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | **callback**                                                    | <mark style="color:purple;">**`fun():boolean?`**</mark>                                                    | The function containing rendering commands to bake into the render target. |
@@ -15258,7 +10458,6 @@ Safe across frame drops: the dirty state is only cleared once the bake is actual
 | **scale&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`number`**</mark>                                                            | The scale factor for the render target. `(default: 1.0)`                   |
 | **uvSizeMin&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The minimum UV offset for texture mapping. `(default: {0.0, 0.0})`         |
 | **uvSizeMax&#x20;**<mark style="color:orange;">**`[?]`**</mark> | [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The maximum UV offset for texture mapping. `(default: {0.0, 0.0})`         |
-
 Renders a cached render target texture at the given position.\
 If the render target is dirty (see Render.MarkDirtyRT), the callback is invoked once\
 inside a push/pop RT context to re-bake the texture content, then the baked texture\
@@ -15266,28 +10465,22 @@ is drawn at `pos`. If the render target is clean, only the cached texture is dra
 \
 The callback receives no arguments and may return a boolean: returning `true` signals\
 that the content is still updating (e.g. animation in progress).
-
 #### Example
-
 ```lua
 -- render_target.lua
 local rt_w, rt_h = 256, 80
 local rt_handle = Render.FindOrCreateRT("example_rt", rt_w, rt_h)
-
 local font = Render.LoadFont("MuseoSansEx", Enum.FontCreate.FONTFLAG_ANTIALIAS | Enum.FontCreate.FONTFLAG_DROPSHADOW, 500)
-
 local white  = Color(255, 255, 255, 255)
 local bg     = Color(20, 20, 20, 220)
 local accent = Color(80, 200, 120, 255)
 local dim    = Color(160, 160, 160, 200)
 local rt_pos = Vec2(100, 100)
-
 -- Animation state
 local anim_start = 0
 local anim_duration = 0.6 -- seconds
 local is_animating = false
 local click_count = 0
-
 -- Draw callback is invoked ONLY when the RT is dirty.
 -- Returning true  tells the caller "content is still changing" (animation in progress).
 -- Returning false tells the caller "content is now static" (bake is final).
@@ -15296,18 +10489,14 @@ local function draw_rt_content()
     local t = is_animating
         and math.min((os.clock() - anim_start) / anim_duration, 1.0)
         or 0
-
     Render.FilledRect(Vec2(0, 0), Vec2(rt_w, rt_h), bg)
     Render.FilledRect(Vec2(0, rt_h - 8), Vec2(t * rt_w, rt_h), accent)
     Render.Text(font, 14, "Clicks: " .. click_count, Vec2(10, 10), white)
-
     if t >= 1.0 then
         is_animating = false
     end
-
     return is_animating
 end
-
 return {
     OnDraw = function()
         -- Click inside the RT rect -> start a new animation
@@ -15318,7 +10507,6 @@ return {
             is_animating = true
             Render.MarkDirtyRT(rt_handle)
         end
-
         -- RenderRT returns true when it baked AND the callback returned true.
         -- That means the animation is still playing, so mark dirty again
         -- to force another bake next frame.
@@ -15326,77 +10514,54 @@ return {
         if still_updating then
             Render.MarkDirtyRT(rt_handle)
         end
-
         -- Print current state below the RT rect
         local state = still_updating and "Redrawing (animation)" or "Cached (using RT)"
         Render.Text(font, 12, state, Vec2(rt_pos.x, rt_pos.y + rt_h + 4), dim)
     end
 }
-
 ```
-
 ## <sub>ResizeRT</sub>
-
 `Render.ResizeRT(handle, [w], [h]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                    | Type                                             | Description                                                           |
 | ------------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------- |
 | **handle**                                              | <mark style="color:purple;">**`integer`**</mark> | The handle of the render target to resize.                            |
 | **w&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new width, or a Vec2 containing both dimensions. `(default: nil)` |
 | **h&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>  | The new height. Not used when Vec2 is provided. `(default: nil)`      |
-
 Resizes an existing render target.\
 If width and height are not provided, it changes the render target to be full screen size.\
 Accepts (handle, w, h), (handle, vec2), or (handle) for full screen.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md).
-
+> 
 # MiniMap
-
 Table to work with in-game minimap.
-
 ## <sub>Ping</sub>
-
 `MiniMap.Ping(pos, type):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                                                                                                                                                        | Description            |
 | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | **pos**  | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                              | world position to ping |
 | **type** | [<mark style="color:purple;">**`Enum.PingType`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/pages/VwVljl88Qnl7u9hhqRdw#enum.pingtype) | ping type              |
-
 Pings on the minimap.
-
 ## <sub>SendLine</sub>
-
 `MiniMap.SendLine(pos, initial, clientside):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                                                                                           | Description                                       |
 | -------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | **pos**        | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw line to                    |
 | **initial**    | <mark style="color:purple;">**`boolean`**</mark>                                                               | start a new line, otherwise continue the last one |
 | **clientside** | <mark style="color:purple;">**`boolean`**</mark>                                                               | draw only for local player                        |
-
 Draws a line on the minimap.
-
 ## <sub>SendLine</sub>
-
 `MiniMap.SendLine(x, y, initial, clientside):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                             | Description                                       |
 | -------------- | ------------------------------------------------ | ------------------------------------------------- |
 | **x**          | <mark style="color:purple;">**`number`**</mark>  | x world position to draw line                     |
 | **y**          | <mark style="color:purple;">**`number`**</mark>  | y world position to draw line                     |
 | **initial**    | <mark style="color:purple;">**`boolean`**</mark> | start a new line, otherwise continue the last one |
 | **clientside** | <mark style="color:purple;">**`boolean`**</mark> | draw only for local player                        |
-
 Draws a line on the minimap.
-
 ## <sub>DrawCircle</sub>
-
 `MiniMap.DrawCircle(pos, [r], [g], [b], [a], [size]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                       | Type                                                                                                           | Description                   |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | **pos**                                                    | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw circle |
@@ -15405,13 +10570,9 @@ Draws a line on the minimap.
 | **b&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`integer`**</mark>                                                               | blue color `(default: 255)`   |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`integer`**</mark>                                                               | alpha color `(default: 255)`  |
 | **size&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | circle size `(default: 800)`  |
-
 Draws a circle on the minimap.
-
 ## <sub>DrawHeroIcon</sub>
-
 `MiniMap.DrawHeroIcon(unitName, pos, [r], [g], [b], [a], [size]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                       | Type                                                                                                           | Description                                               |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | **unitName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                | unit name to draw icon. Can get it from `NPC.GetUnitName` |
@@ -15421,13 +10582,9 @@ Draws a circle on the minimap.
 | **b&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`integer`**</mark>                                                               | blue color `(default: 255)`                               |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`integer`**</mark>                                                               | alpha color `(default: 255)`                              |
 | **size&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | icon size `(default: 800)`                                |
-
 Draws a hero icon on the minimap.
-
 ## <sub>DrawIconByName</sub>
-
 `MiniMap.DrawIconByName(iconName, pos, [r], [g], [b], [a], [size]):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                       | Type                                                                                                           | Description                                                             |
 | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **iconName**                                               | <mark style="color:purple;">**`string`**</mark>                                                                | could get it from game\dota\pak01\_dir.vpk (scripts\mod\_textures.txt). |
@@ -15437,30 +10594,19 @@ Draws a hero icon on the minimap.
 | **b&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`integer`**</mark>                                                               | blue color `(default: 255)`                                             |
 | **a&#x20;**<mark style="color:orange;">**`[?]`**</mark>    | <mark style="color:purple;">**`integer`**</mark>                                                               | alpha color `(default: 255)`                                            |
 | **size&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark>                                                                | icon size `(default: 800)`                                              |
-
 Draws a icon on the minimap.
-
 ## <sub>GetMousePosInWorld</sub>
-
 `MiniMap.GetMousePosInWorld():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns world position the mouse on the minimap, if the mouse is not on the minimap, it will return (0,0,0).
-
 ## <sub>IsCursorOnMinimap</sub>
-
 `MiniMap.IsCursorOnMinimap():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if the mouse is on the minimap.
-
 ## <sub>GetMinimapToWorld</sub>
-
 `MiniMap.GetMinimapToWorld(ScreenX, ScreenY):` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 | Name        | Type                                             | Description |
 | ----------- | ------------------------------------------------ | ----------- |
 | **ScreenX** | <mark style="color:purple;">**`integer`**</mark> |             |
 | **ScreenY** | <mark style="color:purple;">**`integer`**</mark> |             |
-
 Returns world position from minimap position. The same as `GetMousePosInWorld`, but you can pass any position on screen, not only mouse position.
 
 
@@ -15468,52 +10614,42 @@ Returns world position from minimap position. The same as `GetMousePosInWorld`, 
 
 ### Rendering - Panorama UI
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama.md -->
+
+> 
+# Panorama
+- [Panorama](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md)
+- [UIPanel](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/panorama.md).
-
+> 
 # Panorama
-
 Table to work with Dota Panorama system.
-
 ## <sub>GetPanelInfo</sub>
-
 `Panorama.GetPanelInfo(path, [bLogError], [useJsFunc]):` <mark style="color:purple;">**`{x:number, y:number, w:number, h:number}`**</mark>
-
 | Name                                                            | Type                                                                                             | Description                                                                 |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
 | **path**                                                        | <mark style="color:purple;">**`string[]`**</mark>                                                | Path to the panel.                                                          |
 | **bLogError&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | `(default: false)`                                                          |
 | **useJsFunc&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | Use js GetPositionWithinWindow function to get position. `(default: false)` |
-
 Get panel info. GetPanelByName for first argument then FindChild others and accumulate x and y.
-
 ## <sub>GetPanelByPath</sub>
-
 `Panorama.GetPanelByPath(path, [bLogError]):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                              | Description                                      |
 | --------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
 | **path**                                                        | <mark style="color:purple;">**`string[]`**</mark> | Path to the panel.                               |
 | **bLogError&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>  | Log error if panel not found. `(default: false)` |
-
 Get panel by path.
-
 ## <sub>GetPanelByName</sub>
-
 `Panorama.GetPanelByName(id, is_type_name):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name               | Type                                             | Description                       |
 | ------------------ | ------------------------------------------------ | --------------------------------- |
 | **id**             | <mark style="color:purple;">**`string`**</mark>  | Id of the panel.                  |
 | **is\_type\_name** | <mark style="color:purple;">**`boolean`**</mark> | Check type name instead of names. |
-
 Get panel by id.
-
 ## <sub>CreatePanel</sub>
-
 `Panorama.CreatePanel(type, id, parent, classes, styles):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
-
 | Name        | Type                                                                                                                    | Description                    |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **type**    | <mark style="color:purple;">**`string`**</mark>                                                                         | panel type to create           |
@@ -15521,11 +10657,8 @@ Get panel by id.
 | **parent**  | [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | parent panel                   |
 | **classes** | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                         | space separated classes to add |
 | **styles**  | <mark style="color:purple;">**`string`**</mark> \| <mark style="color:purple;">**`nil`**</mark>                         | styles to set                  |
-
 Creates a new panorama panel
-
 #### Example
-
 ```lua
 -- create_panel.lua
 function create_category()
@@ -15534,13 +10667,11 @@ function create_category()
 		print("not on hero grid page");
 		return
 	end;
-
 	local filter_category = Panorama.CreatePanel("Panel", nil, panel, "FilterCategory")
 	local filter_category_title = Panorama.CreatePanel("Label", nil, filter_category, "FilterCategoryTitle");
 	filter_category_title:SetText("Filter");
 	local items_panel = Panorama.CreatePanel("Panel", nil, filter_category, "FilterCategoryItems")
 	items_panel:AddClasses("FilterCategoryItems")
-
 	local button_styles = {
 		["CrossButton"] = 'background-image: url("s2r://panorama/images/control_icons/purgatory_png.vtex");',
 		["GearButton"] = 'background-image: url("s2r://panorama/images/control_icons/settings_png.vtex");',
@@ -15550,14 +10681,12 @@ function create_category()
 		buttons[id] = Panorama.CreatePanel("Button", id, items_panel, "FilterButton", style)
 	end
 	local button_id, button = next(buttons);
-
     -- set up the button events
 	Engine.RunScript(([[
 		(function(){
 			let ctx = $.GetContextPanel();
 			let button = ctx.FindChildTraverse("%s")
 			let items_panel = button.GetParent();
-
 			let children = items_panel.Children();
 			let children_count = children.length;
 			for (let i = 0; i < children_count; i++) {
@@ -15574,246 +10703,140 @@ create_category();
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md).
-
+> 
 # UIPanel
-
 UIPanel metatable
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`nil`**</mark>
-
 ## <sub>\_\_eq</sub>
-
 Overload for operator ==.
-
 `:__eq(other):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                                                                                                    | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) |             |
-
 ## <sub>FindChild</sub>
-
 `:FindChild(id):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name   | Type                                            | Description      |
 | ------ | ----------------------------------------------- | ---------------- |
 | **id** | <mark style="color:purple;">**`string`**</mark> | id of the child. |
-
 Finds child by ID.
-
 ## <sub>IsVisible</sub>
-
 `:IsVisible():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns visible state.
-
 ## <sub>SetVisible</sub>
-
 `:SetVisible(newState):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name         | Type                                             | Description |
 | ------------ | ------------------------------------------------ | ----------- |
 | **newState** | <mark style="color:purple;">**`boolean`**</mark> |             |
-
 Sets visible state.
-
 ## <sub>GetClassList</sub>
-
 `:GetClassList():` <mark style="color:purple;">**`string[]`**</mark>
-
 Returns class name list.
-
 ## <sub>FindChildInLayoutFile</sub>
-
 `:FindChildInLayoutFile(id):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name   | Type                                            | Description |
 | ------ | ----------------------------------------------- | ----------- |
 | **id** | <mark style="color:purple;">**`string`**</mark> |             |
-
 ???.
-
 ## <sub>FindPanelInLayoutFile</sub>
-
 `:FindPanelInLayoutFile(id):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name   | Type                                            | Description |
 | ------ | ----------------------------------------------- | ----------- |
 | **id** | <mark style="color:purple;">**`string`**</mark> |             |
-
 ???.
-
 ## <sub>FindChildTraverse</sub>
-
 `:FindChildTraverse(id):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name   | Type                                            | Description |
 | ------ | ----------------------------------------------- | ----------- |
 | **id** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Recursive find child by id.
-
 ## <sub>FindChildWithClass</sub>
-
 `:FindChildWithClass(className):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name          | Type                                            | Description |
 | ------------- | ----------------------------------------------- | ----------- |
 | **className** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Finds first child with provided class name.
-
 ## <sub>GetChildCount</sub>
-
 `:GetChildCount():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns child by count.
-
 ## <sub>GetChild</sub>
-
 `:GetChild(index):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **index** | <mark style="color:purple;">**`number`**</mark> |             |
-
 Returns child by index.
-
 ## <sub>GetChildByPath</sub>
-
 `:GetChildByPath(path, [bLogError]):` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 | Name                                                            | Type                                              | Description                                      |
 | --------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
 | **path**                                                        | <mark style="color:purple;">**`string[]`**</mark> |                                                  |
 | **bLogError&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>  | Log error if panel not found. `(default: false)` |
-
 Returns child by path using FindChild.
-
 ## <sub>GetChildIndex</sub>
-
 `:GetChildIndex():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns index in parent children list. Starts from 0.
-
 ## <sub>GetFirstChild</sub>
-
 `:GetFirstChild():` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 Returns first child.
-
 ## <sub>GetLastChild</sub>
-
 `:GetLastChild():` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 Returns last child.
-
 ## <sub>HasID</sub>
-
 `:HasID():` <mark style="color:purple;">**`boolean`**</mark>
-
 Returns `true` if the panel has an id.
-
 ## <sub>GetID</sub>
-
 `:GetID():` <mark style="color:purple;">**`string`**</mark>
-
 Returns id of panel.
-
 ## <sub>SetID</sub>
-
 `:SetID(id):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name   | Type                                            | Description |
 | ------ | ----------------------------------------------- | ----------- |
 | **id** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Sets the panel's id.
-
 ## <sub>GetLayoutHeight</sub>
-
 `:GetLayoutHeight():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns the panel height.
-
 ## <sub>GetLayoutWidth</sub>
-
 `:GetLayoutWidth():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns the panel width.
-
 ## <sub>GetParent</sub>
-
 `:GetParent():` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 Returns the panel's parent.
-
 ## <sub>GetRootParent</sub>
-
 `:GetRootParent():` [<mark style="color:purple;">**`UIPanel`**</mark>](/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | <mark style="color:purple;">**`nil`**</mark>
-
 Returns the panel's root parent. ???
-
 ## <sub>GetXOffset</sub>
-
 `:GetXOffset():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns the panel's relative X offset.
-
 ## <sub>GetYOffset</sub>
-
 `:GetYOffset():` <mark style="color:purple;">**`integer`**</mark>
-
 Returns the panel's relative Y offset.
-
 ## <sub>GetBounds</sub>
-
 `:GetBounds([useJsFunc]):` <mark style="color:purple;">**`{x:number, y:number, w:number, h:number}`**</mark>
-
 | Name                                                            | Type                                                                                             | Description                                                                 |
 | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
 | **useJsFunc&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> \| <mark style="color:purple;">**`nil`**</mark> | Use js GetPositionWithinWindow function to get position. `(default: false)` |
-
 Returns the panel's bounds. Iterate over the parent hierarchy to get the absolute bounds.
-
 ## <sub>GetImageSrc</sub>
-
 `:GetImageSrc():` <mark style="color:purple;">**`string`**</mark>
-
 Return the panel source image.
-
 ## <sub>GetPanelType</sub>
-
 `:GetPanelType():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the panel's type.
-
 ## <sub>BSetProperty</sub>
-
 `:BSetProperty(key, value):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **key**   | <mark style="color:purple;">**`string`**</mark> |             |
 | **value** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Sets the panel property.
-
 ## <sub>SetStyle</sub>
-
 `:SetStyle(cssString):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name          | Type                                            | Description |
 | ------------- | ----------------------------------------------- | ----------- |
 | **cssString** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Sets the panel style.
-
 #### Example
-
 ```lua
 -- set_style.lua
 local css_like_table = {
@@ -15838,7 +10861,6 @@ local css_like_table = {
     ["font-family"] = "Radiance",
     ["border-brush"] = "gradient( linear, 0% 0%, 0% 100%, from( #96c5ff96 ), to( #12142d2d ) )",
 }
-
 local function css_to_string(tbl)
     local str = ""
     for k, v in pairs(tbl) do
@@ -15846,124 +10868,75 @@ local function css_to_string(tbl)
     end
     return str;
 end
-
 local health_label = Panorama.GetPanelByName("HealthLabel");
 if (health_label) then
     health_label:SetStyle(css_to_string(css_like_table))
 end
-
 ```
-
 ## <sub>SetAttribute</sub>
-
 `:SetAttribute(key, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description |
 | --------- | ----------------------------------------------- | ----------- |
 | **key**   | <mark style="color:purple;">**`string`**</mark> |             |
 | **value** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Sets the panel's attribute.
-
 ## <sub>GetAttribute</sub>
-
 `:GetAttribute(key, default):` <mark style="color:purple;">**`string`**</mark> | <mark style="color:purple;">**`nil`**</mark>
-
 | Name        | Type                                            | Description |
 | ----------- | ----------------------------------------------- | ----------- |
 | **key**     | <mark style="color:purple;">**`string`**</mark> |             |
 | **default** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns the panel's attribute.
-
 ## <sub>GetPositionWithinWindow</sub>
-
 `:GetPositionWithinWindow():` [<mark style="color:purple;">**`Vec2`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
-
 Returns the panel's window position. Not sure about optimization.
-
 ## <sub>GetText</sub>
-
 This method is only available for Label panels.
-
 `:GetText():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the label panel's text.
-
 ## <sub>SetText</sub>
-
 This method is only available for Label panels.
-
 `:SetText(text):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name     | Type                                            | Description |
 | -------- | ----------------------------------------------- | ----------- |
 | **text** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Sets the label panel's text.
-
 ## <sub>GetTextType</sub>
-
 This method is only available for Label panels.
-
 `:GetTextType():` <mark style="color:purple;">**`integer`**</mark>
-
 Gets the label panel's text type. (2 = plain, 3 = html)
-
 ## <sub>SetTextType</sub>
-
 This method is only available for Label panels.
-
 \`:SetTextType(new):\` <mark style="color:purple;">\*\*\`nil\`\*\*</mark>
-
 | Name    | Type                                             | Description |
 | ------- | ------------------------------------------------ | ----------- |
 | **new** | <mark style="color:purple;">**`integer`**</mark> | value       |
-
 Sets the label panel's text type. (2 = plain, 3 = html). Should always set text type before setting the text
-
 #### Example
-
 ```lua
-
 label_panel:SetTextType(3)
 label_panel:SetText("<font color='#8BFFD8'>Vitória</font>")
 ```
-
 ## <sub>IsValid</sub>
-
 `:IsValid():` <mark style="color:purple;">**`boolean`**</mark>
-
 Checks if the panel is valid
-
 ## <sub>HasClass</sub>
-
 `:HasClass(className):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name          | Type                                            | Description |
 | ------------- | ----------------------------------------------- | ----------- |
 | **className** | <mark style="color:purple;">**`string`**</mark> | Class name. |
-
 Checks if the panel has a class.
-
 ## <sub>AddClasses</sub>
-
 `:AddClasses(classNames):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                            | Description                                 |
 | -------------- | ----------------------------------------------- | ------------------------------------------- |
 | **classNames** | <mark style="color:purple;">**`string`**</mark> | Could be a space separated list of classes. |
-
 Adds a class to the panel.
-
 ## <sub>RemoveClasses</sub>
-
 `:RemoveClasses(classNames):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name           | Type                                            | Description                                 |
 | -------------- | ----------------------------------------------- | ------------------------------------------- |
 | **classNames** | <mark style="color:purple;">**`string`**</mark> | Could be a space separated list of classes. |
-
 Removes a class to the panel.
 
 
@@ -15971,644 +10944,423 @@ Removes a class to the panel.
 
 ## Configuration and Utilities
 
+<!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities.md -->
+
+> 
+# Configuration & Utilities
+- [Config](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md)
+- [Humanizer](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md)
+- [Log](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md)
+- [Logger](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md)
+- [Localizer](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md)
+- [GameLocalizer](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md)
+- [table](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md)
+- [StringBuilder](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md)
+- [Chronos](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md)
+
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/config.md).
-
+> 
 # Config
-
 Table to work with configs that are stored in the `configs` folder with the `.ini` extention.
-
 ## <sub>ReadInt</sub>
-
 `Config.ReadInt(config, key, [def]):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name                                                      | Type                                             | Description                                                         |
 | --------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------------- |
 | **config**                                                | <mark style="color:purple;">**`string`**</mark>  | The config file name.                                               |
 | **key**                                                   | <mark style="color:purple;">**`string`**</mark>  | The key to read.                                                    |
 | **def&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`integer`**</mark> | The default value to return if the key is not found. `(default: 0)` |
-
 Read an integer from a config file.
-
 ## <sub>ReadFloat</sub>
-
 `Config.ReadFloat(config, key, [def]):` <mark style="color:purple;">**`number`**</mark>
-
 | Name                                                      | Type                                            | Description                                                           |
 | --------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------- |
 | **config**                                                | <mark style="color:purple;">**`string`**</mark> | The config file name.                                                 |
 | **key**                                                   | <mark style="color:purple;">**`string`**</mark> | The key to read.                                                      |
 | **def&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`number`**</mark> | The default value to return if the key is not found. `(default: 0.0)` |
-
 Read a float from a config file.
-
 ## <sub>ReadString</sub>
-
 `Config.ReadString(config, key, [def]):` <mark style="color:purple;">**`string`**</mark>
-
 | Name                                                      | Type                                            | Description                                                          |
 | --------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------- |
 | **config**                                                | <mark style="color:purple;">**`string`**</mark> | The config file name.                                                |
 | **key**                                                   | <mark style="color:purple;">**`string`**</mark> | The key to read.                                                     |
 | **def&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`string`**</mark> | The default value to return if the key is not found. `(default: "")` |
-
 Read a string from a config file.
-
 ## <sub>WriteInt</sub>
-
 `Config.WriteInt(config, key, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                             | Description           |
 | ---------- | ------------------------------------------------ | --------------------- |
 | **config** | <mark style="color:purple;">**`string`**</mark>  | The config file name. |
 | **key**    | <mark style="color:purple;">**`string`**</mark>  | The key to write.     |
 | **value**  | <mark style="color:purple;">**`integer`**</mark> | The value to write.   |
-
 Write an integer to a config file.
-
 ## <sub>WriteFloat</sub>
-
 `Config.WriteFloat(config, key, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                            | Description           |
 | ---------- | ----------------------------------------------- | --------------------- |
 | **config** | <mark style="color:purple;">**`string`**</mark> | The config file name. |
 | **key**    | <mark style="color:purple;">**`string`**</mark> | The key to write.     |
 | **value**  | <mark style="color:purple;">**`number`**</mark> | The value to write.   |
-
 Write a float to a config file.
-
 ## <sub>WriteString</sub>
-
 `Config.WriteString(config, key, value):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name       | Type                                            | Description           |
 | ---------- | ----------------------------------------------- | --------------------- |
 | **config** | <mark style="color:purple;">**`string`**</mark> | The config file name. |
 | **key**    | <mark style="color:purple;">**`string`**</mark> | The key to write.     |
 | **value**  | <mark style="color:purple;">**`string`**</mark> | The value to write.   |
-
 Write a string to a config file.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/humanizer.md).
-
+> 
 # Humanizer
-
 Table to work with humanizer.
-
 ## <sub>IsInServerCameraBounds</sub>
-
 `Humanizer.IsInServerCameraBounds(pos):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name    | Type                                                                                                           | Description       |
 | ------- | -------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check |
-
 Returns `true` if the world position is in server camera bounds.
-
 ## <sub>GetServerCameraPos</sub>
-
 `Humanizer.GetServerCameraPos():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns server camera position.
-
 ## <sub>GetClientCameraPos</sub>
-
 `Humanizer.GetClientCameraPos():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns client camera position.
-
 ## <sub>GetServerCursorPos</sub>
-
 `Humanizer.GetServerCursorPos():` [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
 Returns the server cursor position.
-
 ## <sub>GetOrderQueue</sub>
-
 `Humanizer.GetOrderQueue():` <mark style="color:purple;">**`{player: CPlayer, orderType: Enum.UnitOrder, targetIndex: integer, position: Vector, abilityIndex: integer, orderIssuer: Enum.PlayerOrderIssuer, unit: CNPC, orderQueueBehavior: integer, showEffects: boolean, triggerCallBack: boolean, isByMiniMap: boolean, addTime: number }[]`**</mark>
-
 Returns information about the current humanizer order queue.
-
 ## <sub>IsSafeTarget</sub>
-
 `Humanizer.IsSafeTarget(entity):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name       | Type                                                                                         | Description |
 | ---------- | -------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [<mark style="color:purple;">**`CEntity`**</mark>](/api-v2.0/game-components/core/entity.md) |             |
-
 Returns information about the current humanizer order queue.
-
 ## <sub>ForceUserOrderByMinimap</sub>
-
 `Humanizer.ForceUserOrderByMinimap():` <mark style="color:purple;">**`nil`**</mark>
-
 Forces current user order by minimap. Must be called in OnPrepareUnitOrder
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/log.md).
-
+> 
 # Log
-
 Table to log.
-
 ## <sub>Write</sub>
-
 `Log.Write(arg):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                         | Description      |
 | ------- | -------------------------------------------- | ---------------- |
 | **arg** | <mark style="color:purple;">**`any`**</mark> | Message to write |
-
 Writes a message to the console.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/logger.md).
-
+> 
 # Logger
-
 Named logger with per-level methods and per-logger level filtering. Messages are written to the debug log as \[LEVEL] \[LoggerName] message.
-
 ## <sub>Logger</sub>
-
 `Logger(name):` <mark style="color:purple;">**`Logger`**</mark>
-
 | Name     | Type                                            | Description |
 | -------- | ----------------------------------------------- | ----------- |
 | **name** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Create a new Logger with the given name. Default level is DEBUG (all messages pass).
-
 ## <sub>debug</sub>
-
 `:debug(...):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                         | Description |
 | ------- | -------------------------------------------- | ----------- |
 | **...** | <mark style="color:purple;">**`any`**</mark> |             |
-
 Log a debug-level message. Arguments are converted to strings and joined with spaces.
-
 ## <sub>info</sub>
-
 `:info(...):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                         | Description |
 | ------- | -------------------------------------------- | ----------- |
 | **...** | <mark style="color:purple;">**`any`**</mark> |             |
-
 Log an info-level message.
-
 ## <sub>warning</sub>
-
 `:warning(...):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                         | Description |
 | ------- | -------------------------------------------- | ----------- |
 | **...** | <mark style="color:purple;">**`any`**</mark> |             |
-
 Log a warning-level message.
-
 ## <sub>error</sub>
-
 `:error(...):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                         | Description |
 | ------- | -------------------------------------------- | ----------- |
 | **...** | <mark style="color:purple;">**`any`**</mark> |             |
-
 Log an error-level message.
-
 ## <sub>set\_level</sub>
-
 `:set_level(level):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name      | Type                                            | Description  |
 | --------- | ----------------------------------------------- | ------------ |
 | **level** | <mark style="color:purple;">**`number`**</mark> | Logger.DEBUG |
-
 Set the minimum log level. Messages below this level are suppressed.
-
 ## <sub>get\_level</sub>
-
 `:get_level():` <mark style="color:purple;">**`number`**</mark>
-
 Get the current minimum log level.
-
 ## <sub>get\_name</sub>
-
 `:get_name():` <mark style="color:purple;">**`string`**</mark>
-
 Get the logger name.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/localizer.md).
-
+> 
 # Localizer
-
 Table to work with cheat localizer.
-
 ## <sub>Get</sub>
-
 `Localizer.Get(str):` <mark style="color:purple;">**`string`**</mark>
-
 | Name    | Type                                            | Description |
 | ------- | ----------------------------------------------- | ----------- |
 | **str** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns localized string using current language.
-
 ## <sub>RegToken</sub>
-
 `Localizer.RegToken(str):` <mark style="color:purple;">**`nil`**</mark>
-
 | Name    | Type                                            | Description |
 | ------- | ----------------------------------------------- | ----------- |
 | **str** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Registers key (token) string to localizer.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/gamelocalizer.md).
-
+> 
 # GameLocalizer
-
 Table to work with game localization.\
 Localization tokens are stored in `resource/localization` folder in `pak01_dir.vpk`
-
 ## <sub>Find</sub>
-
 `GameLocalizer.Find(token):` <mark style="color:purple;">**`string`**</mark>
-
 | Name      | Type                                            | Description                  |
 | --------- | ----------------------------------------------- | ---------------------------- |
 | **token** | <mark style="color:purple;">**`string`**</mark> | should be in format `#token` |
-
 Returns localized string by token or returns empty string if token not found.
-
 #### Example
-
 ```lua
 GameLocalizer.Find("#DOTA_AutocastAbility5") -- Autocast Ability Ultimate
 ```
-
 ## <sub>FindAbility</sub>
-
 `GameLocalizer.FindAbility(ability_name):` <mark style="color:purple;">**`string`**</mark>
-
 | Name              | Type                                            | Description |
 | ----------------- | ----------------------------------------------- | ----------- |
 | **ability\_name** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns localized string by ability name or returns empty string if ability not found.
-
 #### Example
-
 ```lua
 GameLocalizer.FindAbility("antimage_mana_void") -- Mana Void
 ```
-
 ## <sub>FindItem</sub>
-
 `GameLocalizer.FindItem(item_name):` <mark style="color:purple;">**`string`**</mark>
-
 | Name           | Type                                            | Description |
 | -------------- | ----------------------------------------------- | ----------- |
 | **item\_name** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns localized string by item name or returns empty string if item not found.
-
 #### Example
-
 ```lua
 GameLocalizer.FindItem("item_blink") -- Blink Dagger
 GameLocalizer.FindItem("item_recipe_arcane_blink") -- Recipe: Arcane Blink
 ```
-
 ## <sub>FindNPC</sub>
-
 `GameLocalizer.FindNPC(unit_name):` <mark style="color:purple;">**`string`**</mark>
-
 | Name           | Type                                            | Description |
 | -------------- | ----------------------------------------------- | ----------- |
 | **unit\_name** | <mark style="color:purple;">**`string`**</mark> |             |
-
 Returns localized string by unit name or returns empty string if unit not found.
-
 #### Example
-
 ```lua
 GameLocalizer.FindNPC("npc_dota_hero_necrolyte") -- Necrophos
 ```
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/table_ext.md).
-
+> 
 # table
-
 Extensions for the built-in Lua `table` library.
-
 ## <sub>IsEmpty</sub>
-
 `table.IsEmpty(t):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name  | Type                                           | Description |
 | ----- | ---------------------------------------------- | ----------- |
 | **t** | <mark style="color:purple;">**`table`**</mark> |             |
-
 Returns true if the table has no entries.
-
 ## <sub>Length</sub>
-
 `table.Length(t):` <mark style="color:purple;">**`integer`**</mark>
-
 | Name  | Type                                           | Description |
 | ----- | ---------------------------------------------- | ----------- |
 | **t** | <mark style="color:purple;">**`table`**</mark> |             |
-
 Counts ALL entries (array + hash), unlike `#t` which only counts the sequence part.
-
 ## <sub>Keys</sub>
-
 `table.Keys(t):` <mark style="color:purple;">**`table`**</mark>
-
 | Name  | Type                                           | Description |
 | ----- | ---------------------------------------------- | ----------- |
 | **t** | <mark style="color:purple;">**`table`**</mark> |             |
-
 Returns a new array containing all keys of the table.
-
 ## <sub>Values</sub>
-
 `table.Values(t):` <mark style="color:purple;">**`table`**</mark>
-
 | Name  | Type                                           | Description |
 | ----- | ---------------------------------------------- | ----------- |
 | **t** | <mark style="color:purple;">**`table`**</mark> |             |
-
 Returns a new array containing all values of the table.
-
 ## <sub>Sum</sub>
-
 `table.Sum(t):` <mark style="color:purple;">**`number`**</mark>
-
 | Name  | Type                                           | Description |
 | ----- | ---------------------------------------------- | ----------- |
 | **t** | <mark style="color:purple;">**`table`**</mark> |             |
-
 Returns the sum of all numeric values in the table. Non-numeric values are skipped.
-
 ## <sub>Reverse</sub>
-
 *Generic: `T`*
-
 `table.Reverse(t):` <mark style="color:purple;">**`T[]`**</mark>
-
 | Name  | Type                                         | Description |
 | ----- | -------------------------------------------- | ----------- |
 | **t** | <mark style="color:purple;">**`T[]`**</mark> |             |
-
 Returns a new array with the sequence part of `t` in reverse order.
-
 ## <sub>CopyShallow</sub>
-
 *Generic: `T : table`*
-
 `table.CopyShallow(orig, [ignore_mt]):` <mark style="color:purple;">**`T`**</mark>
-
 | Name                                                             | Type                                             | Description                                             |
 | ---------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------- |
 | **orig**                                                         | <mark style="color:purple;">**`T`**</mark>       |                                                         |
 | **ignore\_mt&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | If true, the metatable is not copied `(default: false)` |
-
 Creates a shallow copy of the table. Copies the metatable unless `ignore_mt` is true.
-
 ## <sub>Copy</sub>
-
 *Generic: `T : table`*
-
 `table.Copy(orig):` <mark style="color:purple;">**`T`**</mark>
-
 | Name     | Type                                       | Description |
 | -------- | ------------------------------------------ | ----------- |
 | **orig** | <mark style="color:purple;">**`T`**</mark> |             |
-
 Deep-copies a table with cycle detection. Metatables are preserved.
-
 ## <sub>KvSwap</sub>
-
 `table.KvSwap(t, [v_to_true]):` <mark style="color:purple;">**`table`**</mark>
-
 | Name                                                              | Type                                             | Description                                                                   |
 | ----------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------- |
 | **t**                                                             | <mark style="color:purple;">**`table`**</mark>   |                                                                               |
 | **v\_to\_true&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | If true, new values are `true` instead of the original key `(default: false)` |
-
 Swaps keys and values. If `v_to_true` is true, all new values become `true`\
 instead of the original key.
-
 ## <sub>Merge</sub>
-
 `table.Merge(...):` <mark style="color:purple;">**`table`**</mark>
-
 | Name    | Type                                           | Description     |
 | ------- | ---------------------------------------------- | --------------- |
 | **...** | <mark style="color:purple;">**`table`**</mark> | Tables to merge |
-
 Concatenates array-part entries from all argument tables into a new array.
-
 ## <sub>MergeHm</sub>
-
 `table.MergeHm(...):` <mark style="color:purple;">**`table`**</mark>
-
 | Name    | Type                                           | Description     |
 | ------- | ---------------------------------------------- | --------------- |
 | **...** | <mark style="color:purple;">**`table`**</mark> | Tables to merge |
-
 Merges all key-value pairs from argument tables into a new table.\
 Later tables overwrite earlier ones.
-
 ## <sub>Diff</sub>
-
 `table.Diff(new_t, old_t):` <mark style="color:purple;">**`table`**</mark>
-
 | Name       | Type                                           | Description |
 | ---------- | ---------------------------------------------- | ----------- |
 | **new\_t** | <mark style="color:purple;">**`table`**</mark> |             |
 | **old\_t** | <mark style="color:purple;">**`table`**</mark> |             |
-
 Returns entries in `new_t` whose values differ from `old_t` (compared by rawequal).
-
 ## <sub>Sorted</sub>
-
 *Generic: `T`*
-
 `table.Sorted(t, [compare_func]):` <mark style="color:purple;">**`T[]`**</mark>
-
 | Name                                                                | Type                                                             | Description                                   |
 | ------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------- |
 | **t**                                                               | <mark style="color:purple;">**`T[]`**</mark>                     |                                               |
 | **compare\_func&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`fun(a: T, b: T):boolean`**</mark> | Optional comparison function `(default: nil)` |
-
 Sorts the table in-place via the built-in `table.sort`, then returns it.
-
 ## <sub>Map</sub>
-
 `table.Map(t, func):` <mark style="color:purple;">**`table`**</mark>
-
 | Name     | Type                                                                   | Description                              |
 | -------- | ---------------------------------------------------------------------- | ---------------------------------------- |
 | **t**    | <mark style="color:purple;">**`table`**</mark>                         |                                          |
 | **func** | <mark style="color:purple;">**`fun(value: any, key: any):any`**</mark> | Callback `func(value, key) -> new_value` |
-
 Applies `func(value, key)` to every entry and returns a new array of results.
-
 ## <sub>Filter</sub>
-
 *Generic: `T`*
-
 `table.Filter(t, func):` <mark style="color:purple;">**`T[]`**</mark>
-
 | Name     | Type                                                                         | Description                             |
 | -------- | ---------------------------------------------------------------------------- | --------------------------------------- |
 | **t**    | <mark style="color:purple;">**`T[]`**</mark>                                 |                                         |
 | **func** | <mark style="color:purple;">**`fun(value: T, key: integer):boolean`**</mark> | Predicate `func(value, key) -> boolean` |
-
 Returns a new array containing only entries for which `func(value, key)` returns true.
-
 ## <sub>Any</sub>
-
 `table.Any(t, func):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                       | Description                             |
 | -------- | -------------------------------------------------------------------------- | --------------------------------------- |
 | **t**    | <mark style="color:purple;">**`table`**</mark>                             |                                         |
 | **func** | <mark style="color:purple;">**`fun(value: any, key: any):boolean`**</mark> | Predicate `func(value, key) -> boolean` |
-
 Returns true if `func(value, key)` returns true for at least one entry.
-
 ## <sub>All</sub>
-
 `table.All(t, func):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name     | Type                                                                       | Description                             |
 | -------- | -------------------------------------------------------------------------- | --------------------------------------- |
 | **t**    | <mark style="color:purple;">**`table`**</mark>                             |                                         |
 | **func** | <mark style="color:purple;">**`fun(value: any, key: any):boolean`**</mark> | Predicate `func(value, key) -> boolean` |
-
 Returns true if `func(value, key)` returns true for every entry.
-
 ## <sub>Find</sub>
-
 `table.Find(t, element):` <mark style="color:purple;">**`any`**</mark>, <mark style="color:purple;">**`any`**</mark>
-
 | Name        | Type                                           | Description           |
 | ----------- | ---------------------------------------------- | --------------------- |
 | **t**       | <mark style="color:purple;">**`table`**</mark> |                       |
 | **element** | <mark style="color:purple;">**`any`**</mark>   | Element to search for |
-
 Finds the first entry matching `element` by raw equality.\
 Returns `value, key` on match, or `nil` if not found.
-
 ## <sub>RemoveElement</sub>
-
 `table.RemoveElement(t, element):` <mark style="color:purple;">**`boolean`**</mark>
-
 | Name        | Type                                                                                              | Description                           |
 | ----------- | ------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | **t**       | <mark style="color:purple;">**`table`**</mark>                                                    |                                       |
 | **element** | <mark style="color:purple;">**`any`**</mark> \| <mark style="color:purple;">**`function`**</mark> | Element to find or predicate function |
-
 Removes the first matching element from the array-part of `t`.\
 If `element` is a function, it is used as a predicate `func(value, index) -> boolean`.\
 Otherwise, finds by raw equality. Shifts remaining elements down to maintain order.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/stringbuilder.md).
-
+> 
 # StringBuilder
-
 Efficient string builder for incremental string construction. Backed by a single pre-allocated C++ buffer. Avoids O(n^2) cost of repeated Lua string concatenation.
-
 ## <sub>StringBuilder</sub>
-
 `StringBuilder():` <mark style="color:purple;">**`StringBuilder`**</mark>
-
 Create a new StringBuilder with default capacity (256 bytes).
-
 ## <sub>append</sub>
-
 `:append(...):` <mark style="color:purple;">**`StringBuilder`**</mark>
-
 | Name    | Type                                         | Description |
 | ------- | -------------------------------------------- | ----------- |
 | **...** | <mark style="color:purple;">**`any`**</mark> |             |
-
 Append values to the buffer. Each argument is converted to string\
 (strings/numbers handled inline, others via tostring). Returns self for chaining.
-
 ## <sub>appendf</sub>
-
 `:appendf(fmt, ...):` <mark style="color:purple;">**`StringBuilder`**</mark>
-
 | Name    | Type                                            | Description |
 | ------- | ----------------------------------------------- | ----------- |
 | **fmt** | <mark style="color:purple;">**`string`**</mark> |             |
 | **...** | <mark style="color:purple;">**`any`**</mark>    |             |
-
 Append formatted string with "{}" placeholders replaced left-to-right.\
 Excess placeholders are kept literal. Returns self for chaining.
-
 ## <sub>clear</sub>
-
 `:clear():` <mark style="color:purple;">**`StringBuilder`**</mark>
-
 Clear the buffer contents. Retains allocated memory. Returns self for chaining.
-
 ## <sub>\_\_tostring</sub>
-
 `:__tostring():` <mark style="color:purple;">**`string`**</mark>
-
 Returns the accumulated string.
-
 ## <sub>\_\_len</sub>
-
 `:__len():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the byte length of the buffer.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md -->
 
-> For the complete documentation index, see [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://uczone.gitbook.io/api-v2.0/game-components/configuration-and-utilities/chronos.md).
-
+> 
 # Chronos
-
 High-resolution monotonic timer module. Loaded as a require-able library: `local chronos = require('chronos')`.
-
 Uses `QueryPerformanceCounter` on Windows for nanosecond-class precision.
-
 ## <sub>nanotime</sub>
-
 `chronos.nanotime():` <mark style="color:purple;">**`number`**</mark>
-
 Returns the current monotonic time in seconds with nanosecond precision. The returned value is relative to an unspecified epoch — only differences between two calls are meaningful.
-
 ```lua
 local chronos = require('chronos')
-
 local start = chronos.nanotime()
 -- ... work ...
 local elapsed = chronos.nanotime() - start
 Log.Write("Elapsed: " .. tostring(elapsed) .. " seconds")
 ```
+
+
+--------------------------------------------------------------------------------
 
