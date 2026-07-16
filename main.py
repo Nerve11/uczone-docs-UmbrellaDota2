@@ -4,219 +4,207 @@ import time
 from bs4 import BeautifulSoup
 from markdownify import markdownify as md
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Tuple
 from dataclasses import dataclass, field
 
 OUTPUT_FILE = "DocumentationUCZONE.md"
 URLS_FILE = "urls.txt"
+LLMS_URL = "https://uczone.gitbook.io/api-v2.0/llms.txt"
+
+COMMON_NOISE = re.compile(
+    r"For the complete documentation index, see .*?llms\.txt.*?\. Markdown versions of documentation pages are available by appending `?\.md`? to page URLs; this page is available as \[Markdown\]\(.*?\)\.",
+    re.IGNORECASE | re.DOTALL
+)
 
 def strip_gitbook_noise(markdown_text: str) -> str:
-    """Чистка мусора, который GitBook/markdownify иногда добавляют в MD."""
+    """Улучшенная чистка + удаление повторяющейся фразы."""
     if not markdown_text:
         return markdown_text
 
-    lines = markdown_text.splitlines()
-    out: List[str] = []
+    # Удаляем основной шум
+    cleaned = COMMON_NOISE.sub("", markdown_text)
+    cleaned = re.sub(r"^\s*copy\s*$", "", cleaned, flags=re.IGNORECASE | re.MULTILINE)
+    cleaned = re.sub(r"{%\s*hint.*?%}|{%\s*endhint\s*%}", "", cleaned, flags=re.IGNORECASE)
 
-    noise_patterns = [
-        re.compile(r"^\s*copy\s*$", re.IGNORECASE),
-        re.compile(r"^\s*{%\s*hint\s+style=\"info\"\s*%}\s*$"),
-        re.compile(r"^\s*{%\s*endhint\s*%}\s*$"),
-    ]
-
-    for line in lines:
-        s = line.strip()
-        if s and any(p.search(s) for p in noise_patterns):
-            continue
-        out.append(line)
-
-    cleaned = "\n".join(out)
-    cleaned = cleaned.replace('{% hint style="info" %}', "")
-    cleaned = cleaned.replace("{% endhint %}", "")
+    lines = [line for line in cleaned.splitlines() if line.strip()]
+    cleaned = "\n".join(lines)
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
     return cleaned.strip()
 
+
+def fetch_llms_structure() -> List[Tuple[str, str]]:
+    """Автоматический парсинг llms.txt → список (title, url)."""
+    try:
+        resp = requests.get(LLMS_URL, timeout=15)
+        resp.raise_for_status()
+        content = resp.text
+
+        # Парсим Markdown-список: - [Title](url)
+        pattern = r"-\s*\[([^\]]+)\]\((https?://[^\)]+)\)"
+        matches = re.findall(pattern, content)
+        print(f"✅ Извлечено {len(matches)} ссылок из llms.txt")
+        return matches
+    except Exception as e:
+        print(f"⚠️ Ошибка загрузки llms.txt: {e}. Используем urls.txt")
+        return []
+
+
+def load_urls_from_file(filepath: str) -> List[str]:
+    """Fallback."""
+    path = Path(filepath)
+    if not path.exists():
+        return []
+    with open(path, "r", encoding="utf-8") as f:
+        return [line.strip() for line in f if line.strip() and not line.startswith("#")]
+
+
 @dataclass
 class PageGroup:
-    """Группа страниц с общей темой"""
     title: str
-    match_pattern: str  # Подстрока URL, определяющая принадлежность к группе
-    level: int  # Уровень вложенности (1 = основной раздел, 2 = подраздел)
+    match_pattern: str
+    level: int
     urls: List[str] = field(default_factory=list)
 
-# Определение структуры документации
-# Порядок в списке определяет порядок в итоговом файле.
-# URL будет добавлен в группу с самым длинным совпадающим match_pattern.
+
+# Более умная базовая структура (можно расширять)
 STRUCTURE_DEFINITIONS = [
-    PageGroup("Starting Guide", "api-v2.0", 1), # Fallback for root
-    
-    # Cheats Types
+    PageGroup("Starting Guide", "getting-started", 1),
     PageGroup("Cheats Types and Callbacks", "cheats-types-and-callbacks", 1),
-    PageGroup("Classes - Color", "cheats-types-and-callbacks/classes/color", 2),
-    PageGroup("Classes - Menu System", "cheats-types-and-callbacks/classes/menu", 2),
-    PageGroup("Classes - UI Widgets", "cheats-types-and-callbacks/classes/widgets", 2),
-    PageGroup("Classes - Math", "cheats-types-and-callbacks/classes/math", 2),
-    
-    # Game Components
+    PageGroup("Classes - Color", "classes/color", 2),
+    PageGroup("Classes - Menu System", "classes/menu", 2),
+    PageGroup("Classes - UI Widgets", "classes/widgets", 2),
+    PageGroup("Classes - Math", "classes/math", 2),
     PageGroup("Game Components - Entity Lists", "game-components/lists", 1),
     PageGroup("Game Components - Core Objects", "game-components/core", 1),
     PageGroup("Game Engine", "game-components/game-engine", 1),
-    PageGroup("Networking and APIs", "game-components/networking-and-apis", 1),
-    
-    # Rendering
-    PageGroup("Rendering and Visuals", "game-components/rendering-and-visuals", 1),
-    PageGroup("Rendering - Panorama UI", "game-components/rendering-and-visuals/panorama", 2),
-    
-    # Config
-    PageGroup("Configuration and Utilities", "game-components/configuration-and-utilities", 1),
+    PageGroup("Networking and APIs", "networking-and-apis", 1),
+    PageGroup("Rendering and Visuals", "rendering-and-visuals", 1),
+    PageGroup("Rendering - Panorama UI", "rendering-and-visuals/panorama", 2),
+    PageGroup("Configuration and Utilities", "configuration-and-utilities", 1),
 ]
 
-def load_urls_from_file(filepath: str) -> List[str]:
-    """Загружает список URL из файла."""
-    path = Path(filepath)
-    if not path.exists():
-        print(f"⚠️ Файл {filepath} не найден!")
-        return []
-    
-    with open(path, "r", encoding="utf-8") as f:
-        # Фильтруем пустые строки и комментарии
-        return [line.strip() for line in f if line.strip() and not line.startswith("#")]
 
 def distribute_urls(urls: List[str], groups: List[PageGroup]):
-    """Распределяет URL по группам на основе match_pattern."""
-    # Сортируем группы по длине паттерна (от длинных к коротким) для точного сопоставления
-    # Но сохраняем исходный порядок для итогового вывода
-    
+    """Улучшенное распределение (самое длинное совпадение + fallback)."""
     for url in urls:
-        best_match_group = None
+        best_match = None
         max_len = -1
-        
         for group in groups:
             if group.match_pattern in url:
                 if len(group.match_pattern) > max_len:
                     max_len = len(group.match_pattern)
-                    best_match_group = group
-        
-        if best_match_group:
-            best_match_group.urls.append(url)
+                    best_match = group
+        if best_match:
+            best_match.urls.append(url)
         else:
-            # Если не найдено совпадений, добавляем в первую группу (Starting Guide) или создаем Misc
-            print(f"⚠️ Не найдена группа для URL: {url}")
-            groups[0].urls.append(url)
+            print(f"⚠️ Нет группы для: {url}")
+            groups[0].urls.append(url)  # fallback
 
-def get_markdown_from_html(url: str) -> Optional[str]:
-    """Fallback-метод: парсит HTML и конвертирует в Markdown."""
-    try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        response = requests.get(url, headers=headers, timeout=15)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        main_content = soup.find('main')
-        if not main_content:
-            return None
-
-        for element in main_content.find_all(['nav', 'footer']):
-            element.decompose()
-        for link in main_content.find_all('a', class_=lambda x: x and 'pagination' in str(x)):
-            link.decompose()
-
-        markdown_text = md(str(main_content), heading_style="ATX")
-        return strip_gitbook_noise(markdown_text)
-    except Exception as e:
-        print(f"   ❌ Fallback ошибка: {e}")
-        return None
 
 def get_markdown_content(url: str) -> Optional[str]:
-    """Получает чистый Markdown напрямую из GitBook."""
+    """Получение .md + fallback."""
     try:
-        markdown_url = url if url.endswith('.md') else f"{url}.md"
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        
-        response = requests.get(markdown_url, headers=headers, timeout=15)
-        response.raise_for_status()
-        content = response.text.strip()
+        md_url = url if url.endswith('.md') else f"{url}.md"
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        resp = requests.get(md_url, headers=headers, timeout=15)
+        resp.raise_for_status()
+        content = resp.text.strip()
 
-        if content.startswith('<!DOCTYPE') or content.startswith('<html'):
-            print(f"   🔄 .md вернул HTML, используем fallback...")
+        if content.startswith('<!DOCTYPE') or '<html' in content[:500]:
+            # fallback to HTML
             return get_markdown_from_html(url)
-
         return strip_gitbook_noise(content)
     except requests.exceptions.HTTPError as e:
         if e.response.status_code == 404:
-            print(f"   🔄 .md недоступен (404), используем fallback...")
             return get_markdown_from_html(url)
         return None
-    except Exception as e:
-        print(f"   ⚠️  Ошибка: {e}")
+    except Exception:
         return get_markdown_from_html(url)
 
+
+def get_markdown_from_html(url: str) -> Optional[str]:
+    """Fallback HTML → MD (без изменений)."""
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        resp = requests.get(url, headers=headers, timeout=15)
+        resp.raise_for_status()
+        soup = BeautifulSoup(resp.content, 'html.parser')
+        main = soup.find('main')
+        if not main:
+            return None
+        for nav in main.find_all(['nav', 'footer']):
+            nav.decompose()
+        markdown_text = md(str(main), heading_style="ATX")
+        return strip_gitbook_noise(markdown_text)
+    except Exception as e:
+        print(f"   ❌ Fallback error: {e}")
+        return None
+
+
 def generate_toc(groups: List[PageGroup]) -> str:
-    """Генерирует оглавление."""
-    toc_lines = ["# Оглавление\n"]
+    """TOC (без изменений)."""
+    toc = ["# Оглавление\n"]
     for group in groups:
-        if not group.urls: continue
+        if not group.urls:
+            continue
         indent = "  " * (group.level - 1)
         anchor = group.title.lower().replace(" ", "-").replace("_", "-")
-        toc_lines.append(f"{indent}- [{group.title}](#{anchor})")
-    return "\n".join(toc_lines) + "\n\n"
+        toc.append(f"{indent}- [{group.title}](#{anchor})")
+    return "\n".join(toc) + "\n\n"
+
 
 def main():
-    # 1. Загрузка URL
-    urls = load_urls_from_file(URLS_FILE)
+    # 1. Автоматический парсинг llms.txt
+    structure = fetch_llms_structure()
+    urls = [url for _, url in structure] if structure else load_urls_from_file(URLS_FILE)
+
     if not urls:
-        print("❌ Нет URL для обработки.")
+        print("❌ Нет URL.")
         return
 
-    # 2. Распределение по группам
-    # Создаем копии групп, чтобы очистить старые данные если они были
-    active_groups = [g for g in STRUCTURE_DEFINITIONS] 
-    for g in active_groups: g.urls = []
-    
+    # 2. Распределение
+    active_groups = [g for g in STRUCTURE_DEFINITIONS]
+    for g in active_groups:
+        g.urls = []
     distribute_urls(urls, active_groups)
-    
-    # Фильтруем пустые группы
     active_groups = [g for g in active_groups if g.urls]
 
-    total_pages = sum(len(group.urls) for group in active_groups)
-    print(f"🚀 Начинаем парсинг {total_pages} страниц в {len(active_groups)} групп...")
+    total = sum(len(g.urls) for g in active_groups)
+    print(f"🚀 Парсинг {total} страниц...")
+
+    common_intro = (
+        "> **Полная документация**: [llms.txt](https://uczone.gitbook.io/api-v2.0/llms.txt)\n"
+        "> Markdown-версии доступны путём добавления `.md` к URL.\n\n"
+    )
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("# UCZONE API v2.0 - Полная документация\n\n")
-        f.write(f"*Сгенерировано из {total_pages} страниц GitBook*\n\n")
+        f.write(f"*Сгенерировано из {total} страниц GitBook*\n\n")
         f.write("---\n\n")
+        f.write(common_intro)          # Одна общая фраза в начале
         f.write(generate_toc(active_groups))
         f.write("\n" + "=" * 80 + "\n\n")
 
         processed = 0
-        success_count = 0
+        for group in active_groups:
+            heading = "#" * (group.level + 1)
+            f.write(f"{heading} {group.title}\n\n")
 
-        for group_idx, group in enumerate(active_groups, 1):
-            heading_level = "#" * (group.level + 1)
-            f.write(f"{heading_level} {group.title}\n\n")
-
-            for url_idx, url in enumerate(group.urls, 1):
+            for url in group.urls:
                 processed += 1
-                print(f"[{processed}/{total_pages}] {group.title} ({url_idx}/{len(group.urls)}): {url}")
-                
+                print(f"[{processed}/{total}] {group.title}: {url}")
                 content = get_markdown_content(url)
-                
                 if content:
                     f.write(f"<!-- Source: {url} -->\n\n")
-                    f.write(content)
-                    f.write("\n\n")
-                    success_count += 1
-                    print(f"   ✅ Успешно ({len(content)} символов)")
+                    f.write(content + "\n\n")
                 else:
-                    f.write(f"> ⚠️ Не удалось загрузить: {url}\n\n")
-                    print(f"   ❌ Ошибка загрузки")
-
+                    f.write(f"> ⚠️ Не удалось: {url}\n\n")
                 time.sleep(0.3)
 
-            if group_idx < len(active_groups):
-                f.write("\n" + "-" * 80 + "\n\n")
+            f.write("\n" + "-" * 80 + "\n\n")
 
-    print(f"\n✅ Готово! Файл сохранён: {OUTPUT_FILE}")
+    print(f"✅ Готово: {OUTPUT_FILE}")
+
 
 if __name__ == "__main__":
     main()
