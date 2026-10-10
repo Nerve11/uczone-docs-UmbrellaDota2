@@ -1116,6 +1116,19 @@ Called on NPC dying.
 Called when the UI theme colors are changed.\
 This includes animated theme transitions (called every frame during animation)\
 and manual per-color edits via the theme color picker.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/callbacks.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md -->
 
@@ -2561,6 +2574,19 @@ and manual per-color edits via the theme color picker.
 | <mark style="color:green;">`RoundCornersDefault_`</mark>        | 240   |
 | <mark style="color:green;">`RoundCornersMask_`</mark>           | 496   |
 | <mark style="color:green;">`ShadowCutOutShapeBackground`</mark> | 512   |
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes.md -->
 
@@ -2592,6 +2618,19 @@ and manual per-color edits via the theme color picker.
 - [Angle](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
 - [Vec2](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 - [Vertex](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md -->
 
@@ -2844,6 +2883,19 @@ Creates new `CTabSection`.
 | --------------- | ----------------------------------------------- | ----------- |
 | **sectionName** | <mark style="color:purple;">**`string`**</mark> |             |
 Finds the `CTabSection` by name.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cfirsttab.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/csecondtab.md -->
 
@@ -3201,6 +3253,19 @@ group:SearchHidden(false)
 -- getter
 local isSearchHidden = group:SearchHidden()
 ```
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets.md -->
 
@@ -3219,6 +3284,19 @@ local isSearchHidden = group:SearchHidden()
 - [CMenuMultiSelect](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenumultiselect.md)
 - [CMenuBind](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
 - [CMenuLabel](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenulabel.md)
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenuswitch.md -->
 
@@ -3517,6 +3595,19 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 Creates `CMenuGearAttachment` and attaches it to the widget.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderfloat.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenusliderint.md -->
 
@@ -4186,6 +4277,19 @@ Creates `CMenuColorPickerAttachment` and attaches it to the widget.
 | **gearIcon&#x20;**<mark style="color:orange;">**`[?]`**</mark>     | <mark style="color:purple;">**`string`**</mark>  | Gear FontAwesome icon. `(default: "\uf013")`    |
 | **useSmallFont&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark> | Use small font for gear icon. `(default: true)` |
 Creates `CMenuGearAttachment` and attaches it to the widget.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucombobox.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenugearattachment.md -->
 
@@ -5809,6 +5913,19 @@ Overload for operator -
 | Name      | Type                                                                                                                                                              | Description |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [<mark style="color:purple;">**`Vertex`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) \| <mark style="color:purple;">**`number`**</mark> |             |
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -6489,6 +6606,19 @@ Returns the unit currently queried by the player.
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [<mark style="color:purple;">**`CPlayer`**</mark>](/api-v2.0/game-components/core/player.md) | The target player. |
 Returns player's active ability.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/player.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md -->
 
@@ -7030,6 +7160,19 @@ Returns entity class id. Could be as a optimized way to check entity type.
 | **fieldName**                                                  | <mark style="color:purple;">**`string`**</mark>                                              | field name                               |
 | **dbgPrint&#x20;**<mark style="color:orange;">**`[?]`**</mark> | <mark style="color:purple;">**`boolean`**</mark>                                             | print possible errors `(default: false)` |
 Returns value of the field.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md -->
 
@@ -7902,6 +8045,19 @@ Fixes the issue when you have multiple Kaya items that actually don't stack.
 | **npc**      | [<mark style="color:purple;">**`CNPC`**</mark>](/api-v2.0/game-components/core/npc.md)                                                                                     | The target NPC. |
 | **property** | [<mark style="color:purple;">**`Enum.ModifierFunction`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/core/pages/VwVljl88Qnl7u9hhqRdw#enum.modifierfunction) | Property enum.  |
 Returns the hieghest property value for the `CNPC`.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md -->
 
@@ -8470,6 +8626,19 @@ Returns the remaining time for the next charge to restore.
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [<mark style="color:purple;">**`CAbility`**</mark>](/api-v2.0/game-components/core/ability.md) |             |
 Returns the keybind of the ability.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/item.md -->
 
@@ -8776,6 +8945,19 @@ Table to work with `CDrunkenBrawler`.<mark style="color:purple;">**`CDrunkenBraw
 | ----------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
 | **ability** | [<mark style="color:purple;">**`CDrunkenBrawler`**</mark>](/api-v2.0/game-components/core/drunkenbrawler.md) |             |
 Returns the state of the CDrunkenBrawler ability.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md -->
 
@@ -9013,6 +9195,19 @@ Returns hero name by ID.
 ## <sub>GetUIState</sub>
 `Engine.GetUIState():` [<mark style="color:purple;">**`Enum.UIState`**</mark>](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/pages/VwVljl88Qnl7u9hhqRdw#enum.uistate)
 Returns current UI state.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/engine.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md -->
 
@@ -9081,6 +9276,19 @@ Returns the floating value of the specified event field.
 | **event** | [<mark style="color:purple;">**`CEvent`**</mark>](/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | <mark style="color:purple;">**`string`**</mark>                                                   | Field name  |
 Returns the string value of the specified event field.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md -->
 
@@ -9214,6 +9422,19 @@ Returns zero-based array of banned heroes where index corresponds to the player 
 ## <sub>GetStateTransitionTime</sub>
 `GameRules.GetStateTransitionTime():` <mark style="color:purple;">**`number`**</mark>
 Returns time remaining between state changes.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/gamerules.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/globalvars.md -->
 
@@ -9408,6 +9629,19 @@ This function will return \`true\` only once per key press.
 | **bIgnoreLock&#x20;**<mark style="color:orange;">**`[?]`**</mark>                      | <mark style="color:purple;">**`boolean`**</mark>                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
 | key-pressed state. Default `false` preserves the previous behavior. `(default: false)` |                                                                                                                                                                       |                                                                                                   |
 Return `true` if key is down once.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/input.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/world.md -->
 
@@ -9433,6 +9667,19 @@ Table to work with FogOfWar API.
 | ------- | -------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **pos** | [<mark style="color:purple;">**`Vector`**</mark>](/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check |
 Returns `true` if the world position is visible.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/fogofwar.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md -->
 
@@ -9503,6 +9750,19 @@ Assigns new float value to the ConVar
 | **convar** | [<mark style="color:purple;">**`CConVar`**</mark>](/api-v2.0/game-components/game-engine/convar.md) |             |
 | **value**  | <mark style="color:purple;">**`boolean`**</mark>                                                    |             |
 Assigns new boolean value to the ConVar
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -9519,6 +9779,19 @@ Assigns new boolean value to the ConVar
 - [NetChannel](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md)
 - [Game Coordinator](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md)
 - [Protobuf](https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md)
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/chatapi.md -->
 
@@ -9593,6 +9866,19 @@ HTTP.Request("GET", url, {
 		headers = headers,
 	}, callback, "reqres_get");
 ```
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/http.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md -->
 
@@ -9671,6 +9957,19 @@ NetChannel.SendNetMessage("CDOTAClientMsg_RollDice", JSON:encode({
     roll_max = 222
 }));
 ```
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/netchannel.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/gc.md -->
 
@@ -9757,6 +10056,19 @@ Decodes a protobuf message object directly into a JSON string. Useful with callb
 | ---------- | ------------------------------------------------- | ------------------------------------------- |
 | **binary** | <mark style="color:purple;">**`userdata`**</mark> | Pointer to previously encoded protobuf data |
 Frees memory allocated by `encode` or `encodeFromJSON`. Returns `true` on success.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/protobuf.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 
 --------------------------------------------------------------------------------
@@ -10079,6 +10391,19 @@ Pops a clip rect.
 | **text**     | <mark style="color:purple;">**`string`**</mark> | Text to draw.                 |
 | **duration** | <mark style="color:purple;">**`number`**</mark> | Duration of the notification. |
 Draws a centered notification.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md -->
 
@@ -10534,6 +10859,19 @@ return {
 Resizes an existing render target.\
 If width and height are not provided, it changes the render target to be full screen size.\
 Accepts (handle, w, h), (handle, vec2), or (handle) for full screen.
+---
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+## Querying This Documentation
+If you need additional information that is not directly available in this page, you can query the documentation by asking a question.
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md?ask=<question>&goal=<user_goal>
+```
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md -->
 
