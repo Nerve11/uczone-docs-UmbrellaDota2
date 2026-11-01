@@ -96,7 +96,7 @@
   - [6.6. Protobuf](#66-protobuf)
 - [7. Rendering and Visuals](#7-rendering-and-visuals)
   - [7.1. Particle](#71-particle)
-  - [7.2. Renderer](#72-renderer)
+  - [7.2. Page Not Found](#72-page-not-found)
   - [7.3. Render](#73-render)
   - [7.4. MiniMap](#74-minimap)
   - [7.5. Rendering - Panorama UI](#75-rendering---panorama-ui)
@@ -936,6 +936,12 @@ Callbacks for lua Scripts should return a table with the following functions. If
 
 Called after all scripts are loaded.
 
+#### Callbacks.OnGameThreadInit
+
+`Callbacks.OnGameThreadInit():` **`nil`**
+
+Called once on the game thread after all scripts are loaded, after OnScriptsLoaded.
+
 #### Callbacks.OnDraw
 
 `Callbacks.OnDraw():` **`nil`**
@@ -983,11 +989,11 @@ Called when a new entity is created.
 
 `Callbacks.OnNpcSpawned(npc):` **`nil`**
 
-| Name    | Type                                          | Description               |
-| ------- | --------------------------------------------- | ------------------------- |
-| **npc** | **`CNpc`** | The npc that was created. |
+| Name    | Type                                                                                   | Description                                                         |
+| ------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The npc that was spawned. No respawn flag is supplied by this hook. |
 
-Called when a npc is spawned. Unlike OnAddEntity, the entity is fully initialized here.
+Called on the client after an NPC finishes spawning, independently of the npc_spawned game event.
 
 #### Callbacks.OnEntityDestroy
 
@@ -1062,9 +1068,9 @@ This callback is called only in unsafe mode.
 
 `Callbacks.OnFireEventClient(data):` **`nil`**
 
-| Name     | Type                                                                | Description               |
-| -------- | ------------------------------------------------------------------- | ------------------------- |
-| **data** | **`{name:string, event:Event}`** | The data about the event. |
+| Name     | Type                                                                 | Description               |
+| -------- | -------------------------------------------------------------------- | ------------------------- |
+| **data** | **`{name:string, event:CEvent}`** | The data about the event. |
 
 Called when a game event is fired.
 
@@ -1103,28 +1109,50 @@ Called when a unit animation ends.
 
 `Callbacks.OnProjectile(data):` **`nil`**
 
-| Name                        | Type                                                                                                           | Description                           |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| **data**                    | **`table`**                                                                 | The data about the event.             |
-|  .**source**                | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity.                    |
-|  .**target**                | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The target entity.                    |
-|  .**ability**               | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                 | The ability linked to the projectile. |
-|  .**moveSpeed**             | **`integer`**                                                               | The move speed.                       |
-|  .**sourceAttachment**      | **`integer`**                                                               | The source attachment.                |
-|  .**particleSystemHandle**  | **`integer`**                                                               | The particle system handle.           |
-|  .**dodgeable**             | **`boolean`**                                                               | The dodgeable.                        |
-|  .**isAttack**              | **`boolean`**                                                               | The is attack.                        |
-|  .**expireTime**            | **`number`**                                                                | The expire time.                      |
-|  .**maxImpactTime**         | **`number`**                                                                | The max impact time.                  |
-|  .**launch_tick**          | **`integer`**                                                               | The tick the pojectile was launched.  |
-|  .**colorGemColor**         | **`integer`**                                                               | The color gem color.                  |
-|  .**fullName**              | **`string`**                                                                | The full name of projectile.          |
-|  .**name**                  | **`string`**                                                                | The short name of projectile.         |
-|  .**handle**                | **`integer`**                                                               | The handle of projectile.             |
-|  .**target_loc**           | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the target.           |
-|  .**original_move_speed** | **`integer`**                                                               | The original move speed.              |
+| Name                                                            | Type                                                                                                           | Description                                            |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **data**                                                        | **`table`**                                                                 | The data about the event.                              |
+|  .**source** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)`                    |
+|  .**target** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The target entity. `(default: nil)`                    |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                 | The ability linked to the projectile. `(default: nil)` |
+|  .**moveSpeed**                                                 | **`integer`**                                                               | The move speed.                                        |
+|  .**sourceAttachment**                                          | **`integer`**                                                               | The source attachment.                                 |
+|  .**particleSystemHandle**                                      | **`integer`**                                                               | The particle system handle.                            |
+|  .**dodgeable**                                                 | **`boolean`**                                                               | The dodgeable.                                         |
+|  .**isAttack**                                                  | **`boolean`**                                                               | The is attack.                                         |
+|  .**expireTime**                                                | **`number`**                                                                | The expire time.                                       |
+|  .**maxImpactTime**                                             | **`number`**                                                                | The max impact time.                                   |
+|  .**launch_tick**                                              | **`integer`**                                                               | The tick the pojectile was launched.                   |
+|  .**colorGemColor**                                             | **`integer`**                                                               | The color gem color.                                   |
+|  .**fullName**                                                  | **`string`**                                                                | The full name of projectile.                           |
+|  .**name**                                                      | **`string`**                                                                | The short name of projectile.                          |
+|  .**handle**                                                    | **`integer`**                                                               | The handle of projectile.                              |
+|  .**target_loc**                                               | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the target.                            |
+|  .**original_move_speed**                                     | **`integer`**                                                               | The original move speed.                               |
 
 Called when new projectile is created.
+
+#### Callbacks.OnTargetProjectileDestroy
+
+`Callbacks.OnTargetProjectileDestroy(data):` **`nil`**
+
+| Name                                                            | Type                                                                                                           | Description                                            |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **data**                                                        | **`table`**                                                                 | The data about the event.                              |
+|  .**source** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)`                    |
+|  .**target** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The target entity. `(default: nil)`                    |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                 | The ability linked to the projectile. `(default: nil)` |
+|  .**moveSpeed**                                                 | **`integer`**                                                               | The move speed.                                        |
+|  .**dodgeable**                                                 | **`boolean`**                                                               | The dodgeable.                                         |
+|  .**isAttack**                                                  | **`boolean`**                                                               | The is attack.                                         |
+|  .**expireTime**                                                | **`number`**                                                                | The expire time.                                       |
+|  .**maxImpactTime**                                             | **`number`**                                                                | The max impact time.                                   |
+|  .**handle**                                                    | **`integer`**                                                               | The handle of projectile.                              |
+|  .**target_loc**                                               | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the target.                            |
+|  .**location**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the projectile when it was destroyed.  |
+|  .**original_move_speed**                                     | **`integer`**                                                               | The original move speed.                               |
+
+Called when a target projectile is destroyed.
 
 #### Callbacks.OnProjectileLoc
 
@@ -1133,7 +1161,8 @@ Called when new projectile is created.
 | Name                                                           | Type                                                                                                           | Description                         |
 | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **data**                                                       | **`table`**                                                                 | The data about the event.           |
-|  .**target** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)` |
+|  .**source** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)` |
+|  .**target** **`[?]`** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                   | The target entity. `(default: nil)` |
 |  .**sourceLoc**                                                | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The source location.                |
 |  .**targetLoc**                                                | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The target location.                |
 |  .**moveSpeed**                                                | **`integer`**                                                               | The move speed.                     |
@@ -1154,21 +1183,21 @@ Called when new projectile loc is created.
 
 `Callbacks.OnLinearProjectileCreate(data):` **`nil`**
 
-| Name                | Type                                                                                                           | Description                   |
-| ------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| **data**            | **`table`**                                                                 | The data about the event.     |
-|  .**source**        | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity.            |
-|  .**origin**        | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The origin.                   |
-|  .**velocity**      | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The velocity.                 |
-|  .**particleIndex** | **`integer`**                                                               | The particle index.           |
-|  .**handle**        | **`integer`**                                                               | The handle of projectile.     |
-|  .**acceleration**  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The acceleration.             |
-|  .**maxSpeed**      | **`number`**                                                                | The max speed.                |
-|  .**fowRadius**     | **`number`**                                                                | The fow radius.               |
-|  .**distance**      | **`number`**                                                                | The distance.                 |
-|  .**colorGemColor** | **`integer`**                                                               | The color gem color.          |
-|  .**fullName**      | **`string`**                                                                | The full name of projectile.  |
-|  .**name**          | **`string`**                                                                | The short name of projectile. |
+| Name                                                           | Type                                                                                                           | Description                         |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **data**                                                       | **`table`**                                                                 | The data about the event.           |
+|  .**source** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)` |
+|  .**origin**                                                   | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The origin.                         |
+|  .**velocity**                                                 | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The velocity.                       |
+|  .**particleIndex**                                            | **`integer`**                                                               | The particle index.                 |
+|  .**handle**                                                   | **`integer`**                                                               | The handle of projectile.           |
+|  .**acceleration**                                             | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The acceleration.                   |
+|  .**maxSpeed**                                                 | **`number`**                                                                | The max speed.                      |
+|  .**fowRadius**                                                | **`number`**                                                                | The fow radius.                     |
+|  .**distance**                                                 | **`number`**                                                                | The distance.                       |
+|  .**colorGemColor**                                            | **`integer`**                                                               | The color gem color.                |
+|  .**fullName**                                                 | **`string`**                                                                | The full name of projectile.        |
+|  .**name**                                                     | **`string`**                                                                | The short name of projectile.       |
 
 Called when new linear projectile is created.
 
@@ -1233,17 +1262,17 @@ Called when particle is updated. Alternative version for some particles.
 
 `Callbacks.OnParticleUpdateEntity(data):` **`nil`**
 
-| Name                   | Type                                                                                                                                                                                 | Description               |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| **data**               | **`table`**                                                                                                                                       | The data about the event. |
-|  .**index**            | **`integer`**                                                                                                                                     | The index of particle.    |
-|  .**controlPoint**     | **`integer`**                                                                                                                                     | The control point.        |
-|  .**entity**           | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                         | The entity.               |
-|  .**entIdx**           | **`integer`**                                                                                                                                     | The entity id.            |
-|  .**attachType**       | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.          |
-|  .**attachmentName**   | **`string`**                                                                                                                                      | The attachment name.      |
-|  .**position**         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                       | The position.             |
-|  .**includeWearables** | **`boolean`**                                                                                                                                     | Include wearables.        |
+| Name                                                                   | Type                                                                                                                                                                                 | Description                           |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| **data**                                                               | **`table`**                                                                                                                                       | The data about the event.             |
+|  .**index**                                                            | **`integer`**                                                                                                                                     | The index of particle.                |
+|  .**controlPoint**                                                     | **`integer`**                                                                                                                                     | The control point.                    |
+|  .**entity** **`[?]`**         | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                         | The entity. `(default: nil)`          |
+|  .**entIdx**                                                           | **`integer`**                                                                                                                                     | The entity id.                        |
+|  .**attachType**                                                       | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                      |
+|  .**attachmentName** **`[?]`** | **`string`**                                                                                                                                      | The attachment name. `(default: nil)` |
+|  .**position**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                       | The position.                         |
+|  .**includeWearables**                                                 | **`boolean`**                                                                                                                                     | Include wearables.                    |
 
 Called when particle is updated on entity.
 
@@ -1277,7 +1306,7 @@ Called when sound is started.
 
 #### Callbacks.OnSpeak
 
-`Callbacks.OnSpeak(data):` **`boolean`**
+`Callbacks.OnSpeak(data):` **`boolean`** | **`string`** | **`nil`**
 
 | Name         | Type                                                                                                                                   | Description               |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
@@ -1285,7 +1314,8 @@ Called when sound is started.
 |  .**source** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) \| **`nil`** | The unit who speak.       |
 |  .**name**   | **`string`**                                                                                        | The name of the sound.    |
 
-Called every time unit/announcer talk. You could return false to prevent the sound from being played.
+Called every time unit/announcer talk. Return false to prevent the sound from being played, or
+return a sound name to play that sound instead.
 
 #### Callbacks.OnChatEvent
 
@@ -1311,9 +1341,9 @@ Called on chat event.
 
 `Callbacks.OnOverHeadEvent(data):` **`nil`**
 
-| Name     | Type                                                                                                                                                                                                                    | Description                    |
-| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| **data** | **`{player_source:CPlayer`** \| **`nil, player_target:CPlayer`** \| **`nil, target_npc:CNPC, value:integer}`** | The table with the event info. |
+| Name     | Type                                                                                                                                                                                                                                                                    | Description                    |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **data** | **`{player_source:CPlayer`** \| **`nil, player_target:CPlayer`** \| **`nil, target_npc:CNPC`** \| **`nil, value:integer}`** | The table with the event info. |
 
 Called on event above the hero's head.
 
@@ -1339,20 +1369,61 @@ Called when a unit is added to a gesture.
 
 `Callbacks.OnPrepareUnitOrders(data):` **`boolean`**
 
-| Name                                                            | Type                                                                                                                                                                               | Description                                |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                  |
-|  .**player**                                                    | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order.          |
-|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                            |
-|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`  |
-|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                 |
-|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)` |
-|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                          |
-|  .**npc**                                                       | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order.                     |
-|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                    |
-|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.             |
+| Name                                                            | Type                                                                                                                                                                               | Description                                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                                                   |
+|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order. `(default: nil)`                          |
+|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
+|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`                                   |
+|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                                                  |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)`                                  |
+|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
+|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order. `(default: nil)`                                     |
+|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                                                     |
+|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.                                              |
+|  .**identifier**                                                | **`string`**                                                                                                                                    | The identifier passed by the script that issued the order; empty when none. |
 
 Called on every player order. Return false to prevent the order from being executed.
+
+#### Callbacks.OnAddUnitOrder
+
+`Callbacks.OnAddUnitOrder(data):` **`boolean`**
+
+| Name                                                            | Type                                                                                                                                                                               | Description                                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                                                   |
+|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order. `(default: nil)`                          |
+|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
+|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`                                   |
+|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                                                  |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)`                                  |
+|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
+|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order. `(default: nil)`                                     |
+|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                                                     |
+|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.                                              |
+|  .**identifier**                                                | **`string`**                                                                                                                                    | The identifier passed by the script that issued the order; empty when none. |
+
+Called when an order is added to a unit. Return false to prevent the order from being added.
+
+#### Callbacks.OnUnitOrderAdded
+
+`Callbacks.OnUnitOrderAdded(data):` **`nil`**
+
+| Name                                                            | Type                                                                                                                                                                               | Description                                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                                                   |
+|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order. `(default: nil)`                          |
+|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
+|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`                                   |
+|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                                                  |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)`                                  |
+|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
+|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order. `(default: nil)`                                     |
+|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                                                     |
+|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.                                              |
+|  .**identifier**                                                | **`string`**                                                                                                                                    | The identifier passed by the script that issued the order; empty when none. |
+
+Called after an order has been added to a unit's order queue.
 
 #### Callbacks.OnGCMessage
 
@@ -1400,11 +1471,11 @@ return {
 
 `Callbacks.OnSendNetMessage(data):` **`boolean`**
 
-| Name              | Type                                                   | Description                           |
-| ----------------- | ------------------------------------------------------ | ------------------------------------- |
-| **data**          | **`table`**         | The data about the event.             |
-|  .**message_id** | **`number`**        | The message id.                       |
-|  .**msg_object** | **`lightuserdata`** | The borrowed protobuf message object. |
+| Name              | Type                                                   | Description                                                         |
+| ----------------- | ------------------------------------------------------ | ------------------------------------------------------------------- |
+| **data**          | **`table`**         | The data about the event.                                           |
+|  .**message_id** | **`integer`**       | The message id.                                                     |
+|  .**msg_object** | **`lightuserdata`** | The protobuf message object, borrowed for the duration of the call. |
 
 Called when a net message is sent. Return false to prevent the message from being sent. See
 example
@@ -1426,7 +1497,7 @@ return {
         end
 
         -- decode protobuf message to json
-        local json_message = JSON:decode(protobuf.decodeToJSONfromObject(msg));
+        local json_message = JSON:decode(protobuf.decodeToJSONfromObject(msg.msg_object));
         if not json_message then
             return true;
         end
@@ -1457,15 +1528,16 @@ return {
 
 #### Callbacks.OnPostReceivedNetMessage
 
-`Callbacks.OnPostReceivedNetMessage(data):` **`boolean`**
+`Callbacks.OnPostReceivedNetMessage(data):` **`nil`**
 
-| Name              | Type                                                   | Description                           |
-| ----------------- | ------------------------------------------------------ | ------------------------------------- |
-| **data**          | **`table`**         | The data about the event.             |
-|  .**message_id** | **`number`**        | The message id.                       |
-|  .**msg_object** | **`lightuserdata`** | The borrowed protobuf message object. |
+| Name              | Type                                                   | Description                                                         |
+| ----------------- | ------------------------------------------------------ | ------------------------------------------------------------------- |
+| **data**          | **`table`**         | The data about the event.                                           |
+|  .**message_id** | **`integer`**       | The message id.                                                     |
+|  .**msg_object** | **`lightuserdata`** | The protobuf message object, borrowed for the duration of the call. |
 
-Called when a net message is received. Return false to prevent the message from being recieved
+Called when a net message is received. The message has already been processed; the handler
+result is ignored.
 
 ##### Example
 
@@ -1504,6 +1576,17 @@ Recommended to use for zeroing.
 |  .**event** | [**`Enum.EKeyEvent`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.ekeyevent)   | Key event.                |
 
 Called on key and mouse input. Return false to prevent the event from being processed.
+
+#### Callbacks.OnTextInput
+
+`Callbacks.OnTextInput(data):` **`nil`**
+
+| Name      | Type                                             | Description                                |
+| --------- | ------------------------------------------------ | ------------------------------------------ |
+| **data**  | **`table`**   | The data about the event.                  |
+|  .**key** | **`integer`** | The character code of the typed character. |
+
+Called on text input.
 
 #### Callbacks.OnUnitInventoryUpdated
 
@@ -1545,6 +1628,12 @@ Called on gamestate change.
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target npc. |
 
 Called on NPC dying.
+
+#### Callbacks.OnPreReload
+
+`Callbacks.OnPreReload():` **`nil`**
+
+Called before scripts are reloaded.
 
 #### Callbacks.OnThemeUpdate
 
@@ -2211,6 +2300,24 @@ and manual per-color edits via the theme color picker.
 | `DOTA_ORDER_ISSUER_HERO_ONLY`         | 2     |
 | `DOTA_ORDER_ISSUER_PASSED_UNIT_ONLY`  | 3     |
 
+#### Enum.CLICK_BEHAVIORS
+
+| Key                                                                    | Value |
+| ---------------------------------------------------------------------- | ----- |
+| `DOTA_CLICK_BEHAVIOR_NONE`           | 0     |
+| `DOTA_CLICK_BEHAVIOR_MOVE`           | 1     |
+| `DOTA_CLICK_BEHAVIOR_ATTACK`         | 2     |
+| `DOTA_CLICK_BEHAVIOR_CAST`           | 3     |
+| `DOTA_CLICK_BEHAVIOR_DROP_ITEM`      | 4     |
+| `DOTA_CLICK_BEHAVIOR_DROP_SHOP_ITEM` | 5     |
+| `DOTA_CLICK_BEHAVIOR_DRAG`           | 6     |
+| `DOTA_CLICK_BEHAVIOR_LEARN_ABILITY`  | 7     |
+| `DOTA_CLICK_BEHAVIOR_PATROL`         | 8     |
+| `DOTA_CLICK_BEHAVIOR_VECTOR_CAST`    | 9     |
+| `DOTA_CLICK_BEHAVIOR_UNUSED`         | 10    |
+| `DOTA_CLICK_BEHAVIOR_RADAR`          | 11    |
+| `DOTA_CLICK_BEHAVIOR_LAST`           | 12    |
+
 #### Enum.GameState
 
 | Key                                                                               | Value |
@@ -2478,8 +2585,8 @@ and manual per-color edits via the theme color picker.
 | `MenuThemePicker`    | 18    |
 | `MenuLabel`          | 19    |
 | `MenuCustomBind`     | 22    |
-| `MenuTypesCount`     | 25    |
-| `MenuTypeInvalid`    | 26    |
+| `MenuTypesCount`     | 31    |
+| `MenuTypeInvalid`    | 32    |
 
 #### Enum.GroupSide
 
@@ -2756,235 +2863,235 @@ and manual per-color edits via the theme color picker.
 | `MODIFIER_PROPERTY_ATTACK_RANGE_BONUS`                         | 116   |
 | `MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE`                  | 117   |
 | `MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_PERCENTAGE`              | 118   |
-| `MODIFIER_PROPERTY_MAX_ATTACK_RANGE`                           | 119   |
-| `MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS`                     | 120   |
-| `MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE`          | 121   |
-| `MODIFIER_PROPERTY_PROJECTILE_NAME`                            | 122   |
-| `MODIFIER_PROPERTY_REINCARNATION`                              | 123   |
-| `MODIFIER_PROPERTY_REINCARNATION_SUPPRESS_FX`                  | 124   |
-| `MODIFIER_PROPERTY_RESPAWNTIME`                                | 125   |
-| `MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE`                     | 126   |
-| `MODIFIER_PROPERTY_RESPAWNTIME_STACKING`                       | 127   |
-| `MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE`                        | 128   |
-| `MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING`                | 129   |
-| `MODIFIER_PROPERTY_CASTTIME_PERCENTAGE`                        | 130   |
-| `MODIFIER_PROPERTY_ATTACK_ANIM_TIME_PERCENTAGE`                | 132   |
-| `MODIFIER_PROPERTY_MANACOST_PERCENTAGE`                        | 133   |
-| `MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING`               | 134   |
-| `MODIFIER_PROPERTY_HEALTHCOST_PERCENTAGE`                      | 135   |
-| `MODIFIER_PROPERTY_HEALTHCOST_PERCENTAGE_STACKING`             | 136   |
-| `MODIFIER_PROPERTY_DEATHGOLDCOST`                              | 137   |
-| `MODIFIER_PROPERTY_PERCENTAGE_DEATHGOLDCOST`                   | 138   |
-| `MODIFIER_PROPERTY_EXP_RATE_BOOST`                             | 139   |
-| `MODIFIER_PROPERTY_GOLD_RATE_BOOST`                            | 140   |
-| `MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE`                   | 143   |
-| `MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE`            | 144   |
-| `MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK`                     | 145   |
-| `MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK`                    | 146   |
-| `MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL`            | 147   |
-| `MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR` | 150   |
-| `MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK`                       | 151   |
-| `MODIFIER_PROPERTY_OVERRIDE_ANIMATION`                         | 152   |
-| `MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE`                    | 153   |
-| `MODIFIER_PROPERTY_ABSORB_SPELL`                               | 154   |
-| `MODIFIER_PROPERTY_REFLECT_SPELL`                              | 155   |
-| `MODIFIER_PROPERTY_DISABLE_AUTOATTACK`                         | 156   |
-| `MODIFIER_PROPERTY_BONUS_DAY_VISION`                           | 157   |
-| `MODIFIER_PROPERTY_BONUS_DAY_VISION_PERCENTAGE`                | 158   |
-| `MODIFIER_PROPERTY_BONUS_NIGHT_VISION`                         | 159   |
-| `MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE`                  | 160   |
-| `MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE`                    | 161   |
-| `MODIFIER_PROPERTY_FIXED_DAY_VISION`                           | 162   |
-| `MODIFIER_PROPERTY_FIXED_NIGHT_VISION`                         | 163   |
-| `MODIFIER_PROPERTY_MIN_HEALTH`                                 | 164   |
-| `MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL`                | 166   |
-| `MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL`                 | 167   |
-| `MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE`                    | 168   |
-| `MODIFIER_PROPERTY_IS_ILLUSION`                                | 169   |
-| `MODIFIER_PROPERTY_ILLUSION_LABEL`                             | 170   |
-| `MODIFIER_PROPERTY_STRONG_ILLUSION`                            | 171   |
-| `MODIFIER_PROPERTY_SUPER_ILLUSION`                             | 172   |
-| `MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE`               | 173   |
-| `MODIFIER_PROPERTY_XP_DURING_DEATH`                            | 174   |
-| `MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE`                       | 175   |
-| `MODIFIER_PROPERTY_TURN_RATE_OVERRIDE`                         | 176   |
-| `MODIFIER_PROPERTY_DISABLE_HEALING`                            | 177   |
-| `MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK`                        | 179   |
-| `MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK`                     | 180   |
-| `MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL`                    | 181   |
-| `MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH`                   | 182   |
-| `MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER`                    | 183   |
-| `MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER`                    | 184   |
-| `MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING`                    | 185   |
-| `MODIFIER_PROPERTY_DODGE_PROJECTILE`                           | 186   |
-| `MODIFIER_PROPERTY_TRIGGER_COSMETIC_AND_END_ATTACK`            | 187   |
-| `MODIFIER_PROPERTY_PRIMARY_STAT_DAMAGE_MULTIPLIER`             | 188   |
-| `MODIFIER_PROPERTY_PREATTACK_DEADLY_BLOW`                      | 189   |
-| `MODIFIER_PROPERTY_ALWAYS_AUTOATTACK_WHILE_HOLD_POSITION`      | 190   |
-| `MODIFIER_EVENT_ON_SPELL_TARGET_READY`                         | 196   |
-| `MODIFIER_EVENT_ON_ATTACK_RECORD`                              | 197   |
-| `MODIFIER_EVENT_ON_ATTACK_START`                               | 198   |
-| `MODIFIER_EVENT_ON_ATTACK`                                     | 199   |
-| `MODIFIER_EVENT_ON_ATTACK_LANDED`                              | 200   |
-| `MODIFIER_EVENT_ON_ATTACK_FAIL`                                | 201   |
-| `MODIFIER_EVENT_ON_ATTACK_ALLIED`                              | 202   |
-| `MODIFIER_EVENT_ON_PROJECTILE_DODGE`                           | 203   |
-| `MODIFIER_EVENT_ON_ORDER`                                      | 204   |
-| `MODIFIER_EVENT_ON_UNIT_MOVED`                                 | 206   |
-| `MODIFIER_EVENT_ON_ABILITY_START`                              | 207   |
-| `MODIFIER_EVENT_ON_ABILITY_EXECUTED`                           | 208   |
-| `MODIFIER_EVENT_ON_ABILITY_FULLY_CAST`                         | 209   |
-| `MODIFIER_EVENT_ON_BREAK_INVISIBILITY`                         | 210   |
-| `MODIFIER_EVENT_ON_ABILITY_END_CHANNEL`                        | 211   |
-| `MODIFIER_EVENT_ON_PROCESS_UPGRADE`                            | 212   |
-| `MODIFIER_EVENT_ON_REFRESH`                                    | 213   |
-| `MODIFIER_EVENT_ON_TAKEDAMAGE`                                 | 214   |
-| `MODIFIER_EVENT_ON_DEATH_PREVENTED`                            | 215   |
-| `MODIFIER_EVENT_ON_STATE_CHANGED`                              | 216   |
-| `MODIFIER_EVENT_ON_ORB_EFFECT`                                 | 217   |
-| `MODIFIER_EVENT_ON_PROCESS_CLEAVE`                             | 218   |
-| `MODIFIER_EVENT_ON_DAMAGE_CALCULATED`                          | 219   |
-| `MODIFIER_EVENT_ON_MAGIC_DAMAGE_CALCULATED`                    | 220   |
-| `MODIFIER_EVENT_ON_ATTACKED`                                   | 221   |
-| `MODIFIER_EVENT_ON_DEATH`                                      | 222   |
-| `MODIFIER_EVENT_ON_DEATH_COMPLETED`                            | 223   |
-| `MODIFIER_EVENT_ON_RESPAWN`                                    | 224   |
-| `MODIFIER_EVENT_ON_SPENT_MANA`                                 | 225   |
-| `MODIFIER_EVENT_ON_SPENT_HEALTH`                               | 226   |
-| `MODIFIER_EVENT_ON_TELEPORTING`                                | 228   |
-| `MODIFIER_EVENT_ON_TELEPORTED`                                 | 229   |
-| `MODIFIER_EVENT_ON_SET_LOCATION`                               | 230   |
-| `MODIFIER_EVENT_ON_HEALTH_GAINED`                              | 231   |
-| `MODIFIER_EVENT_ON_MANA_GAINED`                                | 232   |
-| `MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT`                      | 233   |
-| `MODIFIER_EVENT_ON_HERO_KILLED`                                | 234   |
-| `MODIFIER_EVENT_ON_HEAL_RECEIVED`                              | 235   |
-| `MODIFIER_EVENT_ON_BUILDING_KILLED`                            | 237   |
-| `MODIFIER_EVENT_ON_MODEL_CHANGED`                              | 238   |
-| `MODIFIER_EVENT_ON_MODIFIER_ADDED`                             | 239   |
-| `MODIFIER_EVENT_ON_MODIFIER_REMOVED`                           | 240   |
-| `MODIFIER_PROPERTY_TOOLTIP`                                    | 243   |
-| `MODIFIER_PROPERTY_MODEL_CHANGE`                               | 244   |
-| `MODIFIER_PROPERTY_MODEL_SCALE`                                | 245   |
-| `MODIFIER_PROPERTY_MODEL_SCALE_ANIMATE_TIME`                   | 246   |
-| `MODIFIER_PROPERTY_MODEL_SCALE_USE_IN_OUT_EASE`                | 247   |
-| `MODIFIER_PROPERTY_MODEL_SCALE_CONSTANT`                       | 248   |
-| `MODIFIER_PROPERTY_IS_SCEPTER`                                 | 249   |
-| `MODIFIER_PROPERTY_IS_SHARD`                                   | 250   |
-| `MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION`                   | 251   |
-| `MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS`               | 252   |
-| `MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND`                     | 253   |
-| `MODIFIER_PROPERTY_LIFETIME_FRACTION`                          | 254   |
-| `MODIFIER_PROPERTY_PROVIDES_FOW_POSITION`                      | 255   |
-| `MODIFIER_PROPERTY_SPELLS_REQUIRE_HP`                          | 256   |
-| `MODIFIER_PROPERTY_CONVERT_MANA_COST_TO_HEALTH_COST`           | 257   |
-| `MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP`                         | 258   |
-| `MODIFIER_PROPERTY_DISABLE_TURNING`                            | 259   |
-| `MODIFIER_PROPERTY_IGNORE_CAST_ANGLE`                          | 260   |
-| `MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE`                       | 261   |
-| `MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL`                   | 262   |
-| `MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE`             | 263   |
-| `MODIFIER_PROPERTY_ABILITY_LAYOUT`                             | 264   |
-| `MODIFIER_EVENT_ON_DOMINATED`                                  | 265   |
-| `MODIFIER_EVENT_ON_KILL`                                       | 266   |
-| `MODIFIER_EVENT_ON_ASSIST`                                     | 267   |
-| `MODIFIER_PROPERTY_TEMPEST_DOUBLE`                             | 268   |
-| `MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE`         | 269   |
-| `MODIFIER_EVENT_ON_ATTACK_FINISHED`                            | 270   |
-| `MODIFIER_PROPERTY_IGNORE_COOLDOWN`                            | 271   |
-| `MODIFIER_PROPERTY_CAN_ATTACK_TREES`                           | 272   |
-| `MODIFIER_PROPERTY_VISUAL_Z_DELTA`                             | 273   |
-| `MODIFIER_PROPERTY_VISUAL_Z_SPEED_BASE_OVERRIDE`               | 274   |
-| `MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION`                   | 275   |
-| `MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER`               | 276   |
-| `MODIFIER_PROPERTY_TOOLTIP2`                                   | 277   |
-| `MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY`                      | 278   |
-| `MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT`                 | 279   |
-| `MODIFIER_PROPERTY_SUPPRESS_TELEPORT`                          | 280   |
-| `MODIFIER_EVENT_ON_ATTACK_CANCELLED`                           | 281   |
-| `MODIFIER_PROPERTY_SUPPRESS_CLEAVE`                            | 282   |
-| `MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS`                     | 283   |
-| `MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE`           | 284   |
-| `MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE`             | 285   |
-| `MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET`                 | 286   |
-| `MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE`                     | 287   |
-| `MODIFIER_EVENT_ON_ATTEMPT_PROJECTILE_DODGE`                   | 288   |
-| `MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING`               | 289   |
-| `MODIFIER_PROPERTY_SPELL_REDIRECT_TARGET`                      | 290   |
-| `MODIFIER_PROPERTY_TURN_RATE_CONSTANT`                         | 291   |
-| `MODIFIER_PROPERTY_PACK_RAT`                                   | 292   |
-| `MODIFIER_PROPERTY_PHYSICALDAMAGEOUTGOING_PERCENTAGE`          | 293   |
-| `MODIFIER_PROPERTY_KNOCKBACK_AMPLIFICATION_PERCENTAGE`         | 294   |
-| `MODIFIER_PROPERTY_HEALTHBAR_PIPS`                             | 295   |
-| `MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT`                   | 296   |
-| `MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY`                    | 297   |
-| `MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS`              | 298   |
-| `MODIFIER_PROPERTY_FAIL_ATTACK`                                | 299   |
-| `MODIFIER_PROPERTY_PREREDUCE_INCOMING_DAMAGE_MULT`             | 300   |
-| `MODIFIER_PROPERTY_SUPPRESS_FULLSCREEN_DEATH_FX`               | 301   |
-| `MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT_POST`              | 302   |
-| `MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_MULTIPLICATIVE`   | 303   |
-| `MODIFIER_PROPERTY_TICK_GOLD_MULTIPLIER`                       | 304   |
-| `MODIFIER_PROPERTY_SLOW_RESISTANCE_UNIQUE`                     | 305   |
-| `MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING`                   | 306   |
-| `MODIFIER_PROPERTY_AOE_BONUS_PERCENTAGE`                       | 308   |
-| `MODIFIER_PROPERTY_PROJECTILE_SPEED`                           | 309   |
-| `MODIFIER_PROPERTY_PROJECTILE_SPEED_TARGET`                    | 310   |
-| `MODIFIER_PROPERTY_BECOME_STRENGTH`                            | 311   |
-| `MODIFIER_PROPERTY_BECOME_AGILITY`                             | 312   |
-| `MODIFIER_PROPERTY_BECOME_INTELLIGENCE`                        | 313   |
-| `MODIFIER_PROPERTY_BECOME_UNIVERSAL`                           | 314   |
-| `MODIFIER_EVENT_ON_FORCE_PROC_MAGIC_STICK`                     | 315   |
-| `MODIFIER_EVENT_ON_DAMAGE_HPLOSS`                              | 316   |
-| `MODIFIER_PROPERTY_SHARE_XPRUNE`                               | 317   |
-| `MODIFIER_PROPERTY_NO_FREE_TP_SCROLL_ON_DEATH`                 | 319   |
-| `MODIFIER_PROPERTY_HAS_BONUS_NEUTRAL_ITEM_CHOICE`              | 320   |
-| `MODIFIER_PROPERTY_FORCE_MAX_HEALTH`                           | 323   |
-| `MODIFIER_PROPERTY_FORCE_MAX_MANA`                             | 324   |
-| `MODIFIER_PROPERTY_AOE_BONUS_CONSTANT`                         | 325   |
-| `MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING`                | 326   |
-| `MODIFIER_EVENT_ON_TAKEDAMAGE_POST_UNAVOIDABLE_BLOCK`          | 327   |
-| `MODIFIER_EVENT_ON_MUTE_DAMAGE_ABILITIES`                      | 328   |
-| `MODIFIER_PROPERTY_SUPPRESS_CRIT`                              | 329   |
-| `MODIFIER_PROPERTY_ABILITY_POINTS`                             | 330   |
-| `MODIFIER_PROPERTY_BUYBACK_PENALTY_PERCENT`                    | 331   |
-| `MODIFIER_PROPERTY_ITEM_SELLBACK_COST`                         | 332   |
-| `MODIFIER_PROPERTY_DISASSEMBLE_ANYTHING`                       | 333   |
-| `MODIFIER_PROPERTY_FIXED_MANA_REGEN`                           | 334   |
-| `MODIFIER_PROPERTY_BONUS_UPHILL_MISS_CHANCE`                   | 335   |
-| `MODIFIER_PROPERTY_CREEP_DENY_PERCENT`                         | 336   |
-| `MODIFIER_PROPERTY_ATTACKSPEED_ABSOLUTE_MAX`                   | 337   |
-| `MODIFIER_PROPERTY_FOW_TEAM`                                   | 338   |
-| `MODIFIER_EVENT_ON_HERO_BEGIN_DYING`                           | 339   |
-| `MODIFIER_PROPERTY_BONUS_LOTUS_HEAL`                           | 340   |
-| `MODIFIER_PROPERTY_BASE_HP_REGEN_PER_STR_BONUS_PERCENTAGE`     | 341   |
-| `MODIFIER_PROPERTY_BASE_ARMOR_PER_AGI_BONUS_PERCENTAGE`        | 342   |
-| `MODIFIER_PROPERTY_BASE_MP_REGEN_PER_INT_BONUS_PERCENTAGE`     | 344   |
-| `MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE`         | 345   |
-| `MODIFIER_EVENT_ON_DAY_STARTED`                                | 346   |
-| `MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_CHANCE`               | 348   |
-| `MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_COUNT`                | 349   |
-| `MODIFIER_PROPERTY_PSEUDORANDOM_BONUS`                         | 350   |
-| `MODIFIER_PROPERTY_ATTACK_HEIGHT_BONUS`                        | 351   |
-| `MODIFIER_PROPERTY_SKIP_ATTACK_REGULATOR`                      | 352   |
-| `MODIFIER_PROPERTY_MISS_PERCENTAGE_TARGET`                     | 353   |
-| `MODIFIER_PROPERTY_ADDITIONAL_NEUTRAL_ITEM_DROPS`              | 354   |
-| `MODIFIER_PROPERTY_KILL_STREAK_BONUS_GOLD_PERCENTAGE`          | 355   |
-| `MODIFIER_PROPERTY_HP_REGEN_MULTIPLIER_PRE_AMPLIFICATION`      | 356   |
-| `MODIFIER_PROPERTY_HEROFACET_OVERRIDE`                         | 357   |
-| `MODIFIER_EVENT_ON_TREE_CUT_DOWN`                              | 358   |
-| `MODIFIER_EVENT_ON_CLEAVE_ATTACK_LANDED`                       | 359   |
-| `MODIFIER_PROPERTY_MIN_ATTRIBUTE_LEVEL`                        | 360   |
-| `MODIFIER_PROPERTY_TIER_TOKEN_REROLL`                          | 361   |
-| `MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_STACKING`              | 363   |
-| `MODIFIER_PROPERTY_INVENTORY_SLOT_RESTRICTED`                  | 364   |
-| `MODIFIER_EVENT_ON_TIER_TOKEN_REROLLED`                        | 365   |
-| `MODIFIER_PROPERTY_REDIRECT_SPELL`                             | 366   |
-| `MODIFIER_PROPERTY_BASEATTACK_POSTBONUS`                       | 367   |
-| `MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`                           | 368   |
-| `MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`                      | 369   |
-| `MODIFIER_EVENT_ON_ABILITY_TOGGLED`                            | 370   |
-| `MODIFIER_FUNCTION_LAST`                                       | 409   |
+| `MODIFIER_PROPERTY_MAX_ATTACK_RANGE`                           | 120   |
+| `MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS`                     | 121   |
+| `MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE`          | 122   |
+| `MODIFIER_PROPERTY_PROJECTILE_NAME`                            | 123   |
+| `MODIFIER_PROPERTY_REINCARNATION`                              | 124   |
+| `MODIFIER_PROPERTY_REINCARNATION_SUPPRESS_FX`                  | 125   |
+| `MODIFIER_PROPERTY_RESPAWNTIME`                                | 126   |
+| `MODIFIER_PROPERTY_RESPAWNTIME_PERCENTAGE`                     | 127   |
+| `MODIFIER_PROPERTY_RESPAWNTIME_STACKING`                       | 128   |
+| `MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE`                        | 129   |
+| `MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_ONGOING`                | 130   |
+| `MODIFIER_PROPERTY_CASTTIME_PERCENTAGE`                        | 131   |
+| `MODIFIER_PROPERTY_ATTACK_ANIM_TIME_PERCENTAGE`                | 133   |
+| `MODIFIER_PROPERTY_MANACOST_PERCENTAGE`                        | 134   |
+| `MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING`               | 135   |
+| `MODIFIER_PROPERTY_HEALTHCOST_PERCENTAGE`                      | 136   |
+| `MODIFIER_PROPERTY_HEALTHCOST_PERCENTAGE_STACKING`             | 137   |
+| `MODIFIER_PROPERTY_DEATHGOLDCOST`                              | 138   |
+| `MODIFIER_PROPERTY_PERCENTAGE_DEATHGOLDCOST`                   | 139   |
+| `MODIFIER_PROPERTY_EXP_RATE_BOOST`                             | 140   |
+| `MODIFIER_PROPERTY_GOLD_RATE_BOOST`                            | 141   |
+| `MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE`                   | 144   |
+| `MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE`            | 145   |
+| `MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK`                     | 146   |
+| `MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK`                    | 147   |
+| `MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK_SPECIAL`            | 148   |
+| `MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_UNAVOIDABLE_PRE_ARMOR` | 151   |
+| `MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK`                       | 152   |
+| `MODIFIER_PROPERTY_OVERRIDE_ANIMATION`                         | 153   |
+| `MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE`                    | 154   |
+| `MODIFIER_PROPERTY_ABSORB_SPELL`                               | 155   |
+| `MODIFIER_PROPERTY_REFLECT_SPELL`                              | 156   |
+| `MODIFIER_PROPERTY_DISABLE_AUTOATTACK`                         | 157   |
+| `MODIFIER_PROPERTY_BONUS_DAY_VISION`                           | 158   |
+| `MODIFIER_PROPERTY_BONUS_DAY_VISION_PERCENTAGE`                | 159   |
+| `MODIFIER_PROPERTY_BONUS_NIGHT_VISION`                         | 160   |
+| `MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE`                  | 161   |
+| `MODIFIER_PROPERTY_BONUS_VISION_PERCENTAGE`                    | 162   |
+| `MODIFIER_PROPERTY_FIXED_DAY_VISION`                           | 163   |
+| `MODIFIER_PROPERTY_FIXED_NIGHT_VISION`                         | 164   |
+| `MODIFIER_PROPERTY_MIN_HEALTH`                                 | 165   |
+| `MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL`                | 167   |
+| `MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL`                 | 168   |
+| `MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE`                    | 169   |
+| `MODIFIER_PROPERTY_IS_ILLUSION`                                | 170   |
+| `MODIFIER_PROPERTY_ILLUSION_LABEL`                             | 171   |
+| `MODIFIER_PROPERTY_STRONG_ILLUSION`                            | 172   |
+| `MODIFIER_PROPERTY_SUPER_ILLUSION`                             | 173   |
+| `MODIFIER_PROPERTY_SUPER_ILLUSION_WITH_ULTIMATE`               | 174   |
+| `MODIFIER_PROPERTY_XP_DURING_DEATH`                            | 175   |
+| `MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE`                       | 176   |
+| `MODIFIER_PROPERTY_TURN_RATE_OVERRIDE`                         | 177   |
+| `MODIFIER_PROPERTY_DISABLE_HEALING`                            | 178   |
+| `MODIFIER_PROPERTY_ALWAYS_ALLOW_ATTACK`                        | 180   |
+| `MODIFIER_PROPERTY_ALWAYS_ETHEREAL_ATTACK`                     | 181   |
+| `MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL`                    | 182   |
+| `MODIFIER_PROPERTY_UNIT_STATS_NEEDS_REFRESH`                   | 183   |
+| `MODIFIER_PROPERTY_BOUNTY_CREEP_MULTIPLIER`                    | 184   |
+| `MODIFIER_PROPERTY_BOUNTY_OTHER_MULTIPLIER`                    | 185   |
+| `MODIFIER_PROPERTY_UNIT_DISALLOW_UPGRADING`                    | 186   |
+| `MODIFIER_PROPERTY_DODGE_PROJECTILE`                           | 187   |
+| `MODIFIER_PROPERTY_TRIGGER_COSMETIC_AND_END_ATTACK`            | 188   |
+| `MODIFIER_PROPERTY_PRIMARY_STAT_DAMAGE_MULTIPLIER`             | 189   |
+| `MODIFIER_PROPERTY_PREATTACK_DEADLY_BLOW`                      | 190   |
+| `MODIFIER_PROPERTY_ALWAYS_AUTOATTACK_WHILE_HOLD_POSITION`      | 191   |
+| `MODIFIER_EVENT_ON_SPELL_TARGET_READY`                         | 197   |
+| `MODIFIER_EVENT_ON_ATTACK_RECORD`                              | 198   |
+| `MODIFIER_EVENT_ON_ATTACK_START`                               | 199   |
+| `MODIFIER_EVENT_ON_ATTACK`                                     | 200   |
+| `MODIFIER_EVENT_ON_ATTACK_LANDED`                              | 201   |
+| `MODIFIER_EVENT_ON_ATTACK_FAIL`                                | 202   |
+| `MODIFIER_EVENT_ON_ATTACK_ALLIED`                              | 203   |
+| `MODIFIER_EVENT_ON_PROJECTILE_DODGE`                           | 204   |
+| `MODIFIER_EVENT_ON_ORDER`                                      | 205   |
+| `MODIFIER_EVENT_ON_UNIT_MOVED`                                 | 207   |
+| `MODIFIER_EVENT_ON_ABILITY_START`                              | 208   |
+| `MODIFIER_EVENT_ON_ABILITY_EXECUTED`                           | 209   |
+| `MODIFIER_EVENT_ON_ABILITY_FULLY_CAST`                         | 210   |
+| `MODIFIER_EVENT_ON_BREAK_INVISIBILITY`                         | 211   |
+| `MODIFIER_EVENT_ON_ABILITY_END_CHANNEL`                        | 212   |
+| `MODIFIER_EVENT_ON_PROCESS_UPGRADE`                            | 213   |
+| `MODIFIER_EVENT_ON_REFRESH`                                    | 214   |
+| `MODIFIER_EVENT_ON_TAKEDAMAGE`                                 | 215   |
+| `MODIFIER_EVENT_ON_DEATH_PREVENTED`                            | 216   |
+| `MODIFIER_EVENT_ON_STATE_CHANGED`                              | 217   |
+| `MODIFIER_EVENT_ON_ORB_EFFECT`                                 | 218   |
+| `MODIFIER_EVENT_ON_PROCESS_CLEAVE`                             | 219   |
+| `MODIFIER_EVENT_ON_DAMAGE_CALCULATED`                          | 220   |
+| `MODIFIER_EVENT_ON_MAGIC_DAMAGE_CALCULATED`                    | 221   |
+| `MODIFIER_EVENT_ON_ATTACKED`                                   | 222   |
+| `MODIFIER_EVENT_ON_DEATH`                                      | 223   |
+| `MODIFIER_EVENT_ON_DEATH_COMPLETED`                            | 224   |
+| `MODIFIER_EVENT_ON_RESPAWN`                                    | 225   |
+| `MODIFIER_EVENT_ON_SPENT_MANA`                                 | 226   |
+| `MODIFIER_EVENT_ON_SPENT_HEALTH`                               | 227   |
+| `MODIFIER_EVENT_ON_TELEPORTING`                                | 229   |
+| `MODIFIER_EVENT_ON_TELEPORTED`                                 | 230   |
+| `MODIFIER_EVENT_ON_SET_LOCATION`                               | 231   |
+| `MODIFIER_EVENT_ON_HEALTH_GAINED`                              | 232   |
+| `MODIFIER_EVENT_ON_MANA_GAINED`                                | 233   |
+| `MODIFIER_EVENT_ON_TAKEDAMAGE_KILLCREDIT`                      | 234   |
+| `MODIFIER_EVENT_ON_HERO_KILLED`                                | 235   |
+| `MODIFIER_EVENT_ON_HEAL_RECEIVED`                              | 236   |
+| `MODIFIER_EVENT_ON_BUILDING_KILLED`                            | 238   |
+| `MODIFIER_EVENT_ON_MODEL_CHANGED`                              | 239   |
+| `MODIFIER_EVENT_ON_MODIFIER_ADDED`                             | 240   |
+| `MODIFIER_EVENT_ON_MODIFIER_REMOVED`                           | 241   |
+| `MODIFIER_PROPERTY_TOOLTIP`                                    | 244   |
+| `MODIFIER_PROPERTY_MODEL_CHANGE`                               | 245   |
+| `MODIFIER_PROPERTY_MODEL_SCALE`                                | 246   |
+| `MODIFIER_PROPERTY_MODEL_SCALE_ANIMATE_TIME`                   | 247   |
+| `MODIFIER_PROPERTY_MODEL_SCALE_USE_IN_OUT_EASE`                | 248   |
+| `MODIFIER_PROPERTY_MODEL_SCALE_CONSTANT`                       | 249   |
+| `MODIFIER_PROPERTY_IS_SCEPTER`                                 | 250   |
+| `MODIFIER_PROPERTY_IS_SHARD`                                   | 251   |
+| `MODIFIER_PROPERTY_RADAR_COOLDOWN_REDUCTION`                   | 252   |
+| `MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS`               | 253   |
+| `MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND`                     | 254   |
+| `MODIFIER_PROPERTY_LIFETIME_FRACTION`                          | 255   |
+| `MODIFIER_PROPERTY_PROVIDES_FOW_POSITION`                      | 256   |
+| `MODIFIER_PROPERTY_SPELLS_REQUIRE_HP`                          | 257   |
+| `MODIFIER_PROPERTY_CONVERT_MANA_COST_TO_HEALTH_COST`           | 258   |
+| `MODIFIER_PROPERTY_FORCE_DRAW_MINIMAP`                         | 259   |
+| `MODIFIER_PROPERTY_DISABLE_TURNING`                            | 260   |
+| `MODIFIER_PROPERTY_IGNORE_CAST_ANGLE`                          | 261   |
+| `MODIFIER_PROPERTY_CHANGE_ABILITY_VALUE`                       | 262   |
+| `MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL`                   | 263   |
+| `MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE`             | 264   |
+| `MODIFIER_PROPERTY_ABILITY_LAYOUT`                             | 265   |
+| `MODIFIER_EVENT_ON_DOMINATED`                                  | 266   |
+| `MODIFIER_EVENT_ON_KILL`                                       | 267   |
+| `MODIFIER_EVENT_ON_ASSIST`                                     | 268   |
+| `MODIFIER_PROPERTY_TEMPEST_DOUBLE`                             | 269   |
+| `MODIFIER_PROPERTY_PRESERVE_PARTICLES_ON_MODEL_CHANGE`         | 270   |
+| `MODIFIER_EVENT_ON_ATTACK_FINISHED`                            | 271   |
+| `MODIFIER_PROPERTY_IGNORE_COOLDOWN`                            | 272   |
+| `MODIFIER_PROPERTY_CAN_ATTACK_TREES`                           | 273   |
+| `MODIFIER_PROPERTY_VISUAL_Z_DELTA`                             | 274   |
+| `MODIFIER_PROPERTY_VISUAL_Z_SPEED_BASE_OVERRIDE`               | 275   |
+| `MODIFIER_PROPERTY_INCOMING_DAMAGE_ILLUSION`                   | 276   |
+| `MODIFIER_PROPERTY_DONT_GIVE_VISION_OF_ATTACKER`               | 277   |
+| `MODIFIER_PROPERTY_TOOLTIP2`                                   | 278   |
+| `MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY`                      | 279   |
+| `MODIFIER_EVENT_ON_PROJECTILE_OBSTRUCTION_HIT`                 | 280   |
+| `MODIFIER_PROPERTY_SUPPRESS_TELEPORT`                          | 281   |
+| `MODIFIER_EVENT_ON_ATTACK_CANCELLED`                           | 282   |
+| `MODIFIER_PROPERTY_SUPPRESS_CLEAVE`                            | 283   |
+| `MODIFIER_PROPERTY_BOT_ATTACK_SCORE_BONUS`                     | 284   |
+| `MODIFIER_PROPERTY_ATTACKSPEED_REDUCTION_PERCENTAGE`           | 285   |
+| `MODIFIER_PROPERTY_MOVESPEED_REDUCTION_PERCENTAGE`             | 286   |
+| `MODIFIER_PROPERTY_ATTACK_WHILE_MOVING_TARGET`                 | 287   |
+| `MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE`                     | 288   |
+| `MODIFIER_EVENT_ON_ATTEMPT_PROJECTILE_DODGE`                   | 289   |
+| `MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING`               | 290   |
+| `MODIFIER_PROPERTY_SPELL_REDIRECT_TARGET`                      | 291   |
+| `MODIFIER_PROPERTY_TURN_RATE_CONSTANT`                         | 292   |
+| `MODIFIER_PROPERTY_PACK_RAT`                                   | 293   |
+| `MODIFIER_PROPERTY_PHYSICALDAMAGEOUTGOING_PERCENTAGE`          | 294   |
+| `MODIFIER_PROPERTY_KNOCKBACK_AMPLIFICATION_PERCENTAGE`         | 295   |
+| `MODIFIER_PROPERTY_HEALTHBAR_PIPS`                             | 296   |
+| `MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT`                   | 297   |
+| `MODIFIER_EVENT_SPELL_APPLIED_SUCCESSFULLY`                    | 298   |
+| `MODIFIER_PROPERTY_AVOID_DAMAGE_AFTER_REDUCTIONS`              | 299   |
+| `MODIFIER_PROPERTY_FAIL_ATTACK`                                | 300   |
+| `MODIFIER_PROPERTY_PREREDUCE_INCOMING_DAMAGE_MULT`             | 301   |
+| `MODIFIER_PROPERTY_SUPPRESS_FULLSCREEN_DEATH_FX`               | 302   |
+| `MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT_POST`              | 303   |
+| `MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE_MULTIPLICATIVE`   | 304   |
+| `MODIFIER_PROPERTY_TICK_GOLD_MULTIPLIER`                       | 305   |
+| `MODIFIER_PROPERTY_SLOW_RESISTANCE_UNIQUE`                     | 306   |
+| `MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING`                   | 307   |
+| `MODIFIER_PROPERTY_AOE_BONUS_PERCENTAGE`                       | 309   |
+| `MODIFIER_PROPERTY_PROJECTILE_SPEED`                           | 310   |
+| `MODIFIER_PROPERTY_PROJECTILE_SPEED_TARGET`                    | 311   |
+| `MODIFIER_PROPERTY_BECOME_STRENGTH`                            | 312   |
+| `MODIFIER_PROPERTY_BECOME_AGILITY`                             | 313   |
+| `MODIFIER_PROPERTY_BECOME_INTELLIGENCE`                        | 314   |
+| `MODIFIER_PROPERTY_BECOME_UNIVERSAL`                           | 315   |
+| `MODIFIER_EVENT_ON_FORCE_PROC_MAGIC_STICK`                     | 316   |
+| `MODIFIER_EVENT_ON_DAMAGE_HPLOSS`                              | 317   |
+| `MODIFIER_PROPERTY_SHARE_XPRUNE`                               | 318   |
+| `MODIFIER_PROPERTY_NO_FREE_TP_SCROLL_ON_DEATH`                 | 320   |
+| `MODIFIER_PROPERTY_HAS_BONUS_NEUTRAL_ITEM_CHOICE`              | 321   |
+| `MODIFIER_PROPERTY_FORCE_MAX_HEALTH`                           | 324   |
+| `MODIFIER_PROPERTY_FORCE_MAX_MANA`                             | 325   |
+| `MODIFIER_PROPERTY_AOE_BONUS_CONSTANT`                         | 326   |
+| `MODIFIER_PROPERTY_AOE_BONUS_CONSTANT_STACKING`                | 327   |
+| `MODIFIER_EVENT_ON_TAKEDAMAGE_POST_UNAVOIDABLE_BLOCK`          | 328   |
+| `MODIFIER_EVENT_ON_MUTE_DAMAGE_ABILITIES`                      | 329   |
+| `MODIFIER_PROPERTY_SUPPRESS_CRIT`                              | 330   |
+| `MODIFIER_PROPERTY_ABILITY_POINTS`                             | 331   |
+| `MODIFIER_PROPERTY_BUYBACK_PENALTY_PERCENT`                    | 332   |
+| `MODIFIER_PROPERTY_ITEM_SELLBACK_COST`                         | 333   |
+| `MODIFIER_PROPERTY_DISASSEMBLE_ANYTHING`                       | 334   |
+| `MODIFIER_PROPERTY_FIXED_MANA_REGEN`                           | 335   |
+| `MODIFIER_PROPERTY_BONUS_UPHILL_MISS_CHANCE`                   | 336   |
+| `MODIFIER_PROPERTY_CREEP_DENY_PERCENT`                         | 337   |
+| `MODIFIER_PROPERTY_ATTACKSPEED_ABSOLUTE_MAX`                   | 338   |
+| `MODIFIER_PROPERTY_FOW_TEAM`                                   | 339   |
+| `MODIFIER_EVENT_ON_HERO_BEGIN_DYING`                           | 340   |
+| `MODIFIER_PROPERTY_BONUS_LOTUS_HEAL`                           | 341   |
+| `MODIFIER_PROPERTY_BASE_HP_REGEN_PER_STR_BONUS_PERCENTAGE`     | 342   |
+| `MODIFIER_PROPERTY_BASE_ARMOR_PER_AGI_BONUS_PERCENTAGE`        | 343   |
+| `MODIFIER_PROPERTY_BASE_MP_REGEN_PER_INT_BONUS_PERCENTAGE`     | 345   |
+| `MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE`         | 346   |
+| `MODIFIER_EVENT_ON_DAY_STARTED`                                | 347   |
+| `MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_CHANCE`               | 349   |
+| `MODIFIER_PROPERTY_CREATE_BONUS_ILLUSION_COUNT`                | 350   |
+| `MODIFIER_PROPERTY_PSEUDORANDOM_BONUS`                         | 351   |
+| `MODIFIER_PROPERTY_ATTACK_HEIGHT_BONUS`                        | 352   |
+| `MODIFIER_PROPERTY_SKIP_ATTACK_REGULATOR`                      | 353   |
+| `MODIFIER_PROPERTY_MISS_PERCENTAGE_TARGET`                     | 354   |
+| `MODIFIER_PROPERTY_ADDITIONAL_NEUTRAL_ITEM_DROPS`              | 355   |
+| `MODIFIER_PROPERTY_KILL_STREAK_BONUS_GOLD_PERCENTAGE`          | 356   |
+| `MODIFIER_PROPERTY_HP_REGEN_MULTIPLIER_PRE_AMPLIFICATION`      | 357   |
+| `MODIFIER_PROPERTY_HEROFACET_OVERRIDE`                         | 358   |
+| `MODIFIER_EVENT_ON_TREE_CUT_DOWN`                              | 359   |
+| `MODIFIER_EVENT_ON_CLEAVE_ATTACK_LANDED`                       | 360   |
+| `MODIFIER_PROPERTY_MIN_ATTRIBUTE_LEVEL`                        | 361   |
+| `MODIFIER_PROPERTY_TIER_TOKEN_REROLL`                          | 362   |
+| `MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK_STACKING`              | 364   |
+| `MODIFIER_PROPERTY_INVENTORY_SLOT_RESTRICTED`                  | 365   |
+| `MODIFIER_EVENT_ON_TIER_TOKEN_REROLLED`                        | 366   |
+| `MODIFIER_PROPERTY_REDIRECT_SPELL`                             | 367   |
+| `MODIFIER_PROPERTY_BASEATTACK_POSTBONUS`                       | 368   |
+| `MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`                           | 369   |
+| `MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`                      | 370   |
+| `MODIFIER_EVENT_ON_ABILITY_TOGGLED`                            | 371   |
+| `MODIFIER_FUNCTION_LAST`                                       | 412   |
 | `MODIFIER_FUNCTION_INVALID`                                    | 65535 |
 
 #### Enum.DrunkenBrawlerState
@@ -6684,9 +6791,9 @@ Removes widget's on change callback.
 
 `:UpdateBackgroundColors(colors):` **`nil`**
 
-| Name       | Type                                                   | Description                   |
-| ---------- | ------------------------------------------------------ | ----------------------------- |
-| **colors** | **`table<string>`** | Table with background colors. |
+| Name       | Type                                                          | Description                   |
+| ---------- | ------------------------------------------------------------- | ----------------------------- |
+| **colors** | **`table<string, Color>`** | Table with background colors. |
 
 Updates widget's background colors.
 
@@ -6694,9 +6801,9 @@ Updates widget's background colors.
 
 `:UpdateImageColors(colors):` **`nil`**
 
-| Name       | Type                                                   | Description              |
-| ---------- | ------------------------------------------------------ | ------------------------ |
-| **colors** | **`table<string>`** | Table with image colors. |
+| Name       | Type                                                          | Description              |
+| ---------- | ------------------------------------------------------------- | ------------------------ |
+| **colors** | **`table<string, Color>`** | Table with image colors. |
 
 Updates widget's image colors.
 
@@ -6704,9 +6811,9 @@ Updates widget's image colors.
 
 `:UpdateToolTips(colors):` **`nil`**
 
-| Name       | Type                                                   | Description             |
-| ---------- | ------------------------------------------------------ | ----------------------- |
-| **colors** | **`table<string>`** | Table with new tooltips |
+| Name       | Type                                                           | Description             |
+| ---------- | -------------------------------------------------------------- | ----------------------- |
+| **colors** | **`table<string, string>`** | Table with new tooltips |
 
 Updates widget's tooltips
 
@@ -8425,7 +8532,7 @@ Return all heroes in radius.
 
 #### Heroes.GetLocal
 
-`Heroes.GetLocal():` [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md)
+`Heroes.GetLocal():` [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) | **`nil`**
 
 Return local hero.
 
@@ -8606,7 +8713,7 @@ Check player in cheat list.
 
 #### Players.GetLocal
 
-`Players.GetLocal():` [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)
+`Players.GetLocal():` [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | **`nil`**
 
 Return local player.
 
@@ -8889,7 +8996,7 @@ Table to work linear projectiles.
 
 #### LinearProjectiles.GetAll
 
-`LinearProjectiles.GetAll():` **`{handle: integer, max_speed: number, max_dist: number, start_position: Vector, position: Vector, velocity: Vector, original_velocity: Vector, acceleration: Vector, fow_radius: number, source: CEntity}[]`**
+`LinearProjectiles.GetAll():` **`{handle: integer, max_speed: number, max_dist: number, start_position: Vector, position: Vector, velocity: Vector, original_velocity: Vector, acceleration: Vector, fow_radius: number, source: CEntity`** | **`nil}[]`**
 
 Returns the 1-based indexed table with all existing projectiles. See example.
 
@@ -9056,7 +9163,7 @@ Team data is only available for players on the local team.
 
 #### Player.GetNeutralStashItems
 
-`Player.GetNeutralStashItems(player):` **`{item: CItem }[]`**
+`Player.GetNeutralStashItems(player):` [**`CItem[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md)
 
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
@@ -9066,7 +9173,7 @@ Returns table with `CItem`s available in the neutral stash.
 
 #### Player.GetTeamPlayer
 
-`Player.GetTeamPlayer(player, [output]):` **`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, meta_level:integer, meta_experience:integer, meta_experience_awarded:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity, override_selection_entity:CEntity, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:integer, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**
+`Player.GetTeamPlayer(player, [output]):` **`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity`** | **`nil, override_selection_entity:CEntity`** | **`nil, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:number, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**
 
 | Name                                                         | Type                                                                                         | Description                                                                         |
 | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -9128,23 +9235,24 @@ Clears player selection.
 
 #### Player.GetQuickBuyInfo
 
-`Player.GetQuickBuyInfo(player):` **`{m_quickBuyItems:integer[], m_quickBuyIsPurchasable:boolean[]}`**
+`Player.GetQuickBuyInfo(player):` **`{mark_for_buy: boolean, buyback_protection: boolean, items: {ability_id: integer, top_level_item: integer, top_level_item_ability_id: integer, purchasable_state: integer, purchasable_accum_state: integer, marked_for_buy: boolean, parity: integer, sticky: boolean, purchase_in_flight: boolean, newly_actionable: boolean}[]}`** | **`nil`**
 
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
-Returns table with m_quickBuyItems(item ids) and m_quickBuyIsPurchasable(table of booleans).
+Returns the player's quick-buy state: the mark-for-buy and buyback-protection flags and the
+quick-buy item slots. Returns nil when the player has no hero or no team data.
 
 #### Player.GetCourierControllerInfo
 
-`Player.GetCourierControllerInfo(player):` **`{state:integer, shop:integer}`**
+`Player.GetCourierControllerInfo(player):` **`{state:integer, shop:integer}`** | **`nil`**
 
 | Name       | Type                                                                                         | Description        |
 | ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
-Returns table with m_CourierController structure
+Returns the player's courier controller state, or nil when it is unavailable.
 
 #### Player.GetTotalGold
 
@@ -9175,6 +9283,23 @@ Returns player's assigned hero.
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the unit currently queried by the player.
+
+#### Player.SetQueryUnit
+
+`Player.SetQueryUnit(unit):` **`boolean`**
+
+| Name     | Type                                                                                   | Description          |
+| -------- | -------------------------------------------------------------------------------------- | -------------------- |
+| **unit** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The entity to query. |
+
+Sets the local player's HUD query entity without changing the selection group.
+
+#### Player.GetClickBehaviors
+
+`Player.GetClickBehaviors():` [**`Enum.CLICK_BEHAVIORS`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.click_behaviors)
+
+Returns the local player's current click mode, like GameUI.GetClickBehaviors.
+Returns DOTA_CLICK_BEHAVIOR_NONE when there is no local player.
 
 #### Player.GetActiveAbility
 
@@ -9254,7 +9379,7 @@ have tested.
 
 #### Modifier.GetIndex
 
-`Modifier.GetIndex(modifier):` **`GetIndex`**
+`Modifier.GetIndex(modifier):` **`integer`**
 
 | Name         | Type                                                                                             | Description              |
 | ------------ | ------------------------------------------------------------------------------------------------ | ------------------------ |
@@ -10155,12 +10280,12 @@ Returns `true` if the `CNPC` has state. The best way to check if the `CNPC` is s
 
 #### NPC.GetStatesDuration
 
-`NPC.GetStatesDuration(npc, states, [only_active_states]):` **`table`**
+`NPC.GetStatesDuration(npc, states, [only_active_states]):` **`table<Enum.ModifierState, number>`**
 
 | Name                                                                       | Type                                                                                   | Description                                                                                                                         |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **npc**                                                                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                        |
-| **states**                                                                 | **`integer[]`**                                     | states to check                                                                                                                     |
+| **states**                                                                 | **`table<Enum.ModifierState, boolean>`**            | states to check; the keys are read, the values are ignored                                                                          |
 | **only_active_states** **`[?]`** | **`boolean`**                                       | if `true` then check only states that active on unit, otherwise check all states. e.g. rooted while debuff immune `(default: true)` |
 
 Returns table of remaining modifier states duration. See the example
@@ -10538,7 +10663,7 @@ Returns the `CNPC` activity, such as running, attacking, casting, etc.
 
 #### NPC.GetAnimationInfo
 
-`NPC.GetAnimationInfo(npc):` **`{sequence:integer, cycle:number, name:string, mdl_name:string}`**
+`NPC.GetAnimationInfo(npc):` **`{sequence:integer, cycle:number, name:string`** | **`nil, mdl_name:string}`**
 
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
@@ -10659,6 +10784,16 @@ Returns the number of attacks per second that the `CNPC` can deal.
 
 Returns the amount of time needed for the `CNPC` to perform an attack.
 
+#### NPC.GetLastAttackTime
+
+`NPC.GetLastAttackTime(npc):` **`number`**
+
+| Name    | Type                                                                                   | Description |
+| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
+
+Returns the game time of the `CNPC`'s last attack point. The value includes the sub-tick fraction of the attack cadence.
+
 #### NPC.GetAttackSpeed
 
 `NPC.GetAttackSpeed(npc, [ignore_temp_attack_speed]):` **`number`**
@@ -10690,7 +10825,7 @@ Returns the base attack speed of the `CNPC`.
 
 Returns the model interaction radius of the `CNPC`.
 
-#### NPC.GetPaddedCollisionRadius(npc)
+#### NPC.GetPaddedCollisionRadius
 
 `NPC.GetPaddedCollisionRadius(npc):` **`number`**
 
@@ -10710,9 +10845,9 @@ Returns the collision hull radius (including padding) of this `NPC`.
 
 Returns the collision including padding of this `NPC`.
 
-#### NPC.GetPaddedCollisionRadius(npc)
+#### NPC.GetRingRadius
 
-`NPC.GetPaddedCollisionRadius(npc):` **`number`**
+`NPC.GetRingRadius(npc):` **`number`**
 
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
@@ -10748,7 +10883,7 @@ Returns the turn rate, which is the speed at which the `CNPC` can turn.
 
 see: <https://dota2.fandom.com/wiki/Attack\_animation>
 
-`NPC.GetAttackAnimPoint(npc):` **`number`**
+`NPC.GetAttackAnimPoint(npc):` **`number`** | **`nil`**
 
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
@@ -10760,7 +10895,7 @@ Returns the attack animation point, `nil` if not found.
 
 see: <https://dota2.fandom.com/wiki/Projectile\_Speed>
 
-`NPC.GetAttackProjectileSpeed(npc):` **`integer`**
+`NPC.GetAttackProjectileSpeed(npc):` **`integer`** | **`nil`**
 
 | Name    | Type                                                                                   | Description |
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
@@ -11067,7 +11202,7 @@ Returns the health bar offset of the `CNPC`.
 
 #### NPC.GetUnitNameIndex
 
-index can change when new unit are added
+returns the legacy numeric ID, not the current UnitNames string-table index
 
 `NPC.GetUnitNameIndex(npc):` **`integer`**
 
@@ -11075,7 +11210,7 @@ index can change when new unit are added
 | ------- | -------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
-Returns unit-name index of the `CNPC`.
+Returns the canonical unit-name index of the `CNPC`.
 
 #### NPC.GetAttachment
 
@@ -11170,6 +11305,23 @@ Returns the attachment position of the `CNPC` by the specified index.
 | **name** | **`string`**                                        | attachment name. e.g. "attach_hitloc" |
 
 Returns the attachment index of the `CNPC` by the name.
+
+#### NPC.EvaluateAttachmentEmulated
+
+`NPC.EvaluateAttachmentEmulated(npc, name, activity, seq_variant, cycle):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
+
+| Name             | Type                                                                                   | Description                                      |
+| ---------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| **npc**          | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                       |
+| **name**         | **`string`**                                        | attachment name (e.g. "attach_attack1")         |
+| **activity**     | **`number`**                                        | GameActivity int (e.g. 1503 = ACT_DOTA_ATTACK) |
+| **seq_variant** | **`number`**                                        | sequence variant index (usually 0)               |
+| **cycle**        | **`number`**                                        | sequence cycle 0..1                              |
+
+Returns the world-space position of the attachment `name` on the `CNPC`, evaluated for the
+given animation activity, sequence variant and cycle. The NPC's current animation is not changed.
+If no sequence matches the activity and variant, the position of the attachment in the current
+pose is returned.
 
 #### NPC.GetBountyXP
 
@@ -11291,15 +11443,35 @@ Returns sequence duration of the npc with the specified sequence index.
 
 Returns the seconds per attack of the npc.
 
+#### NPC.GetSequence
+
+`NPC.GetSequence(npc, sequenceVariant, activity):` **`integer`**
+
+| Name                | Type                                                                                   | Description                                                  |
+| ------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **npc**             | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                                   |
+| **sequenceVariant** | **`integer`**                                       | 0 by default (most heroes)                                   |
+| **activity**        | **`integer`**                                       | GameActivity enum (e.g. Enum.GameActivity.ACT_DOTA_ATTACK) |
+
+Returns the sequence (HSequence) the NPC plays for the given activity and sequence variant. The
+lookup uses the activity, not the NPC's current animation.
+
+##### Example
+
+```lua
+local seq = NPC.GetSequence(npc, 0, Enum.GameActivity.ACT_DOTA_ATTACK)
+local dur = NPC.SequenceDuration(npc, seq)
+```
+
 #### NPC.GetBarriers
 
-`NPC.GetBarriers(npc):` **`{physical:{total:number, current:number}, magic:{total:number, current:number}, all:{total:number, current:number}}`**
+`NPC.GetBarriers(npc):` **`{physical:{total:number, current:number}, magic:{total:number, current:number}, all:{total:number, current:number}}`** | **`nil`**
 
 | Name    | Type                                                                                   | Description     |
 | ------- | -------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
-Returns a table with information about the barriers of the `CNPC`.
+Returns a table with information about the barriers of the `CNPC`, or `nil` if it has none.
 
 #### NPC.GetGlow
 
@@ -11651,7 +11823,7 @@ Returns the last hero pos from maphack.
 
 #### Hero.GetLastVisibleTime
 
-`Hero.GetLastVisibleTime(hero):` **`float`** | **`nil`**
+`Hero.GetLastVisibleTime(hero):` **`number`** | **`nil`**
 
 | Name     | Type                                                                                     | Description |
 | -------- | ---------------------------------------------------------------------------------------- | ----------- |
@@ -12239,7 +12411,7 @@ the cast state when called.
 Returns the gametime the ability will be casted. Requires the ability to be in the cast state
 when called.
 
-#### Ability.IsInIndefinateCooldown(ability)
+#### Ability.IsInIndefinateCooldown
 
 `Ability.IsInIndefinateCooldown(ability):` **`boolean`**
 
@@ -12249,9 +12421,9 @@ when called.
 
 Returns `true` if the cooldown of the ability is indefinite.
 
-#### Ability.IsInIndefinateCooldown(ability)
+#### Ability.IsFrozenCooldown
 
-`Ability.IsInIndefinateCooldown(ability):` **`boolean`**
+`Ability.IsFrozenCooldown(ability):` **`boolean`**
 
 | Name        | Type                                                                                           | Description |
 | ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
@@ -12675,7 +12847,7 @@ Returns selected `Enum.Attributes` attribute.
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md -->
 > **Навигация:** 4. Game Components - Core Objects → `Camp` | **Источник:** [camp.md](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md)
 
-Table to work with `CCamp`.**`CCamp`** extends **`CEntity`**
+Table to work with `CCamp`. **`CCamp`** extends **`CEntity`**
 
 #### Camp.GetType
 
@@ -12687,9 +12859,35 @@ Table to work with `CCamp`.**`CCamp`** extends **`CEntity`**
 
 Returns the camp type.
 
+#### Camp.GetKnownStackCount
+
+`Camp.GetKnownStackCount(camp):` **`integer`**
+
+| Name     | Type                                                                                     | Description                |
+| -------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | The camp spawner to check. |
+
+Returns known additional stacks for the local player's team, not the number of creeps.
+Returns zero when team data or a matching spawner entry is unavailable.
+Zero does not mean the camp is empty; data may be stale under fog of war.
+Spectator perspective selection is not supported.
+
+#### Camp.IsKnownClear
+
+`Camp.IsKnownClear(camp):` **`boolean`**
+
+| Name     | Type                                                                                     | Description                |
+| -------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | The camp spawner to check. |
+
+Returns whether the local player's team knows this camp as cleared.
+Returns false when team data or a matching spawner entry is unavailable.
+False does not prove creeps are present; data may be stale under fog of war.
+Spectator perspective selection is not supported.
+
 #### Camp.GetCampBox
 
-`Camp.GetCampBox(camp):` **`{min:Vector, max:Vector}`**
+`Camp.GetCampBox(camp):` **`{min:Vector, max:Vector}`** | **`nil`**
 
 | Name     | Type                                                                                     | Description        |
 | -------- | ---------------------------------------------------------------------------------------- | ------------------ |
@@ -13140,8 +13338,7 @@ Returns current UI state.
 
 Table to work with game events.
 
-When you install events, you send the subscribe message to the server, which is potentially unsafe.
-Therefore, you won't be able to install new listeners when you have unsafe features disabled in the Settings -> Security tab.
+When you install events, you send the subscribe message to the server, which is potentially unsafe. Therefore, you won't be able to install new listeners when you have unsafe features disabled in the Settings -> Security tab.
 
 The list of events can be found in the "pak01_dir.vpk" under "resource/game.gameevents."
 
@@ -13231,14 +13428,14 @@ Returns the floating value of the specified event field.
 
 #### Event.GetString
 
-`Event.GetString(event, field):` **`string`**
+`Event.GetString(event, field):` **`string`** | **`nil`**
 
 | Name      | Type                                                                                              | Description |
 | --------- | ------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
 | **field** | **`string`**                                                   | Field name  |
 
-Returns the string value of the specified event field.
+Returns the string value of the specified event field, or `nil` if the field has no value.
 
 ### 5.3. GameRules
 
@@ -13382,15 +13579,15 @@ Could be less than current game time if scan is already available.
 
 Returns game time when next dire scan will be available.
 
-#### GameRules.GetGoodScanCharges()
+#### GameRules.GetGoodScanCharges
 
 `GameRules.GetGoodScanCharges():` **`integer`**
 
 Returns current radiant scan charges.
 
-#### GameRules.GetGoodScanCharges()
+#### GameRules.GetBadScanCharges
 
-`GameRules.GetGoodScanCharges():` **`integer`**
+`GameRules.GetBadScanCharges():` **`integer`**
 
 Returns current dire scan charges.
 
@@ -13476,9 +13673,9 @@ Returns CSODOTALobby protobuf object as JSON string.
 
 #### GameRules.GetBannedHeroes
 
-`GameRules.GetBannedHeroes():` **`integer[]`** | **`nil`**
+`GameRules.GetBannedHeroes():` **`table<integer, integer>`** | **`nil`**
 
-Returns zero-based array of banned heroes where index corresponds to the player id.
+Returns the banned hero ids as a zero-based table with one entry per player id (0 to 23). Each value is the id of the hero banned in that slot.
 
 #### GameRules.GetStateTransitionTime
 
@@ -13568,7 +13765,7 @@ Creates a new `GridNavNpcMap`
 
 | Name         | Type                                                                                                                                           | Description               |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| **npc_map** | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) | map to release to release |
+| **npc_map** | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/tree/main/generated/GridNavNpcMap.md) | map to release to release |
 
 Releases allocated memory for `GridNavNpcMap`
 
@@ -13601,7 +13798,7 @@ Pass `flag_excluded` to replicate per-ability filter masks. Examples:\
 | **start**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to start                                                                            |
 | **end_**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to end                                                                              |
 | **ignoreTrees** **`[?]`** | **`boolean`**                                                                                                                                               | `true` if you want to exclude static trees from the pathing `(default: false)`               |
-| **npc_map** **`[?]`**    | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
+| **npc_map** **`[?]`**    | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/tree/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
 
 Build path from start to end. Returns an array with builded positions.
 
@@ -13646,18 +13843,18 @@ return {
 | **start**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to start                                                                            |
 | **end_**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to end                                                                              |
 | **ignoreTrees** **`[?]`** | **`boolean`**                                                                                                                                               | `true` if you want to exclude static trees from the pathing `(default: false)`               |
-| **npc_map** **`[?]`**    | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
+| **npc_map** **`[?]`**    | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/tree/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
 
 Lite version of GridNav.BuildPath function which just cheking if the path is exists.
 
 #### GridNav.DebugRender
 
-`GridNav.DebugRender([grid_range], [npc_map], [render_cell_flags]):` **`boolean`**
+`GridNav.DebugRender([grid_range], [npc_map], [render_cell_flags]):` **`nil`**
 
 | Name                                                                      | Type                                                                                                                                                                                           | Description                                                                                                                                  |
 | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
 | **grid_range** **`[?]`**         | **`integer`**                                                                                                                                               | grid radius in "cell units" from Vector(0,0,0) `(default: 50)`                                                                               |
-| **npc_map** **`[?]`**            | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/blob/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)`                                                 |
+| **npc_map** **`[?]`**            | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/tree/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)`                                                 |
 | **render_cell_flags** **`[?]`** | **`boolean`**                                                                                                                                               | render the flags value for each not approachable cell (don't think you ever want to see this numbers, so ignore this arg) `(default: false)` |
 
 Debug render of current GridNav with GridNavNpcMap (if provided)
@@ -13821,8 +14018,7 @@ Returns `true` if the world position is visible.
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md -->
 > **Навигация:** 5. Game Engine → `ConVar` | **Источник:** [convar.md](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md)
 
-Table to work with `CConVars`.
-ConVars are game variable that can be used to retrieve or change some game engine settings.
+Table to work with `CConVars`. ConVars are game variable that can be used to retrieve or change some game engine settings.
 
 #### ConVar.Find
 
@@ -13843,13 +14039,13 @@ local camera_distance = ConVar.GetFloat(convar)
 
 #### ConVar.GetString
 
-`ConVar.GetString(convar):` **`string`**
+`ConVar.GetString(convar):` **`string`** | **`nil`**
 
 | Name       | Type                                                                                                | Description |
 | ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
 
-Returns string value of the Convar
+Returns string value of the Convar, or `nil` if the engine returns no text.
 
 #### ConVar.GetInt
 
@@ -13997,15 +14193,17 @@ Table to work with HTTP requests.
 
 `HTTP.Request(method, url, [data], callback, [param]):` **`boolean`**
 
-| Name                                                        | Type                                                                                                                                                                                                                              | Description                                                                                         |
-| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **method**                                                  | **`string`**                                                                                                                                                                                   | HTTP method                                                                                         |
-| **url**                                                     | **`string`**                                                                                                                                                                                   | URL                                                                                                 |
-| **data** **`[?]`**  | **`{headers:table<string>, cookies:string`** \| **`table<string>, data:string`** \| **`table<string>, timeout:number}`** | data to send `(default: {})`                                                                        |
-| **callback**                                                | **`fun(tbl: {response: string, code: string, header: string, param: string, error_code: number, error_message: string}):nil`**                                                                 | callback function to call when request is done. Take 1 argument - response data table, see example. |
-| **param** **`[?]`** | **`string`**                                                                                                                                                                                   | string parameter to pass to callback function to identify request `(default: "")`                   |
+| Name                                                        | Type                                                                                                                                                                       | Description                                                                                         |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **method**                                                  | **`string`**                                                                                                                            | HTTP method                                                                                         |
+| **url**                                                     | **`string`**                                                                                                                            | URL                                                                                                 |
+| **data** **`[?]`**  | **`{headers: table<string, integer>, data:string`** \| **`table<string, string>, timeout: number}`** | data to send `(default: {})`                                                                        |
+| **callback**                                                | **`fun(tbl: {response: string, code: string, header: string, param: string, error_code: number, error_message: string}):nil`**          | callback function to call when request is done. Take 1 argument - response data table, see example. |
+| **param** **`[?]`** | **`string`**                                                                                                                            | string parameter to pass to callback function to identify request `(default: "")`                   |
 
 Do HTTP request. Returns `true` if request was sent successfully.
+Cookies must be supplied through headers; no automatic cookie jar is available.
+Callback error_code is 0 when the transport succeeds, otherwise a non-zero code identifying the failed stage.
 
 ##### Example
 
@@ -14034,6 +14232,20 @@ HTTP.Request("GET", url, {
 	}, callback, "reqres_get");
 ```
 
+#### HTTP.BuildJWT
+
+`HTTP.BuildJWT(header, payload, password):` **`string`** | **`nil`**
+
+| Name         | Type                                            | Description |
+| ------------ | ----------------------------------------------- | ----------- |
+| **header**   | **`string`** |             |
+| **payload**  | **`string`** |             |
+| **password** | **`string`** |             |
+
+Builds a compact JWT using HS256, HS384 or HS512 and a shared UTF-8 secret.
+The header is a JOSE JSON object or the algorithm name; payload is JSON.
+Returns nil for invalid JSON or unsupported algorithms.
+
 ### 6.3. Steam
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/networking-and-apis/steamapi.md -->
@@ -14054,13 +14266,13 @@ are online.
 
 #### Steam.GetPersonaName
 
-`Steam.GetPersonaName():` **`string`**
+`Steam.GetPersonaName():` **`string`** | **`nil`**
 
 Returns the local players name. This is the same name as on the users community profile page.
 
 #### Steam.GetGameLanguage
 
-`Steam.GetGameLanguage():` **`string`**
+`Steam.GetGameLanguage():` **`string`** | **`nil`**
 
 Returns the current game language.
 
@@ -14361,369 +14573,56 @@ Sets the control point's position and angle.
 
 Destroys the particle by index.
 
-### 7.2. Renderer
+### 7.2. Page Not Found
 
 <!-- Source: https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md -->
-> **Навигация:** 7. Rendering and Visuals → `Renderer` | **Источник:** [renderv1.md](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md)
+> **Навигация:** 7. Rendering and Visuals → `Page Not Found` | **Источник:** [renderv1.md](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv1.md)
 
-Table to work with renderer.
+The URL `game-components/rendering-and-visuals/renderv1` does not exist. This page may have been moved, renamed, or deleted.
 
-#### Renderer.SetDrawColor
+#### Suggested Pages
 
-`Renderer.SetDrawColor([r], [g], [b], [a]):` **`nil`**
+You may be looking for one of the following:
+- [Render](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md)
+- [Rendering & Visuals](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals.md)
+- [MiniMap](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/minimap.md)
+- [Panorama](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama.md)
+- [Particle](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/particle.md)
 
-| Name                                                    | Type                                             | Description                   |
-| ------------------------------------------------------- | ------------------------------------------------ | ----------------------------- |
-| **r** **`[?]`** | **`integer`** | Red color. `(default: 255)`   |
-| **g** **`[?]`** | **`integer`** | Green color. `(default: 255)` |
-| **b** **`[?]`** | **`integer`** | Blue color. `(default: 255)`  |
-| **a** **`[?]`** | **`integer`** | Alpha color. `(default: 255)` |
+#### How to find the correct page
 
-Sets the color of the renderer.
+If the exact page cannot be found, you can still retrieve the information using the documentation query interface.
 
-#### Renderer.DrawLine
+##### Option 1 — Ask a question (recommended)
 
-`Renderer.DrawLine(x0, y0, x1, y1):` **`nil`**
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
 
-| Name   | Type                                             | Description                       |
-| ------ | ------------------------------------------------ | --------------------------------- |
-| **x0** | **`integer`** | X coordinate of the first point.  |
-| **y0** | **`integer`** | Y coordinate of the first point.  |
-| **x1** | **`integer`** | X coordinate of the second point. |
-| **y1** | **`integer`** | Y coordinate of the second point. |
+```
+GET https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/renderv2.md?ask=<question>&goal=<user_goal>
+```
 
-Draws a line.
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
 
-#### Renderer.DrawPolyLine
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
 
-`Renderer.DrawPolyLine(points):` **`nil`**
+##### Option 2 — Browse the documentation index
 
-| Name       | Type                                           | Description      |
-| ---------- | ---------------------------------------------- | ---------------- |
-| **points** | **`table`** | Table of points. |
+Full index: https://uczone.gitbook.io/api-v2.0/sitemap.md
 
-Draws a polyline.
+Use this to discover valid page paths or navigate the documentation structure.
 
-#### Renderer.DrawPolyLineFilled
+##### Option 3 — Retrieve the full documentation corpus
 
-`Renderer.DrawPolyLineFilled(points):` **`nil`**
+Full export: https://uczone.gitbook.io/api-v2.0/llms-full.txt
 
-| Name       | Type                                           | Description      |
-| ---------- | ---------------------------------------------- | ---------------- |
-| **points** | **`table`** | Table of points. |
+Use this to access all content at once and perform your own parsing or retrieval. It will be more expensive.
 
-Draws a filled polyline.
+#### Tips for requesting documentation
 
-#### Renderer.DrawFilledRect
+Prefer `.md` URLs for structured content, append `.md` to URLs (e.g., `/api-v2.0/game-components/rendering-and-visuals/renderv2.md`).
 
-`Renderer.DrawFilledRect(x, y, w, h):` **`nil`**
-
-| Name  | Type                                             | Description                    |
-| ----- | ------------------------------------------------ | ------------------------------ |
-| **x** | **`integer`** | X coordinate of the rectangle. |
-| **y** | **`integer`** | Y coordinate of the rectangle. |
-| **w** | **`integer`** | Width of the rectangle.        |
-| **h** | **`integer`** | Height of the rectangle.       |
-
-Draws a filled rectangle.
-
-#### Renderer.DrawOutlineRect
-
-`Renderer.DrawOutlineRect(x, y, w, h):` **`nil`**
-
-| Name  | Type                                             | Description                    |
-| ----- | ------------------------------------------------ | ------------------------------ |
-| **x** | **`integer`** | X coordinate of the rectangle. |
-| **y** | **`integer`** | Y coordinate of the rectangle. |
-| **w** | **`integer`** | Width of the rectangle.        |
-| **h** | **`integer`** | Height of the rectangle.       |
-
-Draws an outlined rectangle.
-
-#### Renderer.DrawOutlineCircle
-
-`Renderer.DrawOutlineCircle(x, y, r, s):` **`nil`**
-
-| Name  | Type                                             | Description                 |
-| ----- | ------------------------------------------------ | --------------------------- |
-| **x** | **`integer`** | X coordinate of the circle. |
-| **y** | **`integer`** | Y coordinate of the circle. |
-| **r** | **`integer`** | Radius of the circle.       |
-| **s** | **`integer`** | Segments of the circle.     |
-
-Draws an outlined circle.
-
-#### Renderer.DrawFilledCircle
-
-`Renderer.DrawFilledCircle(x, y, r):` **`nil`**
-
-| Name  | Type                                             | Description                 |
-| ----- | ------------------------------------------------ | --------------------------- |
-| **x** | **`integer`** | X coordinate of the circle. |
-| **y** | **`integer`** | Y coordinate of the circle. |
-| **r** | **`integer`** | Radius of the circle.       |
-
-Draws a filled circle.
-
-#### Renderer.DrawOutlineRoundedRect
-
-`Renderer.DrawOutlineRoundedRect(x, y, w, h, radius):` **`nil`**
-
-| Name       | Type                                             | Description                    |
-| ---------- | ------------------------------------------------ | ------------------------------ |
-| **x**      | **`integer`** | X coordinate of the rectangle. |
-| **y**      | **`integer`** | Y coordinate of the rectangle. |
-| **w**      | **`integer`** | Width of the rectangle.        |
-| **h**      | **`integer`** | Height of the rectangle.       |
-| **radius** | **`integer`** | Radius of the rectangle.       |
-
-Draws an outlined rounded rectangle.
-
-#### Renderer.DrawFilledRoundedRect
-
-`Renderer.DrawFilledRoundedRect(x, y, w, h, radius):` **`nil`**
-
-| Name       | Type                                             | Description                    |
-| ---------- | ------------------------------------------------ | ------------------------------ |
-| **x**      | **`integer`** | X coordinate of the rectangle. |
-| **y**      | **`integer`** | Y coordinate of the rectangle. |
-| **w**      | **`integer`** | Width of the rectangle.        |
-| **h**      | **`integer`** | Height of the rectangle.       |
-| **radius** | **`integer`** | Radius of the rectangle.       |
-
-Draws a filled rounded rectangle.
-
-#### Renderer.DrawOutlineTriangle
-
-`Renderer.DrawOutlineTriangle(points):` **`nil`**
-
-| Name       | Type                                           | Description      |
-| ---------- | ---------------------------------------------- | ---------------- |
-| **points** | **`table`** | Table of points. |
-
-Draws an outlined triangle.
-
-#### Renderer.DrawFilledTriangle
-
-`Renderer.DrawFilledTriangle(points):` **`nil`**
-
-| Name       | Type                                           | Description      |
-| ---------- | ---------------------------------------------- | ---------------- |
-| **points** | **`table`** | Table of points. |
-
-Draws a filled triangle.
-
-#### Renderer.DrawTexturedPolygon
-
-`Renderer.DrawTexturedPolygon(points, texture):` **`nil`**
-
-| Name        | Type                                             | Description      |
-| ----------- | ------------------------------------------------ | ---------------- |
-| **points**  | **`table`**   | Table of points. |
-| **texture** | **`integer`** | Texture handle.  |
-
-Draws a textured polygon.
-
-#### Renderer.LoadFont
-
-`Renderer.LoadFont(name, size, flags, weight):` **`integer`**
-
-| Name       | Type                                             | Description       |
-| ---------- | ------------------------------------------------ | ----------------- |
-| **name**   | **`string`**  | Name of the font. |
-| **size**   | **`integer`** | Size of the font. |
-| **flags**  | **`integer`** | Font flags.       |
-| **weight** | **`integer`** | Font weight.      |
-
-Loads a font.
-
-#### Renderer.DrawText
-
-`Renderer.DrawText(font, x, y, text):` **`nil`**
-
-| Name     | Type                                             | Description               |
-| -------- | ------------------------------------------------ | ------------------------- |
-| **font** | **`integer`** | Font handle.              |
-| **x**    | **`integer`** | X coordinate of the text. |
-| **y**    | **`integer`** | Y coordinate of the text. |
-| **text** | **`string`**  | Text to draw.             |
-
-Draws a text.
-
-#### Renderer.WorldToScreen
-
-`Renderer.WorldToScreen(pos):` **`integer`**, **`integer`**, **`boolean`**
-
-| Name    | Type                                                                                                           | Description        |
-| ------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
-| **pos** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | World coordinates. |
-
-Converts world coordinates to screen coordinates. Returns x, y and visible.
-
-#### Renderer.GetScreenSize
-
-`Renderer.GetScreenSize():` **`integer`**, **`integer`**
-
-Returns screen size.
-
-#### Renderer.GetTextSize
-
-`Renderer.GetTextSize(font, text):` **`integer`**, **`integer`**
-
-| Name     | Type                                             | Description      |
-| -------- | ------------------------------------------------ | ---------------- |
-| **font** | **`integer`** | Font handle.     |
-| **text** | **`string`**  | Text to measure. |
-
-Returns text size.
-
-#### Renderer.LoadImage
-
-`Renderer.LoadImage(path):` **`integer`**
-
-| Name     | Type                                            | Description        |
-| -------- | ----------------------------------------------- | ------------------ |
-| **path** | **`string`** | Path to the image. |
-
-Loads an image. Returns image handle.
-
-#### Renderer.DrawImage
-
-`Renderer.DrawImage(handle, x, y, w, h):` **`nil`**
-
-| Name       | Type                                             | Description                |
-| ---------- | ------------------------------------------------ | -------------------------- |
-| **handle** | **`integer`** | Image handle.              |
-| **x**      | **`integer`** | X coordinate of the image. |
-| **y**      | **`integer`** | Y coordinate of the image. |
-| **w**      | **`integer`** | Width of the image.        |
-| **h**      | **`integer`** | Height of the image.       |
-
-Draws an image.
-
-#### Renderer.DrawImageCentered
-
-`Renderer.DrawImageCentered(handle, x, y, w, h):` **`nil`**
-
-| Name       | Type                                             | Description                |
-| ---------- | ------------------------------------------------ | -------------------------- |
-| **handle** | **`integer`** | Image handle.              |
-| **x**      | **`integer`** | X coordinate of the image. |
-| **y**      | **`integer`** | Y coordinate of the image. |
-| **w**      | **`integer`** | Width of the image.        |
-| **h**      | **`integer`** | Height of the image.       |
-
-Draws an image centered.
-
-#### Renderer.GetImageSize
-
-`Renderer.GetImageSize(handle):` **`integer`**, **`integer`**
-
-| Name       | Type                                             | Description   |
-| ---------- | ------------------------------------------------ | ------------- |
-| **handle** | **`integer`** | Image handle. |
-
-Returns image size.
-
-#### Renderer.DrawFilledRectFade
-
-`Renderer.DrawFilledRectFade(x0, y0, x1, y1, alpha0, alpha1, bHorizontal):` **`nil`**
-
-| Name            | Type                                             | Description                    |
-| --------------- | ------------------------------------------------ | ------------------------------ |
-| **x0**          | **`integer`** | X coordinate of the rectangle. |
-| **y0**          | **`integer`** | Y coordinate of the rectangle. |
-| **x1**          | **`integer`** | X coordinate of the rectangle. |
-| **y1**          | **`integer`** | Y coordinate of the rectangle. |
-| **alpha0**      | **`integer`** | Alpha of the first point.      |
-| **alpha1**      | **`integer`** | Alpha of the second point.     |
-| **bHorizontal** | **`boolean`** | Horizontal fade.               |
-
-Draws a filled rectangle with fade.
-
-#### Renderer.DrawFilledGradRect
-
-`Renderer.DrawFilledGradRect(x0, y0, x1, y1, r, g, b, a, r2, g2, b2, a2, bHorizontal):` **`nil`**
-
-| Name            | Type                                             | Description                      |
-| --------------- | ------------------------------------------------ | -------------------------------- |
-| **x0**          | **`integer`** | X coordinate of the rectangle.   |
-| **y0**          | **`integer`** | Y coordinate of the rectangle.   |
-| **x1**          | **`integer`** | X coordinate of the rectangle.   |
-| **y1**          | **`integer`** | Y coordinate of the rectangle.   |
-| **r**           | **`integer`** | Red color of the first point.    |
-| **g**           | **`integer`** | Green color of the first point.  |
-| **b**           | **`integer`** | Blue color of the first point.   |
-| **a**           | **`integer`** | Alpha color of the first point.  |
-| **r2**          | **`integer`** | Red color of the second point.   |
-| **g2**          | **`integer`** | Green color of the second point. |
-| **b2**          | **`integer`** | Blue color of the second point.  |
-| **a2**          | **`integer`** | Alpha color of the second point. |
-| **bHorizontal** | **`boolean`** | Horizontal gradient.             |
-
-Draws a filled gradient rectangle.
-
-#### Renderer.DrawGlow
-
-`Renderer.DrawGlow(x0, y0, w, h, thickness, obj_rounding):` **`nil`**
-
-| Name              | Type                                             | Description                    |
-| ----------------- | ------------------------------------------------ | ------------------------------ |
-| **x0**            | **`integer`** | X coordinate of the rectangle. |
-| **y0**            | **`integer`** | Y coordinate of the rectangle. |
-| **w**             | **`integer`** | Width of the rectangle.        |
-| **h**             | **`integer`** | Height of the rectangle.       |
-| **thickness**     | **`integer`** | Thickness of the glow.         |
-| **obj_rounding** | **`integer`** | Rounding of the glow.          |
-
-Draws a glow.
-
-#### Renderer.DrawBlur
-
-`Renderer.DrawBlur(x0, y0, w, h, strength, rounding, alpha):` **`nil`**
-
-| Name         | Type                                            | Description                    |
-| ------------ | ----------------------------------------------- | ------------------------------ |
-| **x0**       | **`number`** | X coordinate of the rectangle. |
-| **y0**       | **`number`** | Y coordinate of the rectangle. |
-| **w**        | **`number`** | Width of the rectangle.        |
-| **h**        | **`number`** | Height of the rectangle.       |
-| **strength** | **`number`** | Strength of the blur.          |
-| **rounding** | **`number`** | Rounding of the blur.          |
-| **alpha**    | **`number`** | Alpha of the blur.             |
-
-Draws a blur.
-
-#### Renderer.PushClip
-
-`Renderer.PushClip(x, y, w, h, intersect):` **`nil`**
-
-| Name          | Type                                             | Description                       |
-| ------------- | ------------------------------------------------ | --------------------------------- |
-| **x**         | **`integer`** | X coordinate of the rectangle.    |
-| **y**         | **`integer`** | Y coordinate of the rectangle.    |
-| **w**         | **`integer`** | Width of the rectangle.           |
-| **h**         | **`integer`** | Height of the rectangle.          |
-| **intersect** | **`boolean`** | Intersect with the previous clip. |
-
-Pushes a clip rect.
-
-#### Renderer.PopClip
-
-`Renderer.PopClip():` **`nil`**
-
-Pops a clip rect.
-
-#### Renderer.DrawCenteredNotification
-
-`Renderer.DrawCenteredNotification(text, duration):` **`nil`**
-
-| Name         | Type                                            | Description                   |
-| ------------ | ----------------------------------------------- | ----------------------------- |
-| **text**     | **`string`** | Text to draw.                 |
-| **duration** | **`number`** | Duration of the notification. |
-
-Draws a centered notification.
+You may also use `Accept: text/markdown` header for content negotiation.
 
 ### 7.3. Render
 
@@ -15235,7 +15134,7 @@ Draws umbrella logo
 
 #### Render.FindOrCreateRT
 
-`Render.FindOrCreateRT(name, [w], [h]):` **`integer`**
+`Render.FindOrCreateRT(name, [w], [h]):` **`userdata`**
 
 | Name                                                    | Type                                            | Description                                                 |
 | ------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------------------------- |
@@ -15250,9 +15149,9 @@ If width or height are not provided, the render target will be full screen size.
 
 `Render.MarkDirtyRT(handle):` **`nil`**
 
-| Name       | Type                                             | Description                      |
-| ---------- | ------------------------------------------------ | -------------------------------- |
-| **handle** | **`integer`** | The handle of the render target. |
+| Name       | Type                                              | Description                      |
+| ---------- | ------------------------------------------------- | -------------------------------- |
+| **handle** | **`userdata`** | The handle of the render target. |
 
 Marks a render target as dirty, causing the next Render.RenderRT call to re-bake it.
 Safe across frame drops: the dirty state is only cleared once the bake is actually processed.
@@ -15264,7 +15163,7 @@ Safe across frame drops: the dirty state is only cleared once the bake is actual
 | Name                                                            | Type                                                                                                       | Description                                                                |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | **callback**                                                    | **`fun():boolean?`**                                                    | The function containing rendering commands to bake into the render target. |
-| **handle**                                                      | **`integer`**                                                           | The handle of the render target (from Render.FindOrCreateRT).              |
+| **handle**                                                      | **`userdata`**                                                          | The handle of the render target (from Render.FindOrCreateRT).              |
 | **pos**                                                         | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The screen position where the render target texture will be drawn.         |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color tint to apply when drawing the render target texture.            |
 | **scale** **`[?]`**     | **`number`**                                                            | The scale factor for the render target. `(default: 1.0)`                   |
@@ -15334,6 +15233,8 @@ return {
         -- RenderRT returns true when it baked AND the callback returned true.
         -- That means the animation is still playing, so mark dirty again
         -- to force another bake next frame.
+        -- Tint alpha and Render.SetGlobalAlpha multiply the cached texture's opacity.
+        -- Use white RGB for an untinted fade; no MarkDirtyRT is needed for opacity changes.
         local still_updating = Render.RenderRT(draw_rt_content, rt_handle, rt_pos, white)
         if still_updating then
             Render.MarkDirtyRT(rt_handle)
@@ -15351,11 +15252,11 @@ return {
 
 `Render.ResizeRT(handle, [w], [h]):` **`nil`**
 
-| Name                                                    | Type                                             | Description                                                           |
-| ------------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------- |
-| **handle**                                              | **`integer`** | The handle of the render target to resize.                            |
-| **w** **`[?]`** | **`number`**  | The new width, or a Vec2 containing both dimensions. `(default: nil)` |
-| **h** **`[?]`** | **`number`**  | The new height. Not used when Vec2 is provided. `(default: nil)`      |
+| Name                                                    | Type                                              | Description                                                                  |
+| ------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **handle**                                              | **`userdata`** | The handle of the render target to resize.                                   |
+| **w** **`[?]`** | **`number`**   | The new width. Used as the square size when `h` is omitted. `(default: nil)` |
+| **h** **`[?]`** | **`number`**   | The new height. Not used when Vec2 is provided. `(default: nil)`             |
 
 Resizes an existing render target.
 If width and height are not provided, it changes the render target to be full screen size.
@@ -15379,7 +15280,7 @@ Table to work with in-game minimap.
 
 Pings on the minimap.
 
-#### MiniMap.SendLine(pos, initial, clientside)
+#### MiniMap.SendLine
 
 `MiniMap.SendLine(pos, initial, clientside):` **`nil`**
 
@@ -15388,19 +15289,6 @@ Pings on the minimap.
 | **pos**        | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw line to                    |
 | **initial**    | **`boolean`**                                                               | start a new line, otherwise continue the last one |
 | **clientside** | **`boolean`**                                                               | draw only for local player                        |
-
-Draws a line on the minimap.
-
-#### MiniMap.SendLine(x, y, initial, clientside)
-
-`MiniMap.SendLine(x, y, initial, clientside):` **`nil`**
-
-| Name           | Type                                             | Description                                       |
-| -------------- | ------------------------------------------------ | ------------------------------------------------- |
-| **x**          | **`number`**  | x world position to draw line                     |
-| **y**          | **`number`**  | y world position to draw line                     |
-| **initial**    | **`boolean`** | start a new line, otherwise continue the last one |
-| **clientside** | **`boolean`** | draw only for local player                        |
 
 Draws a line on the minimap.
 
@@ -15521,7 +15409,7 @@ Get panel by id.
 
 ##### Panorama.CreatePanel
 
-`Panorama.CreatePanel(type, id, parent, classes, styles):` [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md)
+`Panorama.CreatePanel(type, id, parent, classes, styles):` [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | **`nil`**
 
 | Name        | Type                                                                                                                    | Description                    |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
@@ -15703,7 +15591,11 @@ Returns child by path using FindChild.
 
 ##### UIPanel:GetChildIndex
 
-`:GetChildIndex():` **`integer`**
+`:GetChildIndex(child):` **`integer`**
+
+| Name      | Type                                                                                                                    | Description         |
+| --------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| **child** | [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | child panel to find |
 
 Returns index in parent children list. Starts from 0.
 
@@ -15727,7 +15619,7 @@ Returns `true` if the panel has an id.
 
 ##### UIPanel:GetID
 
-`:GetID():` **`string`**
+`:GetID():` **`string`** | **`nil`**
 
 Returns id of panel.
 
@@ -15795,7 +15687,7 @@ Return the panel source image.
 
 ##### UIPanel:GetPanelType
 
-`:GetPanelType():` **`string`**
+`:GetPanelType():` **`string`** | **`nil`**
 
 Returns the panel's type.
 
@@ -15894,9 +15786,9 @@ Returns the panel's window position. Not sure about optimization.
 
 This method is only available for Label panels.
 
-`:GetText():` **`string`**
+`:GetText():` **`string`** | **`nil`**
 
-Returns the label panel's text.
+Returns the label panel's text, or `nil` if the panel is not a Label.
 
 ##### UIPanel:SetText
 
@@ -16094,9 +15986,9 @@ Returns the server cursor position.
 
 #### Humanizer.GetOrderQueue
 
-`Humanizer.GetOrderQueue():` **`{player: CPlayer, orderType: Enum.UnitOrder, targetIndex: integer, position: Vector, abilityIndex: integer, orderIssuer: Enum.PlayerOrderIssuer, unit: CNPC, orderQueueBehavior: integer, showEffects: boolean, triggerCallBack: boolean, isByMiniMap: boolean, addTime: number }[]`**
+`Humanizer.GetOrderQueue():` **`{player: CPlayer, orderType: Enum.UnitOrder, targetIndex: integer, position: Vector, abilityIndex: integer, orderIssuer: Enum.PlayerOrderIssuer, unit: CNPC`** | **`nil, orderQueueBehavior: integer, showEffects: boolean, triggerCallBack: boolean, isByMiniMap: boolean, addTime: number }[]`** | **`nil`**
 
-Returns information about the current humanizer order queue.
+Returns the current humanizer order queue, or nil when no order is queued.
 
 #### Humanizer.IsSafeTarget
 
