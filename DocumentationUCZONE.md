@@ -979,8 +979,8 @@ Recommended to use for logic.
 
 `Callbacks.OnEntityCreate(entity):` **`nil`**
 
-| Name       | Type                                                                                         | Description                  |
-| ---------- | -------------------------------------------------------------------------------------------- | ---------------------------- |
+| Name       | Type                                                                                                                  | Description                  |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | The entity that was created. |
 
 Called when a new entity is created.
@@ -989,8 +989,8 @@ Called when a new entity is created.
 
 `Callbacks.OnNpcSpawned(npc):` **`nil`**
 
-| Name    | Type                                                                                   | Description                                                         |
-| ------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Name    | Type                                                                                                            | Description                                                         |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The npc that was spawned. No respawn flag is supplied by this hook. |
 
 Called on the client after an NPC finishes spawning, independently of the npc_spawned game event.
@@ -999,8 +999,8 @@ Called on the client after an NPC finishes spawning, independently of the npc_sp
 
 `Callbacks.OnEntityDestroy(entity):` **`nil`**
 
-| Name       | Type                                                                                         | Description                    |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------------------ |
+| Name       | Type                                                                                                                  | Description                    |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | The entity that was destroyed. |
 
 Called when an entity is destroyed.
@@ -1009,8 +1009,8 @@ Called when an entity is destroyed.
 
 `Callbacks.OnModifierCreate(entity, modifier):` **`nil`**
 
-| Name         | Type                                                                                             | Description                       |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Name         | Type                                                                                                                      | Description                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | **entity**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)           | The entity that has the modifier. |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | The modifier that was created.    |
 
@@ -1020,8 +1020,8 @@ Called when a modifier is created.
 
 `Callbacks.OnModifierDestroy(entity, modifier):` **`nil`**
 
-| Name         | Type                                                                                             | Description                       |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Name         | Type                                                                                                                      | Description                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | **entity**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)           | The entity that has the modifier. |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | The modifier that was destroyed.  |
 
@@ -1031,8 +1031,8 @@ Called when a modifier is destroyed.
 
 `Callbacks.OnModifierUpdate(entity, modifier):` **`nil`**
 
-| Name         | Type                                                                                             | Description                       |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Name         | Type                                                                                                                      | Description                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | **entity**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)           | The entity that has the modifier. |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | The modifier that was updated.    |
 
@@ -1078,18 +1078,18 @@ Called when a game event is fired.
 
 `Callbacks.OnUnitAnimation(data):` **`nil`**
 
-| Name                          | Type                                                                                   | Description                         |
-| ----------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
-| **data**                      | **`table`**                                         | The data about the event.           |
+| Name                          | Type                                                                                                            | Description                         |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **data**                      | **`table`**                                                                  | The data about the event.           |
 |  .**unit**                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The unit that played the animation. |
-|  .**sequenceVariant**         | **`number`**                                        | The sequence variant.               |
-|  .**playbackRate**            | **`number`**                                        | The playback rate.                  |
-|  .**castpoint**               | **`number`**                                        | The castpoint.                      |
-|  .**type**                    | **`integer`**                                       | The type.                           |
-|  .**activity**                | **`integer`**                                       | The activity.                       |
-|  .**sequence**                | **`integer`**                                       | The sequence.                       |
-|  .**sequenceName**            | **`string`**                                        | The sequence name.                  |
-|  .**lag_compensation_time** | **`number`**                                        | The lag compensation time.          |
+|  .**sequenceVariant**         | **`number`**                                                                 | The sequence variant.               |
+|  .**playbackRate**            | **`number`**                                                                 | The playback rate.                  |
+|  .**castpoint**               | **`number`**                                                                 | The castpoint.                      |
+|  .**type**                    | **`integer`**                                                                | The type.                           |
+|  .**activity**                | **`integer`**                                                                | The activity.                       |
+|  .**sequence**                | **`integer`**                                                                | The sequence.                       |
+|  .**sequenceName**            | **`string`**                                                                 | The sequence name.                  |
+|  .**lag_compensation_time** | **`number`**                                                                 | The lag compensation time.          |
 
 Called when a unit animation is played.
 
@@ -1097,11 +1097,11 @@ Called when a unit animation is played.
 
 `Callbacks.OnUnitAnimationEnd(data):` **`nil`**
 
-| Name       | Type                                                                                   | Description                         |
-| ---------- | -------------------------------------------------------------------------------------- | ----------------------------------- |
-| **data**   | **`table`**                                         | The data about the event.           |
+| Name       | Type                                                                                                            | Description                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **data**   | **`table`**                                                                  | The data about the event.           |
 |  .**unit** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The unit that played the animation. |
-|  .**snap** | **`boolean`**                                       | The snap.                           |
+|  .**snap** | **`boolean`**                                                                | The snap.                           |
 
 Called when a unit animation ends.
 
@@ -1109,26 +1109,26 @@ Called when a unit animation ends.
 
 `Callbacks.OnProjectile(data):` **`nil`**
 
-| Name                                                            | Type                                                                                                           | Description                                            |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| **data**                                                        | **`table`**                                                                 | The data about the event.                              |
+| Name                                                            | Type                                                                                                                                    | Description                                            |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **data**                                                        | **`table`**                                                                                          | The data about the event.                              |
 |  .**source** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)`                    |
 |  .**target** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The target entity. `(default: nil)`                    |
 |  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                 | The ability linked to the projectile. `(default: nil)` |
-|  .**moveSpeed**                                                 | **`integer`**                                                               | The move speed.                                        |
-|  .**sourceAttachment**                                          | **`integer`**                                                               | The source attachment.                                 |
-|  .**particleSystemHandle**                                      | **`integer`**                                                               | The particle system handle.                            |
-|  .**dodgeable**                                                 | **`boolean`**                                                               | The dodgeable.                                         |
-|  .**isAttack**                                                  | **`boolean`**                                                               | The is attack.                                         |
-|  .**expireTime**                                                | **`number`**                                                                | The expire time.                                       |
-|  .**maxImpactTime**                                             | **`number`**                                                                | The max impact time.                                   |
-|  .**launch_tick**                                              | **`integer`**                                                               | The tick the pojectile was launched.                   |
-|  .**colorGemColor**                                             | **`integer`**                                                               | The color gem color.                                   |
-|  .**fullName**                                                  | **`string`**                                                                | The full name of projectile.                           |
-|  .**name**                                                      | **`string`**                                                                | The short name of projectile.                          |
-|  .**handle**                                                    | **`integer`**                                                               | The handle of projectile.                              |
+|  .**moveSpeed**                                                 | **`integer`**                                                                                        | The move speed.                                        |
+|  .**sourceAttachment**                                          | **`integer`**                                                                                        | The source attachment.                                 |
+|  .**particleSystemHandle**                                      | **`integer`**                                                                                        | The particle system handle.                            |
+|  .**dodgeable**                                                 | **`boolean`**                                                                                        | The dodgeable.                                         |
+|  .**isAttack**                                                  | **`boolean`**                                                                                        | The is attack.                                         |
+|  .**expireTime**                                                | **`number`**                                                                                         | The expire time.                                       |
+|  .**maxImpactTime**                                             | **`number`**                                                                                         | The max impact time.                                   |
+|  .**launch_tick**                                              | **`integer`**                                                                                        | The tick the pojectile was launched.                   |
+|  .**colorGemColor**                                             | **`integer`**                                                                                        | The color gem color.                                   |
+|  .**fullName**                                                  | **`string`**                                                                                         | The full name of projectile.                           |
+|  .**name**                                                      | **`string`**                                                                                         | The short name of projectile.                          |
+|  .**handle**                                                    | **`integer`**                                                                                        | The handle of projectile.                              |
 |  .**target_loc**                                               | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the target.                            |
-|  .**original_move_speed**                                     | **`integer`**                                                               | The original move speed.                               |
+|  .**original_move_speed**                                     | **`integer`**                                                                                        | The original move speed.                               |
 
 Called when new projectile is created.
 
@@ -1136,21 +1136,21 @@ Called when new projectile is created.
 
 `Callbacks.OnTargetProjectileDestroy(data):` **`nil`**
 
-| Name                                                            | Type                                                                                                           | Description                                            |
-| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| **data**                                                        | **`table`**                                                                 | The data about the event.                              |
+| Name                                                            | Type                                                                                                                                    | Description                                            |
+| --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **data**                                                        | **`table`**                                                                                          | The data about the event.                              |
 |  .**source** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)`                    |
 |  .**target** **`[?]`**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The target entity. `(default: nil)`                    |
 |  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                 | The ability linked to the projectile. `(default: nil)` |
-|  .**moveSpeed**                                                 | **`integer`**                                                               | The move speed.                                        |
-|  .**dodgeable**                                                 | **`boolean`**                                                               | The dodgeable.                                         |
-|  .**isAttack**                                                  | **`boolean`**                                                               | The is attack.                                         |
-|  .**expireTime**                                                | **`number`**                                                                | The expire time.                                       |
-|  .**maxImpactTime**                                             | **`number`**                                                                | The max impact time.                                   |
-|  .**handle**                                                    | **`integer`**                                                               | The handle of projectile.                              |
+|  .**moveSpeed**                                                 | **`integer`**                                                                                        | The move speed.                                        |
+|  .**dodgeable**                                                 | **`boolean`**                                                                                        | The dodgeable.                                         |
+|  .**isAttack**                                                  | **`boolean`**                                                                                        | The is attack.                                         |
+|  .**expireTime**                                                | **`number`**                                                                                         | The expire time.                                       |
+|  .**maxImpactTime**                                             | **`number`**                                                                                         | The max impact time.                                   |
+|  .**handle**                                                    | **`integer`**                                                                                        | The handle of projectile.                              |
 |  .**target_loc**                                               | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the target.                            |
 |  .**location**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The location of the projectile when it was destroyed.  |
-|  .**original_move_speed**                                     | **`integer`**                                                               | The original move speed.                               |
+|  .**original_move_speed**                                     | **`integer`**                                                                                        | The original move speed.                               |
 
 Called when a target projectile is destroyed.
 
@@ -1158,24 +1158,24 @@ Called when a target projectile is destroyed.
 
 `Callbacks.OnProjectileLoc(data):` **`nil`**
 
-| Name                                                           | Type                                                                                                           | Description                         |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| **data**                                                       | **`table`**                                                                 | The data about the event.           |
+| Name                                                           | Type                                                                                                                                    | Description                         |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **data**                                                       | **`table`**                                                                                          | The data about the event.           |
 |  .**source** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)` |
 |  .**target** **`[?]`** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                   | The target entity. `(default: nil)` |
 |  .**sourceLoc**                                                | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The source location.                |
 |  .**targetLoc**                                                | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The target location.                |
-|  .**moveSpeed**                                                | **`integer`**                                                               | The move speed.                     |
-|  .**original_move_speed**                                    | **`integer`**                                                               | The original move speed.            |
-|  .**particleSystemHandle**                                     | **`integer`**                                                               | The particle system handle.         |
-|  .**dodgeable**                                                | **`boolean`**                                                               | The dodgeable.                      |
-|  .**isAttack**                                                 | **`boolean`**                                                               | The is attack.                      |
-|  .**expireTime**                                               | **`number`**                                                                | The expire time.                    |
-|  .**colorGemColor**                                            | **`integer`**                                                               | The color gem color.                |
-|  .**launchTick**                                               | **`integer`**                                                               | The launch tick.                    |
-|  .**handle**                                                   | **`integer`**                                                               | The handle of projectile.           |
-|  .**fullName**                                                 | **`string`**                                                                | The full name of projectile.        |
-|  .**name**                                                     | **`string`**                                                                | The short name of projectile.       |
+|  .**moveSpeed**                                                | **`integer`**                                                                                        | The move speed.                     |
+|  .**original_move_speed**                                    | **`integer`**                                                                                        | The original move speed.            |
+|  .**particleSystemHandle**                                     | **`integer`**                                                                                        | The particle system handle.         |
+|  .**dodgeable**                                                | **`boolean`**                                                                                        | The dodgeable.                      |
+|  .**isAttack**                                                 | **`boolean`**                                                                                        | The is attack.                      |
+|  .**expireTime**                                               | **`number`**                                                                                         | The expire time.                    |
+|  .**colorGemColor**                                            | **`integer`**                                                                                        | The color gem color.                |
+|  .**launchTick**                                               | **`integer`**                                                                                        | The launch tick.                    |
+|  .**handle**                                                   | **`integer`**                                                                                        | The handle of projectile.           |
+|  .**fullName**                                                 | **`string`**                                                                                         | The full name of projectile.        |
+|  .**name**                                                     | **`string`**                                                                                         | The short name of projectile.       |
 
 Called when new projectile loc is created.
 
@@ -1183,21 +1183,21 @@ Called when new projectile loc is created.
 
 `Callbacks.OnLinearProjectileCreate(data):` **`nil`**
 
-| Name                                                           | Type                                                                                                           | Description                         |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| **data**                                                       | **`table`**                                                                 | The data about the event.           |
+| Name                                                           | Type                                                                                                                                    | Description                         |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **data**                                                       | **`table`**                                                                                          | The data about the event.           |
 |  .**source** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The source entity. `(default: nil)` |
 |  .**origin**                                                   | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The origin.                         |
 |  .**velocity**                                                 | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The velocity.                       |
-|  .**particleIndex**                                            | **`integer`**                                                               | The particle index.                 |
-|  .**handle**                                                   | **`integer`**                                                               | The handle of projectile.           |
+|  .**particleIndex**                                            | **`integer`**                                                                                        | The particle index.                 |
+|  .**handle**                                                   | **`integer`**                                                                                        | The handle of projectile.           |
 |  .**acceleration**                                             | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The acceleration.                   |
-|  .**maxSpeed**                                                 | **`number`**                                                                | The max speed.                      |
-|  .**fowRadius**                                                | **`number`**                                                                | The fow radius.                     |
-|  .**distance**                                                 | **`number`**                                                                | The distance.                       |
-|  .**colorGemColor**                                            | **`integer`**                                                               | The color gem color.                |
-|  .**fullName**                                                 | **`string`**                                                                | The full name of projectile.        |
-|  .**name**                                                     | **`string`**                                                                | The short name of projectile.       |
+|  .**maxSpeed**                                                 | **`number`**                                                                                         | The max speed.                      |
+|  .**fowRadius**                                                | **`number`**                                                                                         | The fow radius.                     |
+|  .**distance**                                                 | **`number`**                                                                                         | The distance.                       |
+|  .**colorGemColor**                                            | **`integer`**                                                                                        | The color gem color.                |
+|  .**fullName**                                                 | **`string`**                                                                                         | The full name of projectile.        |
+|  .**name**                                                     | **`string`**                                                                                         | The short name of projectile.       |
 
 Called when new linear projectile is created.
 
@@ -1216,19 +1216,19 @@ Called when linear projectile is destroyed.
 
 `Callbacks.OnParticleCreate(data):` **`nil`**
 
-| Name                                                                       | Type                                                                                                                                                                                 | Description                                |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| **data**                                                                   | **`table`**                                                                                                                                       | The data about the event.                  |
-|  .**index**                                                                | **`integer`**                                                                                                                                     | The index of particle.                     |
-|  .**entity** **`[?]`**             | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                               | The entity. `(default: nil)`               |
-|  .**entity_id**                                                           | **`integer`**                                                                                                                                     | The entity id.                             |
-|  .**entityForModifiers** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                               | The entity for modifiers. `(default: nil)` |
-|  .**entity_for_modifiers_id**                                           | **`integer`**                                                                                                                                     | The entity for modifiers id.               |
-|  .**attachType**                                                           | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                           |
-|  .**fullName**                                                             | **`string`**                                                                                                                                      | The full name of particle.                 |
-|  .**name**                                                                 | **`string`**                                                                                                                                      | The short name of particle.                |
-|  .**hash**                                                                 | **`integer`**                                                                                                                                     | The hash of particle.                      |
-|  .**particleNameIndex**                                                    | **`integer`**                                                                                                                                     | The particle name index.                   |
+| Name                                                                       | Type                                                                                                                                             | Description                                |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| **data**                                                                   | **`table`**                                                                                                   | The data about the event.                  |
+|  .**index**                                                                | **`integer`**                                                                                                 | The index of particle.                     |
+|  .**entity** **`[?]`**             | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                  | The entity. `(default: nil)`               |
+|  .**entity_id**                                                           | **`integer`**                                                                                                 | The entity id.                             |
+|  .**entityForModifiers** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                  | The entity for modifiers. `(default: nil)` |
+|  .**entity_for_modifiers_id**                                           | **`integer`**                                                                                                 | The entity for modifiers id.               |
+|  .**attachType**                                                           | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                           |
+|  .**fullName**                                                             | **`string`**                                                                                                  | The full name of particle.                 |
+|  .**name**                                                                 | **`string`**                                                                                                  | The short name of particle.                |
+|  .**hash**                                                                 | **`integer`**                                                                                                 | The hash of particle.                      |
+|  .**particleNameIndex**                                                    | **`integer`**                                                                                                 | The particle name index.                   |
 
 Called when new particle is created.
 
@@ -1236,11 +1236,11 @@ Called when new particle is created.
 
 `Callbacks.OnParticleUpdate(data):` **`nil`**
 
-| Name               | Type                                                                                                           | Description               |
-| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| **data**           | **`table`**                                                                 | The data about the event. |
-|  .**index**        | **`integer`**                                                               | The index of particle.    |
-|  .**controlPoint** | **`integer`**                                                               | The control point.        |
+| Name               | Type                                                                                                                                    | Description               |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data**           | **`table`**                                                                                          | The data about the event. |
+|  .**index**        | **`integer`**                                                                                        | The index of particle.    |
+|  .**controlPoint** | **`integer`**                                                                                        | The control point.        |
 |  .**position**     | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The position.             |
 
 Called when particle is updated.
@@ -1249,11 +1249,11 @@ Called when particle is updated.
 
 `Callbacks.OnParticleUpdateFallback(data):` **`nil`**
 
-| Name               | Type                                                                                                           | Description               |
-| ------------------ | -------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| **data**           | **`table`**                                                                 | The data about the event. |
-|  .**index**        | **`integer`**                                                               | The index of particle.    |
-|  .**controlPoint** | **`integer`**                                                               | The control point.        |
+| Name               | Type                                                                                                                                    | Description               |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data**           | **`table`**                                                                                          | The data about the event. |
+|  .**index**        | **`integer`**                                                                                        | The index of particle.    |
+|  .**controlPoint** | **`integer`**                                                                                        | The control point.        |
 |  .**position**     | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The position.             |
 
 Called when particle is updated. Alternative version for some particles.
@@ -1262,17 +1262,17 @@ Called when particle is updated. Alternative version for some particles.
 
 `Callbacks.OnParticleUpdateEntity(data):` **`nil`**
 
-| Name                                                                   | Type                                                                                                                                                                                 | Description                           |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| **data**                                                               | **`table`**                                                                                                                                       | The data about the event.             |
-|  .**index**                                                            | **`integer`**                                                                                                                                     | The index of particle.                |
-|  .**controlPoint**                                                     | **`integer`**                                                                                                                                     | The control point.                    |
-|  .**entity** **`[?]`**         | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                         | The entity. `(default: nil)`          |
-|  .**entIdx**                                                           | **`integer`**                                                                                                                                     | The entity id.                        |
-|  .**attachType**                                                       | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                      |
-|  .**attachmentName** **`[?]`** | **`string`**                                                                                                                                      | The attachment name. `(default: nil)` |
-|  .**position**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                       | The position.                         |
-|  .**includeWearables**                                                 | **`boolean`**                                                                                                                                     | Include wearables.                    |
+| Name                                                                   | Type                                                                                                                                             | Description                           |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| **data**                                                               | **`table`**                                                                                                   | The data about the event.             |
+|  .**index**                                                            | **`integer`**                                                                                                 | The index of particle.                |
+|  .**controlPoint**                                                     | **`integer`**                                                                                                 | The control point.                    |
+|  .**entity** **`[?]`**         | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                            | The entity. `(default: nil)`          |
+|  .**entIdx**                                                           | **`integer`**                                                                                                 | The entity id.                        |
+|  .**attachType**                                                       | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                      |
+|  .**attachmentName** **`[?]`** | **`string`**                                                                                                  | The attachment name. `(default: nil)` |
+|  .**position**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)          | The position.                         |
+|  .**includeWearables**                                                 | **`boolean`**                                                                                                 | Include wearables.                    |
 
 Called when particle is updated on entity.
 
@@ -1292,14 +1292,14 @@ Called when particle is destroyed.
 
 `Callbacks.OnStartSound(data):` **`nil`**
 
-| Name                                                           | Type                                                                                                           | Description                           |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| **data**                                                       | **`table`**                                                                 | The data about the event.             |
+| Name                                                           | Type                                                                                                                                    | Description                           |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| **data**                                                       | **`table`**                                                                                          | The data about the event.             |
 |  .**source** **`[?]`** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                   | The source of sound. `(default: nil)` |
-|  .**hash**                                                     | **`integer`**                                                               | The hash of sound.                    |
-|  .**guid**                                                     | **`integer`**                                                               | The guid of sound.                    |
-|  .**seed**                                                     | **`integer`**                                                               | The seed of sound.                    |
-|  .**name**                                                     | **`string`**                                                                | The name of sound.                    |
+|  .**hash**                                                     | **`integer`**                                                                                        | The hash of sound.                    |
+|  .**guid**                                                     | **`integer`**                                                                                        | The guid of sound.                    |
+|  .**seed**                                                     | **`integer`**                                                                                        | The seed of sound.                    |
+|  .**name**                                                     | **`string`**                                                                                         | The name of sound.                    |
 |  .**position**                                                 | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The position of sound.                |
 
 Called when sound is started.
@@ -1308,11 +1308,11 @@ Called when sound is started.
 
 `Callbacks.OnSpeak(data):` **`boolean`** | **`string`** | **`nil`**
 
-| Name         | Type                                                                                                                                   | Description               |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| **data**     | **`table`**                                                                                         | The data about the event. |
+| Name         | Type                                                                                                                                                            | Description               |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data**     | **`table`**                                                                                                                  | The data about the event. |
 |  .**source** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) \| **`nil`** | The unit who speak.       |
-|  .**name**   | **`string`**                                                                                        | The name of the sound.    |
+|  .**name**   | **`string`**                                                                                                                 | The name of the sound.    |
 
 Called every time unit/announcer talk. Return false to prevent the sound from being played, or
 return a sound name to play that sound instead.
@@ -1351,17 +1351,17 @@ Called on event above the hero's head.
 
 `Callbacks.OnUnitAddGesture(data):` **`nil`**
 
-| Name                                                        | Type                                                                                   | Description                                           |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| **data**                                                    | **`table`**                                         | The data about the event.                             |
+| Name                                                        | Type                                                                                                            | Description                                           |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| **data**                                                    | **`table`**                                                                  | The data about the event.                             |
 |  .**npc** **`[?]`** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The unit that is added to a gesture. `(default: nil)` |
-|  .**sequenceVariant**                                       | **`integer`**                                       | The sequence variant.                                 |
-|  .**playbackRate**                                          | **`number`**                                        | The playback rate.                                    |
-|  .**fadeIn**                                                | **`number`**                                        | The fade in.                                          |
-|  .**fadeOut**                                               | **`number`**                                        | The fade out.                                         |
-|  .**slot**                                                  | **`integer`**                                       | The slot.                                             |
-|  .**activity**                                              | **`integer`**                                       | The activity.                                         |
-|  .**sequenceName**                                          | **`string`**                                        | The sequence name.                                    |
+|  .**sequenceVariant**                                       | **`integer`**                                                                | The sequence variant.                                 |
+|  .**playbackRate**                                          | **`number`**                                                                 | The playback rate.                                    |
+|  .**fadeIn**                                                | **`number`**                                                                 | The fade in.                                          |
+|  .**fadeOut**                                               | **`number`**                                                                 | The fade out.                                         |
+|  .**slot**                                                  | **`integer`**                                                                | The slot.                                             |
+|  .**activity**                                              | **`integer`**                                                                | The activity.                                         |
+|  .**sequenceName**                                          | **`string`**                                                                 | The sequence name.                                    |
 
 Called when a unit is added to a gesture.
 
@@ -1369,19 +1369,19 @@ Called when a unit is added to a gesture.
 
 `Callbacks.OnPrepareUnitOrders(data):` **`boolean`**
 
-| Name                                                            | Type                                                                                                                                                                               | Description                                                                 |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                                                   |
-|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order. `(default: nil)`                          |
-|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
-|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`                                   |
-|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                                                  |
-|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)`                                  |
-|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
-|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order. `(default: nil)`                                     |
-|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                                                     |
-|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.                                              |
-|  .**identifier**                                                | **`string`**                                                                                                                                    | The identifier passed by the script that issued the order; empty when none. |
+| Name                                                            | Type                                                                                                                                           | Description                                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **data**                                                        | **`table`**                                                                                                 | The data about the event.                                                   |
+|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                          | The player that issued the order. `(default: nil)`                          |
+|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
+|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                          | The target of the order. `(default: nil)`                                   |
+|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)        | The position of the order.                                                  |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                        | The ability of the order. `(default: nil)`                                  |
+|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
+|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                | The unit of the order. `(default: nil)`                                     |
+|  .**queue**                                                     | **`boolean`**                                                                                               | If the order is queued.                                                     |
+|  .**showEffects**                                               | **`boolean`**                                                                                               | The show effects of the order.                                              |
+|  .**identifier**                                                | **`string`**                                                                                                | The identifier passed by the script that issued the order; empty when none. |
 
 Called on every player order. Return false to prevent the order from being executed.
 
@@ -1389,19 +1389,19 @@ Called on every player order. Return false to prevent the order from being execu
 
 `Callbacks.OnAddUnitOrder(data):` **`boolean`**
 
-| Name                                                            | Type                                                                                                                                                                               | Description                                                                 |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                                                   |
-|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order. `(default: nil)`                          |
-|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
-|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`                                   |
-|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                                                  |
-|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)`                                  |
-|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
-|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order. `(default: nil)`                                     |
-|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                                                     |
-|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.                                              |
-|  .**identifier**                                                | **`string`**                                                                                                                                    | The identifier passed by the script that issued the order; empty when none. |
+| Name                                                            | Type                                                                                                                                           | Description                                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **data**                                                        | **`table`**                                                                                                 | The data about the event.                                                   |
+|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                          | The player that issued the order. `(default: nil)`                          |
+|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
+|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                          | The target of the order. `(default: nil)`                                   |
+|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)        | The position of the order.                                                  |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                        | The ability of the order. `(default: nil)`                                  |
+|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
+|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                | The unit of the order. `(default: nil)`                                     |
+|  .**queue**                                                     | **`boolean`**                                                                                               | If the order is queued.                                                     |
+|  .**showEffects**                                               | **`boolean`**                                                                                               | The show effects of the order.                                              |
+|  .**identifier**                                                | **`string`**                                                                                                | The identifier passed by the script that issued the order; empty when none. |
 
 Called when an order is added to a unit. Return false to prevent the order from being added.
 
@@ -1409,19 +1409,19 @@ Called when an order is added to a unit. Return false to prevent the order from 
 
 `Callbacks.OnUnitOrderAdded(data):` **`nil`**
 
-| Name                                                            | Type                                                                                                                                                                               | Description                                                                 |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| **data**                                                        | **`table`**                                                                                                                                     | The data about the event.                                                   |
-|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player that issued the order. `(default: nil)`                          |
-|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
-|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                       | The target of the order. `(default: nil)`                                   |
-|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The position of the order.                                                  |
-|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                                                                                     | The ability of the order. `(default: nil)`                                  |
-|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
-|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                             | The unit of the order. `(default: nil)`                                     |
-|  .**queue**                                                     | **`boolean`**                                                                                                                                   | If the order is queued.                                                     |
-|  .**showEffects**                                               | **`boolean`**                                                                                                                                   | The show effects of the order.                                              |
-|  .**identifier**                                                | **`string`**                                                                                                                                    | The identifier passed by the script that issued the order; empty when none. |
+| Name                                                            | Type                                                                                                                                           | Description                                                                 |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **data**                                                        | **`table`**                                                                                                 | The data about the event.                                                   |
+|  .**player** **`[?]`**  | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                          | The player that issued the order. `(default: nil)`                          |
+|  .**order**                                                     | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                 | The order type.                                                             |
+|  .**target** **`[?]`**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                          | The target of the order. `(default: nil)`                                   |
+|  .**position**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)        | The position of the order.                                                  |
+|  .**ability** **`[?]`** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                        | The ability of the order. `(default: nil)`                                  |
+|  .**orderIssuer**                                               | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer) | The order issuer.                                                           |
+|  .**npc** **`[?]`**     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                | The unit of the order. `(default: nil)`                                     |
+|  .**queue**                                                     | **`boolean`**                                                                                               | If the order is queued.                                                     |
+|  .**showEffects**                                               | **`boolean`**                                                                                               | The show effects of the order.                                              |
+|  .**identifier**                                                | **`string`**                                                                                                | The identifier passed by the script that issued the order; empty when none. |
 
 Called after an order has been added to a unit's order queue.
 
@@ -1569,11 +1569,11 @@ Recommended to use for zeroing.
 
 `Callbacks.OnKeyEvent(data):` **`boolean`**
 
-| Name        | Type                                                                                                                                                                 | Description               |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| **data**    | **`table`**                                                                                                                       | The data about the event. |
-|  .**key**   | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | The key code.             |
-|  .**event** | [**`Enum.EKeyEvent`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.ekeyevent)   | Key event.                |
+| Name        | Type                                                                                                                             | Description               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| **data**    | **`table`**                                                                                   | The data about the event. |
+|  .**key**   | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | The key code.             |
+|  .**event** | [**`Enum.EKeyEvent`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.ekeyevent)   | Key event.                |
 
 Called on key and mouse input. Return false to prevent the event from being processed.
 
@@ -1592,8 +1592,8 @@ Called on text input.
 
 `Callbacks.OnUnitInventoryUpdated(data):` **`nil`**
 
-| Name     | Type                                                                                   | Description               |
-| -------- | -------------------------------------------------------------------------------------- | ------------------------- |
+| Name     | Type                                                                                                            | Description               |
+| -------- | --------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **data** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The data about the event. |
 
 Called on unit inventory updated.
@@ -1602,10 +1602,10 @@ Called on unit inventory updated.
 
 `Callbacks.OnSetDormant(npc, type):` **`nil`**
 
-| Name     | Type                                                                                                                                                                     | Description         |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
-| **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                   | The target npc.     |
-| **type** | [**`Enum.DormancyType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.dormancytype) | The type of change. |
+| Name     | Type                                                                                                                                 | Description         |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+| **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                      | The target npc.     |
+| **type** | [**`Enum.DormancyType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.dormancytype) | The type of change. |
 
 Called on NPC dormancy state changed.
 
@@ -1623,8 +1623,8 @@ Called on gamestate change.
 
 `Callbacks.OnNpcDying(npc):` **`nil`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target npc. |
 
 Called on NPC dying.
@@ -3216,8 +3216,8 @@ Color metatable
 
 `:__eq(other):` **`boolean`**
 
-| Name      | Type                                                                                                    | Description |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                             | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
 
 Compares two colors for equality.
@@ -3239,10 +3239,10 @@ Sets r, g, b, a components. Returns self for chaining.
 
 `:LerpInPlace(other, t):` [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)
 
-| Name      | Type                                                                                                    | Description |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                             | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
-| **t**     | **`number`**                                                         |             |
+| **t**     | **`number`**                                                                                  |             |
 
 Linearly interpolates this color towards other in-place. Returns self for chaining.
 
@@ -3364,10 +3364,10 @@ Returns the hex string representing the color.
 
 `:Lerp(other, weight):` [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)
 
-| Name       | Type                                                                                                    | Description                                                    |
-| ---------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Name       | Type                                                                                                                             | Description                                                    |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | **other**  | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | The color to interpolate to                                    |
-| **weight** | **`number`**                                                         | A value between 0 and 1 that indicates the weight of **other** |
+| **weight** | **`number`**                                                                                  | A value between 0 and 1 that indicates the weight of **other** |
 
 Returns the linearly interpolated color between two colors by the specified weight.
 
@@ -3526,7 +3526,7 @@ Returns tab's parent.
 
 ##### CTabSection:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -3577,7 +3577,7 @@ Returns parent. It's `nil` for CFirstTab.
 
 ##### CFirstTab:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -3628,7 +3628,7 @@ Returns tab's parent.
 
 ##### CSecondTab:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -3662,9 +3662,9 @@ Finds the `CThirdTab` by name.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image.
@@ -3673,9 +3673,9 @@ Sets tab's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -3684,9 +3684,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets tab's icon.
@@ -3703,10 +3703,10 @@ tab:Icon( "\u{f007}" )
 
 `:LinkHero(heroId, attribute):` **`nil`**
 
-| Name          | Type                                                                                                                                                                              | Description                  |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **heroId**    | **`integer`**                                                                                                                                  | See `Engine.GetHeroIDByName` |
-| **attribute** | [**`Enum.Attributes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes) |                              |
+| Name          | Type                                                                                                                             | Description                  |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **heroId**    | **`integer`**                                                                                 | See `Engine.GetHeroIDByName` |
+| **attribute** | [**`Enum.Attributes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes) |                              |
 
 Links tab to hero and attribute.
 
@@ -3731,7 +3731,7 @@ Returns tab's parent.
 
 ##### CThirdTab:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -3745,10 +3745,10 @@ Opens parent tabs.
 
 `:Create(groupName, [side]):` [**`CMenuGroup`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/menu/cmenugroup.md)
 
-| Name                                                       | Type                                                                                                                                                                            | Description                         |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| **groupName**                                              | **`string`**                                                                                                                                 |                                     |
-| **side** **`[?]`** | [**`Enum.GroupSide`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.groupside) | `(default: Enum.GroupSide.Default)` |
+| Name                                                       | Type                                                                                                                           | Description                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| **groupName**                                              | **`string`**                                                                                |                                     |
+| **side** **`[?]`** | [**`Enum.GroupSide`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.groupside) | `(default: Enum.GroupSide.Default)` |
 
 Creates new `CMenuGroup`.
 
@@ -3766,9 +3766,9 @@ Finds the `CMenuGroup` by name.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image.
@@ -3777,9 +3777,9 @@ Sets tab's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -3816,9 +3816,9 @@ local isVisible = third_tab:Visible()
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets tab's icon.
@@ -3852,7 +3852,7 @@ Returns group's parent.
 
 ##### CMenuGroup:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -3888,11 +3888,11 @@ Creates new `CMenuSwitch`.
 
 `:Bind(bindName, [defaultValue], [imageIcon]):` [**`CMenuBind`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
 
-| Name                                                               | Type                                                                                                                                                                              | Description                                                |
-| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| **bindName**                                                       | **`string`**                                                                                                                                   |                                                            |
-| **defaultValue** **`[?]`** | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
-| **imageIcon** **`[?]`**    | **`string`**                                                                                                                                   | Path to image or FontAwesome icon unicode. `(default: "")` |
+| Name                                                               | Type                                                                                                                             | Description                                                |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **bindName**                                                       | **`string`**                                                                                  |                                                            |
+| **defaultValue** **`[?]`** | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
+| **imageIcon** **`[?]`**    | **`string`**                                                                                  | Path to image or FontAwesome icon unicode. `(default: "")` |
 
 Creates new `CMenuBind`.
 
@@ -3967,11 +3967,11 @@ end )
 
 `:ColorPicker(colorPickerName, color, [imageIcon]):` [**`CMenuColorPicker`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
 
-| Name                                                            | Type                                                                                                    | Description                                                |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| **colorPickerName**                                             | **`string`**                                                         |                                                            |
+| Name                                                            | Type                                                                                                                             | Description                                                |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **colorPickerName**                                             | **`string`**                                                                                  |                                                            |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) |                                                            |
-| **imageIcon** **`[?]`** | **`string`**                                                         | Path to image or FontAwesome icon unicode. `(default: "")` |
+| **imageIcon** **`[?]`** | **`string`**                                                                                  | Path to image or FontAwesome icon unicode. `(default: "")` |
 
 Creates new `CMenuColorPicker`.
 
@@ -4179,7 +4179,7 @@ Returns widget's parent.
 
 ##### CMenuSwitch:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -4308,9 +4308,9 @@ Sets widget's value.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -4319,9 +4319,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -4330,9 +4330,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -4372,9 +4372,9 @@ Removes widget's on change callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -4424,7 +4424,7 @@ Returns widget's parent.
 
 ##### CMenuSliderFloat:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -4553,9 +4553,9 @@ Sets widget's value.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -4564,9 +4564,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -4575,9 +4575,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -4617,9 +4617,9 @@ Removes widget's on change callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -4669,7 +4669,7 @@ Returns widget's parent.
 
 ##### CMenuSliderInt:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -4798,9 +4798,9 @@ Sets widget's value.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -4809,9 +4809,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -4820,9 +4820,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -4862,9 +4862,9 @@ Removes widget's on change callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -4902,7 +4902,7 @@ Returns widget's parent.
 
 ##### CMenuButton:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -5015,9 +5015,9 @@ Depends on argument.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -5026,9 +5026,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -5037,9 +5037,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -5096,7 +5096,7 @@ Returns widget's parent.
 
 ##### CMenuColorPicker:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -5215,8 +5215,8 @@ Returns widget's value.
 
 `:Set(value):` **`nil`**
 
-| Name      | Type                                                                                                    | Description |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                             | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **value** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
 
 Sets widget's value.
@@ -5225,9 +5225,9 @@ Sets widget's value.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -5236,9 +5236,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -5247,9 +5247,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -5266,9 +5266,9 @@ widget:Icon("\u{f007}")
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -5345,7 +5345,7 @@ Returns widget's parent.
 
 ##### CMenuColorPickerAttachment:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -5434,8 +5434,8 @@ Returns widget's value.
 
 `:Set(value):` **`nil`**
 
-| Name      | Type                                                                                                    | Description |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                             | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **value** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) |             |
 
 Sets widget's value.
@@ -5495,7 +5495,7 @@ Returns widget's parent.
 
 ##### CMenuComboBox:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -5630,9 +5630,9 @@ Returns array of the items.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -5641,9 +5641,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -5652,9 +5652,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -5694,9 +5694,9 @@ Removes widget's on change callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -5734,7 +5734,7 @@ Returns widget's parent.
 
 ##### CMenuGearAttachment:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -5783,11 +5783,11 @@ Creates new `CMenuSwitch`.
 
 `:Bind(bindName, [defaultValue], [imageIcon]):` [**`CMenuBind`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenubind.md)
 
-| Name                                                               | Type                                                                                                                                                                                 | Description                                                |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
-| **bindName**                                                       | **`string`**                                                                                                                                      |                                                            |
-| **defaultValue** **`[?]`** | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
-| **imageIcon** **`[?]`**    | **`string`**                                                                                                                                      | Path to image or FontAwesome icon unicode. `(default: "")` |
+| Name                                                               | Type                                                                                                                             | Description                                                |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **bindName**                                                       | **`string`**                                                                                  |                                                            |
+| **defaultValue** **`[?]`** | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | `(default: Enum.ButtonCode.BUTTON_CODE_INVALID)`           |
+| **imageIcon** **`[?]`**    | **`string`**                                                                                  | Path to image or FontAwesome icon unicode. `(default: "")` |
 
 Creates new `CMenuBind`.
 
@@ -5849,11 +5849,11 @@ end )
 
 `:ColorPicker(colorPickerName, color, [imageIcon]):` [**`CMenuColorPicker`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpicker.md)
 
-| Name                                                            | Type                                                                                                    | Description                                                |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| **colorPickerName**                                             | **`string`**                                                         |                                                            |
+| Name                                                            | Type                                                                                                                             | Description                                                |
+| --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **colorPickerName**                                             | **`string`**                                                                                  |                                                            |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) |                                                            |
-| **imageIcon** **`[?]`** | **`string`**                                                         | Path to image or FontAwesome icon unicode. `(default: "")` |
+| **imageIcon** **`[?]`** | **`string`**                                                                                  | Path to image or FontAwesome icon unicode. `(default: "")` |
 
 Creates new `CMenuColorPicker`.
 
@@ -6029,7 +6029,7 @@ Returns widget's parent.
 
 ##### CMenuInputBox:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -6158,9 +6158,9 @@ Sets widget's value.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -6169,9 +6169,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -6180,9 +6180,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -6222,9 +6222,9 @@ Removes widget's on change callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -6273,7 +6273,7 @@ Returns widget's parent.
 
 ##### CMenuMultiComboBox:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -6427,9 +6427,9 @@ Returns array of enabled itemIds.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -6438,9 +6438,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -6449,9 +6449,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -6491,9 +6491,9 @@ Removes widget's on change callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -6573,7 +6573,7 @@ Returns widget's parent.
 
 ##### CMenuMultiSelect:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -6727,9 +6727,9 @@ Returns array of enabled itemIds.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -6738,9 +6738,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -6749,9 +6749,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -6838,7 +6838,7 @@ Returns widget's parent.
 
 ##### CMenuBind:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget's type.
 
@@ -6949,7 +6949,7 @@ Depends on argument.
 
 ##### CMenuBind:Get
 
-`:Get([idx]):` [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode)
+`:Get([idx]):` [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode)
 
 | Name                                                      | Type                                                                                     | Description                                          |
 | --------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -6961,16 +6961,16 @@ Returns widget's value. To get both of the buttons use `Buttons` method.
 
 `:Set(key1, [key2]):` **`nil`**
 
-| Name                                                       | Type                                                                                                                                                                                 | Description                                                 |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| **key1**                                                   | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | primary button code                                         |
-| **key2** **`[?]`** | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | secondary button code `(default: Enum.ButtonCode.KEY_NONE)` |
+| Name                                                       | Type                                                                                                                             | Description                                                 |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **key1**                                                   | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | primary button code                                         |
+| **key2** **`[?]`** | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) | secondary button code `(default: Enum.ButtonCode.KEY_NONE)` |
 
 Sets widget's value.
 
 ##### CMenuBind:Buttons
 
-`:Buttons():` [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode), [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode)
+`:Buttons():` [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode), [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode)
 
 Returns widget's buttons value.
 
@@ -7007,9 +7007,9 @@ Sets the toggle state manually.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -7018,9 +7018,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -7029,9 +7029,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -7093,9 +7093,9 @@ Removes widget's on key press/release callback.
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -7181,7 +7181,7 @@ Returns widget's parent.
 
 ##### CMenuLabel:Type
 
-`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
+`:Type():` [**`Enum.WidgetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.widgettype)
 
 Returns widget type.
 
@@ -7294,9 +7294,9 @@ Depends on argument.
 
 `:Image(imagePath, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imagePath**                                                | **`string`**                                                            | Path to the image.                             |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imagePath**                                                | **`string`**                                                                                     | Path to the image.                             |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets widget's image.
@@ -7305,9 +7305,9 @@ Sets widget's image.
 
 `:ImageHandle(imageHandle, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                    |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| **imageHandle**                                              | **`integer`**                                                           |                                                |
+| Name                                                         | Type                                                                                                                                | Description                                    |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **imageHandle**                                              | **`integer`**                                                                                    |                                                |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional image offset. `(default: {0.0, 0.0})` |
 
 Sets tab's image by already created handle.
@@ -7316,9 +7316,9 @@ Sets tab's image by already created handle.
 
 `:Icon(icon, [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                       | Description                                   |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **icon**                                                     | **`string`**                                                            | icon unicode.                                 |
+| Name                                                         | Type                                                                                                                                | Description                                   |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| **icon**                                                     | **`string`**                                                                                     | icon unicode.                                 |
 | **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Optional icon offset. `(default: {0.0, 0.0})` |
 
 Sets widget's icon.
@@ -7335,9 +7335,9 @@ widget:Icon("\u{f007}")
 
 `:ColorPicker(name, color):` [**`CMenuColorPickerAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/widgets/cmenucolorpickerattachment.md)
 
-| Name      | Type                                                                                                    | Description             |
-| --------- | ------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **name**  | **`string`**                                                         | Name of the attachment. |
+| Name      | Type                                                                                                                             | Description             |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **name**  | **`string`**                                                                                  | Name of the attachment. |
 | **color** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md) | Default color.          |
 
 Creates `CMenuColorPickerAttachment` and attaches it to the widget.
@@ -7377,8 +7377,8 @@ Vector metatable
 
 `:AddInPlace(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                              | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                       | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| **`number`** |             |
 
 Adds other to this vector in-place. Returns self for chaining.
@@ -7387,8 +7387,8 @@ Adds other to this vector in-place. Returns self for chaining.
 
 `:SubInPlace(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                              | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                       | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| **`number`** |             |
 
 Subtracts other from this vector in-place. Returns self for chaining.
@@ -7397,8 +7397,8 @@ Subtracts other from this vector in-place. Returns self for chaining.
 
 `:MulInPlace(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                              | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                       | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| **`number`** |             |
 
 Multiplies this vector by other in-place. Returns self for chaining.
@@ -7407,8 +7407,8 @@ Multiplies this vector by other in-place. Returns self for chaining.
 
 `:DivInPlace(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                              | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                       | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| **`number`** |             |
 
 Divides this vector by other in-place. Returns self for chaining.
@@ -7435,10 +7435,10 @@ Sets .z = World.GetGroundZ(.x, .y). Returns self for chaining.
 
 `:LerpInPlace(b, t):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name  | Type                                                                                                           | Description |
-| ----- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name  | Type                                                                                                                                    | Description |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **b** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-| **t** | **`number`**                                                                |             |
+| **t** | **`number`**                                                                                         |             |
 
 Linearly interpolates this vector towards other in-place. Returns self for chaining.
 
@@ -7446,8 +7446,8 @@ Linearly interpolates this vector towards other in-place. Returns self for chain
 
 `:CopyFrom(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                           | Description |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Copies values from another vector without allocating. Returns self for chaining.
@@ -7462,10 +7462,10 @@ Creates a new vector with the same values as the original.
 
 `:DirectionTo(other, [dist]):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name                                                       | Type                                                                                                           | Description                            |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| Name                                                       | Type                                                                                                                                    | Description                            |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **other**                                                  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |                                        |
-| **dist** **`[?]`** | **`number`**                                                                | optional scale factor `(default: 1.0)` |
+| **dist** **`[?]`** | **`number`**                                                                                         | optional scale factor `(default: 1.0)` |
 
 Returns a normalized direction vector from this point to other, optionally scaled by distance.
 Equivalent to `(other - self):Normalized():Scaled(dist)` but with a single allocation.
@@ -7474,8 +7474,8 @@ Equivalent to `(other - self):Normalized():Scaled(dist)` but with a single alloc
 
 `:AngleBetween2D(middle, point3):` **`number`**
 
-| Name       | Type                                                                                                           | Description                                         |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| Name       | Type                                                                                                                                    | Description                                         |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | **middle** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | the vertex point (this is point1, middle is point2) |
 | **point3** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |                                                     |
 
@@ -7486,8 +7486,8 @@ Equivalent to the angle at point2 in the triangle point1-point2-point3, ignoring
 
 `:ClosestToPoint(entities):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**, **`number`**
 
-| Name         | Type                                                                                           | Description |
-| ------------ | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name         | Type                                                                                                                    | Description |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entities** | [**`CEntity[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Finds the closest entity to this position from a table of entities.
@@ -7497,8 +7497,8 @@ Returns the entity and the distance. Uses Distance2D.
 
 `:DistanceSqr2D(other):` **`number`**
 
-| Name      | Type                                                                                                           | Description |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Returns the squared 2D distance to another vector. Cheaper than Distance2D (no sqrt).
@@ -7508,10 +7508,10 @@ Use for distance comparisons: `a:DistanceSqr2D(b) < range * range`.
 
 `:IsInRange2D(other, range):` **`boolean`**
 
-| Name      | Type                                                                                                           | Description |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-| **range** | **`number`**                                                                |             |
+| **range** | **`number`**                                                                                         |             |
 
 Returns true if this position is within range of another position (2D, no sqrt).
 
@@ -7519,10 +7519,10 @@ Returns true if this position is within range of another position (2D, no sqrt).
 
 `:Extend2D(target, distance):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name         | Type                                                                                                           | Description |
-| ------------ | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name         | Type                                                                                                                                    | Description |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **target**   | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-| **distance** | **`number`**                                                                |             |
+| **distance** | **`number`**                                                                                         |             |
 
 Extends this position towards target by distance (2D, ignores Z). Single allocation.
 Equivalent to `self + (target - self):Normalized() * distance` without intermediate vectors.
@@ -7553,10 +7553,10 @@ Returns true if all components are near zero within tolerance.
 
 `:Extrapolate(direction, scalar):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name          | Type                                                                                                           | Description |
-| ------------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name          | Type                                                                                                                                    | Description |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **direction** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
-| **scalar**    | **`number`**                                                                |             |
+| **scalar**    | **`number`**                                                                                         |             |
 
 Returns `self + direction * scalar`. Single allocation.
 Useful for position extrapolation: `start:Extrapolate(velocity, dt * speed)`.
@@ -7583,8 +7583,8 @@ Overload for operator +
 
 `:__add(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                                                                                                                                            | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                                                                                                                                                              | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vector:__sub
@@ -7593,8 +7593,8 @@ Overload for operator -
 
 `:__sub(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                                                                                                                                            | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                                                                                                                                                              | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vector:__div
@@ -7603,8 +7603,8 @@ Overload for operator /
 
 `:__div(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                                                                                                                                            | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                                                                                                                                                              | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vector:__mul
@@ -7613,8 +7613,8 @@ Overload for operator *
 
 `:__mul(other):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                                                                                                                                            | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                                                                                                                                                              | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) \| [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vector:__eq
@@ -7623,16 +7623,16 @@ Overload for operator ==
 
 `:__eq(other):` **`boolean`**
 
-| Name      | Type                                                                                                           | Description |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 ##### Vector:Distance
 
 `:Distance(other):` **`number`**
 
-| Name      | Type                                                                                                           | Description |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Computes the distance from this vector to other.
@@ -7641,8 +7641,8 @@ Computes the distance from this vector to other.
 
 `:Distance2D(other):` **`number`**
 
-| Name      | Type                                                                                                           | Description |
-| --------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                    | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Computes the distance from this vector to other ignoring Z axis.
@@ -7667,8 +7667,8 @@ Note that this function will change the current vector. If you want to keep the 
 
 `:Dot(vector):` **`number`**
 
-| Name       | Type                                                                                                           | Description |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                                    | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vector** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Dot Product of two vectors.
@@ -7681,8 +7681,8 @@ For normalized vectors Dot returns 1 if they point in exactly the same direction
 
 `:Dot2D(vector):` **`number`**
 
-| Name       | Type                                                                                                           | Description |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                                    | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vector** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Dot Product of two vectors ignoring Z axis.
@@ -7739,8 +7739,8 @@ This method is faster than Length2D because it avoids computing a square root. U
 
 `:Rotated(angle):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                                                                                            | Description |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                     | Description |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **angle** | **`number`** \| [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
 
 Returns the new vector rotated counterclockwise by the given angle in the XY-plane, leaving the Z-axis unaffected.
@@ -7749,8 +7749,8 @@ Returns the new vector rotated counterclockwise by the given angle in the XY-pla
 
 `:Rotate(angle):` **`nil`**
 
-| Name      | Type                                                                                                                                                            | Description |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                     | Description |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **angle** | **`number`** \| [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
 
 Rotates this vector counterclockwise by the given angle in the XY-plane, leaving the Z-axis unaffected.
@@ -7759,10 +7759,10 @@ Rotates this vector counterclockwise by the given angle in the XY-plane, leaving
 
 `:Lerp(b, t):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name  | Type                                                                                                           | Description                                |
-| ----- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| Name  | Type                                                                                                                                    | Description                                |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | **b** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | end value, returned when t = 1             |
-| **t** | **`number`**                                                                | value used to interpolate between a and b. |
+| **t** | **`number`**                                                                                         | value used to interpolate between a and b. |
 
 Returns linearly interpolated vector between two vectors.
 The value returned equals **a + (b - a) * t** (which can also be written **a * (1-t) + b*t**).
@@ -7774,8 +7774,8 @@ When `t = 0.5`, **a:Lerp(b, t)** returns the point midway between `a` and `b`.
 
 `:Cross(vector):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name       | Type                                                                                                           | Description |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                                    | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vector** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) |             |
 
 Returns cross product of two vectors.
@@ -7787,10 +7787,10 @@ Returns cross product of two vectors.
 
 `:MoveForward(angle, distance):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name         | Type                                                                                                         | Description      |
-| ------------ | ------------------------------------------------------------------------------------------------------------ | ---------------- |
+| Name         | Type                                                                                                                                  | Description      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **angle**    | [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |                  |
-| **distance** | **`number`**                                                              | distance to move |
+| **distance** | **`number`**                                                                                       | distance to move |
 
 Moves vector forward by a specified distance in the direction defined by a given Angle.
 
@@ -7894,8 +7894,8 @@ Angle metatable
 
 `:__eq(other):` **`boolean`**
 
-| Name      | Type                                                                                                         | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| Name      | Type                                                                                                                                  | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
 
 Compares two angles for equality.
@@ -7904,8 +7904,8 @@ Compares two angles for equality.
 
 `:__add(other):` [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
 
-| Name      | Type                                                                                                         | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| Name      | Type                                                                                                                                  | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
 
 Adds two angles together. Returns a new Angle.
@@ -7914,8 +7914,8 @@ Adds two angles together. Returns a new Angle.
 
 `:__sub(other):` [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
 
-| Name      | Type                                                                                                         | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| Name      | Type                                                                                                                                  | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
 
 Subtracts one angle from another. Returns a new Angle.
@@ -7936,8 +7936,8 @@ Sets pitch, yaw, roll. Returns self for chaining.
 
 `:CopyFrom(other):` [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
 
-| Name      | Type                                                                                                         | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| Name      | Type                                                                                                                                  | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md) |             |
 
 Copies values from another angle without allocating. Returns self for chaining.
@@ -8058,8 +8058,8 @@ Vec2 metatable
 
 `:AddInPlace(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 Adds other to this Vec2 in-place. Returns self for chaining.
@@ -8068,8 +8068,8 @@ Adds other to this Vec2 in-place. Returns self for chaining.
 
 `:SubInPlace(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 Subtracts other from this Vec2 in-place. Returns self for chaining.
@@ -8078,8 +8078,8 @@ Subtracts other from this Vec2 in-place. Returns self for chaining.
 
 `:MulInPlace(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 Multiplies this Vec2 by other in-place. Returns self for chaining.
@@ -8088,8 +8088,8 @@ Multiplies this Vec2 by other in-place. Returns self for chaining.
 
 `:DivInPlace(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 Divides this Vec2 by other in-place. Returns self for chaining.
@@ -8098,8 +8098,8 @@ Divides this Vec2 by other in-place. Returns self for chaining.
 
 `:CopyFrom(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                       | Description |
-| --------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
 
 Copies values from another Vec2 without allocating. Returns self for chaining.
@@ -8158,8 +8158,8 @@ Overload for operator +
 
 `:__add(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vec2:__sub
@@ -8168,8 +8168,8 @@ Overload for operator -
 
 `:__sub(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vec2:__div
@@ -8178,8 +8178,8 @@ Overload for operator /
 
 `:__div(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vec2:__mul
@@ -8188,8 +8188,8 @@ Overload for operator *
 
 `:__mul(other):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)
 
-| Name      | Type                                                                                                                                                          | Description |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                   | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) \| **`number`** |             |
 
 ##### Vec2:__eq
@@ -8198,8 +8198,8 @@ Overload for operator ==
 
 `:__eq(other):` **`boolean`**
 
-| Name      | Type                                                                                                       | Description |
-| --------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                | Description |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **other** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
 
 ##### Vec2:Length
@@ -8255,8 +8255,8 @@ Vertex metatable
 
 ##### Vertex - Fields
 
-| Name    | Type                                                                                                       | Description |
-| ------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                                                | Description |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **pos** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | screen pos  |
 | **uv**  | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | texture uv  |
 
@@ -8264,8 +8264,8 @@ Vertex metatable
 
 `Vertex(pos, uv):` [**`Vertex`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
 
-| Name    | Type                                                                                                       | Description |
-| ------- | ---------------------------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                                                | Description |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **pos** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
 | **uv**  | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |             |
 
@@ -8294,8 +8294,8 @@ Overload for operator +
 
 `:__add(other):` [**`Vertex`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md)
 
-| Name      | Type                                                                                                                                                              | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                       | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`Vertex`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) \| **`number`** |             |
 
 ##### Vertex:__sub
@@ -8304,8 +8304,8 @@ Overload for operator -
 
 `:__sub(other):` [**`Vertex`**]\(Vertex.md)
 
-| Name      | Type                                                                                                                                                              | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                                                                       | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`Vertex`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) \| **`number`** |             |
 
 ---
@@ -8345,8 +8345,8 @@ Return all abilities in cheat list.
 
 `Abilities.Contains(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description       |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------------- |
+| Name        | Type                                                                                                                    | Description       |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | Ability to check. |
 
 Check ability in cheat list.
@@ -8384,8 +8384,8 @@ Return all couriers in cheat list.
 
 `Couriers.Contains(courier):` **`boolean`**
 
-| Name        | Type                                                                                           | Description       |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------------- |
+| Name        | Type                                                                                                                    | Description       |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **courier** | [**`CCourier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md) | Courier to check. |
 
 Check courier in cheat list.
@@ -8407,8 +8407,8 @@ Table to work with specific abilities.
 
 `CustomEntities.GetSpiritBear(spiritBear):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name           | Type                                                                                           | Description              |
-| -------------- | ---------------------------------------------------------------------------------------------- | ------------------------ |
+| Name           | Type                                                                                                                    | Description              |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | **spiritBear** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | The Spirit Bear ability. |
 
 Accept the Spirit Bear ability and return linked Bear.
@@ -8417,8 +8417,8 @@ Accept the Spirit Bear ability and return linked Bear.
 
 `CustomEntities.GetVengeIllusion(commandAura):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name            | Type                                                                                           | Description               |
-| --------------- | ---------------------------------------------------------------------------------------------- | ------------------------- |
+| Name            | Type                                                                                                                    | Description               |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **commandAura** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | The Command Aura ability. |
 
 Accept the Vengeful Spirit's Command Aura ability and return scepter linked illusion.
@@ -8427,8 +8427,8 @@ Accept the Vengeful Spirit's Command Aura ability and return scepter linked illu
 
 `CustomEntities.GetTetheredUnit(tether):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name       | Type                                                                                           | Description         |
-| ---------- | ---------------------------------------------------------------------------------------------- | ------------------- |
+| Name       | Type                                                                                                                    | Description         |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | **tether** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | The Tether ability. |
 
 Accept the Wisp's Tether ability and return linked unit.
@@ -8437,8 +8437,8 @@ Accept the Wisp's Tether ability and return linked unit.
 
 `CustomEntities.GetTempestDouble(tempestDouble):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name              | Type                                                                                           | Description                 |
-| ----------------- | ---------------------------------------------------------------------------------------------- | --------------------------- |
+| Name              | Type                                                                                                                    | Description                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | **tempestDouble** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | The Tempest Double ability. |
 
 Accept the Arc Warden's Tempest Double ability and return linked clone.
@@ -8447,8 +8447,8 @@ Accept the Arc Warden's Tempest Double ability and return linked clone.
 
 `CustomEntities.GetMeepoIndex(dividedWeStand):` **`integer`** | **`nil`**
 
-| Name               | Type                                                                                           | Description                   |
-| ------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------- |
+| Name               | Type                                                                                                                    | Description                   |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | **dividedWeStand** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | The Divided We Stand ability. |
 
 Accept the Meepo's Divided We Stand ability and return index of Meepo.
@@ -8470,8 +8470,8 @@ Get all entities on the map.
 
 `Entities.Contains(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description      |
-| ---------- | -------------------------------------------------------------------------------------------- | ---------------- |
+| Name       | Type                                                                                                                  | Description      |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | Entity to check. |
 
 Check entity in cheat list.
@@ -8509,8 +8509,8 @@ Return all heroes in cheat list.
 
 `Heroes.Contains(hero):` **`boolean`**
 
-| Name     | Type                                                                                     | Description    |
-| -------- | ---------------------------------------------------------------------------------------- | -------------- |
+| Name     | Type                                                                                                              | Description    |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | -------------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) | Hero to check. |
 
 Check hero in cheat list.
@@ -8519,14 +8519,14 @@ Check hero in cheat list.
 
 `Heroes.InRadius(pos, radius, teamNum, teamType, [omitIllusions], [omitDormant]):` [**`CHero[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md)
 
-| Name                                                                | Type                                                                                                                                                        | Description                                                             |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **pos**                                                             | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                              | Position to check.                                                      |
-| **radius**                                                          | **`number`**                                                                                                             | Radius to check.                                                        |
-| **teamNum**                                                         | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | Team number to check.                                                   |
-| **teamType**                                                        | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | Team type to filter by. Relative to teamNum param.                      |
-| **omitIllusions** **`[?]`** | **`boolean`**                                                                                                            | `true` if you want to get table without illusions `(default: false)`    |
-| **omitDormant** **`[?]`**   | **`boolean`**                                                                                                            | `true` if you want to get table without dormant units `(default: true)` |
+| Name                                                                | Type                                                                                                                                    | Description                                                             |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **pos**                                                             | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check.                                                      |
+| **radius**                                                          | **`number`**                                                                                         | Radius to check.                                                        |
+| **teamNum**                                                         | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)              | Team number to check.                                                   |
+| **teamType**                                                        | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype)            | Team type to filter by. Relative to teamNum param.                      |
+| **omitIllusions** **`[?]`** | **`boolean`**                                                                                        | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant** **`[?]`**   | **`boolean`**                                                                                        | `true` if you want to get table without dormant units `(default: true)` |
 
 Return all heroes in radius.
 
@@ -8563,9 +8563,9 @@ Return NPC by index in cheat list. Not the same as in-game index.
 
 `NPCs.GetAll([filter]):` [**`CNPC[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)
 
-| Name                                                         | Type                                                                                                                                                                                                                                     | Description      |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| **filter** **`[?]`** | [**`Enum.UnitTypeFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unittypeflags) \| **`fun(npc: CNPC):boolean`** | `(default: nil)` |
+| Name                                                         | Type                                                                                                                                                                                                      | Description      |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| **filter** **`[?]`** | [**`Enum.UnitTypeFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unittypeflags) \| **`fun(npc: CNPC):boolean`** | `(default: nil)` |
 
 Return all NPCs in cheat list. Can be filtered by unit type or custom function.
 Unit type filter is a much faster than custom function and can be or'ed to filter multiple types.
@@ -8590,10 +8590,10 @@ end
 
 `NPCs.GetInScreen([filter], [skipDormant]):` **`{entity:CNPC, position:Vec2}[]`**
 
-| Name                                                              | Type                                                                                                                                                                                                                  | Description                                                             |
-| ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **filter** **`[?]`**      | [**`Enum.UnitTypeFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unittypeflags) \| **`nil`** | `(default: nil)`                                                        |
-| **skipDormant** **`[?]`** | **`boolean`**                                                                                                                                                                      | `true` if you want to get table without dormant units `(default: true)` |
+| Name                                                              | Type                                                                                                                                                                                   | Description                                                             |
+| ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **filter** **`[?]`**      | [**`Enum.UnitTypeFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unittypeflags) \| **`nil`** | `(default: nil)`                                                        |
+| **skipDormant** **`[?]`** | **`boolean`**                                                                                                                                       | `true` if you want to get table without dormant units `(default: true)` |
 
 Return all NPCs in cheat list that visible on your screen. Can be filtered by unit type argument.
 
@@ -8601,14 +8601,14 @@ Return all NPCs in cheat list that visible on your screen. Can be filtered by un
 
 `NPCs.InRadius(pos, radius, teamNum, teamType, [omitIllusions], [omitDormant]):` [**`CNPC[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)
 
-| Name                                                                | Type                                                                                                                                                        | Description                                                             |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **pos**                                                             | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                              | Position to check.                                                      |
-| **radius**                                                          | **`number`**                                                                                                             | Radius to check.                                                        |
-| **teamNum**                                                         | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | Team number to check.                                                   |
-| **teamType**                                                        | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | Team type to filter by. Relative to teamNum param.                      |
-| **omitIllusions** **`[?]`** | **`boolean`**                                                                                                            | `true` if you want to get table without illusions `(default: false)`    |
-| **omitDormant** **`[?]`**   | **`boolean`**                                                                                                            | `true` if you want to get table without dormant units `(default: true)` |
+| Name                                                                | Type                                                                                                                                    | Description                                                             |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **pos**                                                             | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check.                                                      |
+| **radius**                                                          | **`number`**                                                                                         | Radius to check.                                                        |
+| **teamNum**                                                         | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)              | Team number to check.                                                   |
+| **teamType**                                                        | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype)            | Team type to filter by. Relative to teamNum param.                      |
+| **omitIllusions** **`[?]`** | **`boolean`**                                                                                        | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant** **`[?]`**   | **`boolean`**                                                                                        | `true` if you want to get table without dormant units `(default: true)` |
 
 Return all NPCs in radius.
 
@@ -8616,8 +8616,8 @@ Return all NPCs in radius.
 
 `NPCs.Contains(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description   |
-| ------- | -------------------------------------------------------------------------------------- | ------------- |
+| Name    | Type                                                                                                            | Description   |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | NPC to check. |
 
 Check NPC in cheat list.
@@ -8655,10 +8655,10 @@ Return all neutral spawners in cheat list.
 
 `Camps.InRadius(pos, radius):` [**`CCamp[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md)
 
-| Name       | Type                                                                                                           | Description        |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                                    | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **pos**    | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check. |
-| **radius** | **`number`**                                                                | Radius to check.   |
+| **radius** | **`number`**                                                                                         | Radius to check.   |
 
 Return all neutral spawners in radius.
 
@@ -8666,8 +8666,8 @@ Return all neutral spawners in radius.
 
 `Camps.Contains(camp):` **`boolean`**
 
-| Name     | Type                                                                                     | Description               |
-| -------- | ---------------------------------------------------------------------------------------- | ------------------------- |
+| Name     | Type                                                                                                              | Description               |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | Neutral spawner to check. |
 
 Check neutral spawner in cheat list.
@@ -8705,8 +8705,8 @@ Return all players in cheat list.
 
 `Players.Contains(player):` **`boolean`**
 
-| Name       | Type                                                                                         | Description      |
-| ---------- | -------------------------------------------------------------------------------------------- | ---------------- |
+| Name       | Type                                                                                                                  | Description      |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | Player to check. |
 
 Check player in cheat list.
@@ -8750,8 +8750,8 @@ Return all runes in cheat list.
 
 `Runes.Contains(rune):` **`boolean`**
 
-| Name     | Type                                                                                     | Description    |
-| -------- | ---------------------------------------------------------------------------------------- | -------------- |
+| Name     | Type                                                                                                              | Description    |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | -------------- |
 | **rune** | [**`CRune`**](https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md) | Rune to check. |
 
 Check rune in cheat list.
@@ -8789,10 +8789,10 @@ Return all temp trees in cheat list.
 
 `TempTrees.InRadius(pos, radius):` [**`CTree[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md)
 
-| Name       | Type                                                                                                           | Description        |
-| ---------- | -------------------------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                                    | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **pos**    | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check. |
-| **radius** | **`number`**                                                                | Radius to check.   |
+| **radius** | **`number`**                                                                                         | Radius to check.   |
 
 Return all temp trees in radius.
 
@@ -8800,8 +8800,8 @@ Return all temp trees in radius.
 
 `TempTrees.Contains(tree):` **`boolean`**
 
-| Name     | Type                                                                                     | Description         |
-| -------- | ---------------------------------------------------------------------------------------- | ------------------- |
+| Name     | Type                                                                                                              | Description         |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ------------------- |
 | **tree** | [**`CTree`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md) | Temp tree to check. |
 
 Check temp tree in cheat list.
@@ -8839,12 +8839,12 @@ Return all towers in cheat list.
 
 `Towers.InRadius(pos, radius, teamNum, [teamType]):` [**`CTower[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md)
 
-| Name                                                           | Type                                                                                                                                                        | Description                                                 |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **pos**                                                        | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                              | Position to check.                                          |
-| **radius**                                                     | **`number`**                                                                                                             | Radius to check.                                            |
-| **teamNum**                                                    | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | Team number to check.                                       |
-| **teamType** **`[?]`** | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | Team number to check. `(default: Enum.TeamType.TEAM_ENEMY)` |
+| Name                                                           | Type                                                                                                                                    | Description                                                 |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **pos**                                                        | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check.                                          |
+| **radius**                                                     | **`number`**                                                                                         | Radius to check.                                            |
+| **teamNum**                                                    | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)              | Team number to check.                                       |
+| **teamType** **`[?]`** | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype)            | Team number to check. `(default: Enum.TeamType.TEAM_ENEMY)` |
 
 Return all towers in radius.
 
@@ -8852,8 +8852,8 @@ Return all towers in radius.
 
 `Towers.Contains(tower):` **`boolean`**
 
-| Name      | Type                                                                                       | Description     |
-| --------- | ------------------------------------------------------------------------------------------ | --------------- |
+| Name      | Type                                                                                                                | Description     |
+| --------- | ------------------------------------------------------------------------------------------------------------------- | --------------- |
 | **tower** | [**`CTower`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md) | Tower to check. |
 
 Check tower in cheat list.
@@ -8891,11 +8891,11 @@ Return all trees in cheat list.
 
 `Trees.InRadius(pos, radius, [active]):` [**`CTree[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md)
 
-| Name                                                         | Type                                                                                                           | Description                              |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Name                                                         | Type                                                                                                                                    | Description                              |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **pos**                                                      | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Position to check.                       |
-| **radius**                                                   | **`number`**                                                                | Radius to check.                         |
-| **active** **`[?]`** | **`boolean`**                                                               | Active state to check. `(default: true)` |
+| **radius**                                                   | **`number`**                                                                                         | Radius to check.                         |
+| **active** **`[?]`** | **`boolean`**                                                                                        | Active state to check. `(default: true)` |
 
 Return all trees in radius.
 
@@ -8903,8 +8903,8 @@ Return all trees in radius.
 
 `Trees.Contains(tree):` **`boolean`**
 
-| Name     | Type                                                                                     | Description    |
-| -------- | ---------------------------------------------------------------------------------------- | -------------- |
+| Name     | Type                                                                                                              | Description    |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | -------------- |
 | **tree** | [**`CTree`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md) | Tree to check. |
 
 Check tree in cheat list.
@@ -8942,8 +8942,8 @@ Return all physical items in cheat list.
 
 `PhysicalItems.Contains(physical):` **`boolean`**
 
-| Name         | Type                                                                                                     | Description                  |
-| ------------ | -------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| Name         | Type                                                                                                                              | Description                  |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | **physical** | [**`CPhysicalItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md) | item Physical item to check. |
 
 Check physical item in cheat list.
@@ -8981,8 +8981,8 @@ Returns all modifiers in cheat list.
 
 `Modifiers.Contains(tree):` **`boolean`**
 
-| Name     | Type                                                                                             | Description         |
-| -------- | ------------------------------------------------------------------------------------------------ | ------------------- |
+| Name     | Type                                                                                                                      | Description         |
+| -------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | **tree** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | Temp tree to check. |
 
 Checks if modifiers is in list.
@@ -9038,21 +9038,21 @@ Table to work with `CPlayer`. **`CPlayer`** extends **`CEntity`**
 
 `Player.PrepareUnitOrders(player, type, target, pos, ability, issuer, issuer_npc, [queue], [show_effects], [callback], [execute_fast], [identifier], [force_minimap]):` **`nil`**
 
-| Name                                                                 | Type                                                                                                                                                                               | Description                                                                                       |
-| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **player**                                                           | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                       | The player issuing the order.                                                                     |
-| **type**                                                             | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                       | The type of order to be issued.                                                                   |
-| **target**                                                           | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) \| **`nil`**                                       | The target entity, if applicable.                                                                 |
-| **pos**                                                              | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                     | The positional coordinates for the order.                                                         |
-| **ability**                                                          | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) \| **`nil`**                                     | The ability for order.                                                                            |
-| **issuer**                                                           | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer)       | The issuer capture mode.                                                                          |
+| Name                                                                 | Type                                                                                                                                                                                                                                 | Description                                                                                       |
+| -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **player**                                                           | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md)                                                                                                                | The player issuing the order.                                                                     |
+| **type**                                                             | [**`Enum.UnitOrder`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unitorder)                                                                                                       | The type of order to be issued.                                                                   |
+| **target**                                                           | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) \| **`nil`**                                                                | The target entity, if applicable.                                                                 |
+| **pos**                                                              | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                              | The positional coordinates for the order.                                                         |
+| **ability**                                                          | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) \| **`nil`**                                                              | The ability for order.                                                                            |
+| **issuer**                                                           | [**`Enum.PlayerOrderIssuer`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.playerorderissuer)                                                                                       | The issuer capture mode.                                                                          |
 | **issuer_npc**                                                      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) \| [**`CNPC[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The specific NPC or group of NPC that will issue the order.                                       |
-| **queue** **`[?]`**          | **`boolean`**                                                                                                                                   | If true, the order will be added to the Dota cast queue. `(default: false)`                       |
-| **show_effects** **`[?]`**  | **`boolean`**                                                                                                                                   | If true, visual effects will indicate the position of the order. `(default: false)`               |
-| **callback** **`[?]`**       | **`boolean`**                                                                                                                                   | If true, the order will be pushed to the `OnPrepareUnitOrders` callback. `(default: false)`       |
-| **execute_fast** **`[?]`**  | **`boolean`**                                                                                                                                   | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
-| **identifier** **`[?]`**     | **`string`**                                                                                                                                    | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
-| **force_minimap** **`[?]`** | **`boolean`**                                                                                                                                   | If true, the order will be forced by the minimap if possible. `(default: true)`                   |
+| **queue** **`[?]`**          | **`boolean`**                                                                                                                                                                                     | If true, the order will be added to the Dota cast queue. `(default: false)`                       |
+| **show_effects** **`[?]`**  | **`boolean`**                                                                                                                                                                                     | If true, visual effects will indicate the position of the order. `(default: false)`               |
+| **callback** **`[?]`**       | **`boolean`**                                                                                                                                                                                     | If true, the order will be pushed to the `OnPrepareUnitOrders` callback. `(default: false)`       |
+| **execute_fast** **`[?]`**  | **`boolean`**                                                                                                                                                                                     | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
+| **identifier** **`[?]`**     | **`string`**                                                                                                                                                                                      | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
+| **force_minimap** **`[?]`** | **`boolean`**                                                                                                                                                                                     | If true, the order will be forced by the minimap if possible. `(default: true)`                   |
 
 Provides ability to execute such game actions as moving, attacking, or casting spells etc.
 
@@ -9060,14 +9060,14 @@ Provides ability to execute such game actions as moving, attacking, or casting s
 
 `Player.HoldPosition(player, issuer_npc, [queue], [push], [execute_fast], [identifier]):` **`nil`**
 
-| Name                                                                | Type                                                                                         | Description                                                                                       |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Name                                                                | Type                                                                                                                  | Description                                                                                       |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **player**                                                          | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The player issuing the order.                                                                     |
 | **issuer_npc**                                                     | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)       | The specific NPC that will issue the order.                                                       |
-| **queue** **`[?]`**         | **`boolean`**                                             | If true, the order will be added to the Dota cast queue. `(default: false)`                       |
-| **push** **`[?]`**          | **`boolean`**                                             | If true, the order will be pushed to the OnPrepareUnitOrders callback. `(default: false)`         |
-| **execute_fast** **`[?]`** | **`boolean`**                                             | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
-| **identifier** **`[?]`**    | **`string`**                                              | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
+| **queue** **`[?]`**         | **`boolean`**                                                                      | If true, the order will be added to the Dota cast queue. `(default: false)`                       |
+| **push** **`[?]`**          | **`boolean`**                                                                      | If true, the order will be pushed to the OnPrepareUnitOrders callback. `(default: false)`         |
+| **execute_fast** **`[?]`** | **`boolean`**                                                                      | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
+| **identifier** **`[?]`**    | **`string`**                                                                       | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
 
 Sends the hold position action.
 
@@ -9075,16 +9075,16 @@ Sends the hold position action.
 
 `Player.AttackTarget(player, issuer_npc, target, [queue], [push], [execute_fast], [identifier], [force_minimap]):` **`nil`**
 
-| Name                                                                 | Type                                                                                         | Description                                                                                       |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Name                                                                 | Type                                                                                                                  | Description                                                                                       |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | **player**                                                           | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The player issuing the order.                                                                     |
 | **issuer_npc**                                                      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)       | The specific NPC that will issue the order.                                                       |
 | **target**                                                           | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)       | The target NPC.                                                                                   |
-| **queue** **`[?]`**          | **`boolean`**                                             | If true, the order will be added to the Dota cast queue. `(default: false)`                       |
-| **push** **`[?]`**           | **`boolean`**                                             | If true, the order will be pushed to the OnPrepareUnitOrders callback. `(default: false)`         |
-| **execute_fast** **`[?]`**  | **`boolean`**                                             | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
-| **identifier** **`[?]`**     | **`string`**                                              | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
-| **force_minimap** **`[?]`** | **`boolean`**                                             | If true, the order will be forced by the minimap if possible. `(default: true)`                   |
+| **queue** **`[?]`**          | **`boolean`**                                                                      | If true, the order will be added to the Dota cast queue. `(default: false)`                       |
+| **push** **`[?]`**           | **`boolean`**                                                                      | If true, the order will be pushed to the OnPrepareUnitOrders callback. `(default: false)`         |
+| **execute_fast** **`[?]`**  | **`boolean`**                                                                      | If true, the order will bypass internal safety delays for immediate execution. `(default: false)` |
+| **identifier** **`[?]`**     | **`string`**                                                                       | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)`           |
+| **force_minimap** **`[?]`** | **`boolean`**                                                                      | If true, the order will be forced by the minimap if possible. `(default: true)`                   |
 
 Sends the attack target position.
 
@@ -9092,8 +9092,8 @@ Sends the attack target position.
 
 `Player.GetPlayerID(player):` **`integer`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player ID within the current game session.
@@ -9103,8 +9103,8 @@ If the player ID is not valid, it will return -1.
 
 `Player.GetPlayerSlot(player):` **`integer`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player slot number within the current game session.
@@ -9113,8 +9113,8 @@ Returns the player slot number within the current game session.
 
 `Player.GetPlayerTeamSlot(player):` **`integer`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the team slot number assigned to the player within their respective team.
@@ -9123,8 +9123,8 @@ Returns the team slot number assigned to the player within their respective team
 
 `Player.GetName(player):` **`string`**, **`string`** | **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player nickname and his proname
@@ -9143,10 +9143,10 @@ Returns cached player's proname. Works only in game callbacks
 
 `Player.GetPlayerData(player, [output]):` **`{valid:boolean, fullyJoined:boolean, fakeClient:boolean, connectionState:integer, steamid:integer, PlusSubscriber:boolean, MVPLastGame:boolean, PlayerName:string, ProName:string}`**
 
-| Name                                                         | Type                                                                                         | Description                                                                         |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Name                                                         | Type                                                                                                                  | Description                                                                         |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | **player**                                                   | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player.                                                                  |
-| **output** **`[?]`** | **`table`**                                               | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
+| **output** **`[?]`** | **`table`**                                                                        | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
 
 Returns the player data table.
 
@@ -9154,8 +9154,8 @@ Returns the player data table.
 
 `Player.GetTeamData(player):` **`{selected_hero_id:integer, kills:integer, assists:integer, deaths:integer, streak:integer, respawnTime:integer, selected_hero_variant:integer, lane_selection_flags:integer, last_buyback_time:number}`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player team data table.
@@ -9165,8 +9165,8 @@ Team data is only available for players on the local team.
 
 `Player.GetNeutralStashItems(player):` [**`CItem[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md)
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns table with `CItem`s available in the neutral stash.
@@ -9175,10 +9175,10 @@ Returns table with `CItem`s available in the neutral stash.
 
 `Player.GetTeamPlayer(player, [output]):` **`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity`** | **`nil, override_selection_entity:CEntity`** | **`nil, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:number, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**
 
-| Name                                                         | Type                                                                                         | Description                                                                         |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Name                                                         | Type                                                                                                                  | Description                                                                         |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | **player**                                                   | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player.                                                                  |
-| **output** **`[?]`** | **`table`**                                               | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
+| **output** **`[?]`** | **`table`**                                                                        | Optional reusable table to populate instead of creating a new one. `(default: nil)` |
 
 Returns **Team Player Data** table
 
@@ -9186,8 +9186,8 @@ Returns **Team Player Data** table
 
 `Player.GetPlayerNeutralInfo(player):` **`nil`** | **`{acquired_madstone:integer, current_madstone:integer, trinket_choices:integer[], enhancement_choices:integer[], selected_trinkets:integer[], selected_enhancements:integer[], times_crafted:integer[]}`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns info about player's neutral items
@@ -9196,8 +9196,8 @@ Returns info about player's neutral items
 
 `Player.IsMuted(player):` **`boolean`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player mute status.
@@ -9206,8 +9206,8 @@ Returns the player mute status.
 
 `Player.GetSelectedUnits(player):` [**`CNPC[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns table of selected units by player.
@@ -9216,8 +9216,8 @@ Returns table of selected units by player.
 
 `Player.AddSelectedUnit(player, NPC):` **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 | **NPC**    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)       | To select.         |
 
@@ -9227,8 +9227,8 @@ Adds unit to player selection.
 
 `Player.ClearSelectedUnits(player):` **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Clears player selection.
@@ -9237,8 +9237,8 @@ Clears player selection.
 
 `Player.GetQuickBuyInfo(player):` **`{mark_for_buy: boolean, buyback_protection: boolean, items: {ability_id: integer, top_level_item: integer, top_level_item_ability_id: integer, purchasable_state: integer, purchasable_accum_state: integer, marked_for_buy: boolean, parity: integer, sticky: boolean, purchase_in_flight: boolean, newly_actionable: boolean}[]}`** | **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player's quick-buy state: the mark-for-buy and buyback-protection flags and the
@@ -9248,8 +9248,8 @@ quick-buy item slots. Returns nil when the player has no hero or no team data.
 
 `Player.GetCourierControllerInfo(player):` **`{state:integer, shop:integer}`** | **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player's courier controller state, or nil when it is unavailable.
@@ -9258,8 +9258,8 @@ Returns the player's courier controller state, or nil when it is unavailable.
 
 `Player.GetTotalGold(player):` **`integer`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns total gold of player.
@@ -9268,8 +9268,8 @@ Returns total gold of player.
 
 `Player.GetAssignedHero(player):` [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) | **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns player's assigned hero.
@@ -9278,8 +9278,8 @@ Returns player's assigned hero.
 
 `Player.GetQueryUnit(player):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the unit currently queried by the player.
@@ -9288,15 +9288,15 @@ Returns the unit currently queried by the player.
 
 `Player.SetQueryUnit(unit):` **`boolean`**
 
-| Name     | Type                                                                                   | Description          |
-| -------- | -------------------------------------------------------------------------------------- | -------------------- |
+| Name     | Type                                                                                                            | Description          |
+| -------- | --------------------------------------------------------------------------------------------------------------- | -------------------- |
 | **unit** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The entity to query. |
 
 Sets the local player's HUD query entity without changing the selection group.
 
 #### Player.GetClickBehaviors
 
-`Player.GetClickBehaviors():` [**`Enum.CLICK_BEHAVIORS`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.click_behaviors)
+`Player.GetClickBehaviors():` [**`Enum.CLICK_BEHAVIORS`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.click_behaviors)
 
 Returns the local player's current click mode, like GameUI.GetClickBehaviors.
 Returns DOTA_CLICK_BEHAVIOR_NONE when there is no local player.
@@ -9305,8 +9305,8 @@ Returns DOTA_CLICK_BEHAVIOR_NONE when there is no local player.
 
 `Player.GetActiveAbility(player):` [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | **`nil`**
 
-| Name       | Type                                                                                         | Description        |
-| ---------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| Name       | Type                                                                                                                  | Description        |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns player's active ability.
@@ -9322,8 +9322,8 @@ Table to work with `CModifier`. You can get modifiers from `NPC.GetModifier`func
 
 `Modifier.GetName(modifier):` **`string`**
 
-| Name         | Type                                                                                             | Description             |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------- |
+| Name         | Type                                                                                                                      | Description             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get name of |
 
 Returns the name of the modifier.
@@ -9332,8 +9332,8 @@ Returns the name of the modifier.
 
 `Modifier.GetClass(modifier):` **`string`**
 
-| Name         | Type                                                                                             | Description |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
+| Name         | Type                                                                                                                      | Description |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) |             |
 
 Returns the name of the modifier's class.
@@ -9344,8 +9344,8 @@ Deprecated.
 
 `Modifier.GetModifierAura(modifier):` **`string`**
 
-| Name         | Type                                                                                             | Description             |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------- |
+| Name         | Type                                                                                                                      | Description             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get aura of |
 
 Should return the name of the modifier's aura, but instead, it returns an empty string in all
@@ -9357,8 +9357,8 @@ Deprecated.
 
 `Modifier.GetSerialNumber(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                      |
-| ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------- |
+| Name         | Type                                                                                                                      | Description                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get serial number of |
 
 Should return the serial number of the modifier, but instead, it returns 0 in all the cases I
@@ -9370,8 +9370,8 @@ Deprecated.
 
 `Modifier.GetStringIndex(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                     |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------- |
+| Name         | Type                                                                                                                      | Description                     |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get string index of |
 
 Should return the string index of the modifier, but instead, it returns 0 in all the cases I
@@ -9381,8 +9381,8 @@ have tested.
 
 `Modifier.GetIndex(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description              |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------ |
+| Name         | Type                                                                                                                      | Description              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get index of |
 
 Returns the hero's modifier index. The index is an incrementable value with each new modifier
@@ -9392,8 +9392,8 @@ the NPC gets
 
 `Modifier.GetCreationTime(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                      |
-| ------------ | ------------------------------------------------------------------------------------------------ | -------------------------------- |
+| Name         | Type                                                                                                                      | Description                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get creation time of |
 
 Returns the game time when the modifier was created.
@@ -9402,8 +9402,8 @@ Returns the game time when the modifier was created.
 
 `Modifier.GetCreationFrame(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                       |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Name         | Type                                                                                                                      | Description                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get creation frame of |
 
 Returns the frame when the modifier was created. You could get current frame count from
@@ -9413,8 +9413,8 @@ Returns the frame when the modifier was created. You could get current frame cou
 
 `Modifier.GetLastAppliedTime(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                          |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| Name         | Type                                                                                                                      | Description                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get last applied time of |
 
 Returns the game time when the modifier was last applied. Don't know cases when it can be
@@ -9424,8 +9424,8 @@ different from `GetCreationTime`.
 
 `Modifier.GetDuration(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                 |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------- |
+| Name         | Type                                                                                                                      | Description                 |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get duration of |
 
 Returns the duration of the modifier.
@@ -9434,8 +9434,8 @@ Returns the duration of the modifier.
 
 `Modifier.GetDieTime(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                        |
-| ------------ | ------------------------------------------------------------------------------------------------ | ---------------------------------- |
+| Name         | Type                                                                                                                      | Description                        |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get expiration time of |
 
 Returns the game time when the modifier will expire.
@@ -9444,8 +9444,8 @@ Returns the game time when the modifier will expire.
 
 `Modifier.GetStackCount(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                    |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------ |
+| Name         | Type                                                                                                                      | Description                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get stack count of |
 
 If there are stacks of the modifier, it returns the amount of stacks; otherwise, it returns
@@ -9457,8 +9457,8 @@ Deprecated.
 
 `Modifier.GetAuraSearchTeam(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                         |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| Name         | Type                                                                                                                      | Description                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get aura search team of |
 
 Returns aura search team of the modifier.
@@ -9469,8 +9469,8 @@ Deprecated.
 
 `Modifier.GetAuraSearchType(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                         |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| Name         | Type                                                                                                                      | Description                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get aura search type of |
 
 Returns aura search type of the modifier.
@@ -9481,8 +9481,8 @@ Deprecated.
 
 `Modifier.GetAuraSearchFlags(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                          |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| Name         | Type                                                                                                                      | Description                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get aura search flags of |
 
 Returns aura search flags of the modifier.
@@ -9493,18 +9493,18 @@ Deprecated.
 
 `Modifier.GetAuraRadius(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                    |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------------ |
+| Name         | Type                                                                                                                      | Description                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get aura radius of |
 
 Returns aura radius of the modifier.
 
 #### Modifier.GetTeam
 
-`Modifier.GetTeam(modifier):` [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)
+`Modifier.GetTeam(modifier):` [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)
 
-| Name         | Type                                                                                             | Description             |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------- |
+| Name         | Type                                                                                                                      | Description             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get team of |
 
 Returns team of the modifier.
@@ -9515,8 +9515,8 @@ Deprecated.
 
 `Modifier.GetAttributes(modifier):` **`integer`**
 
-| Name         | Type                                                                                             | Description                   |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------- |
+| Name         | Type                                                                                                                      | Description                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get attributes of |
 
 Returns the attributes of the modifier.
@@ -9527,8 +9527,8 @@ Deprecated.
 
 `Modifier.IsAura(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if the modifier is an aura.
@@ -9539,8 +9539,8 @@ Deprecated.
 
 `Modifier.IsAuraActiveOnDeath(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if the modifier aura active on death.
@@ -9551,8 +9551,8 @@ Deprecated.
 
 `Modifier.GetMarkedForDeletion(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if the modifier is marked for deletion.
@@ -9563,8 +9563,8 @@ Deprecated.
 
 `Modifier.GetAuraIsHeal(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if aura is heal.
@@ -9573,8 +9573,8 @@ Returns `true` if aura is heal.
 
 `Modifier.GetProvidedByAura(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if modifier is provided by an aura.
@@ -9583,8 +9583,8 @@ Returns `true` if modifier is provided by an aura.
 
 `Modifier.GetPreviousTick(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                       |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Name         | Type                                                                                                                      | Description                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get last tick time of |
 
 Returns the game time of the last modifier tick (\~0.033 seconds).
@@ -9595,8 +9595,8 @@ Deprecated.
 
 `Modifier.GetThinkInterval(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                       |
-| ------------ | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+| Name         | Type                                                                                                                      | Description                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get think interval of |
 
 Returns the modifier's think interval.
@@ -9607,8 +9607,8 @@ Deprecated.
 
 `Modifier.GetThinkTimeAccumulator(modifier):` **`number`**
 
-| Name         | Type                                                                                             | Description                               |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| Name         | Type                                                                                                                      | Description                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get think time accumulator of |
 
 Return the modifier's think interval time accumulator.
@@ -9617,8 +9617,8 @@ Return the modifier's think interval time accumulator.
 
 `Modifier.IsCurrentlyInAuraRange(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if is in aura range.
@@ -9627,8 +9627,8 @@ Returns `true` if is in aura range.
 
 `Modifier.GetAbility(modifier):` [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | **`nil`**
 
-| Name         | Type                                                                                             | Description                |
-| ------------ | ------------------------------------------------------------------------------------------------ | -------------------------- |
+| Name         | Type                                                                                                                      | Description                |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get ability of |
 
 Returns the modifier's ability or nil if ability not in the cheat's ability list
@@ -9637,8 +9637,8 @@ Returns the modifier's ability or nil if ability not in the cheat's ability list
 
 `Modifier.GetAuraOwner(modifier):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name         | Type                                                                                             | Description |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
+| Name         | Type                                                                                                                      | Description |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier    |
 
 Returns the owner of aura
@@ -9647,8 +9647,8 @@ Returns the owner of aura
 
 `Modifier.GetParent(modifier):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name         | Type                                                                                             | Description |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
+| Name         | Type                                                                                                                      | Description |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier    |
 
 Returns the parent of modifier
@@ -9657,8 +9657,8 @@ Returns the parent of modifier
 
 `Modifier.GetCaster(modifier):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name         | Type                                                                                             | Description |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
+| Name         | Type                                                                                                                      | Description |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier    |
 
 Returns caster of modifier
@@ -9667,8 +9667,8 @@ Returns caster of modifier
 
 `Modifier.GetState(modifier):` **`number`**, **`number`**
 
-| Name         | Type                                                                                             | Description              |
-| ------------ | ------------------------------------------------------------------------------------------------ | ------------------------ |
+| Name         | Type                                                                                                                      | Description              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get state of |
 
 Returns the modifier state masks. See the example.
@@ -9685,8 +9685,8 @@ local mod_is_stun = (m_nEnabledStateMask >> Enum.ModifierState.MODIFIER_STATE_ST
 
 `Modifier.IsDebuff(modifier):` **`boolean`**
 
-| Name         | Type                                                                                             | Description       |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Name         | Type                                                                                                                      | Description       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to check |
 
 Returns `true` if the modifier is a debuff.
@@ -9695,11 +9695,11 @@ Returns `true` if the modifier is a debuff.
 
 `Modifier.GetField(modifier, fieldName, [dbgPrint]):` **`any`**
 
-| Name                                                           | Type                                                                                             | Description                              |
-| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| Name                                                           | Type                                                                                                                      | Description                              |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **modifier**                                                   | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get field from               |
-| **fieldName**                                                  | **`string`**                                                  | field name                               |
-| **dbgPrint** **`[?]`** | **`boolean`**                                                 | print possible errors `(default: false)` |
+| **fieldName**                                                  | **`string`**                                                                           | field name                               |
+| **dbgPrint** **`[?]`** | **`boolean`**                                                                          | print possible errors `(default: false)` |
 
 Returns value of the field.
 
@@ -9716,8 +9716,8 @@ Table to work with `CEntity`.
 
 `Entity.IsEntity(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is in entity list. Search in unordered set.
@@ -9726,8 +9726,8 @@ Returns `true` if the entity is in entity list. Search in unordered set.
 
 `Entity.IsNPC(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is in NPC list. Search in unordered set.
@@ -9736,8 +9736,8 @@ Returns `true` if the entity is in NPC list. Search in unordered set.
 
 `Entity.IsHero(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is in hero list. Search in unordered set.
@@ -9746,8 +9746,8 @@ Returns `true` if the entity is in hero list. Search in unordered set.
 
 `Entity.IsPlayer(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is in player list. Search in unordered set.
@@ -9756,8 +9756,8 @@ Returns `true` if the entity is in player list. Search in unordered set.
 
 `Entity.IsAbility(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is in ability list. Search in unordered set. Item is ability.
@@ -9788,8 +9788,8 @@ assert(hero == entity_by_index, "Entity.Get() is broken!"); -- true
 
 `Entity.GetIndex(entity):` **`integer`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns game index of entity.
@@ -9798,8 +9798,8 @@ Returns game index of entity.
 
 `Entity.GetClassName(entity):` **`string`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's class name.
@@ -9808,8 +9808,8 @@ Returns the entity's class name.
 
 `Entity.GetUnitName(entity):` **`string`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's name.
@@ -9818,18 +9818,18 @@ Returns the entity's name.
 
 `Entity.GetUnitDesignerName(entity):` **`string`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's designerName field.
 
 #### Entity.GetTeamNum
 
-`Entity.GetTeamNum(entity):` [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)
+`Entity.GetTeamNum(entity):` [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's team number.
@@ -9838,8 +9838,8 @@ Returns the entity's team number.
 
 `Entity.IsSameTeam(entity1, entity2):` **`boolean`**
 
-| Name        | Type                                                                                         | Description |
-| ----------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                  | Description |
+| ----------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity1** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 | **entity2** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
@@ -9849,8 +9849,8 @@ Returns `true` if the entities are in the same team.
 
 `Entity.GetAbsOrigin(entity):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's position.
@@ -9859,8 +9859,8 @@ Returns the entity's position.
 
 `Entity.GetNetOrigin(entity):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's net position.
@@ -9869,8 +9869,8 @@ Returns the entity's net position.
 
 `Entity.GetRotation(entity):` [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's rotation.
@@ -9904,8 +9904,8 @@ return {
 
 `Entity.GetAbsOriginXYZ(entity):` **`number`**, **`number`**, **`number`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's position as three numbers (zero allocation).
@@ -9914,8 +9914,8 @@ Returns the entity's position as three numbers (zero allocation).
 
 `Entity.GetRotationPYR(entity):` **`number`**, **`number`**, **`number`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's rotation as three numbers (zero allocation).
@@ -9924,8 +9924,8 @@ Returns the entity's rotation as three numbers (zero allocation).
 
 `Entity.IsAlive(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is alive.
@@ -9934,8 +9934,8 @@ Returns `true` if the entity is alive.
 
 `Entity.IsDormant(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns `true` if the entity is not visible to the local player.
@@ -9944,8 +9944,8 @@ Returns `true` if the entity is not visible to the local player.
 
 `Entity.GetHealth(entity):` **`integer`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's health.
@@ -9954,8 +9954,8 @@ Returns the entity's health.
 
 `Entity.GetMaxHealth(entity):` **`integer`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's max health.
@@ -9964,8 +9964,8 @@ Returns the entity's max health.
 
 `Entity.GetOwner(entity):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's owner or `nil` if the entity has no owner.\ e.g. for **`CPlayer`** -> `npc_dota_hero_ember_spirit` -> `npc_dota_hero_ember_spirit_fire_remnant`
@@ -9975,8 +9975,8 @@ ownership chain `Entity.GetOwner(remnant)` will return Ember Spirit's entity.
 
 `Entity.OwnedBy(entity, owner):` **`boolean`**
 
-| Name       | Type                                                                                         | Description            |
-| ---------- | -------------------------------------------------------------------------------------------- | ---------------------- |
+| Name       | Type                                                                                                                  | Description            |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | - entity to check      |
 | **owner**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | - owner for comparison |
 
@@ -9986,8 +9986,8 @@ Returns `true` if the entity is owned by another entity-owner. It will check the
 
 `Entity.RecursiveGetOwner(entity):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns the entity's last owner.\ e.g. for **`CPlayer`** -> `npc_dota_hero_ember_spirit` -> `npc_dota_hero_ember_spirit_fire_remnant`
@@ -9997,8 +9997,8 @@ ownership chain `Entity.GetOwner(remnant)` will return **`CPlayer`**.
 
 `Entity.RecursiveOwnedBy(entity, owner):` **`boolean`**
 
-| Name       | Type                                                                                         | Description          |
-| ---------- | -------------------------------------------------------------------------------------------- | -------------------- |
+| Name       | Type                                                                                                                  | Description          |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | -------------------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to check      |
 | **owner**  | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | owner for comparison |
 
@@ -10008,13 +10008,13 @@ Returns `true` if the entity is owned by another entity-owner. It will check the
 
 `Entity.GetHeroesInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [**`CHero[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md)
 
-| Name                                                                | Type                                                                                                                                                       | Description                                                             |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **entity**                                                          | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                               | entity to get position                                                  |
-| **radius**                                                          | **`number`**                                                                                                            | radius to search around                                                 |
-| **teamType** **`[?]`**      | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
-| **omitIllusions** **`[?]`** | **`boolean`**                                                                                                           | `true` if you want to get table without illusions `(default: false)`    |
-| **omitDormant** **`[?]`**   | **`boolean`**                                                                                                           | `true` if you want to get table without dormant units `(default: true)` |
+| Name                                                                | Type                                                                                                                         | Description                                                             |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **entity**                                                          | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)        | entity to get position                                                  |
+| **radius**                                                          | **`number`**                                                                              | radius to search around                                                 |
+| **teamType** **`[?]`**      | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
+| **omitIllusions** **`[?]`** | **`boolean`**                                                                             | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant** **`[?]`**   | **`boolean`**                                                                             | `true` if you want to get table without dormant units `(default: true)` |
 
 Returns an array of all alive and visible heroes in radius of the entity. Exclude illusion.
 
@@ -10034,13 +10034,13 @@ end
 
 `Entity.GetUnitsInRadius(entity, radius, [teamType], [omitIllusions], [omitDormant]):` [**`CNPC[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)
 
-| Name                                                                | Type                                                                                                                                                       | Description                                                             |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **entity**                                                          | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                               | entity to get position                                                  |
-| **radius**                                                          | **`number`**                                                                                                            | radius to search around                                                 |
-| **teamType** **`[?]`**      | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
-| **omitIllusions** **`[?]`** | **`boolean`**                                                                                                           | `true` if you want to get table without illusions `(default: false)`    |
-| **omitDormant** **`[?]`**   | **`boolean`**                                                                                                           | `true` if you want to get table without dormant units `(default: true)` |
+| Name                                                                | Type                                                                                                                         | Description                                                             |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **entity**                                                          | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)        | entity to get position                                                  |
+| **radius**                                                          | **`number`**                                                                              | radius to search around                                                 |
+| **teamType** **`[?]`**      | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | relative to the entity `(default: TEAM_ENEMY)`                          |
+| **omitIllusions** **`[?]`** | **`boolean`**                                                                             | `true` if you want to get table without illusions `(default: false)`    |
+| **omitDormant** **`[?]`**   | **`boolean`**                                                                             | `true` if you want to get table without dormant units `(default: true)` |
 
 Returns an array of all alive and visible NPCs in radius of the entity.
 
@@ -10062,11 +10062,11 @@ Active means that tree is not destroyed.
 
 `Entity.GetTreesInRadius(entity, radius, [active]):` [**`CTree[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md)
 
-| Name                                                         | Type                                                                                         | Description                                                                                            |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Name                                                         | Type                                                                                                                  | Description                                                                                            |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | **entity**                                                   | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to get position                                                                                 |
-| **radius**                                                   | **`number`**                                              | radius to search around                                                                                |
-| **active** **`[?]`** | **`boolean`**                                             | `true` if you want to get table with active trees only, otherwise for inactive trees `(default: true)` |
+| **radius**                                                   | **`number`**                                                                       | radius to search around                                                                                |
+| **active** **`[?]`** | **`boolean`**                                                                      | `true` if you want to get table with active trees only, otherwise for inactive trees `(default: true)` |
 
 Returns an array of all not temporary trees in radius of the entity.
 
@@ -10088,10 +10088,10 @@ Temporary trees are trees planted by abilities or items.
 
 `Entity.GetTempTreesInRadius(entity, radius):` [**`CTree[]`**]\(Tree.md)
 
-| Name       | Type                                                                                         | Description             |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------------------- |
+| Name       | Type                                                                                                                  | Description             |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to get position  |
-| **radius** | **`number`**                                              | radius to search around |
+| **radius** | **`number`**                                                                       | radius to search around |
 
 Returns an array of all temporary trees in radius of the entity.
 
@@ -10111,10 +10111,10 @@ end
 
 `Entity.IsControllableByPlayer(entity, playerId):` **`boolean`**
 
-| Name         | Type                                                                                         | Description     |
-| ------------ | -------------------------------------------------------------------------------------------- | --------------- |
+| Name         | Type                                                                                                                  | Description     |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- | --------------- |
 | **entity**   | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to check |
-| **playerId** | **`integer`**                                             | player id       |
+| **playerId** | **`integer`**                                                                      | player id       |
 
 Returns `true` if entity is controllable by player.
 
@@ -10128,10 +10128,10 @@ Returns Roshan's health. Onyly works in unsafe mode.
 
 `Entity.GetForwardPosition(entity, distance):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name         | Type                                                                                         | Description              |
-| ------------ | -------------------------------------------------------------------------------------------- | ------------------------ |
+| Name         | Type                                                                                                                  | Description              |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | **entity**   | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to get position   |
-| **distance** | **`number`**                                              | distance to move forward |
+| **distance** | **`number`**                                                                       | distance to move forward |
 
 Returns position in front of entity or (0,0,0) if entity is invalid.
 
@@ -10139,8 +10139,8 @@ Returns position in front of entity or (0,0,0) if entity is invalid.
 
 `Entity.GetClassID(entity):` **`integer`**
 
-| Name       | Type                                                                                         | Description            |
-| ---------- | -------------------------------------------------------------------------------------------- | ---------------------- |
+| Name       | Type                                                                                                                  | Description            |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to get class id |
 
 Returns entity class id. Could be as a optimized way to check entity type.
@@ -10149,11 +10149,11 @@ Returns entity class id. Could be as a optimized way to check entity type.
 
 `Entity.GetField(entity, fieldName, [dbgPrint]):` **`any`**
 
-| Name                                                           | Type                                                                                         | Description                              |
-| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Name                                                           | Type                                                                                                                  | Description                              |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **entity**                                                     | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to get field from                 |
-| **fieldName**                                                  | **`string`**                                              | field name                               |
-| **dbgPrint** **`[?]`** | **`boolean`**                                             | print possible errors `(default: false)` |
+| **fieldName**                                                  | **`string`**                                                                       | field name                               |
+| **dbgPrint** **`[?]`** | **`boolean`**                                                                      | print possible errors `(default: false)` |
 
 Returns value of the field.
 
@@ -10168,8 +10168,8 @@ Table to work with `CNPC`. **`CNPC`** extends **`CEntity`**
 
 `NPC.GetOwnerNPC(npc):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name    | Type                                                                                   | Description           |
-| ------- | -------------------------------------------------------------------------------------- | --------------------- |
+| Name    | Type                                                                                                            | Description           |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to get owner from |
 
 Returns owner of the `CNPC`. Works for spirit bear.
@@ -10178,11 +10178,11 @@ Returns owner of the `CNPC`. Works for spirit bear.
 
 `NPC.GetItem(npc, name, [isReal]):` [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) | **`nil`**
 
-| Name                                                         | Type                                                                                   | Description                                                                                                                    |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Name                                                         | Type                                                                                                            | Description                                                                                                                    |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **npc**                                                      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to get item from                                                                                                           |
-| **name**                                                     | **`string`**                                        | name of the item                                                                                                               |
-| **isReal** **`[?]`** | **`boolean`**                                       | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
+| **name**                                                     | **`string`**                                                                 | name of the item                                                                                                               |
+| **isReal** **`[?]`** | **`boolean`**                                                                | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
 
 Returns `CItem` by name.
 
@@ -10190,11 +10190,11 @@ Returns `CItem` by name.
 
 `NPC.HasItem(npc, name, [isReal]):` **`boolean`**
 
-| Name                                                         | Type                                                                                   | Description                                                                                                                    |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Name                                                         | Type                                                                                                            | Description                                                                                                                    |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **npc**                                                      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                   |
-| **name**                                                     | **`string`**                                        | name of the item                                                                                                               |
-| **isReal** **`[?]`** | **`boolean`**                                       | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
+| **name**                                                     | **`string`**                                                                 | name of the item                                                                                                               |
+| **isReal** **`[?]`** | **`boolean`**                                                                | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
 
 Returns `true` if the `CNPC` has item with specified name.
 
@@ -10202,10 +10202,10 @@ Returns `true` if the `CNPC` has item with specified name.
 
 `NPC.HasModifier(npc, name):` **`boolean`**
 
-| Name     | Type                                                                                   | Description          |
-| -------- | -------------------------------------------------------------------------------------- | -------------------- |
+| Name     | Type                                                                                                            | Description          |
+| -------- | --------------------------------------------------------------------------------------------------------------- | -------------------- |
 | **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check         |
-| **name** | **`string`**                                        | name of the modifier |
+| **name** | **`string`**                                                                 | name of the modifier |
 
 Returns `true` if the `CNPC` has modifier with specified name.
 
@@ -10213,10 +10213,10 @@ Returns `true` if the `CNPC` has modifier with specified name.
 
 `NPC.GetModifier(npc, name):` [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | **`nil`**
 
-| Name     | Type                                                                                   | Description              |
-| -------- | -------------------------------------------------------------------------------------- | ------------------------ |
+| Name     | Type                                                                                                            | Description              |
+| -------- | --------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to get modifier from |
-| **name** | **`string`**                                        | name of the modifier     |
+| **name** | **`string`**                                                                 | name of the modifier     |
 
 Returns `CModifier` by name.
 
@@ -10224,10 +10224,10 @@ Returns `CModifier` by name.
 
 `poperty_filter` doesn`t filter all modifiers every call, it uses already prefiltered list.  `NPC.GetModifiers(npc, [poperty_filter]):` [**`CModifier[]`**]\(Modifier.md)
 
-| Name                                                                  | Type                                                                                                                                                                       | Description                                                                                         |
-| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **npc**                                                               | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                     | npc to get modifiers from                                                                           |
-| **poperty_filter** **`[?]`** | [**`Enum.ModifierFunction`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierfunction) | Filter modifiers by specified property `(default: Enum.ModifierFunction.MODIFIER_FUNCTION_INVALID)` |
+| Name                                                                  | Type                                                                                                                                         | Description                                                                                         |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **npc**                                                               | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                              | npc to get modifiers from                                                                           |
+| **poperty_filter** **`[?]`** | [**`Enum.ModifierFunction`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierfunction) | Filter modifiers by specified property `(default: Enum.ModifierFunction.MODIFIER_FUNCTION_INVALID)` |
 
 Returns an array of all NPC's `CModifier`s.
 
@@ -10237,7 +10237,7 @@ Returns an array of all NPC's `CModifier`s.
 
 | Name      | Type                                                                                                                 | Description |
 | --------- | -------------------------------------------------------------------------------------------------------------------- | ----------- |
-| **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                               |             |
+| **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)      |             |
 | **names** | **`string[]`** \| **`table<string, boolean>`** |             |
 
 Returns `true` if the NPC has any modifier from the given set.
@@ -10248,10 +10248,10 @@ The hash set form is faster: O(M) hash lookups vs O(M*N) strcmp, where M = modif
 
 `NPC.GetModifierByIndex(npc, index):` [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | **`nil`**
 
-| Name      | Type                                                                                   | Description   |
-| --------- | -------------------------------------------------------------------------------------- | ------------- |
+| Name      | Type                                                                                                            | Description   |
+| --------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
 | **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) |               |
-| **index** | **`integer`**                                       | 1-based index |
+| **index** | **`integer`**                                                                | 1-based index |
 
 Returns the modifier at the given 1-based index, or nil if out of range.
 Use with `NPC.GetModifiers` count or iterate until nil.
@@ -10260,10 +10260,10 @@ Use with `NPC.GetModifiers` count or iterate until nil.
 
 `NPC.HasInventorySlotFree(npc, [isReal]):` **`boolean`**
 
-| Name                                                         | Type                                                                                   | Description                                                                                                                    |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Name                                                         | Type                                                                                                            | Description                                                                                                                    |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **npc**                                                      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                   |
-| **isReal** **`[?]`** | **`boolean`**                                       | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
+| **isReal** **`[?]`** | **`boolean`**                                                                | if true, returns only 1-6 slots and neutral item, otherwise returns all items (including backpack and stash) `(default: true)` |
 
 Returns `true` if the `CNPC` has free inventory slot.
 
@@ -10271,10 +10271,10 @@ Returns `true` if the `CNPC` has free inventory slot.
 
 `NPC.HasState(npc, state):` **`boolean`**
 
-| Name      | Type                                                                                                                                                                 | Description    |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
-| **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                               | npc to check   |
-| **state** | [**`Enum.ModifierState`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierstate) | state to check |
+| Name      | Type                                                                                                                                   | Description    |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                        | npc to check   |
+| **state** | [**`Enum.ModifierState`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierstate) | state to check |
 
 Returns `true` if the `CNPC` has state. The best way to check if the `CNPC` is stunned, silenced, hexed, has BKB immune etc.
 
@@ -10282,11 +10282,11 @@ Returns `true` if the `CNPC` has state. The best way to check if the `CNPC` is s
 
 `NPC.GetStatesDuration(npc, states, [only_active_states]):` **`table<Enum.ModifierState, number>`**
 
-| Name                                                                       | Type                                                                                   | Description                                                                                                                         |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Name                                                                       | Type                                                                                                            | Description                                                                                                                         |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **npc**                                                                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check                                                                                                                        |
-| **states**                                                                 | **`table<Enum.ModifierState, boolean>`**            | states to check; the keys are read, the values are ignored                                                                          |
-| **only_active_states** **`[?]`** | **`boolean`**                                       | if `true` then check only states that active on unit, otherwise check all states. e.g. rooted while debuff immune `(default: true)` |
+| **states**                                                                 | **`table<Enum.ModifierState, boolean>`**                                     | states to check; the keys are read, the values are ignored                                                                          |
+| **only_active_states** **`[?]`** | **`boolean`**                                                                | if `true` then check only states that active on unit, otherwise check all states. e.g. rooted while debuff immune `(default: true)` |
 
 Returns table of remaining modifier states duration. See the example
 
@@ -10306,8 +10306,8 @@ local stun_duration = states[Enum.ModifierState.MODIFIER_STATE_STUNNED]
 
 `NPC.IsWaitingToSpawn(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if waiting to spawn. For example, creeps are waiting to spawn under the ground near the barracks.
@@ -10316,8 +10316,8 @@ Returns `true` if waiting to spawn. For example, creeps are waiting to spawn und
 
 `NPC.IsIllusion(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is illusion.
@@ -10326,8 +10326,8 @@ Returns `true` if the `CNPC` is illusion.
 
 `NPC.IsVisible(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is visible to local player.
@@ -10336,8 +10336,8 @@ Returns `true` if the `CNPC` is visible to local player.
 
 `NPC.IsVisibleToEnemies(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is visible enemies.
@@ -10346,8 +10346,8 @@ Returns `true` if the `CNPC` is visible enemies.
 
 `NPC.IsCourier(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a courier.
@@ -10356,8 +10356,8 @@ Returns `true` if the `CNPC` is a courier.
 
 `NPC.IsRanged(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a ranged unit.
@@ -10366,8 +10366,8 @@ Returns `true` if the `CNPC` is a ranged unit.
 
 `NPC.IsCreep(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a creep.
@@ -10376,8 +10376,8 @@ Returns `true` if the `CNPC` is a creep.
 
 `NPC.IsLaneCreep(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a lane creep.
@@ -10386,8 +10386,8 @@ Returns `true` if the `CNPC` is a lane creep.
 
 `NPC.IsStructure(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a structure.
@@ -10396,18 +10396,18 @@ Returns `true` if the `CNPC` is a structure.
 
 `NPC.IsTower(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a tower.
 
 #### NPC.GetUnitType
 
-`NPC.GetUnitType(npc):` [**`Enum.UnitTypeFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unittypeflags)
+`NPC.GetUnitType(npc):` [**`Enum.UnitTypeFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.unittypeflags)
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns unit type flags.
@@ -10416,8 +10416,8 @@ Returns unit type flags.
 
 `NPC.IsConsideredHero(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if it is unit a considered a hero for targeting purposes.
@@ -10426,8 +10426,8 @@ Returns `true` if it is unit a considered a hero for targeting purposes.
 
 `NPC.IsBarracks(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a barracks.
@@ -10436,8 +10436,8 @@ Returns `true` if the `CNPC` is a barracks.
 
 `NPC.IsFort(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is the Ancient/Throne building (the win-condition structure).
@@ -10447,8 +10447,8 @@ Distinct from `IsAncient`, which checks for ancient-tier neutral camps.
 
 `NPC.IsBoss(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a boss-like unit (TYPE_BOSS bit).
@@ -10457,8 +10457,8 @@ Returns `true` if the `CNPC` is a boss-like unit (TYPE_BOSS bit).
 
 `NPC.IsTormentor(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a Tormentor / mini-boss. Renders with the
@@ -10468,8 +10468,8 @@ siege-wide healthbar (same as Roshan).
 
 `NPC.IsAncient(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is an ancient creeps.
@@ -10478,8 +10478,8 @@ Returns `true` if the `CNPC` is an ancient creeps.
 
 `NPC.IsRoshan(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a Roshan.
@@ -10488,8 +10488,8 @@ Returns `true` if the `CNPC` is a Roshan.
 
 `NPC.IsNeutral(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a neutral. Neutral creeps, ancient creeps.
@@ -10498,8 +10498,8 @@ Returns `true` if the `CNPC` is a neutral. Neutral creeps, ancient creeps.
 
 `NPC.IsHero(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a hero.
@@ -10508,8 +10508,8 @@ Returns `true` if the `CNPC` is a hero.
 
 `NPC.IsWard(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a ward.
@@ -10518,8 +10518,8 @@ Returns `true` if the `CNPC` is a ward.
 
 `NPC.IsMeepoClone(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is a meepo clone.
@@ -10528,11 +10528,11 @@ Returns `true` if the `CNPC` is a meepo clone.
 
 `NPC.IsEntityInRange(npc, npc2, range):` **`boolean`**
 
-| Name      | Type                                                                                   | Description    |
-| --------- | -------------------------------------------------------------------------------------- | -------------- |
+| Name      | Type                                                                                                            | Description    |
+| --------- | --------------------------------------------------------------------------------------------------------------- | -------------- |
 | **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check   |
 | **npc2**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check   |
-| **range** | **`number`**                                        | range to check |
+| **range** | **`number`**                                                                 | range to check |
 
 Returns `true` if the `CNPC` in range of other `CNPC`.
 
@@ -10540,12 +10540,12 @@ Returns `true` if the `CNPC` in range of other `CNPC`.
 
 `NPC.IsPositionInRange(npc, pos, range, [hull]):` **`boolean`**
 
-| Name                                                       | Type                                                                                                           | Description                               |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| Name                                                       | Type                                                                                                                                    | Description                               |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | **npc**                                                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | npc to check                              |
 | **pos**                                                    | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check                         |
-| **range**                                                  | **`number`**                                                                | range to check                            |
-| **hull** **`[?]`** | **`number`**                                                                | hull just added to range `(default: 0.0)` |
+| **range**                                                  | **`number`**                                                                                         | range to check                            |
+| **hull** **`[?]`** | **`number`**                                                                                         | hull just added to range `(default: 0.0)` |
 
 Returns `true` if the `CNPC` in range of position.
 
@@ -10553,8 +10553,8 @@ Returns `true` if the `CNPC` in range of position.
 
 `NPC.IsLinkensProtected(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is protected by Linkens Sphere.
@@ -10563,8 +10563,8 @@ Returns `true` if the `CNPC` is protected by Linkens Sphere.
 
 `NPC.IsMirrorProtected(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is protected by Mirror Shield.
@@ -10575,8 +10575,8 @@ Do not work for items.
 
 `NPC.IsChannellingAbility(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description  |
-| ------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name    | Type                                                                                                            | Description  |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
 
 Returns `true` if the `CNPC` is channeling ability. Black Hole, Life Drain, etc.
@@ -10585,8 +10585,8 @@ Returns `true` if the `CNPC` is channeling ability. Black Hole, Life Drain, etc.
 
 `NPC.GetChannellingAbility(npc):` [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | **`nil`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the currently channelling `CAbility`.
@@ -10595,8 +10595,8 @@ Returns the currently channelling `CAbility`.
 
 `NPC.IsRunning(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns `true` if the `CNPC` is running.
@@ -10605,8 +10605,8 @@ Returns `true` if the `CNPC` is running.
 
 `NPC.IsAttacking(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns `true` if the `CNPC` is attacking.
@@ -10615,8 +10615,8 @@ Returns `true` if the `CNPC` is attacking.
 
 `NPC.IsSilenced(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns `true` if the `CNPC` is silenced.
@@ -10625,8 +10625,8 @@ Returns `true` if the `CNPC` is silenced.
 
 `NPC.IsStunned(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns `true` if the `CNPC` is stunned.
@@ -10635,8 +10635,8 @@ Returns `true` if the `CNPC` is stunned.
 
 `NPC.HasAegis(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns `true` if the `CNPC` has aegis.
@@ -10645,18 +10645,18 @@ Returns `true` if the `CNPC` has aegis.
 
 `NPC.IsKillable(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns `true` if the `CNPC` has killable. Example: false if affected by Eul.
 
 #### NPC.GetActivity
 
-`NPC.GetActivity(npc):` [**`Enum.GameActivity`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gameactivity)
+`NPC.GetActivity(npc):` [**`Enum.GameActivity`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gameactivity)
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the `CNPC` activity, such as running, attacking, casting, etc.
@@ -10665,8 +10665,8 @@ Returns the `CNPC` activity, such as running, attacking, casting, etc.
 
 `NPC.GetAnimationInfo(npc):` **`{sequence:integer, cycle:number, name:string`** | **`nil, mdl_name:string}`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns information about the current animation of the `CNPC`.
@@ -10675,8 +10675,8 @@ Returns information about the current animation of the `CNPC`.
 
 `NPC.GetAttackRange(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the base attack range of the `CNPC`.
@@ -10685,8 +10685,8 @@ Returns the base attack range of the `CNPC`.
 
 `NPC.GetAttackRangeBonus(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the bonus attack range of the `CNPC`.
@@ -10695,8 +10695,8 @@ Returns the bonus attack range of the `CNPC`.
 
 `NPC.GetCastRangeBonus(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the bonus cast range of the `CNPC`.
@@ -10705,10 +10705,10 @@ Returns the bonus cast range of the `CNPC`.
 
 `NPC.GetPhysicalArmorValue(npc, [excludeWhiteArmor]):` **`number`**
 
-| Name                                                                    | Type                                                                                   | Description                           |
-| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------- |
+| Name                                                                    | Type                                                                                                            | Description                           |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | **npc**                                                                 | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                            |
-| **excludeWhiteArmor** **`[?]`** | **`boolean`**                                       | exclude white armor `(default: true)` |
+| **excludeWhiteArmor** **`[?]`** | **`boolean`**                                                                | exclude white armor `(default: true)` |
 
 Returns the physical armor value of the `CNPC`.
 
@@ -10716,8 +10716,8 @@ Returns the physical armor value of the `CNPC`.
 
 `NPC.GetPhysicalDamageReduction(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the physical damage reduction value of the `CNPC`.
@@ -10726,8 +10726,8 @@ Returns the physical damage reduction value of the `CNPC`.
 
 `NPC.GetArmorDamageMultiplier(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the physical damage multiplier value of the `CNPC`.
@@ -10736,8 +10736,8 @@ Returns the physical damage multiplier value of the `CNPC`.
 
 `NPC.GetMagicalArmorValue(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the magical armor value of the `CNPC`.
@@ -10746,8 +10746,8 @@ Returns the magical armor value of the `CNPC`.
 
 `NPC.GetMagicalArmorDamageMultiplier(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the magical damage multiplier value of the `CNPC`.
@@ -10756,10 +10756,10 @@ Returns the magical damage multiplier value of the `CNPC`.
 
 `NPC.GetIncreasedAttackSpeed(npc, [ignore_temp_attack_speed]):` **`number`**
 
-| Name                                                                              | Type                                                                                   | Description                                      |
-| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Name                                                                              | Type                                                                                                            | Description                                      |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**                                                                           | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                       |
-| **ignore_temp_attack_speed** **`[?]`** | **`boolean`**                                       | ignore temporary attack speed `(default: false)` |
+| **ignore_temp_attack_speed** **`[?]`** | **`boolean`**                                                                | ignore temporary attack speed `(default: false)` |
 
 Returns increased attack speed of the `CNPC`.
 
@@ -10767,10 +10767,10 @@ Returns increased attack speed of the `CNPC`.
 
 `NPC.GetAttacksPerSecond(npc, [ignore_temp_attack_speed]):` **`number`**
 
-| Name                                                                              | Type                                                                                   | Description                                      |
-| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Name                                                                              | Type                                                                                                            | Description                                      |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**                                                                           | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                       |
-| **ignore_temp_attack_speed** **`[?]`** | **`boolean`**                                       | ignore temporary attack speed `(default: false)` |
+| **ignore_temp_attack_speed** **`[?]`** | **`boolean`**                                                                | ignore temporary attack speed `(default: false)` |
 
 Returns the number of attacks per second that the `CNPC` can deal.
 
@@ -10778,8 +10778,8 @@ Returns the number of attacks per second that the `CNPC` can deal.
 
 `NPC.GetAttackTime(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the amount of time needed for the `CNPC` to perform an attack.
@@ -10788,8 +10788,8 @@ Returns the amount of time needed for the `CNPC` to perform an attack.
 
 `NPC.GetLastAttackTime(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the game time of the `CNPC`'s last attack point. The value includes the sub-tick fraction of the attack cadence.
@@ -10798,10 +10798,10 @@ Returns the game time of the `CNPC`'s last attack point. The value includes the 
 
 `NPC.GetAttackSpeed(npc, [ignore_temp_attack_speed]):` **`number`**
 
-| Name                                                                              | Type                                                                                   | Description                                      |
-| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Name                                                                              | Type                                                                                                            | Description                                      |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**                                                                           | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                       |
-| **ignore_temp_attack_speed** **`[?]`** | **`boolean`**                                       | ignore temporary attack speed `(default: false)` |
+| **ignore_temp_attack_speed** **`[?]`** | **`boolean`**                                                                | ignore temporary attack speed `(default: false)` |
 
 Returns the attack speed of the `CNPC`.
 
@@ -10809,8 +10809,8 @@ Returns the attack speed of the `CNPC`.
 
 `NPC.GetBaseAttackSpeed(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the base attack speed of the `CNPC`.
@@ -10819,8 +10819,8 @@ Returns the base attack speed of the `CNPC`.
 
 `NPC.GetHullRadius(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the model interaction radius of the `CNPC`.
@@ -10829,8 +10829,8 @@ Returns the model interaction radius of the `CNPC`.
 
 `NPC.GetPaddedCollisionRadius(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the collision hull radius (including padding) of this `NPC`.
@@ -10839,8 +10839,8 @@ Returns the collision hull radius (including padding) of this `NPC`.
 
 `NPC.GetCollisionPadding(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the collision including padding of this `NPC`.
@@ -10849,8 +10849,8 @@ Returns the collision including padding of this `NPC`.
 
 `NPC.GetRingRadius(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the ring radius of this `NPC`.
@@ -10861,8 +10861,8 @@ see: <https://dota2.fandom.com/wiki/Unit\_Size#Collision\_Size>
 
 `NPC.GetProjectileCollisionSize(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the collision size of the `CNPC`. Collision size is the internal size that prevents other units from passing through.
@@ -10873,8 +10873,8 @@ see: <https://dota2.fandom.com/wiki/Turn\_rate>
 
 `NPC.GetTurnRate(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the turn rate, which is the speed at which the `CNPC` can turn.
@@ -10885,8 +10885,8 @@ see: <https://dota2.fandom.com/wiki/Attack\_animation>
 
 `NPC.GetAttackAnimPoint(npc):` **`number`** | **`nil`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the attack animation point, `nil` if not found.
@@ -10897,8 +10897,8 @@ see: <https://dota2.fandom.com/wiki/Projectile\_Speed>
 
 `NPC.GetAttackProjectileSpeed(npc):` **`integer`** | **`nil`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the attack projectile speed, `nil` if not found.
@@ -10907,8 +10907,8 @@ Returns the attack projectile speed, `nil` if not found.
 
 `NPC.IsTurning(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns true if the `CNPC` is turning.
@@ -10919,8 +10919,8 @@ doesn't work for creeps
 
 `NPC.GetAngleDiff(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the remaining degree angle needed to complete the turn of the `CNPC`.
@@ -10929,8 +10929,8 @@ Returns the remaining degree angle needed to complete the turn of the `CNPC`.
 
 `NPC.GetPhysicalArmorMainValue(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the (main) white armor of the `CNPC`.
@@ -10939,8 +10939,8 @@ Returns the (main) white armor of the `CNPC`.
 
 `NPC.GetTimeToFace(npc, target):` **`number`**
 
-| Name       | Type                                                                                   | Description |
-| ---------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                            | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc**    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | source npc  |
 | **target** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
@@ -10950,8 +10950,8 @@ Returns the amount of time needed for the source `CNPC` to face the target `CNPC
 
 `NPC.FindRotationAngle(npc, pos):` **`number`**
 
-| Name    | Type                                                                                                           | Description                         |
-| ------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| Name    | Type                                                                                                                                    | Description                         |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | source npc                          |
 | **pos** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to find the rotation angle |
 
@@ -10961,8 +10961,8 @@ Returns the rotation angle of the `CNPC`.
 
 `NPC.GetTimeToFacePosition(npc, pos):` **`number`**
 
-| Name    | Type                                                                                                           | Description     |
-| ------- | -------------------------------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                                                    | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | source npc      |
 | **pos** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | target position |
 
@@ -10972,13 +10972,13 @@ Returns the amount of time needed for the source `CNPC` to face a specific posit
 
 `NPC.FindFacingNPC(npc, ignoreNpc, [team_type], [angle], [distance]):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name                                                             | Type                                                                                                                                                       | Description                            |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| **npc**                                                          | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                     | source npc                             |
-| **ignoreNpc**                                                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                     | ignore npc                             |
-| **team_type** **`[?]`** | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | team type `(default: TEAM_BOTH)`       |
-| **angle** **`[?]`**      | **`number`**                                                                                                            | max angle to check `(default: 0.0)`    |
-| **distance** **`[?]`**   | **`number`**                                                                                                            | max distance to check `(default: 0.0)` |
+| Name                                                             | Type                                                                                                                         | Description                            |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| **npc**                                                          | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)              | source npc                             |
+| **ignoreNpc**                                                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)              | ignore npc                             |
+| **team_type** **`[?]`** | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | team type `(default: TEAM_BOTH)`       |
+| **angle** **`[?]`**      | **`number`**                                                                              | max angle to check `(default: 0.0)`    |
+| **distance** **`[?]`**   | **`number`**                                                                              | max distance to check `(default: 0.0)` |
 
 Returns the `CNPC` that the source `CNPC` is currently facing.
 
@@ -10986,8 +10986,8 @@ Returns the `CNPC` that the source `CNPC` is currently facing.
 
 `NPC.GetBaseSpeed(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the base move speed of the `CNPC`.
@@ -10996,8 +10996,8 @@ Returns the base move speed of the `CNPC`.
 
 `NPC.GetMoveSpeed(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the move speed of the `CNPC`.
@@ -11006,8 +11006,8 @@ Returns the move speed of the `CNPC`.
 
 `NPC.GetMinDamage(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the minumum attack damage of the `CNPC`.
@@ -11016,8 +11016,8 @@ Returns the minumum attack damage of the `CNPC`.
 
 `NPC.GetBonusDamage(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the bonus attack damage of the `CNPC`.
@@ -11026,8 +11026,8 @@ Returns the bonus attack damage of the `CNPC`.
 
 `NPC.GetTrueDamage(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the minumum attack damage + bonus damage of the `CNPC`.
@@ -11036,8 +11036,8 @@ Returns the minumum attack damage + bonus damage of the `CNPC`.
 
 `NPC.GetTrueMaximumDamage(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the maximum attack damage + bonus damage of the `CNPC`.
@@ -11046,10 +11046,10 @@ Returns the maximum attack damage + bonus damage of the `CNPC`.
 
 `NPC.GetItemByIndex(npc, index):` [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) | **`nil`**
 
-| Name      | Type                                                                                   | Description |
-| --------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                            | Description |
+| --------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
-| **index** | **`integer`**                                       | item index  |
+| **index** | **`integer`**                                                                | item index  |
 
 Returns the `CItem` by index.
 
@@ -11057,10 +11057,10 @@ Returns the `CItem` by index.
 
 `NPC.GetAbilityByIndex(npc, index):` [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | **`nil`**
 
-| Name      | Type                                                                                   | Description   |
-| --------- | -------------------------------------------------------------------------------------- | ------------- |
+| Name      | Type                                                                                                            | Description   |
+| --------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
 | **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc    |
-| **index** | **`integer`**                                       | ability index |
+| **index** | **`integer`**                                                                | ability index |
 
 Returns the `CAbility` by index.
 
@@ -11068,10 +11068,10 @@ Returns the `CAbility` by index.
 
 `NPC.GetAbilityByActivity(npc, activity):` [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | **`nil`**
 
-| Name         | Type                                                                                                                                                               | Description             |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
-| **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                             | npc to get ability from |
-| **activity** | [**`Enum.GameActivity`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gameactivity) | game activity           |
+| Name         | Type                                                                                                                                 | Description             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
+| **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                      | npc to get ability from |
+| **activity** | [**`Enum.GameActivity`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gameactivity) | game activity           |
 
 Returns the `CAbility` by game activity.
 
@@ -11079,10 +11079,10 @@ Returns the `CAbility` by game activity.
 
 `NPC.GetAbility(npc, name):` [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) | **`nil`**
 
-| Name     | Type                                                                                   | Description  |
-| -------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name     | Type                                                                                                            | Description  |
+| -------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc   |
-| **name** | **`string`**                                        | ability name |
+| **name** | **`string`**                                                                 | ability name |
 
 Returns the `CAbility` by name.
 
@@ -11090,10 +11090,10 @@ Returns the `CAbility` by name.
 
 `NPC.HasAbility(npc, name):` **`boolean`**
 
-| Name     | Type                                                                                   | Description  |
-| -------- | -------------------------------------------------------------------------------------- | ------------ |
+| Name     | Type                                                                                                            | Description  |
+| -------- | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc   |
-| **name** | **`string`**                                        | ability name |
+| **name** | **`string`**                                                                 | ability name |
 
 Returns `true` if the `CNPC` has this ability.
 
@@ -11101,8 +11101,8 @@ Returns `true` if the `CNPC` has this ability.
 
 `NPC.GetMana(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the current mana of the `CNPC`.
@@ -11111,8 +11111,8 @@ Returns the current mana of the `CNPC`.
 
 `NPC.GetMaxMana(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the maximum mana of the `CNPC`.
@@ -11121,8 +11121,8 @@ Returns the maximum mana of the `CNPC`.
 
 `NPC.GetManaRegen(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the mana regeneration rate of the `CNPC`.
@@ -11131,8 +11131,8 @@ Returns the mana regeneration rate of the `CNPC`.
 
 `NPC.GetHealthRegen(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the health regeneration rate of the `CNPC`.
@@ -11143,8 +11143,8 @@ Works for creeps but really slow.
 
 `NPC.CalculateHealthRegen(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Iterate over all modifiers and returns the health regeneration rate of the `CNPC`.
@@ -11153,8 +11153,8 @@ Iterate over all modifiers and returns the health regeneration rate of the `CNPC
 
 `NPC.GetCurrentLevel(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the current level of the `CNPC`.
@@ -11163,8 +11163,8 @@ Returns the current level of the `CNPC`.
 
 `NPC.GetDayTimeVisionRange(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the day-time vision range of the `CNPC`.
@@ -11173,8 +11173,8 @@ Returns the day-time vision range of the `CNPC`.
 
 `NPC.GetNightTimeVisionRange(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the night-time vision range of the `CNPC`.
@@ -11183,8 +11183,8 @@ Returns the night-time vision range of the `CNPC`.
 
 `NPC.GetUnitName(npc):` **`string`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the unit-name of the `CNPC`.
@@ -11193,10 +11193,10 @@ Returns the unit-name of the `CNPC`.
 
 `NPC.GetHealthBarOffset(npc, [checkOverride]):` **`integer`**
 
-| Name                                                                | Type                                                                                   | Description                                            |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Name                                                                | Type                                                                                                            | Description                                            |
+| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | **npc**                                                             | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                             |
-| **checkOverride** **`[?]`** | **`boolean`**                                       | returns override offset if it exists `(default: true)` |
+| **checkOverride** **`[?]`** | **`boolean`**                                                                | returns override offset if it exists `(default: true)` |
 
 Returns the health bar offset of the `CNPC`.
 
@@ -11206,8 +11206,8 @@ returns the legacy numeric ID, not the current UnitNames string-table index
 
 `NPC.GetUnitNameIndex(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the canonical unit-name index of the `CNPC`.
@@ -11216,10 +11216,10 @@ Returns the canonical unit-name index of the `CNPC`.
 
 `NPC.GetAttachment(npc, name):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name     | Type                                                                                   | Description                            |
-| -------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
+| Name     | Type                                                                                                            | Description                            |
+| -------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                             |
-| **name** | **`string`**                                        | attachment name. e.g. "attach_hitloc" |
+| **name** | **`string`**                                                                 | attachment name. e.g. "attach_hitloc" |
 
 Returns the attachment position of the `CNPC` by the name.
 
@@ -11288,10 +11288,10 @@ attach_gem
 
 `NPC.GetAttachmentByIndex(npc, index):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name      | Type                                                                                   | Description      |
-| --------- | -------------------------------------------------------------------------------------- | ---------------- |
+| Name      | Type                                                                                                            | Description      |
+| --------- | --------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **npc**   | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc       |
-| **index** | **`integer`**                                       | attachment index |
+| **index** | **`integer`**                                                                | attachment index |
 
 Returns the attachment position of the `CNPC` by the specified index.
 
@@ -11299,10 +11299,10 @@ Returns the attachment position of the `CNPC` by the specified index.
 
 `NPC.GetAttachmentIndexByName(npc, name):` **`integer`**
 
-| Name     | Type                                                                                   | Description                            |
-| -------- | -------------------------------------------------------------------------------------- | -------------------------------------- |
+| Name     | Type                                                                                                            | Description                            |
+| -------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **npc**  | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                             |
-| **name** | **`string`**                                        | attachment name. e.g. "attach_hitloc" |
+| **name** | **`string`**                                                                 | attachment name. e.g. "attach_hitloc" |
 
 Returns the attachment index of the `CNPC` by the name.
 
@@ -11310,13 +11310,13 @@ Returns the attachment index of the `CNPC` by the name.
 
 `NPC.EvaluateAttachmentEmulated(npc, name, activity, seq_variant, cycle):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
 
-| Name             | Type                                                                                   | Description                                      |
-| ---------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Name             | Type                                                                                                            | Description                                      |
+| ---------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | **npc**          | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                       |
-| **name**         | **`string`**                                        | attachment name (e.g. "attach_attack1")         |
-| **activity**     | **`number`**                                        | GameActivity int (e.g. 1503 = ACT_DOTA_ATTACK) |
-| **seq_variant** | **`number`**                                        | sequence variant index (usually 0)               |
-| **cycle**        | **`number`**                                        | sequence cycle 0..1                              |
+| **name**         | **`string`**                                                                 | attachment name (e.g. "attach_attack1")         |
+| **activity**     | **`number`**                                                                 | GameActivity int (e.g. 1503 = ACT_DOTA_ATTACK) |
+| **seq_variant** | **`number`**                                                                 | sequence variant index (usually 0)               |
+| **cycle**        | **`number`**                                                                 | sequence cycle 0..1                              |
 
 Returns the world-space position of the attachment `name` on the `CNPC`, evaluated for the
 given animation activity, sequence variant and cycle. The NPC's current animation is not changed.
@@ -11327,8 +11327,8 @@ pose is returned.
 
 `NPC.GetBountyXP(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the amount of experience points (XP) you can earn for killing the `CNPC`.
@@ -11337,8 +11337,8 @@ Returns the amount of experience points (XP) you can earn for killing the `CNPC`
 
 `NPC.GetGoldBountyMin(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the minimum amount gold you can earn for killing the `CNPC`.
@@ -11347,8 +11347,8 @@ Returns the minimum amount gold you can earn for killing the `CNPC`.
 
 `NPC.GetGoldBountyMax(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description |
-| ------- | -------------------------------------------------------------------------------------- | ----------- |
+| Name    | Type                                                                                                            | Description |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
 
 Returns the maximum amount gold you can earn for killing the `CNPC`.
@@ -11357,16 +11357,16 @@ Returns the maximum amount gold you can earn for killing the `CNPC`.
 
 `NPC.MoveTo(npc, position, [queue], [show], [callback], [executeFast], [identifier], [force_minimap]):` **`nil`**
 
-| Name                                                                 | Type                                                                                                           | Description                                                                             |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Name                                                                 | Type                                                                                                                                    | Description                                                                             |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **npc**                                                              | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                         | The target NPC.                                                                         |
 | **position**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The destination position.                                                               |
-| **queue** **`[?]`**          | **`boolean`**                                                               | Add the order to the Dota queue. `(default: false)`                                     |
-| **show** **`[?]`**           | **`boolean`**                                                               | Show the order position. `(default: false)`                                             |
-| **callback** **`[?]`**       | **`boolean`**                                                               | Push the order to the OnPrepareUnitOrders callback. `(default: false)`                  |
-| **executeFast** **`[?]`**    | **`boolean`**                                                               | Place the order at the top of the queue. `(default: false)`                             |
-| **identifier** **`[?]`**     | **`string`**                                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
-| **force_minimap** **`[?]`** | **`boolean`**                                                               | If true, the order will be forced by the minimap if possible. `(default: true)`         |
+| **queue** **`[?]`**          | **`boolean`**                                                                                        | Add the order to the Dota queue. `(default: false)`                                     |
+| **show** **`[?]`**           | **`boolean`**                                                                                        | Show the order position. `(default: false)`                                             |
+| **callback** **`[?]`**       | **`boolean`**                                                                                        | Push the order to the OnPrepareUnitOrders callback. `(default: false)`                  |
+| **executeFast** **`[?]`**    | **`boolean`**                                                                                        | Place the order at the top of the queue. `(default: false)`                             |
+| **identifier** **`[?]`**     | **`string`**                                                                                         | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
+| **force_minimap** **`[?]`** | **`boolean`**                                                                                        | If true, the order will be forced by the minimap if possible. `(default: true)`         |
 
 Initiates an order for the `CNPC` to move to a specified position.
 
@@ -11374,10 +11374,10 @@ Initiates an order for the `CNPC` to move to a specified position.
 
 `NPC.SetZDelta(npc, z):` **`nil`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
-| **z**   | **`number`**                                        | Z pos           |
+| **z**   | **`number`**                                                                 | Z pos           |
 
 Sets the Z position of the `CNPC` model.
 
@@ -11385,8 +11385,8 @@ Sets the Z position of the `CNPC` model.
 
 `NPC.HasScepter(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns `true` if the `CNPC` has or consumed Aghanim Scepter.
@@ -11395,8 +11395,8 @@ Returns `true` if the `CNPC` has or consumed Aghanim Scepter.
 
 `NPC.HasShard(npc):` **`boolean`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns `true` if the `CNPC` has or consumed Aghanim Shard.
@@ -11405,8 +11405,8 @@ Returns `true` if the `CNPC` has or consumed Aghanim Shard.
 
 `NPC.GetScepterUpgradeID(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns index of selected scepter upgrade.
@@ -11415,8 +11415,8 @@ Returns index of selected scepter upgrade.
 
 `NPC.GetShardUpgradeID(npc):` **`integer`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns index of selected shard upgrade.
@@ -11425,10 +11425,10 @@ Returns index of selected shard upgrade.
 
 `NPC.SequenceDuration(npc, sequence):` **`number`**
 
-| Name         | Type                                                                                   | Description         |
-| ------------ | -------------------------------------------------------------------------------------- | ------------------- |
+| Name         | Type                                                                                                            | Description         |
+| ------------ | --------------------------------------------------------------------------------------------------------------- | ------------------- |
 | **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC.     |
-| **sequence** | **`integer`**                                       | The sequence index. |
+| **sequence** | **`integer`**                                                                | The sequence index. |
 
 Returns sequence duration of the npc with the specified sequence index.
 
@@ -11436,10 +11436,10 @@ Returns sequence duration of the npc with the specified sequence index.
 
 `NPC.GetSecondsPerAttack(npc, bIgnoreTempAttackSpeed):` **`number`**
 
-| Name                       | Type                                                                                   | Description                    |
-| -------------------------- | -------------------------------------------------------------------------------------- | ------------------------------ |
+| Name                       | Type                                                                                                            | Description                    |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | **npc**                    | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC.                |
-| **bIgnoreTempAttackSpeed** | **`boolean`**                                       | Ignore temporary attack speed. |
+| **bIgnoreTempAttackSpeed** | **`boolean`**                                                                | Ignore temporary attack speed. |
 
 Returns the seconds per attack of the npc.
 
@@ -11447,11 +11447,11 @@ Returns the seconds per attack of the npc.
 
 `NPC.GetSequence(npc, sequenceVariant, activity):` **`integer`**
 
-| Name                | Type                                                                                   | Description                                                  |
-| ------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Name                | Type                                                                                                            | Description                                                  |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | **npc**             | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                                   |
-| **sequenceVariant** | **`integer`**                                       | 0 by default (most heroes)                                   |
-| **activity**        | **`integer`**                                       | GameActivity enum (e.g. Enum.GameActivity.ACT_DOTA_ATTACK) |
+| **sequenceVariant** | **`integer`**                                                                | 0 by default (most heroes)                                   |
+| **activity**        | **`integer`**                                                                | GameActivity enum (e.g. Enum.GameActivity.ACT_DOTA_ATTACK) |
 
 Returns the sequence (HSequence) the NPC plays for the given activity and sequence variant. The
 lookup uses the activity, not the NPC's current animation.
@@ -11467,8 +11467,8 @@ local dur = NPC.SequenceDuration(npc, seq)
 
 `NPC.GetBarriers(npc):` **`{physical:{total:number, current:number}, magic:{total:number, current:number}, all:{total:number, current:number}}`** | **`nil`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns a table with information about the barriers of the `CNPC`, or `nil` if it has none.
@@ -11477,8 +11477,8 @@ Returns a table with information about the barriers of the `CNPC`, or `nil` if i
 
 `NPC.GetGlow(npc):` **`{m_bSuppressGlow:boolean, m_bFlashing:boolean, m_bGlowing:boolean, m_iGlowType:integer, r:integer, g:integer, b:integer}`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns a table with information about the current glow effect of the `CNPC`.
@@ -11487,16 +11487,16 @@ Returns a table with information about the current glow effect of the `CNPC`.
 
 `NPC.SetGlow(npc, suppress_glow, flashing, glowing, glow_type, r, g, b):` **`nil`**
 
-| Name               | Type                                                                                   | Description     |
-| ------------------ | -------------------------------------------------------------------------------------- | --------------- |
+| Name               | Type                                                                                                            | Description     |
+| ------------------ | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc**            | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
-| **suppress_glow** | **`boolean`**                                       | suppress_glow  |
-| **flashing**       | **`boolean`**                                       | flashing        |
-| **glowing**        | **`boolean`**                                       | glowing         |
-| **glow_type**     | **`integer`**                                       | glow type       |
-| **r**              | **`integer`**                                       | r factor        |
-| **g**              | **`integer`**                                       | g factor        |
-| **b**              | **`integer`**                                       | b factor        |
+| **suppress_glow** | **`boolean`**                                                                | suppress_glow  |
+| **flashing**       | **`boolean`**                                                                | flashing        |
+| **glowing**        | **`boolean`**                                                                | glowing         |
+| **glow_type**     | **`integer`**                                                                | glow type       |
+| **r**              | **`integer`**                                                                | r factor        |
+| **g**              | **`integer`**                                                                | g factor        |
+| **b**              | **`integer`**                                                                | b factor        |
 
 Sets the `CNPC` glow effect.
 
@@ -11504,12 +11504,12 @@ Sets the `CNPC` glow effect.
 
 `NPC.SetColor(npc, r, g, b):` **`nil`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
-| **r**   | **`integer`**                                       | r factor        |
-| **g**   | **`integer`**                                       | g factor        |
-| **b**   | **`integer`**                                       | b factor        |
+| **r**   | **`integer`**                                                                | r factor        |
+| **g**   | **`integer`**                                                                | g factor        |
+| **b**   | **`integer`**                                                                | b factor        |
 
 Sets the `CNPC` model color.
 
@@ -11517,11 +11517,11 @@ Sets the `CNPC` model color.
 
 `NPC.IsInRangeOfShop(npc, shop_type, [specific]):` **`boolean`**
 
-| Name                                                           | Type                                                                                                                                                       | Description                              |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| **npc**                                                        | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                     | The target NPC.                          |
-| **shop_type**                                                 | [**`Enum.ShopType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.shoptype) | Shop type to check.                      |
-| **specific** **`[?]`** | **`boolean`**                                                                                                           | No idea what is that. `(default: false)` |
+| Name                                                           | Type                                                                                                                         | Description                              |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| **npc**                                                        | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)              | The target NPC.                          |
+| **shop_type**                                                 | [**`Enum.ShopType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.shoptype) | Shop type to check.                      |
+| **specific** **`[?]`** | **`boolean`**                                                                             | No idea what is that. `(default: false)` |
 
 Checks if the `CNPC` is in range of a shop.
 
@@ -11529,8 +11529,8 @@ Checks if the `CNPC` is in range of a shop.
 
 `NPC.GetBaseSpellAmp(npc):` **`number`**
 
-| Name    | Type                                                                                   | Description     |
-| ------- | -------------------------------------------------------------------------------------- | --------------- |
+| Name    | Type                                                                                                            | Description     |
+| ------- | --------------------------------------------------------------------------------------------------------------- | --------------- |
 | **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | The target NPC. |
 
 Returns the base spell amplification of the `CNPC`.
@@ -11539,10 +11539,10 @@ Returns the base spell amplification of the `CNPC`.
 
 `NPC.GetModifierProperty(npc, property):` **`number`**
 
-| Name         | Type                                                                                                                                                                       | Description     |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                     | The target NPC. |
-| **property** | [**`Enum.ModifierFunction`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierfunction) | Property enum.  |
+| Name         | Type                                                                                                                                         | Description     |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                              | The target NPC. |
+| **property** | [**`Enum.ModifierFunction`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierfunction) | Property enum.  |
 
 Returns the property value for the `CNPC`.
 
@@ -11550,10 +11550,10 @@ Returns the property value for the `CNPC`.
 
 `NPC.IsControllableByPlayer(npc, playerId):` **`boolean`**
 
-| Name         | Type                                                                                   | Description  |
-| ------------ | -------------------------------------------------------------------------------------- | ------------ |
+| Name         | Type                                                                                                            | Description  |
+| ------------ | --------------------------------------------------------------------------------------------------------------- | ------------ |
 | **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to check |
-| **playerId** | **`integer`**                                       | player id    |
+| **playerId** | **`integer`**                                                                | player id    |
 
 Returns `true` if npc is controllable by player.
 
@@ -11563,10 +11563,10 @@ Fixes the issue when you have multiple Kaya items that actually don't stack.
 
 `NPC.GetModifierPropertyHighest(npc, property):` **`number`**
 
-| Name         | Type                                                                                                                                                                       | Description     |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                                                                                     | The target NPC. |
-| **property** | [**`Enum.ModifierFunction`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierfunction) | Property enum.  |
+| Name         | Type                                                                                                                                         | Description     |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| **npc**      | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)                              | The target NPC. |
+| **property** | [**`Enum.ModifierFunction`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.modifierfunction) | Property enum.  |
 
 Returns the hieghest property value for the `CNPC`.
 
@@ -11583,8 +11583,8 @@ Table to work with `CHero`.
 
 `Hero.GetCurrentXP(hero):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the hero's current XP.
@@ -11593,8 +11593,8 @@ Returns the hero's current XP.
 
 `Hero.GetAbilityPoints(hero):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the hero's available ability points.
@@ -11605,8 +11605,8 @@ Could be less than current game time if hero is already alive.
 
 `Hero.GetRespawnTime(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the game time when the hero will respawn.
@@ -11615,18 +11615,18 @@ Returns the game time when the hero will respawn.
 
 `Hero.GetRespawnTimePenalty(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the next respawn time penalty, e.g. buyback.
 
 #### Hero.GetPrimaryAttribute
 
-`Hero.GetPrimaryAttribute(hero):` [**`Enum.Attributes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes)
+`Hero.GetPrimaryAttribute(hero):` [**`Enum.Attributes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes)
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the hero's primary attribute type.
@@ -11635,8 +11635,8 @@ Returns the hero's primary attribute type.
 
 `Hero.GetStrength(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns `white` value of strength.
@@ -11645,8 +11645,8 @@ Returns `white` value of strength.
 
 `Hero.GetAgility(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns `white` value of agility.
@@ -11655,8 +11655,8 @@ Returns `white` value of agility.
 
 `Hero.GetIntellect(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns `white` value of intellect.
@@ -11665,8 +11665,8 @@ Returns `white` value of intellect.
 
 `Hero.GetStrengthTotal(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns total value of strength.
@@ -11675,8 +11675,8 @@ Returns total value of strength.
 
 `Hero.GetAgilityTotal(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns total value of agility.
@@ -11685,8 +11685,8 @@ Returns total value of agility.
 
 `Hero.GetIntellectTotal(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns total value of intellect.
@@ -11695,8 +11695,8 @@ Returns total value of intellect.
 
 `Hero.GetLastHurtTime(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the time when the hero was last hurt.
@@ -11705,8 +11705,8 @@ Returns the time when the hero was last hurt.
 
 `Hero.GetHurtAmount(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the amount of damage the hero last received.
@@ -11715,8 +11715,8 @@ Returns the amount of damage the hero last received.
 
 `Hero.GetRecentDamage(hero):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the damage taken by the hero in the last in \~1 second.
@@ -11725,8 +11725,8 @@ Returns the damage taken by the hero in the last in \~1 second.
 
 `Hero.GetPainFactor(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the pain factor of the hero. Not sure what it is.
@@ -11735,8 +11735,8 @@ Returns the pain factor of the hero. Not sure what it is.
 
 `Hero.GetTargetPainFactor(hero):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the pain factor of the hero's target. Not sure what it is.
@@ -11745,8 +11745,8 @@ Returns the pain factor of the hero's target. Not sure what it is.
 
 `Hero.GetLifeState(hero):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns `true` if the hero is alive. Recommended to use `Entity.IsAlive` instead.
@@ -11755,8 +11755,8 @@ Returns `true` if the hero is alive. Recommended to use `Entity.IsAlive` instead
 
 `Hero.GetPlayerID(hero):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the ID of the hero player.
@@ -11765,8 +11765,8 @@ Returns the ID of the hero player.
 
 `Hero.GetReplicatingOtherHeroModel(hero):` [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) | **`nil`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 If the hero is an illusion, Arc's copy, Meepo clone, etc. returns the original hero, otherwise returns nil.
@@ -11775,10 +11775,10 @@ If the hero is an illusion, Arc's copy, Meepo clone, etc. returns the original h
 
 `Hero.TalentIsLearned(hero, talent):` **`boolean`**
 
-| Name       | Type                                                                                                                                                             | Description |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| **hero**   | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md)                                                                         |             |
-| **talent** | [**`Enum.TalentTypes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.talenttypes) |             |
+| Name       | Type                                                                                                                               | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **hero**   | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md)                  |             |
+| **talent** | [**`Enum.TalentTypes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.talenttypes) |             |
 
 Returns `true` if talent is learned.
 
@@ -11795,8 +11795,8 @@ TALENT_2 <=> TALENT_1
 
 `Hero.GetFacetAbilities(hero):` [**`CAbility[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns facet ability array.
@@ -11805,8 +11805,8 @@ Returns facet ability array.
 
 `Hero.GetFacetID(hero):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns facet id. Start from 1.
@@ -11815,8 +11815,8 @@ Returns facet id. Start from 1.
 
 `Hero.GetLastMaphackPos(hero):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | **`nil`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the last hero pos from maphack.
@@ -11825,8 +11825,8 @@ Returns the last hero pos from maphack.
 
 `Hero.GetLastVisibleTime(hero):` **`number`** | **`nil`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **hero** | [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) |             |
 
 Returns the last visible time from VBE.
@@ -11844,8 +11844,8 @@ Table to work with `CAbility`.
 
 `Ability.GetOwner(ability):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability owner.
@@ -11854,8 +11854,8 @@ Returns the ability owner.
 
 `Ability.IsBasic(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is basic.
@@ -11864,8 +11864,8 @@ Returns `true` if the ability is basic.
 
 `Ability.IsUltimate(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is an ultimate.
@@ -11874,30 +11874,30 @@ Returns `true` if the ability is an ultimate.
 
 `Ability.IsAttributes(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is an attribute or a talent.
 
 #### Ability.GetType
 
-`Ability.GetType(ability):` [**`Enum.AbilityTypes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.abilitytypes)
+`Ability.GetType(ability):` [**`Enum.AbilityTypes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.abilitytypes)
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability type.
 
 #### Ability.GetBehavior
 
-`Ability.GetBehavior(ability, [from_static_data]):` [**`Enum.AbilityBehavior`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.abilitybehavior)
+`Ability.GetBehavior(ability, [from_static_data]):` [**`Enum.AbilityBehavior`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.abilitybehavior)
 
-| Name                                                                     | Type                                                                                           | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Name                                                                     | Type                                                                                                                    | Description                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                  |
-| **from_static_data** **`[?]`** | **`boolean`**                                               | if `true` will check from ability static data `(default: false)` |
+| **from_static_data** **`[?]`** | **`boolean`**                                                                        | if `true` will check from ability static data `(default: false)` |
 
 Returns the ability type.
 
@@ -11905,74 +11905,74 @@ Returns the ability type.
 
 `Ability.IsPassive(ability, [from_static_data]):` **`boolean`**
 
-| Name                                                                     | Type                                                                                           | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Name                                                                     | Type                                                                                                                    | Description                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                  |
-| **from_static_data** **`[?]`** | **`boolean`**                                               | if `true` will check from ability static data `(default: false)` |
+| **from_static_data** **`[?]`** | **`boolean`**                                                                        | if `true` will check from ability static data `(default: false)` |
 
 Returns `true` if the ability is passive.
 
 #### Ability.GetTargetTeam
 
-`Ability.GetTargetTeam(ability, [from_static_data]):` [**`Enum.TargetTeam`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.targetteam)
+`Ability.GetTargetTeam(ability, [from_static_data]):` [**`Enum.TargetTeam`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.targetteam)
 
-| Name                                                                     | Type                                                                                           | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Name                                                                     | Type                                                                                                                    | Description                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                  |
-| **from_static_data** **`[?]`** | **`boolean`**                                               | if `true` will check from ability static data `(default: false)` |
+| **from_static_data** **`[?]`** | **`boolean`**                                                                        | if `true` will check from ability static data `(default: false)` |
 
 Returns the target team of this Ability.
 
 #### Ability.GetTargetType
 
-`Ability.GetTargetType(ability, [from_static_data]):` [**`Enum.TargetType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.targettype)
+`Ability.GetTargetType(ability, [from_static_data]):` [**`Enum.TargetType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.targettype)
 
-| Name                                                                     | Type                                                                                           | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Name                                                                     | Type                                                                                                                    | Description                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                  |
-| **from_static_data** **`[?]`** | **`boolean`**                                               | if `true` will check from ability static data `(default: false)` |
+| **from_static_data** **`[?]`** | **`boolean`**                                                                        | if `true` will check from ability static data `(default: false)` |
 
 Returns the target type of this Ability.
 
 #### Ability.GetTargetFlags
 
-`Ability.GetTargetFlags(ability):` [**`Enum.TargetFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.targetflags)
+`Ability.GetTargetFlags(ability):` [**`Enum.TargetFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.targetflags)
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the target flags of this Ability.
 
 #### Ability.GetDamageType
 
-`Ability.GetDamageType(ability):` [**`Enum.DamageTypes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.damagetypes)
+`Ability.GetDamageType(ability):` [**`Enum.DamageTypes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.damagetypes)
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the damage type of this Ability.
 
 #### Ability.GetImmunityType
 
-`Ability.GetImmunityType(ability, [from_static_data]):` [**`Enum.ImmunityTypes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.immunitytypes)
+`Ability.GetImmunityType(ability, [from_static_data]):` [**`Enum.ImmunityTypes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.immunitytypes)
 
-| Name                                                                     | Type                                                                                           | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Name                                                                     | Type                                                                                                                    | Description                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                  |
-| **from_static_data** **`[?]`** | **`boolean`**                                               | if `true` will check from ability static data `(default: false)` |
+| **from_static_data** **`[?]`** | **`boolean`**                                                                        | if `true` will check from ability static data `(default: false)` |
 
 Returns the immunity type of this Ability.
 
 #### Ability.GetDispellableType
 
-`Ability.GetDispellableType(ability, [from_static_data]):` [**`Enum.DispellableTypes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.dispellabletypes)
+`Ability.GetDispellableType(ability, [from_static_data]):` [**`Enum.DispellableTypes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.dispellabletypes)
 
-| Name                                                                     | Type                                                                                           | Description                                                      |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Name                                                                     | Type                                                                                                                    | Description                                                      |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                  |
-| **from_static_data** **`[?]`** | **`boolean`**                                               | if `true` will check from ability static data `(default: false)` |
+| **from_static_data** **`[?]`** | **`boolean`**                                                                        | if `true` will check from ability static data `(default: false)` |
 
 Returns the dispel type of this Ability.
 
@@ -11980,11 +11980,11 @@ Returns the dispel type of this Ability.
 
 `Ability.GetLevelSpecialValueFor(ability, name, [lvl]):` **`number`**
 
-| Name                                                      | Type                                                                                           | Description                                                                                 |
-| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Name                                                      | Type                                                                                                                    | Description                                                                                 |
+| --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | **ability**                                               | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                                             |
-| **name**                                                  | **`string`**                                                | Special value name. Can be found in the ability KV file. (`assets/data/npc_abilities.json`) |
-| **lvl** **`[?]`** | **`integer`**                                               | Ability level, if -1 will automatically get lvl. `(default: -1)`                            |
+| **name**                                                  | **`string`**                                                                         | Special value name. Can be found in the ability KV file. (`assets/data/npc_abilities.json`) |
+| **lvl** **`[?]`** | **`integer`**                                                                        | Ability level, if -1 will automatically get lvl. `(default: -1)`                            |
 
 WRONG API FIX ME IT MUST BE GetSpecialValueFor.
 
@@ -11992,8 +11992,8 @@ WRONG API FIX ME IT MUST BE GetSpecialValueFor.
 
 `Ability.IsReady(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is ready to use.
@@ -12002,8 +12002,8 @@ Returns `true` if the ability is ready to use.
 
 `Ability.SecondsSinceLastUse(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the number of seconds passed from the last usage of the ability. Will return -1 if
@@ -12013,8 +12013,8 @@ the ability is not on the cooldown.
 
 `Ability.GetDamage(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability damage from assets/data/npc_abilities.json field. Will return 0.0 if the
@@ -12024,8 +12024,8 @@ ability doesn't contain this field.
 
 `Ability.GetHealthCost(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability's health cost.
@@ -12034,8 +12034,8 @@ Returns the ability's health cost.
 
 `Ability.GetLevel(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the current ability level.
@@ -12044,10 +12044,10 @@ Returns the current ability level.
 
 `Ability.GetCastPoint(ability, [include_modifiers]):` **`number`**
 
-| Name                                                                     | Type                                                                                           | Description       |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------- |
+| Name                                                                     | Type                                                                                                                    | Description       |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **ability**                                                              | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                   |
-| **include_modifiers** **`[?]`** | **`boolean`**                                               | `(default: true)` |
+| **include_modifiers** **`[?]`** | **`boolean`**                                                                        | `(default: true)` |
 
 Gets the cast delay of this Ability.
 
@@ -12055,8 +12055,8 @@ Gets the cast delay of this Ability.
 
 `Ability.GetCastPointModifier(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Gets the cast delay modifier of this Ability.
@@ -12065,10 +12065,10 @@ Gets the cast delay modifier of this Ability.
 
 `Ability.IsCastable(ability, [mana]):` **`boolean`**
 
-| Name                                                       | Type                                                                                           | Description      |
-| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------- |
+| Name                                                       | Type                                                                                                                    | Description      |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | **ability**                                                | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                  |
-| **mana** **`[?]`** | **`number`**                                                | `(default: 0.0)` |
+| **mana** **`[?]`** | **`number`**                                                                         | `(default: 0.0)` |
 
 Returns `true` if the ability is currently castable. Checks for mana cost, cooldown, level,
 and slot for items.
@@ -12077,8 +12077,8 @@ and slot for items.
 
 `Ability.IsChannelling(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is in channeling state. Example: teleport, rearm, powershot
@@ -12088,8 +12088,8 @@ etc.
 
 `Ability.GetName(ability):` **`string`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability name or empty string.
@@ -12098,8 +12098,8 @@ Returns the ability name or empty string.
 
 `Ability.GetBaseName(ability):` **`string`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability base name or empty string.
@@ -12108,8 +12108,8 @@ Returns the ability base name or empty string.
 
 `Ability.IsInnate(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is innate.
@@ -12118,8 +12118,8 @@ Returns `true` if the ability is innate.
 
 `Ability.IsInnatePassive(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is passive innate.
@@ -12128,8 +12128,8 @@ Returns `true` if the ability is passive innate.
 
 `Ability.GetMaxLevel(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns ability's max level.
@@ -12138,18 +12138,18 @@ Returns ability's max level.
 
 `Ability.IsGrantedByFacet(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` when abiliti is granted by facet.
 
 #### Ability.CanBeExecuted
 
-`Ability.CanBeExecuted(ability):` [**`Enum.AbilityCastResult`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.abilitycastresult)
+`Ability.CanBeExecuted(ability):` [**`Enum.AbilityCastResult`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.abilitycastresult)
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `-1` if ability can be executed.
@@ -12158,8 +12158,8 @@ Returns `-1` if ability can be executed.
 
 `Ability.IsOwnersManaEnough(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if enough mana for cast.
@@ -12168,13 +12168,13 @@ Returns `true` if enough mana for cast.
 
 `Ability.CastNoTarget(ability, [queue], [push], [execute_fast], [identifier]):` **`nil`**
 
-| Name                                                                | Type                                                                                           | Description                                                                             |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Name                                                                | Type                                                                                                                    | Description                                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                                         |
-| **queue** **`[?]`**         | **`boolean`**                                               | Will add order to the cast queue. `(default: false)`                                    |
-| **push** **`[?]`**          | **`boolean`**                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
-| **execute_fast** **`[?]`** | **`boolean`**                                               | Will push order to start of the order's list. `(default: false)`                        |
-| **identifier** **`[?]`**    | **`string`**                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
+| **queue** **`[?]`**         | **`boolean`**                                                                        | Will add order to the cast queue. `(default: false)`                                    |
+| **push** **`[?]`**          | **`boolean`**                                                                        | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
+| **execute_fast** **`[?]`** | **`boolean`**                                                                        | Will push order to start of the order's list. `(default: false)`                        |
+| **identifier** **`[?]`**    | **`string`**                                                                         | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
 
 Casts the ability that doesn't require a target or position.
 
@@ -12182,15 +12182,15 @@ Casts the ability that doesn't require a target or position.
 
 `Ability.CastPosition(ability, pos, [queue], [push], [execute_fast], [identifier], [force_minimap]):` **`nil`**
 
-| Name                                                                 | Type                                                                                                           | Description                                                                             |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Name                                                                 | Type                                                                                                                                    | Description                                                                             |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                          | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md)                 |                                                                                         |
 | **pos**                                                              | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Order position.                                                                         |
-| **queue** **`[?]`**          | **`boolean`**                                                               | Will add order to the cast queue. `(default: false)`                                    |
-| **push** **`[?]`**           | **`boolean`**                                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
-| **execute_fast** **`[?]`**  | **`boolean`**                                                               | Will push order to start of the order's list. `(default: false)`                        |
-| **identifier** **`[?]`**     | **`string`**                                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
-| **force_minimap** **`[?]`** | **`boolean`**                                                               | If true, the order will be forced by the minimap if possible. `(default: true)`         |
+| **queue** **`[?]`**          | **`boolean`**                                                                                        | Will add order to the cast queue. `(default: false)`                                    |
+| **push** **`[?]`**           | **`boolean`**                                                                                        | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
+| **execute_fast** **`[?]`**  | **`boolean`**                                                                                        | Will push order to start of the order's list. `(default: false)`                        |
+| **identifier** **`[?]`**     | **`string`**                                                                                         | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
+| **force_minimap** **`[?]`** | **`boolean`**                                                                                        | If true, the order will be forced by the minimap if possible. `(default: true)`         |
 
 Casts the ability at a specified position.
 
@@ -12198,14 +12198,14 @@ Casts the ability at a specified position.
 
 `Ability.CastTarget(ability, target, [queue], [push], [execute_fast], [identifier]):` **`nil`**
 
-| Name                                                                | Type                                                                                           | Description                                                                             |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Name                                                                | Type                                                                                                                    | Description                                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                                         |
 | **target**                                                          | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)         | Order target.                                                                           |
-| **queue** **`[?]`**         | **`boolean`**                                               | Will add order to the cast queue. `(default: false)`                                    |
-| **push** **`[?]`**          | **`boolean`**                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
-| **execute_fast** **`[?]`** | **`boolean`**                                               | Will push order to start of the order's list. `(default: false)`                        |
-| **identifier** **`[?]`**    | **`string`**                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
+| **queue** **`[?]`**         | **`boolean`**                                                                        | Will add order to the cast queue. `(default: false)`                                    |
+| **push** **`[?]`**          | **`boolean`**                                                                        | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
+| **execute_fast** **`[?]`** | **`boolean`**                                                                        | Will push order to start of the order's list. `(default: false)`                        |
+| **identifier** **`[?]`**    | **`string`**                                                                         | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
 
 Casts the ability on a specified target.
 
@@ -12213,13 +12213,13 @@ Casts the ability on a specified target.
 
 `Ability.Toggle(ability, [queue], [push], [execute_fast], [identifier]):` **`nil`**
 
-| Name                                                                | Type                                                                                           | Description                                                                             |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Name                                                                | Type                                                                                                                    | Description                                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                                         |
-| **queue** **`[?]`**         | **`boolean`**                                               | Will add order to the cast queue. `(default: false)`                                    |
-| **push** **`[?]`**          | **`boolean`**                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
-| **execute_fast** **`[?]`** | **`boolean`**                                               | Will push order to start of the order's list. `(default: false)`                        |
-| **identifier** **`[?]`**    | **`string`**                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
+| **queue** **`[?]`**         | **`boolean`**                                                                        | Will add order to the cast queue. `(default: false)`                                    |
+| **push** **`[?]`**          | **`boolean`**                                                                        | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
+| **execute_fast** **`[?]`** | **`boolean`**                                                                        | Will push order to start of the order's list. `(default: false)`                        |
+| **identifier** **`[?]`**    | **`string`**                                                                         | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
 
 Toggles the ability. Example: Armlet.
 
@@ -12227,13 +12227,13 @@ Toggles the ability. Example: Armlet.
 
 `Ability.ToggleMod(ability, [queue], [push], [execute_fast], [identifier]):` **`nil`**
 
-| Name                                                                | Type                                                                                           | Description                                                                             |
-| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Name                                                                | Type                                                                                                                    | Description                                                                             |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | **ability**                                                         | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |                                                                                         |
-| **queue** **`[?]`**         | **`boolean`**                                               | Will add order to the cast queue. `(default: false)`                                    |
-| **push** **`[?]`**          | **`boolean`**                                               | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
-| **execute_fast** **`[?]`** | **`boolean`**                                               | Will push order to start of the order's list. `(default: false)`                        |
-| **identifier** **`[?]`**    | **`string`**                                                | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
+| **queue** **`[?]`**         | **`boolean`**                                                                        | Will add order to the cast queue. `(default: false)`                                    |
+| **push** **`[?]`**          | **`boolean`**                                                                        | Will push order to the OnPrepareUnitOrders callback. `(default: false)`                 |
+| **execute_fast** **`[?]`** | **`boolean`**                                                                        | Will push order to start of the order's list. `(default: false)`                        |
+| **identifier** **`[?]`**    | **`string`**                                                                         | The identifier which will be passed to `OnPrepareUnitOrders` callback. `(default: nil)` |
 
 Toggles the ability modifier. Example: Frost Arrows, Medusa's Shield.
 
@@ -12251,8 +12251,8 @@ Returns the default ability icon name from items_game.txt
 
 `Ability.CanBeUpgraded(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns if the ability is upgradable with a specific reason.
@@ -12261,8 +12261,8 @@ Returns if the ability is upgradable with a specific reason.
 
 `Ability.GetAbilityID(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns ability id
@@ -12271,8 +12271,8 @@ Returns ability id
 
 `Ability.GetIndex(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the index of the ability in the ability owner's list. The index can be used in
@@ -12282,8 +12282,8 @@ NPC.GetAbilityByIndex later.
 
 `Ability.GetCastRange(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the cast range of the ability.
@@ -12292,8 +12292,8 @@ Returns the cast range of the ability.
 
 `Ability.IsHidden(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if ability is hidden. Example: Zeus's Nimbus before purchasing agh.
@@ -12302,8 +12302,8 @@ Returns `true` if ability is hidden. Example: Zeus's Nimbus before purchasing ag
 
 `Ability.IsActivated(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is in an activated state.
@@ -12312,8 +12312,8 @@ Returns `true` if the ability is in an activated state.
 
 `Ability.GetDirtyButtons(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns we don't know what :).
@@ -12322,8 +12322,8 @@ Returns we don't know what :).
 
 `Ability.GetToggleState(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns if the ability is toggled. Example: Medusa's Shield.
@@ -12332,8 +12332,8 @@ Returns if the ability is toggled. Example: Medusa's Shield.
 
 `Ability.IsInAbilityPhase(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is in the cast state. Examples: Nature's Prophet's Teleport,
@@ -12343,8 +12343,8 @@ Meepo's Poof.
 
 `Ability.GetCooldown(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the amount of time before the ability can be cast.
@@ -12353,8 +12353,8 @@ Returns the amount of time before the ability can be cast.
 
 `Ability.GetCooldownLength(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the amount of time the ability couldn't be cast after being used.
@@ -12363,8 +12363,8 @@ Returns the amount of time the ability couldn't be cast after being used.
 
 `Ability.GetManaCost(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the ability mana cost.
@@ -12373,8 +12373,8 @@ Returns the ability mana cost.
 
 `Ability.GetAutoCastState(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the autocast state of the ability.
@@ -12383,8 +12383,8 @@ Returns the autocast state of the ability.
 
 `Ability.GetAltCastState(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the alt cast state of the ability. Example: Doom's Devour.
@@ -12393,8 +12393,8 @@ Returns the alt cast state of the ability. Example: Doom's Devour.
 
 `Ability.GetChannelStartTime(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the gametime the channeling of the ability will start. Requires the ability to be in
@@ -12404,8 +12404,8 @@ the cast state when called.
 
 `Ability.GetCastStartTime(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the gametime the ability will be casted. Requires the ability to be in the cast state
@@ -12415,8 +12415,8 @@ when called.
 
 `Ability.IsInIndefinateCooldown(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the cooldown of the ability is indefinite.
@@ -12425,8 +12425,8 @@ Returns `true` if the cooldown of the ability is indefinite.
 
 `Ability.IsFrozenCooldown(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the cooldown of the ability is frozen.
@@ -12435,8 +12435,8 @@ Returns `true` if the cooldown of the ability is frozen.
 
 `Ability.GetOverrideCastPoint(ability):` **`number`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the overridden cast point. Example: Arcane Blink.
@@ -12445,8 +12445,8 @@ Returns the overridden cast point. Example: Arcane Blink.
 
 `Ability.IsStolen(ability):` **`boolean`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns `true` if the ability is stolen.
@@ -12455,8 +12455,8 @@ Returns `true` if the ability is stolen.
 
 `Ability.GetCurrentCharges(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the number of charges available.
@@ -12465,8 +12465,8 @@ Returns the number of charges available.
 
 `Ability.ChargeRestoreTimeRemaining(ability):` **`integer`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the remaining time for the next charge to restore.
@@ -12475,8 +12475,8 @@ Returns the remaining time for the next charge to restore.
 
 `Ability.GetKeybind(ability):` **`string`**
 
-| Name        | Type                                                                                           | Description |
-| ----------- | ---------------------------------------------------------------------------------------------- | ----------- |
+| Name        | Type                                                                                                                    | Description |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CAbility`**](https://uczone.gitbook.io/api-v2.0/game-components/core/ability.md) |             |
 
 Returns the keybind of the ability.
@@ -12494,8 +12494,8 @@ Table to work with `CItem`.
 
 `Item.IsCombinable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is combinable. I'm not sure if non-combinable items even exist.
@@ -12504,8 +12504,8 @@ Returns `true` if the item is combinable. I'm not sure if non-combinable items e
 
 `Item.IsPermanent(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is permanent. I'm not sure what permanent items is, but for items with stacks this function returns `false`.
@@ -12514,8 +12514,8 @@ Returns `true` if the item is permanent. I'm not sure what permanent items is, b
 
 `Item.IsStackable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is stackable. e.g tangoes, wards, etc.
@@ -12524,18 +12524,18 @@ Returns `true` if the item is stackable. e.g tangoes, wards, etc.
 
 `Item.IsRecipe(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is recipe.
 
 #### Item.GetSharability
 
-`Item.GetSharability(item):` [**`Enum.ShareAbility`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.shareability)
+`Item.GetSharability(item):` [**`Enum.ShareAbility`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.shareability)
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns item's sharability type.
@@ -12544,8 +12544,8 @@ Returns item's sharability type.
 
 `Item.IsDroppable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is droppable.
@@ -12554,8 +12554,8 @@ Returns `true` if the item is droppable.
 
 `Item.IsPurchasable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is purchasable.
@@ -12564,8 +12564,8 @@ Returns `true` if the item is purchasable.
 
 `Item.IsSellable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item is sellable.
@@ -12574,8 +12574,8 @@ Returns `true` if the item is sellable.
 
 `Item.RequiresCharges(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if the item requires charges. e.g. urn, vessel etc.
@@ -12584,8 +12584,8 @@ Returns `true` if the item requires charges. e.g. urn, vessel etc.
 
 `Item.IsKillable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if item is destroyable by autoatack.
@@ -12594,8 +12594,8 @@ Returns `true` if item is destroyable by autoatack.
 
 `Item.IsDisassemblable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if item is disassemblable.
@@ -12604,8 +12604,8 @@ Returns `true` if item is disassemblable.
 
 `Item.IsAlertable(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if item is alertable. e.g. smoke, mekansm, arcane boots etc.
@@ -12614,8 +12614,8 @@ Returns `true` if item is alertable. e.g. smoke, mekansm, arcane boots etc.
 
 `Item.GetInitialCharges(item):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns initial charges of the item. e.g. 3 for bottle, 1 for dust etc.
@@ -12624,8 +12624,8 @@ Returns initial charges of the item. e.g. 3 for bottle, 1 for dust etc.
 
 `Item.CastsOnPickup(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 No idea what this function does.
@@ -12634,8 +12634,8 @@ No idea what this function does.
 
 `Item.GetCurrentCharges(item):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns amount of current charges.
@@ -12644,8 +12644,8 @@ Returns amount of current charges.
 
 `Item.GetSecondaryCharges(item):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns amount of secondary charges. e.g. pack of both type of wards.
@@ -12654,8 +12654,8 @@ Returns amount of secondary charges. e.g. pack of both type of wards.
 
 `Item.IsCombineLocked(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if item locked for combining.
@@ -12664,8 +12664,8 @@ Returns `true` if item locked for combining.
 
 `Item.IsMarkedForSell(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if item is marked for sell.
@@ -12674,8 +12674,8 @@ Returns `true` if item is marked for sell.
 
 `Item.GetPurchaseTime(item):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns the game time when the item was purchased. If the item was assembled from other items, It returns the purchase time of the item that had the lowest
@@ -12685,8 +12685,8 @@ index at the moment of assembling.
 
 `Item.GetAssembledTime(item):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns the game time when the item was assembled. If the item was not assembled, returns time when the item was purchased.
@@ -12695,8 +12695,8 @@ Returns the game time when the item was assembled. If the item was not assembled
 
 `Item.PurchasedWhileDead(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `true` if item was purchased while dead.
@@ -12705,8 +12705,8 @@ Returns `true` if item was purchased while dead.
 
 `Item.CanBeUsedOutOfInventory(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 No idea which specific item example could be used out of inventory.
@@ -12715,8 +12715,8 @@ No idea which specific item example could be used out of inventory.
 
 `Item.IsItemEnabled(item):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns `false` if item has CD after moving from stash.
@@ -12727,8 +12727,8 @@ Could be less than current game time if item is already enabled.
 
 `Item.GetEnableTime(item):` **`number`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns game time when item will be enabled.
@@ -12737,8 +12737,8 @@ Returns game time when item will be enabled.
 
 `Item.GetPlayerOwnerID(item):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns player ID who owns the item.
@@ -12747,8 +12747,8 @@ Returns player ID who owns the item.
 
 `Item.GetCost(item):` **`integer`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **item** | [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) |             |
 
 Returns item cost.
@@ -12759,10 +12759,10 @@ Item id can be found in `assets/data/items.json` file in cheat folder.
 
 `Item.GetStockCount(item_id, [team]):` **`integer`**
 
-| Name                                                       | Type                                                                                                                                                     | Description                                                                        |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| **item_id**                                               | **`integer`**                                                                                                         |                                                                                    |
-| **team** **`[?]`** | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
+| Name                                                       | Type                                                                                                                       | Description                                                                        |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **item_id**                                               | **`integer`**                                                                           |                                                                                    |
+| **team** **`[?]`** | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
 
 Returns amount of remaining items in shop by item id.
 
@@ -12783,10 +12783,10 @@ Table to work with `CRune`.**`CRune`** extends **`CEntity`**
 
 #### Rune.GetRuneType
 
-`Rune.GetRuneType(rune):` [**`Enum.RuneType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.runetype)
+`Rune.GetRuneType(rune):` [**`Enum.RuneType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.runetype)
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **rune** | [**`CRune`**](https://uczone.gitbook.io/api-v2.0/game-components/core/rune.md) |             |
 
 Returns `Enum.RuneType` the rune type.
@@ -12802,8 +12802,8 @@ Table to work with `CTower`.**`CTower`** extends **`CNPC`**
 
 `Tower.GetAttackTarget(tower):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name      | Type                                                                                       | Description |
-| --------- | ------------------------------------------------------------------------------------------ | ----------- |
+| Name      | Type                                                                                                                | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **tower** | [**`CTower`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tower.md) |             |
 
 Returns `CNPC` that is attacked by the tower now.
@@ -12819,8 +12819,8 @@ Table to work with `CTree`.**`CTree`** extends **`CEntity`**
 
 `Tree.IsActive(tree):` **`boolean`**
 
-| Name     | Type                                                                                     | Description |
-| -------- | ---------------------------------------------------------------------------------------- | ----------- |
+| Name     | Type                                                                                                              | Description |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ----------- |
 | **tree** | [**`CTree`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tree.md) |             |
 
 Returns if the tree is not cut.
@@ -12834,10 +12834,10 @@ Table to work with `CVambrace`.**`CVambrace`** extends **`CItem`**
 
 #### Vambrace.GetStats
 
-`Vambrace.GetStats(vambrace):` [**`Enum.Attributes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes)
+`Vambrace.GetStats(vambrace):` [**`Enum.Attributes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes)
 
-| Name         | Type                                                                                             | Description |
-| ------------ | ------------------------------------------------------------------------------------------------ | ----------- |
+| Name         | Type                                                                                                                      | Description |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **vambrace** | [**`CVambrace`**](https://uczone.gitbook.io/api-v2.0/game-components/core/vambrace.md) |             |
 
 Returns selected `Enum.Attributes` attribute.
@@ -12853,8 +12853,8 @@ Table to work with `CCamp`. **`CCamp`** extends **`CEntity`**
 
 `Camp.GetType(camp):` **`integer`**
 
-| Name     | Type                                                                                     | Description        |
-| -------- | ---------------------------------------------------------------------------------------- | ------------------ |
+| Name     | Type                                                                                                              | Description        |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | The camp to check. |
 
 Returns the camp type.
@@ -12863,8 +12863,8 @@ Returns the camp type.
 
 `Camp.GetKnownStackCount(camp):` **`integer`**
 
-| Name     | Type                                                                                     | Description                |
-| -------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| Name     | Type                                                                                                              | Description                |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | The camp spawner to check. |
 
 Returns known additional stacks for the local player's team, not the number of creeps.
@@ -12876,8 +12876,8 @@ Spectator perspective selection is not supported.
 
 `Camp.IsKnownClear(camp):` **`boolean`**
 
-| Name     | Type                                                                                     | Description                |
-| -------- | ---------------------------------------------------------------------------------------- | -------------------------- |
+| Name     | Type                                                                                                              | Description                |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | The camp spawner to check. |
 
 Returns whether the local player's team knows this camp as cleared.
@@ -12889,8 +12889,8 @@ Spectator perspective selection is not supported.
 
 `Camp.GetCampBox(camp):` **`{min:Vector, max:Vector}`** | **`nil`**
 
-| Name     | Type                                                                                     | Description        |
-| -------- | ---------------------------------------------------------------------------------------- | ------------------ |
+| Name     | Type                                                                                                              | Description        |
+| -------- | ----------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **camp** | [**`CCamp`**](https://uczone.gitbook.io/api-v2.0/game-components/core/camp.md) | The camp to check. |
 
 Returns camp box as a table with **min** and **max** fields(**Vector**).
@@ -12906,10 +12906,10 @@ Table to work with `CBottle`.
 
 #### Bottle.GetRuneType
 
-`Bottle.GetRuneType(bottle):` [**`Enum.RuneType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.runetype)
+`Bottle.GetRuneType(bottle):` [**`Enum.RuneType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.runetype)
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **bottle** | [**`CBottle`**](https://uczone.gitbook.io/api-v2.0/game-components/core/bottle.md) |             |
 
 Returns the rune inside the bottle.
@@ -12925,8 +12925,8 @@ Table to work with `CCourier`.**`CCourier`** extends **`CNPC`**
 
 `Courier.IsFlyingCourier(courier):` **`boolean`**
 
-| Name        | Type                                                                                           | Description           |
-| ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
+| Name        | Type                                                                                                                    | Description           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [**`CCourier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md) | The courier to check. |
 
 Returns `true` if the courier is flying.
@@ -12935,18 +12935,18 @@ Returns `true` if the courier is flying.
 
 `Courier.GetRespawnTime(courier):` **`number`**
 
-| Name        | Type                                                                                           | Description           |
-| ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
+| Name        | Type                                                                                                                    | Description           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [**`CCourier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md) | The courier to check. |
 
 Returns the game time when the courier will respawn.
 
 #### Courier.GetCourierState
 
-`Courier.GetCourierState(courier):` [**`Enum.CourierState`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.courierstate)
+`Courier.GetCourierState(courier):` [**`Enum.CourierState`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.courierstate)
 
-| Name        | Type                                                                                           | Description           |
-| ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
+| Name        | Type                                                                                                                    | Description           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [**`CCourier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md) | The courier to check. |
 
 Returns the courier state.
@@ -12955,8 +12955,8 @@ Returns the courier state.
 
 `Courier.GetPlayerID(courier):` **`integer`**
 
-| Name        | Type                                                                                           | Description           |
-| ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
+| Name        | Type                                                                                                                    | Description           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [**`CCourier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md) | The courier to check. |
 
 Returns owner's player id.
@@ -12965,8 +12965,8 @@ Returns owner's player id.
 
 `Courier.GetCourierStateEntity(courier):` [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | **`nil`**
 
-| Name        | Type                                                                                           | Description           |
-| ----------- | ---------------------------------------------------------------------------------------------- | --------------------- |
+| Name        | Type                                                                                                                    | Description           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | **courier** | [**`CCourier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/courier.md) | The courier to check. |
 
 Returns the entity that the courier is currently interacting with.
@@ -12980,10 +12980,10 @@ Table to work with `CDrunkenBrawler`.**`CDrunkenBrawler`** extends **`CAbility`*
 
 #### DrunkenBrawler.GetState
 
-`DrunkenBrawler.GetState(ability):` [**`Enum.DrunkenBrawlerState`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drunkenbrawlerstate)
+`DrunkenBrawler.GetState(ability):` [**`Enum.DrunkenBrawlerState`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drunkenbrawlerstate)
 
-| Name        | Type                                                                                                         | Description |
-| ----------- | ------------------------------------------------------------------------------------------------------------ | ----------- |
+| Name        | Type                                                                                                                                  | Description |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **ability** | [**`CDrunkenBrawler`**](https://uczone.gitbook.io/api-v2.0/game-components/core/drunkenbrawler.md) |             |
 
 Returns the state of the CDrunkenBrawler ability.
@@ -12999,8 +12999,8 @@ Table to work with `CPhysicalItem`.**`CPhysicalItem`** extends **`CEntity`**
 
 `PhysicalItem.GetItem(physical_item):` [**`CItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/item.md) | **`nil`**
 
-| Name               | Type                                                                                                     | Description |
-| ------------------ | -------------------------------------------------------------------------------------------------------- | ----------- |
+| Name               | Type                                                                                                                              | Description |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **physical_item** | [**`CPhysicalItem`**](https://uczone.gitbook.io/api-v2.0/game-components/core/physicalitem.md) |             |
 
 Returns `CItem` object from `CPhysicalItem`.
@@ -13014,10 +13014,10 @@ Table to work with `CPowerTreads`.**`CTower`** extends **`CItem`**
 
 #### PowerTreads.GetStats
 
-`PowerTreads.GetStats(power_tread):` [**`Enum.Attributes`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes)
+`PowerTreads.GetStats(power_tread):` [**`Enum.Attributes`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.attributes)
 
-| Name             | Type                                                                                                   | Description |
-| ---------------- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| Name             | Type                                                                                                                            | Description |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **power_tread** | [**`CPowerTreads`**](https://uczone.gitbook.io/api-v2.0/game-components/core/powertreads.md) |             |
 
 Returns selected `Enum.Attributes` attribute.
@@ -13033,8 +13033,8 @@ Table to work with `CTierToken`.**`CTierToken`** extends **`CItem`**
 
 `TierToken.GetChoices(tier_token):` **`integer[]`**
 
-| Name            | Type                                                                                               | Description                              |
-| --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| Name            | Type                                                                                                                        | Description                              |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | **tier_token** | [**`CTierToken`**](https://uczone.gitbook.io/api-v2.0/game-components/core/tiertoken.md) | The `TierToken` to get the choices from. |
 
 Returns the choices (ability ids) of the `CTierToken`.
@@ -13077,9 +13077,9 @@ Add item to quick buy list.
 
 `Engine.RunScript(script, [contextPanel]):` **`boolean`**
 
-| Name                                                               | Type                                                                                                                                                                       | Description                                                                            |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| **script**                                                         | **`string`**                                                                                                                            | The script to run.                                                                     |
+| Name                                                               | Type                                                                                                                                                                                                | Description                                                                            |
+| ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **script**                                                         | **`string`**                                                                                                                                                     | The script to run.                                                                     |
 | **contextPanel** **`[?]`** | **`string`** \| [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | The id of the panel or the panel itself to run the script in. `(default: "Dashboard")` |
 
 Run a JS script in the panorama context. Return `true` if the script was executed
@@ -13327,7 +13327,7 @@ Returns hero name by ID.
 
 #### Engine.GetUIState
 
-`Engine.GetUIState():` [**`Enum.UIState`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.uistate)
+`Engine.GetUIState():` [**`Enum.UIState`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.uistate)
 
 Returns current UI state.
 
@@ -13356,8 +13356,8 @@ Installs an event listener for the desired event.
 
 `Event.IsReliable(event):` **`boolean`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
 
 Checks if the event is reliable.
@@ -13366,8 +13366,8 @@ Checks if the event is reliable.
 
 `Event.IsLocal(event):` **`boolean`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
 
 Checks if the event is local or networked.
@@ -13376,8 +13376,8 @@ Checks if the event is local or networked.
 
 `Event.IsEmpty(event):` **`boolean`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
 
 Checks if the event is empty.
@@ -13386,10 +13386,10 @@ Checks if the event is empty.
 
 `Event.GetBool(event, field):` **`boolean`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
-| **field** | **`string`**                                                   | Field name  |
+| **field** | **`string`**                                                                            | Field name  |
 
 Returns the boolean value of the specified event field.
 
@@ -13397,10 +13397,10 @@ Returns the boolean value of the specified event field.
 
 `Event.GetInt(event, field):` **`integer`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
-| **field** | **`string`**                                                   | Field name  |
+| **field** | **`string`**                                                                            | Field name  |
 
 Returns the integer value of the specified event field.
 
@@ -13408,10 +13408,10 @@ Returns the integer value of the specified event field.
 
 `Event.GetUint64(event, field):` **`integer`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
-| **field** | **`string`**                                                   | Field name  |
+| **field** | **`string`**                                                                            | Field name  |
 
 Returns the uint64 value of the specified event field.
 
@@ -13419,10 +13419,10 @@ Returns the uint64 value of the specified event field.
 
 `Event.GetFloat(event, field):` **`number`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
-| **field** | **`string`**                                                   | Field name  |
+| **field** | **`string`**                                                                            | Field name  |
 
 Returns the floating value of the specified event field.
 
@@ -13430,10 +13430,10 @@ Returns the floating value of the specified event field.
 
 `Event.GetString(event, field):` **`string`** | **`nil`**
 
-| Name      | Type                                                                                              | Description |
-| --------- | ------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                       | Description |
+| --------- | -------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **event** | [**`CEvent`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/event.md) |             |
-| **field** | **`string`**                                                   | Field name  |
+| **field** | **`string`**                                                                            | Field name  |
 
 Returns the string value of the specified event field, or `nil` if the field has no value.
 
@@ -13446,19 +13446,19 @@ Table to work with GameRules.
 
 #### GameRules.GetServerGameState
 
-`GameRules.GetServerGameState():` [**`Enum.GameState`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gamestate)
+`GameRules.GetServerGameState():` [**`Enum.GameState`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gamestate)
 
 Returns the current server game state.
 
 #### GameRules.GetGameState
 
-`GameRules.GetGameState():` [**`Enum.GameState`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gamestate)
+`GameRules.GetGameState():` [**`Enum.GameState`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gamestate)
 
 Returns the current game state.
 
 #### GameRules.GetGameMode
 
-`GameRules.GetGameMode():` [**`Enum.GameMode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gamemode)
+`GameRules.GetGameMode():` [**`Enum.GameMode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.gamemode)
 
 Returns the current game mode.
 
@@ -13597,10 +13597,10 @@ Item id can be found in `assets/data/items.json` file in cheat folder.
 
 `GameRules.GetStockCount(item_id, [team]):` **`integer`**
 
-| Name                                                       | Type                                                                                                                                                            | Description                                                                        |
-| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| **item_id**                                               | **`integer`**                                                                                                                |                                                                                    |
-| **team** **`[?]`** | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
+| Name                                                       | Type                                                                                                                       | Description                                                                        |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **item_id**                                               | **`integer`**                                                                           |                                                                                    |
+| **team** **`[?]`** | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum) | - Optional. Default is local player's team. `(default: Enum.TeamNum.TEAM_RADIANT)` |
 
 Returns amount of remaining items in shop by item id.
 
@@ -13751,11 +13751,11 @@ You should always call `GridNav.ReleaseNpcMap` after you done with your build pa
 
 `GridNav.CreateNpcMap([excluded_npcs], [includeTempTrees], [customCollisionSizes]):` [**`GridNavNpcMap`**]\(GridNavNpcMap.md)
 
-| Name                                                                       | Type                                                                                                                                           | Description                                                                                                                                    |
-| -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                                                                       | Type                                                                                                                                                                    | Description                                                                                                                                    |
+| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | **excluded_npcs** **`[?]`**       | [**`CEntity[]`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) \| **`nil`** | table with npc to exclude from the map. for example you want to exclude local hero if you build path from local hero position `(default: nil)` |
-| **includeTempTrees** **`[?]`**     | **`boolean`**                                                                                               | `true` if you want include temp trees to the map e.g. furion's 1st spell, iron branch `(default: true)`                                        |
-| **customCollisionSizes** **`[?]`** | **`table`** \| **`nil`**                                                 | table where key is entity userdata and value is {left, top, right, bottom} offsets from entity position `(default: nil)`                       |
+| **includeTempTrees** **`[?]`**     | **`boolean`**                                                                                                                        | `true` if you want include temp trees to the map e.g. furion's 1st spell, iron branch `(default: true)`                                        |
+| **customCollisionSizes** **`[?]`** | **`table`** \| **`nil`**                                                                          | table where key is entity userdata and value is {left, top, right, bottom} offsets from entity position `(default: nil)`                       |
 
 Creates a new `GridNavNpcMap`
 
@@ -13773,11 +13773,11 @@ Releases allocated memory for `GridNavNpcMap`
 
 `GridNav.IsTraversable(pos, [flag], [flag_excluded]):` **`boolean`**, **`integer`**
 
-| Name                                                                 | Type                                                                                                           | Description                                             |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Name                                                                 | Type                                                                                                                                    | Description                                             |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | **pos**                                                              | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check                                       |
-| **flag** **`[?]`**           | **`number`**                                                                | required cell flag mask (must be set) `(default: 1)`    |
-| **flag_excluded** **`[?]`** | **`number`**                                                                | forbidden cell flag mask (must be clear) `(default: 2)` |
+| **flag** **`[?]`**           | **`number`**                                                                                         | required cell flag mask (must be set) `(default: 1)`    |
+| **flag_excluded** **`[?]`** | **`number`**                                                                                         | forbidden cell flag mask (must be clear) `(default: 2)` |
 
 Returns `true` if the world position is traversable.
 
@@ -13795,8 +13795,8 @@ Pass `flag_excluded` to replicate per-ability filter masks. Examples:\
 
 | Name                                                              | Type                                                                                                                                                                                           | Description                                                                                  |
 | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **start**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to start                                                                            |
-| **end_**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to end                                                                              |
+| **start**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                        | position to start                                                                            |
+| **end_**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                        | position to end                                                                              |
 | **ignoreTrees** **`[?]`** | **`boolean`**                                                                                                                                               | `true` if you want to exclude static trees from the pathing `(default: false)`               |
 | **npc_map** **`[?]`**    | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/tree/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
 
@@ -13840,8 +13840,8 @@ return {
 
 | Name                                                              | Type                                                                                                                                                                                           | Description                                                                                  |
 | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **start**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to start                                                                            |
-| **end_**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                 | position to end                                                                              |
+| **start**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                        | position to start                                                                            |
+| **end_**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                        | position to end                                                                              |
 | **ignoreTrees** **`[?]`** | **`boolean`**                                                                                                                                               | `true` if you want to exclude static trees from the pathing `(default: false)`               |
 | **npc_map** **`[?]`**    | [**`GridNavNpcMap`**](https://github.com/Boyarinov/gitbook-doc-parser/tree/main/generated/GridNavNpcMap.md) \| **`nil`** | map with the npc's positions which works as additional mask for terrain map `(default: nil)` |
 
@@ -13916,10 +13916,10 @@ Excludes not visible, illusions and dead units.
 
 `Input.GetNearestUnitToCursor(teamNum, teamType):` [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | **`nil`**
 
-| Name         | Type                                                                                                                                                              | Description                                        |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **teamNum**  | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
-| **teamType** | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | team type to search relative to teamNum param      |
+| Name         | Type                                                                                                                         | Description                                        |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| **teamNum**  | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
+| **teamType** | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | team type to search relative to teamNum param      |
 
 Returns nearest unit to cursor.
 
@@ -13929,10 +13929,10 @@ Excludes not visible, illusions and dead heroes.
 
 `Input.GetNearestHeroToCursor(teamNum, teamType):` [**`CHero`**](https://uczone.gitbook.io/api-v2.0/game-components/core/hero.md) | **`nil`**
 
-| Name         | Type                                                                                                                                                              | Description                                        |
-| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **teamNum**  | [**`Enum.TeamNum`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
-| **teamType** | [**`Enum.TeamType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | team type to search relative to teamNum param      |
+| Name         | Type                                                                                                                         | Description                                        |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| **teamNum**  | [**`Enum.TeamNum`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamnum)   | team number. Could be get from `Entity.GetTeamNum` |
+| **teamType** | [**`Enum.TeamType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.teamtype) | team type to search relative to teamNum param      |
 
 Returns nearest hero to cursor.
 
@@ -13955,12 +13955,12 @@ Returns `true` if any panorama popup is currently open
 
 `Input.IsKeyDown(KeyCode, [bIgnoreLock]):` **`boolean`**
 
-| Name                                                                 | Type                                                                                                                                                                  | Description                                                                                       |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **KeyCode**                                                          | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) |                                                                                                   |
-| **bIgnoreLock** **`[?]`**    | **`boolean`**                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
-| key state. Default `false` preserves the previous behavior - returns |                                                                                                                                                                       |                                                                                                   |
-| `false` while any of those is active. `(default: false)`             |                                                                                                                                                                       |                                                                                                   |
+| Name                                                                 | Type                                                                                                                             | Description                                                                                       |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **KeyCode**                                                          | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) |                                                                                                   |
+| **bIgnoreLock** **`[?]`**    | **`boolean`**                                                                                 | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
+| key state. Default `false` preserves the previous behavior - returns |                                                                                                                                  |                                                                                                   |
+| `false` while any of those is active. `(default: false)`             |                                                                                                                                  |                                                                                                   |
 
 Returns `true` if key is down.
 
@@ -13970,11 +13970,11 @@ This function will return `true` only once per key press.
 
 `Input.IsKeyDownOnce(KeyCode, [bIgnoreLock]):` **`boolean`**
 
-| Name                                                                                   | Type                                                                                                                                                                  | Description                                                                                       |
-| -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **KeyCode**                                                                            | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) |                                                                                                   |
-| **bIgnoreLock** **`[?]`**                      | **`boolean`**                                                                                                                      | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
-| key-pressed state. Default `false` preserves the previous behavior. `(default: false)` |                                                                                                                                                                       |                                                                                                   |
+| Name                                                                                   | Type                                                                                                                             | Description                                                                                       |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **KeyCode**                                                                            | [**`Enum.ButtonCode`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.buttoncode) |                                                                                                   |
+| **bIgnoreLock** **`[?]`**                      | **`boolean`**                                                                                 | when `true`, ignores the input capture lock (chat / settings popup / console) and returns the raw |
+| key-pressed state. Default `false` preserves the previous behavior. `(default: false)` |                                                                                                                                  |                                                                                                   |
 
 Return `true` if key is down once.
 
@@ -14007,8 +14007,8 @@ Table to work with FogOfWar API.
 
 `FogOfWar.IsPointVisible(pos):` **`boolean`**
 
-| Name    | Type                                                                                                           | Description       |
-| ------- | -------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Name    | Type                                                                                                                                    | Description       |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **pos** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check |
 
 Returns `true` if the world position is visible.
@@ -14041,8 +14041,8 @@ local camera_distance = ConVar.GetFloat(convar)
 
 `ConVar.GetString(convar):` **`string`** | **`nil`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
 
 Returns string value of the Convar, or `nil` if the engine returns no text.
@@ -14051,8 +14051,8 @@ Returns string value of the Convar, or `nil` if the engine returns no text.
 
 `ConVar.GetInt(convar):` **`integer`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
 
 Returns int value of the Convar
@@ -14061,8 +14061,8 @@ Returns int value of the Convar
 
 `ConVar.GetFloat(convar):` **`number`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
 
 Returns float value of the Convar
@@ -14071,8 +14071,8 @@ Returns float value of the Convar
 
 `ConVar.GetBool(convar):` **`boolean`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
 
 Returns boolean value of the Convar
@@ -14081,10 +14081,10 @@ Returns boolean value of the Convar
 
 `ConVar.SetString(convar, value):` **`nil`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
-| **value**  | **`string`**                                                     |             |
+| **value**  | **`string`**                                                                              |             |
 
 Assigns new string value to the ConVar
 
@@ -14092,10 +14092,10 @@ Assigns new string value to the ConVar
 
 `ConVar.SetInt(convar, value):` **`nil`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
-| **value**  | **`integer`**                                                    |             |
+| **value**  | **`integer`**                                                                             |             |
 
 Assigns new int value to the ConVar
 
@@ -14103,10 +14103,10 @@ Assigns new int value to the ConVar
 
 `ConVar.SetFloat(convar, value):` **`nil`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
-| **value**  | **`number`**                                                     |             |
+| **value**  | **`number`**                                                                              |             |
 
 Assigns new float value to the ConVar
 
@@ -14114,10 +14114,10 @@ Assigns new float value to the ConVar
 
 `ConVar.SetBool(convar, value):` **`nil`**
 
-| Name       | Type                                                                                                | Description |
-| ---------- | --------------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                         | Description |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **convar** | [**`CConVar`**](https://uczone.gitbook.io/api-v2.0/game-components/game-engine/convar.md) |             |
-| **value**  | **`boolean`**                                                    |             |
+| **value**  | **`boolean`**                                                                             |             |
 
 Assigns new boolean value to the ConVar
 
@@ -14313,9 +14313,9 @@ Table to work with game's net channel.
 
 `NetChannel.GetLatency([flow]):` **`number`**
 
-| Name                                                       | Type                                                                                                                                                              | Description                                                 |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| **flow** **`[?]`** | [**`Enum.Flow`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.flow) | flow to get latency of `(default: Enum.Flow.FLOW_OUTGOING)` |
+| Name                                                       | Type                                                                                                                 | Description                                                 |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **flow** **`[?]`** | [**`Enum.Flow`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.flow) | flow to get latency of `(default: Enum.Flow.FLOW_OUTGOING)` |
 
 Returns the latency/ping of the net channel in seconds.
 
@@ -14323,9 +14323,9 @@ Returns the latency/ping of the net channel in seconds.
 
 `NetChannel.GetAvgLatency([flow]):` **`number`**
 
-| Name                                                       | Type                                                                                                                                                              | Description                                                         |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **flow** **`[?]`** | [**`Enum.Flow`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.flow) | flow to get average latency of `(default: Enum.Flow.FLOW_OUTGOING)` |
+| Name                                                       | Type                                                                                                                 | Description                                                         |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **flow** **`[?]`** | [**`Enum.Flow`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.flow) | flow to get average latency of `(default: Enum.Flow.FLOW_OUTGOING)` |
 
 Returns the average latency/ping of the net channel in seconds.
 
@@ -14503,11 +14503,11 @@ Table to work with particles.
 
 `Particle.Create(particle, [attach_type], [entity]):` **`integer`**
 
-| Name                                                               | Type                                                                                                                                                                                            | Description                                                                                                   |
-| ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **particle**                                                       | **`string`**                                                                                                                                                 | Particle path                                                                                                 |
-| **attach_type** **`[?]`** | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | attach_type Attach type `(default: Enum.ParticleAttachment.PATTACH_WORLDORIGIN)`                             |
-| **entity** **`[?]`**       | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                                    | Entity to own of the particle. If not specified, the local hero will be used. `(default: Players.GetLocal())` |
+| Name                                                               | Type                                                                                                                                             | Description                                                                                                   |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| **particle**                                                       | **`string`**                                                                                                  | Particle path                                                                                                 |
+| **attach_type** **`[?]`** | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | attach_type Attach type `(default: Enum.ParticleAttachment.PATTACH_WORLDORIGIN)`                             |
+| **entity** **`[?]`**       | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                            | Entity to own of the particle. If not specified, the local hero will be used. `(default: Players.GetLocal())` |
 
 Creates a particle and returns its index.
 
@@ -14515,10 +14515,10 @@ Creates a particle and returns its index.
 
 `Particle.SetControlPoint(particle_index, control_point, value):` **`nil`**
 
-| Name                | Type                                                                                                           | Description         |
-| ------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------- |
-| **particle_index** | **`integer`**                                                               | Particle index      |
-| **control_point**  | **`integer`**                                                               | Control point       |
+| Name                | Type                                                                                                                                    | Description         |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| **particle_index** | **`integer`**                                                                                        | Particle index      |
+| **control_point**  | **`integer`**                                                                                        | Control point       |
 | **value**           | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Control point value |
 
 Sets the control point value of a particle.
@@ -14538,15 +14538,15 @@ Enables or disables the drawing of a particle.
 
 `Particle.SetControlPointEnt(particle_index, control_point, entity, attach_type, attach_name, position, lock_orientation):` **`nil`**
 
-| Name                  | Type                                                                                                                                                                                            | Description                                   |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| **particle_index**   | **`integer`**                                                                                                                                                | Particle index                                |
-| **control_point**    | **`integer`**                                                                                                                                                | Control point                                 |
-| **entity**            | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                                                                                                    | Entity to attach                              |
-| **attach_type**      | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | Attach type                                   |
-| **attach_name**      | **`string`** \| **`nil`**                                                                                                 | Attach name. See `NPC.GetAttachment` function |
-| **position**          | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                                                  | Control point position                        |
-| **lock_orientation** | **`boolean`**                                                                                                                                                | Lock orientation. No idea what it does        |
+| Name                  | Type                                                                                                                                             | Description                                   |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| **particle_index**   | **`integer`**                                                                                                 | Particle index                                |
+| **control_point**    | **`integer`**                                                                                                 | Control point                                 |
+| **entity**            | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                            | Entity to attach                              |
+| **attach_type**      | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | Attach type                                   |
+| **attach_name**      | **`string`** \| **`nil`**                                                  | Attach name. See `NPC.GetAttachment` function |
+| **position**          | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)          | Control point position                        |
+| **lock_orientation** | **`boolean`**                                                                                                 | Lock orientation. No idea what it does        |
 
 Sets the control point entity value of a particle.
 
@@ -14554,10 +14554,10 @@ Sets the control point entity value of a particle.
 
 `Particle.SetParticleControlTransform(particle_index, control_point, position, angle):` **`nil`**
 
-| Name                | Type                                                                                                           | Description            |
-| ------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| **particle_index** | **`integer`**                                                               | Particle index         |
-| **control_point**  | **`integer`**                                                               | Control point          |
+| Name                | Type                                                                                                                                    | Description            |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| **particle_index** | **`integer`**                                                                                        | Particle index         |
+| **control_point**  | **`integer`**                                                                                        | Control point          |
 | **position**        | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | Control point position |
 | **angle**           | [**`Angle`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/angle.md)   | Control point angle    |
 
@@ -14635,13 +14635,13 @@ Table to work with render v2.
 
 `Render.FilledRect(start, end_, color, [rounding], [flags]):` **`nil`**
 
-| Name                                                           | Type                                                                                                                                                                          | Description                                                    |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **start**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the rectangle.                           |
-| **end_**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The ending point of the rectangle.                             |
-| **color**                                                      | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the rectangle.                                    |
-| **rounding** **`[?]`** | **`number`**                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
-| **flags** **`[?]`**    | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
+| Name                                                           | Type                                                                                                                                | Description                                                    |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **start**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the rectangle.                           |
+| **end_**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the rectangle.                             |
+| **color**                                                      | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the rectangle.                                    |
+| **rounding** **`[?]`** | **`number`**                                                                                     | The rounding radius of the rectangle corners. `(default: 0.0)` |
+| **flags** **`[?]`**    | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
 
 Draws a filled rectangle.
 
@@ -14649,14 +14649,14 @@ Draws a filled rectangle.
 
 `Render.Rect(start, end_, color, [rounding], [flags], [thickness]):` **`nil`**
 
-| Name                                                            | Type                                                                                                                                                                          | Description                                                    |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the rectangle.                           |
-| **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The ending point of the rectangle.                             |
-| **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the rectangle's border.                           |
-| **rounding** **`[?]`**  | **`number`**                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
-| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
-| **thickness** **`[?]`** | **`number`**                                                                                                                               | The thickness of the rectangle's border. `(default: 1.0)`      |
+| Name                                                            | Type                                                                                                                                | Description                                                    |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the rectangle.                           |
+| **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the rectangle.                             |
+| **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the rectangle's border.                           |
+| **rounding** **`[?]`**  | **`number`**                                                                                     | The rounding radius of the rectangle corners. `(default: 0.0)` |
+| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
+| **thickness** **`[?]`** | **`number`**                                                                                     | The thickness of the rectangle's border. `(default: 1.0)`      |
 
 Draws an unfilled rectangle.
 
@@ -14664,14 +14664,14 @@ Draws an unfilled rectangle.
 
 `Render.RoundedProgressRect(start, end_, color, percent, rounding, [thickness]):` **`nil`**
 
-| Name                                                            | Type                                                                                                       | Description                                               |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| Name                                                            | Type                                                                                                                                | Description                                               |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the rectangle.                      |
 | **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the rectangle.                        |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the rectangle.                               |
-| **percent**                                                     | **`number`**                                                            | The percentage of the rectangle to fill [0..1].          |
-| **rounding**                                                    | **`number`**                                                            | The rounding radius of the rectangle corners.             |
-| **thickness** **`[?]`** | **`number`**                                                            | The thickness of the rectangle's border. `(default: 1.0)` |
+| **percent**                                                     | **`number`**                                                                                     | The percentage of the rectangle to fill [0..1].          |
+| **rounding**                                                    | **`number`**                                                                                     | The rounding radius of the rectangle corners.             |
+| **thickness** **`[?]`** | **`number`**                                                                                     | The thickness of the rectangle's border. `(default: 1.0)` |
 
 Draw a progress rectangle.
 
@@ -14681,7 +14681,7 @@ Draw a progress rectangle.
 
 | Name                                                          | Type                                                                                                                                                                                                                                                                                                             | Description                                                  |
 | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **center**                                                    | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                                                                                                                                                       | The center position of the chart.                            |
+| **center**                                                    | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                                                                                                                              | The center position of the chart.                            |
 | **radius**                                                    | **`number`**                                                                                                                                                                                                                                                                  | The outer radius of the chart.                               |
 | **thickness**                                                 | **`number`**                                                                                                                                                                                                                                                                  | The thickness of the donut ring.                             |
 | **segments**                                                  | **`{value: number, color: Color, icon: number`** \| **`nil, icon_color: Color`** \| **`nil, font_icon: {font: number, size: number, text: string}`** \| **`nil}[]`** | List of data segments.                                       |
@@ -14693,12 +14693,12 @@ Draw a donut chart.
 
 `Render.Line(start, end_, color, [thickness]):` **`nil`**
 
-| Name                                                            | Type                                                                                                       | Description                                 |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Name                                                            | Type                                                                                                                                | Description                                 |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the line.             |
 | **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the line.               |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the line.                      |
-| **thickness** **`[?]`** | **`number`**                                                            | The thickness of the line. `(default: 1.0)` |
+| **thickness** **`[?]`** | **`number`**                                                                                     | The thickness of the line. `(default: 1.0)` |
 
 Draws a line between two points.
 
@@ -14706,11 +14706,11 @@ Draws a line between two points.
 
 `Render.PolyLine(points, color, [thickness]):` **`nil`**
 
-| Name                                                            | Type                                                                                                         | Description                                     |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| Name                                                            | Type                                                                                                                                  | Description                                     |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | **points**                                                      | [**`Vec2[]`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | A table of Vec2 points to connect with lines.   |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the polyline.                      |
-| **thickness** **`[?]`** | **`number`**                                                              | The thickness of the polyline. `(default: 1.0)` |
+| **thickness** **`[?]`** | **`number`**                                                                                       | The thickness of the polyline. `(default: 1.0)` |
 
 Draws a series of connected lines (polyline).
 
@@ -14718,16 +14718,16 @@ Draws a series of connected lines (polyline).
 
 `Render.Circle(pos, radius, color, [thickness], [startDeg], [percentage], [rounded], [segments]):` **`nil`**
 
-| Name                                                             | Type                                                                                                       | Description                                                                                                          |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Name                                                             | Type                                                                                                                                | Description                                                                                                          |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **pos**                                                          | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position of the circle.                                                                                   |
-| **radius**                                                       | **`number`**                                                            | The radius of the circle.                                                                                            |
+| **radius**                                                       | **`number`**                                                                                     | The radius of the circle.                                                                                            |
 | **color**                                                        | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the circle.                                                                                             |
-| **thickness** **`[?]`**  | **`number`**                                                            | The thickness of the circle's outline. `(default: 1.0)`                                                              |
-| **startDeg** **`[?]`**   | **`number`**                                                            | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
-| **percentage** **`[?]`** | **`number`**                                                            | The percentage of the circle to draw, in the range [0.0-1.0]. `(default: 1.0)`                                      |
-| **rounded** **`[?]`**    | **`boolean`**                                                           | Whether the circle is rounded. `(default: false)`                                                                    |
-| **segments** **`[?]`**   | **`integer`**                                                           | The number of segments used for drawing the circle. `(default: 32)`                                                  |
+| **thickness** **`[?]`**  | **`number`**                                                                                     | The thickness of the circle's outline. `(default: 1.0)`                                                              |
+| **startDeg** **`[?]`**   | **`number`**                                                                                     | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
+| **percentage** **`[?]`** | **`number`**                                                                                     | The percentage of the circle to draw, in the range [0.0-1.0]. `(default: 1.0)`                                      |
+| **rounded** **`[?]`**    | **`boolean`**                                                                                    | Whether the circle is rounded. `(default: false)`                                                                    |
+| **segments** **`[?]`**   | **`integer`**                                                                                    | The number of segments used for drawing the circle. `(default: 32)`                                                  |
 
 Draws a circle.
 
@@ -14735,14 +14735,14 @@ Draws a circle.
 
 `Render.FilledCircle(pos, radius, color, [startDeg], [percentage], [segments]):` **`nil`**
 
-| Name                                                             | Type                                                                                                       | Description                                                                                                          |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Name                                                             | Type                                                                                                                                | Description                                                                                                          |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **pos**                                                          | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position of the circle.                                                                                   |
-| **radius**                                                       | **`number`**                                                            | The radius of the circle.                                                                                            |
+| **radius**                                                       | **`number`**                                                                                     | The radius of the circle.                                                                                            |
 | **color**                                                        | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the circle.                                                                                             |
-| **startDeg** **`[?]`**   | **`number`**                                                            | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
-| **percentage** **`[?]`** | **`number`**                                                            | The percentage of the circle to draw, in the range [0.0-1.0]. `(default: 1.0)`                                      |
-| **segments** **`[?]`**   | **`integer`**                                                           | The number of segments used for drawing the circle. `(default: 32)`                                                  |
+| **startDeg** **`[?]`**   | **`number`**                                                                                     | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
+| **percentage** **`[?]`** | **`number`**                                                                                     | The percentage of the circle to draw, in the range [0.0-1.0]. `(default: 1.0)`                                      |
+| **segments** **`[?]`**   | **`integer`**                                                                                    | The number of segments used for drawing the circle. `(default: 32)`                                                  |
 
 Draws a filled circle.
 
@@ -14750,14 +14750,14 @@ Draws a filled circle.
 
 `Render.CircleGradient(pos, radius, colorOuter, colorInner, [startDeg], [percentage]):` **`nil`**
 
-| Name                                                             | Type                                                                                                       | Description                                                                                                          |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Name                                                             | Type                                                                                                                                | Description                                                                                                          |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | **pos**                                                          | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position of the circle.                                                                                   |
-| **radius**                                                       | **`number`**                                                            | The radius of the circle.                                                                                            |
+| **radius**                                                       | **`number`**                                                                                     | The radius of the circle.                                                                                            |
 | **colorOuter**                                                   | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The outer color of the gradient.                                                                                     |
 | **colorInner**                                                   | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The inner color of the gradient.                                                                                     |
-| **startDeg** **`[?]`**   | **`number`**                                                            | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
-| **percentage** **`[?]`** | **`number`**                                                            | The percentage of the circle to draw, in the range [0.0-1.0]. `(default: 1.0)`                                      |
+| **startDeg** **`[?]`**   | **`number`**                                                                                     | The starting degree for drawing the circle. 0 is right side, 90 is bottom, 180 is left, 270 is top. `(default: 0.0)` |
+| **percentage** **`[?]`** | **`number`**                                                                                     | The percentage of the circle to draw, in the range [0.0-1.0]. `(default: 1.0)`                                      |
 
 Draws a circle with a gradient.
 
@@ -14765,11 +14765,11 @@ Draws a circle with a gradient.
 
 `Render.Triangle(points, color, [thickness]):` **`nil`**
 
-| Name                                                            | Type                                                                                                         | Description                                                         |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| Name                                                            | Type                                                                                                                                  | Description                                                         |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **points**                                                      | [**`Vec2[]`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | A table of three Vec2 points defining the vertices of the triangle. |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the triangle's outline.                                |
-| **thickness** **`[?]`** | **`number`**                                                              | The thickness of the triangle's outline. `(default: 1.0)`           |
+| **thickness** **`[?]`** | **`number`**                                                                                       | The thickness of the triangle's outline. `(default: 1.0)`           |
 
 Draws a triangle outline.
 
@@ -14777,8 +14777,8 @@ Draws a triangle outline.
 
 `Render.FilledTriangle(points, color):` **`nil`**
 
-| Name       | Type                                                                                                         | Description                                                         |
-| ---------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| Name       | Type                                                                                                                                  | Description                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | **points** | [**`Vec2[]`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | A table of three Vec2 points defining the vertices of the triangle. |
 | **color**  | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the triangle.                                          |
 
@@ -14788,12 +14788,12 @@ Draws a filled triangle.
 
 `Render.TexturedPoly(points, textureHandle, color, [grayscale]):` **`nil`**
 
-| Name                                                            | Type                                                                                                             | Description                                                                                                                            |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                                                            | Type                                                                                                                                      | Description                                                                                                                            |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **points**                                                      | [**`Vertex[]`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vertex.md) | A table of Vertex points defining the vertices of the polygon. Each Vertex contains a position (Vec2) and a texture coordinate (Vec2). |
-| **textureHandle**                                               | **`integer`**                                                                 | The handle to the texture to be applied to the polygon.                                                                                |
+| **textureHandle**                                               | **`integer`**                                                                                          | The handle to the texture to be applied to the polygon.                                                                                |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)          | The color to apply over the texture. This can be used to tint the texture.                                                             |
-| **grayscale** **`[?]`** | **`number`**                                                                  | The grayscale of the image. `(default: 0.0)`                                                                                           |
+| **grayscale** **`[?]`** | **`number`**                                                                                           | The grayscale of the image. `(default: 0.0)`                                                                                           |
 
 Draws a textured polygon.
 
@@ -14801,11 +14801,11 @@ Draws a textured polygon.
 
 `Render.LoadFont(fontName, [fontFlag], [weight]):` **`integer`**
 
-| Name                                                           | Type                                                                                                                                                                                                                                | Description                                                                               |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| **fontName**                                                   | **`string`**                                                                                                                                                                                     | The name of the font to load.                                                             |
-| **fontFlag** **`[?]`** | [**`Enum.FontCreate`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.fontcreate) \| **`integer`** | Flags for font creation, such as antialiasing. `(default: Enum.FontCreate.FONTFLAG_NONE)` |
-| **weight** **`[?]`**   | **`integer`**                                                                                                                                                                                    | The weight (thickness) of the font. Typically, 0 means default weight. `(default: 400)`   |
+| Name                                                           | Type                                                                                                                                                                                 | Description                                                                               |
+| -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| **fontName**                                                   | **`string`**                                                                                                                                      | The name of the font to load.                                                             |
+| **fontFlag** **`[?]`** | [**`Enum.FontCreate`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.fontcreate) \| **`integer`** | Flags for font creation, such as antialiasing. `(default: Enum.FontCreate.FONTFLAG_NONE)` |
+| **weight** **`[?]`**   | **`integer`**                                                                                                                                     | The weight (thickness) of the font. Typically, 0 means default weight. `(default: 400)`   |
 
 Loads a font and returns its handle. Returns handle to the loaded font.
 
@@ -14813,11 +14813,11 @@ Loads a font and returns its handle. Returns handle to the loaded font.
 
 `Render.Text(font, fontSize, text, pos, color):` **`nil`**
 
-| Name         | Type                                                                                                       | Description                                       |
-| ------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| **font**     | **`integer`**                                                           | The handle to the font used for drawing the text. |
-| **fontSize** | **`number`**                                                            | The size of the font.                             |
-| **text**     | **`string`**                                                            | The text to be drawn.                             |
+| Name         | Type                                                                                                                                | Description                                       |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **font**     | **`integer`**                                                                                    | The handle to the font used for drawing the text. |
+| **fontSize** | **`number`**                                                                                     | The size of the font.                             |
+| **text**     | **`string`**                                                                                     | The text to be drawn.                             |
 | **pos**      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The position where the text will be drawn.        |
 | **color**    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the text.                            |
 
@@ -14827,8 +14827,8 @@ Draws text at a specified position.
 
 `Render.WorldToScreen(pos):` [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md), **`boolean`**
 
-| Name    | Type                                                                                                           | Description                            |
-| ------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| Name    | Type                                                                                                                                    | Description                            |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | **pos** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The 3D world position to be converted. |
 
 Converts a 3D world position to a 2D screen position. Returns A Vec2 representing the 2D screen position and a boolean indicating visibility on the screen.
@@ -14878,9 +14878,9 @@ Loads an image and returns its handle.
 
 `Render.LoadSvg(path, size):` **`integer`**
 
-| Name     | Type                                                                                                       | Description             |
-| -------- | ---------------------------------------------------------------------------------------------------------- | ----------------------- |
-| **path** | **`string`**                                                            | Path to the image.      |
+| Name     | Type                                                                                                                                | Description             |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| **path** | **`string`**                                                                                     | Path to the image.      |
 | **size** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Size of image to scale. |
 
 Loads svg image and returns its handle.
@@ -14889,11 +14889,11 @@ Loads svg image and returns its handle.
 
 `Render.LoadSvgString(svg, size, cacheId):` **`integer`**
 
-| Name        | Type                                                                                                       | Description                                                  |
-| ----------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **svg**     | **`string`**                                                            | Svg text itself.                                             |
+| Name        | Type                                                                                                                                | Description                                                  |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **svg**     | **`string`**                                                                                     | Svg text itself.                                             |
 | **size**    | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Size of image to scale.                                      |
-| **cacheId** | **`string`**                                                            | Texture of image creates only once for every unique cache id |
+| **cacheId** | **`string`**                                                                                     | Texture of image creates only once for every unique cache id |
 
 Loads svg image from string and returns its handle.
 
@@ -14901,17 +14901,17 @@ Loads svg image from string and returns its handle.
 
 `Render.Image(imageHandle, pos, size, color, [rounding], [flags], [uvMin], [uvMax], [grayscale]):` **`nil`**
 
-| Name                                                            | Type                                                                                                                                                                          | Description                                                             |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **imageHandle**                                                 | **`integer`**                                                                                                                              | The handle to the image.                                                |
-| **pos**                                                         | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The position to draw the image.                                         |
-| **size**                                                        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The size of the image.                                                  |
-| **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color to tint the image.                                            |
-| **rounding** **`[?]`**  | **`number`**                                                                                                                               | The rounding radius of the image corners. `(default: 0.0)`              |
-| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`              |
-| **uvMin** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The minimum UV coordinates for texture mapping. `(default: {0.0, 0.0})` |
-| **uvMax** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The maximum UV coordinates for texture mapping. `(default: {1.0, 1.0})` |
-| **grayscale** **`[?]`** | **`number`**                                                                                                                               | The grayscale of the image. `(default: 0.0)`                            |
+| Name                                                            | Type                                                                                                                                | Description                                                             |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **imageHandle**                                                 | **`integer`**                                                                                    | The handle to the image.                                                |
+| **pos**                                                         | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The position to draw the image.                                         |
+| **size**                                                        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The size of the image.                                                  |
+| **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color to tint the image.                                            |
+| **rounding** **`[?]`**  | **`number`**                                                                                     | The rounding radius of the image corners. `(default: 0.0)`              |
+| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing. `(default: Enum.DrawFlags.None)`              |
+| **uvMin** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The minimum UV coordinates for texture mapping. `(default: {0.0, 0.0})` |
+| **uvMax** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The maximum UV coordinates for texture mapping. `(default: {1.0, 1.0})` |
+| **grayscale** **`[?]`** | **`number`**                                                                                     | The grayscale of the image. `(default: 0.0)`                            |
 
 Draws an image at a specified position and size.
 
@@ -14919,17 +14919,17 @@ Draws an image at a specified position and size.
 
 `Render.ImageCentered(imageHandle, pos, size, color, [rounding], [flags], [uvMin], [uvMax], [grayscale]):` **`nil`**
 
-| Name                                                            | Type                                                                                                                                                                          | Description                                                             |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **imageHandle**                                                 | **`integer`**                                                                                                                              | The handle to the image.                                                |
-| **pos**                                                         | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The center position to draw the image.                                  |
-| **size**                                                        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The size of the image.                                                  |
-| **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color to tint the image.                                            |
-| **rounding** **`[?]`**  | **`number`**                                                                                                                               | The rounding radius of the image corners. `(default: 0.0)`              |
-| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`              |
-| **uvMin** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The minimum UV coordinates for texture mapping. `(default: {0.0, 0.0})` |
-| **uvMax** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The maximum UV coordinates for texture mapping. `(default: {1.0, 1.0})` |
-| **grayscale** **`[?]`** | **`number`**                                                                                                                               | The grayscale of the image. `(default: 0.0)`                            |
+| Name                                                            | Type                                                                                                                                | Description                                                             |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **imageHandle**                                                 | **`integer`**                                                                                    | The handle to the image.                                                |
+| **pos**                                                         | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center position to draw the image.                                  |
+| **size**                                                        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The size of the image.                                                  |
+| **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color to tint the image.                                            |
+| **rounding** **`[?]`**  | **`number`**                                                                                     | The rounding radius of the image corners. `(default: 0.0)`              |
+| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing. `(default: Enum.DrawFlags.None)`              |
+| **uvMin** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The minimum UV coordinates for texture mapping. `(default: {0.0, 0.0})` |
+| **uvMax** **`[?]`**     | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The maximum UV coordinates for texture mapping. `(default: {1.0, 1.0})` |
+| **grayscale** **`[?]`** | **`number`**                                                                                     | The grayscale of the image. `(default: 0.0)`                            |
 
 Draws an image centered at a specified position and size.
 
@@ -14947,17 +14947,17 @@ Retrieves the size of an image. Returns the size of the image as a Vec2.
 
 `Render.OutlineGradient(start, end_, topLeft, topRight, bottomLeft, bottomRight, [rounding], [flags], [thickness]):` **`nil`**
 
-| Name                                                            | Type                                                                                                                                                                          | Description                                                    |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the gradient rectangle.                  |
-| **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The ending point of the gradient rectangle.                    |
-| **topLeft**                                                     | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the top-left corner.                              |
-| **topRight**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the top-right corner.                             |
-| **bottomLeft**                                                  | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the bottom-left corner.                           |
-| **bottomRight**                                                 | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the bottom-right corner.                          |
-| **rounding** **`[?]`**  | **`number`**                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
-| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
-| **thickness** **`[?]`** | **`number`**                                                                                                                               | The thickness of the outline. `(default: 1.0)`                 |
+| Name                                                            | Type                                                                                                                                | Description                                                    |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the gradient rectangle.                  |
+| **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the gradient rectangle.                    |
+| **topLeft**                                                     | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the top-left corner.                              |
+| **topRight**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the top-right corner.                             |
+| **bottomLeft**                                                  | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the bottom-left corner.                           |
+| **bottomRight**                                                 | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the bottom-right corner.                          |
+| **rounding** **`[?]`**  | **`number`**                                                                                     | The rounding radius of the rectangle corners. `(default: 0.0)` |
+| **flags** **`[?]`**     | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
+| **thickness** **`[?]`** | **`number`**                                                                                     | The thickness of the outline. `(default: 1.0)`                 |
 
 Draws a outlined gradient rectangle.
 
@@ -14965,16 +14965,16 @@ Draws a outlined gradient rectangle.
 
 `Render.Gradient(start, end_, topLeft, topRight, bottomLeft, bottomRight, [rounding], [flags]):` **`nil`**
 
-| Name                                                           | Type                                                                                                                                                                          | Description                                                    |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **start**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the gradient rectangle.                  |
-| **end_**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The ending point of the gradient rectangle.                    |
-| **topLeft**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the top-left corner.                              |
-| **topRight**                                                   | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the top-right corner.                             |
-| **bottomLeft**                                                 | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the bottom-left corner.                           |
-| **bottomRight**                                                | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the bottom-right corner.                          |
-| **rounding** **`[?]`** | **`number`**                                                                                                                               | The rounding radius of the rectangle corners. `(default: 0.0)` |
-| **flags** **`[?]`**    | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
+| Name                                                           | Type                                                                                                                                | Description                                                    |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **start**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the gradient rectangle.                  |
+| **end_**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the gradient rectangle.                    |
+| **topLeft**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the top-left corner.                              |
+| **topRight**                                                   | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the top-right corner.                             |
+| **bottomLeft**                                                 | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the bottom-left corner.                           |
+| **bottomRight**                                                | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the bottom-right corner.                          |
+| **rounding** **`[?]`** | **`number`**                                                                                     | The rounding radius of the rectangle corners. `(default: 0.0)` |
+| **flags** **`[?]`**    | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing. `(default: Enum.DrawFlags.None)`     |
 
 Draws a filled gradient rectangle.
 
@@ -14982,15 +14982,15 @@ Draws a filled gradient rectangle.
 
 `Render.Shadow(start, end_, color, thickness, [obj_rounding], [flags], [offset]):` **`nil`**
 
-| Name                                                                | Type                                                                                                                                                                          | Description                                                                                  |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **start**                                                           | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the shadow rectangle.                                                  |
-| **end_**                                                           | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The ending point of the shadow rectangle.                                                    |
-| **color**                                                           | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the shadow.                                                                     |
-| **thickness**                                                       | **`number`**                                                                                                                               | The thickness of the shadow.                                                                 |
-| **obj_rounding** **`[?]`** | **`number`**                                                                                                                               | The rounding radius of the shadow rectangle corners. `(default: 0.0)`                        |
-| **flags** **`[?]`**         | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
-| **offset** **`[?]`**        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the original rectangle. `(default: {0.0, 0.0})`                |
+| Name                                                                | Type                                                                                                                                | Description                                                                                  |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **start**                                                           | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the shadow rectangle.                                                  |
+| **end_**                                                           | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the shadow rectangle.                                                    |
+| **color**                                                           | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the shadow.                                                                     |
+| **thickness**                                                       | **`number`**                                                                                     | The thickness of the shadow.                                                                 |
+| **obj_rounding** **`[?]`** | **`number`**                                                                                     | The rounding radius of the shadow rectangle corners. `(default: 0.0)`                        |
+| **flags** **`[?]`**         | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
+| **offset** **`[?]`**        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The offset of the shadow from the original rectangle. `(default: {0.0, 0.0})`                |
 
 Draws a shadow effect within a specified rectangular area.
 
@@ -14998,15 +14998,15 @@ Draws a shadow effect within a specified rectangular area.
 
 `Render.ShadowCircle(center, radius, color, thickness, [num_segments], [flags], [offset]):` **`nil`**
 
-| Name                                                                | Type                                                                                                                                                                          | Description                                                                                  |
-| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **center**                                                          | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The center point of the circle.                                                              |
-| **radius**                                                          | **`number`**                                                                                                                               | The radius of the circle.                                                                    |
-| **color**                                                           | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the shadow.                                                                     |
-| **thickness**                                                       | **`number`**                                                                                                                               | The thickness of the shadow.                                                                 |
-| **num_segments** **`[?]`** | **`integer`**                                                                                                                              | The number of segments for drawing the circle. `(default: 12)`                               |
-| **flags** **`[?]`**         | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
-| **offset** **`[?]`**        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the circle. `(default: {0.0, 0.0})`                            |
+| Name                                                                | Type                                                                                                                                | Description                                                                                  |
+| ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **center**                                                          | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center point of the circle.                                                              |
+| **radius**                                                          | **`number`**                                                                                     | The radius of the circle.                                                                    |
+| **color**                                                           | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the shadow.                                                                     |
+| **thickness**                                                       | **`number`**                                                                                     | The thickness of the shadow.                                                                 |
+| **num_segments** **`[?]`** | **`integer`**                                                                                    | The number of segments for drawing the circle. `(default: 12)`                               |
+| **flags** **`[?]`**         | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
+| **offset** **`[?]`**        | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The offset of the shadow from the circle. `(default: {0.0, 0.0})`                            |
 
 Draws a circle shadow effect.
 
@@ -15014,13 +15014,13 @@ Draws a circle shadow effect.
 
 `Render.ShadowConvexPoly(points, color, thickness, [flags], [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                                                                                          | Description                                                                                  |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **points**                                                   | [**`Vec2[]`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                  | Table of Vec2 points defining the convex polygon. Should be more than 2 points.              |
-| **color**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the shadow.                                                                     |
-| **thickness**                                                | **`number`**                                                                                                                               | The thickness of the shadow.                                                                 |
-| **flags** **`[?]`**  | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
-| **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the polygon. `(default: {0.0, 0.0})`                           |
+| Name                                                         | Type                                                                                                                                  | Description                                                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **points**                                                   | [**`Vec2[]`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | Table of Vec2 points defining the convex polygon. Should be more than 2 points.              |
+| **color**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)      | The color of the shadow.                                                                     |
+| **thickness**                                                | **`number`**                                                                                       | The thickness of the shadow.                                                                 |
+| **flags** **`[?]`**  | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)        | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
+| **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)   | The offset of the shadow from the polygon. `(default: {0.0, 0.0})`                           |
 
 Draws a shadow convex polygon effect.
 
@@ -15028,15 +15028,15 @@ Draws a shadow convex polygon effect.
 
 `Render.ShadowNGon(center, radius, color, thickness, num_segments, [flags], [offset]):` **`nil`**
 
-| Name                                                         | Type                                                                                                                                                                          | Description                                                                                  |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **center**                                                   | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The center point of the n-gon.                                                               |
-| **radius**                                                   | **`number`**                                                                                                                               | The radius of the n-gon.                                                                     |
-| **color**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)                                                                       | The color of the shadow.                                                                     |
-| **thickness**                                                | **`number`**                                                                                                                               | The thickness of the shadow.                                                                 |
-| **num_segments**                                            | **`integer`**                                                                                                                              | The number of segments (sides) of the n-gon.                                                 |
-| **flags** **`[?]`**  | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
-| **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The offset of the shadow from the n-gon. `(default: {0.0, 0.0})`                             |
+| Name                                                         | Type                                                                                                                                | Description                                                                                  |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| **center**                                                   | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The center point of the n-gon.                                                               |
+| **radius**                                                   | **`number`**                                                                                     | The radius of the n-gon.                                                                     |
+| **color**                                                    | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color of the shadow.                                                                     |
+| **thickness**                                                | **`number`**                                                                                     | The thickness of the shadow.                                                                 |
+| **num_segments**                                            | **`integer`**                                                                                    | The number of segments (sides) of the n-gon.                                                 |
+| **flags** **`[?]`**  | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for drawing the shadow. `(default: Enum.DrawFlags.ShadowCutOutShapeBackground)` |
+| **offset** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The offset of the shadow from the n-gon. `(default: {0.0, 0.0})`                             |
 
 Draws a shadow n-gon (polygon with n sides) effect.
 
@@ -15044,14 +15044,14 @@ Draws a shadow n-gon (polygon with n sides) effect.
 
 `Render.Blur(start, end_, [strength], [alpha], [rounding], [flags]):` **`nil`**
 
-| Name                                                           | Type                                                                                                                                                                          | Description                                                         |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| **start**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The starting point of the blur rectangle.                           |
-| **end_**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md)                                                                    | The ending point of the blur rectangle.                             |
-| **strength** **`[?]`** | **`number`**                                                                                                                               | The strength of the blur effect. `(default: 1.0)`                   |
-| **alpha** **`[?]`**    | **`number`**                                                                                                                               | The alpha value of the blur effect. `(default: 1.0)`                |
-| **rounding** **`[?]`** | **`number`**                                                                                                                               | The rounding radius of the blur rectangle corners. `(default: 0.0)` |
-| **flags** **`[?]`**    | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags) | Custom flags for the blur effect. `(default: Enum.DrawFlags.None)`  |
+| Name                                                           | Type                                                                                                                                | Description                                                         |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| **start**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the blur rectangle.                           |
+| **end_**                                                      | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the blur rectangle.                             |
+| **strength** **`[?]`** | **`number`**                                                                                     | The strength of the blur effect. `(default: 1.0)`                   |
+| **alpha** **`[?]`**    | **`number`**                                                                                     | The alpha value of the blur effect. `(default: 1.0)`                |
+| **rounding** **`[?]`** | **`number`**                                                                                     | The rounding radius of the blur rectangle corners. `(default: 0.0)` |
+| **flags** **`[?]`**    | [**`Enum.DrawFlags`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.drawflags)      | Custom flags for the blur effect. `(default: Enum.DrawFlags.None)`  |
 
 Applies a blur effect within a specified rectangular area.
 
@@ -15059,11 +15059,11 @@ Applies a blur effect within a specified rectangular area.
 
 `Render.PushClip(start, end_, [intersect]):` **`nil`**
 
-| Name                                                            | Type                                                                                                       | Description                                                                                      |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Name                                                            | Type                                                                                                                                | Description                                                                                      |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | **start**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The starting point of the clipping rectangle.                                                    |
 | **end_**                                                       | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The ending point of the clipping rectangle.                                                      |
-| **intersect** **`[?]`** | **`boolean`**                                                           | If true, the new clipping area is intersected with the current clipping area. `(default: false)` |
+| **intersect** **`[?]`** | **`boolean`**                                                                                    | If true, the new clipping area is intersected with the current clipping area. `(default: false)` |
 
 Begins a new clipping region. Only the rendering within the specified rectangular area will be displayed.
 
@@ -15122,11 +15122,11 @@ Draws a centered notification.
 
 `Render.Logo(center, radius, [angle], [primary_color], [secondary_color]):` **`nil`**
 
-| Name                                                                   | Type                                                                                                       | Description                        |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| Name                                                                   | Type                                                                                                                                | Description                        |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **center**                                                             | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) |                                    |
-| **radius**                                                             | **`number`**                                                            |                                    |
-| **angle** **`[?]`**            | **`number`**                                                            | rotation angle `(default: -45)`    |
+| **radius**                                                             | **`number`**                                                                                     |                                    |
+| **angle** **`[?]`**            | **`number`**                                                                                     | rotation angle `(default: -45)`    |
 | **primary_color** **`[?]`**   | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | `(default: Menu.Style("primary"))` |
 | **secondary_color** **`[?]`** | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | `(default: {227, 227, 227, 255})`  |
 
@@ -15160,13 +15160,13 @@ Safe across frame drops: the dirty state is only cleared once the bake is actual
 
 `Render.RenderRT(callback, handle, pos, color, [scale], [uvSizeMin], [uvSizeMax]):` **`boolean`**
 
-| Name                                                            | Type                                                                                                       | Description                                                                |
-| --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| **callback**                                                    | **`fun():boolean?`**                                                    | The function containing rendering commands to bake into the render target. |
-| **handle**                                                      | **`userdata`**                                                          | The handle of the render target (from Render.FindOrCreateRT).              |
+| Name                                                            | Type                                                                                                                                | Description                                                                |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| **callback**                                                    | **`fun():boolean?`**                                                                             | The function containing rendering commands to bake into the render target. |
+| **handle**                                                      | **`userdata`**                                                                                   | The handle of the render target (from Render.FindOrCreateRT).              |
 | **pos**                                                         | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The screen position where the render target texture will be drawn.         |
 | **color**                                                       | [**`Color`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/color.md)    | The color tint to apply when drawing the render target texture.            |
-| **scale** **`[?]`**     | **`number`**                                                            | The scale factor for the render target. `(default: 1.0)`                   |
+| **scale** **`[?]`**     | **`number`**                                                                                     | The scale factor for the render target. `(default: 1.0)`                   |
 | **uvSizeMin** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The minimum UV offset for texture mapping. `(default: {0.0, 0.0})`         |
 | **uvSizeMax** **`[?]`** | [**`Vec2`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vec2.md) | The maximum UV offset for texture mapping. `(default: {0.0, 0.0})`         |
 
@@ -15273,10 +15273,10 @@ Table to work with in-game minimap.
 
 `MiniMap.Ping(pos, type):` **`nil`**
 
-| Name     | Type                                                                                                                                                                        | Description            |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| **pos**  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)                                                              | world position to ping |
-| **type** | [**`Enum.PingType`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.pingtype) | ping type              |
+| Name     | Type                                                                                                                                    | Description            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| **pos**  | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to ping |
+| **type** | [**`Enum.PingType`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.pingtype)            | ping type              |
 
 Pings on the minimap.
 
@@ -15284,11 +15284,11 @@ Pings on the minimap.
 
 `MiniMap.SendLine(pos, initial, clientside):` **`nil`**
 
-| Name           | Type                                                                                                           | Description                                       |
-| -------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Name           | Type                                                                                                                                    | Description                                       |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | **pos**        | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw line to                    |
-| **initial**    | **`boolean`**                                                               | start a new line, otherwise continue the last one |
-| **clientside** | **`boolean`**                                                               | draw only for local player                        |
+| **initial**    | **`boolean`**                                                                                        | start a new line, otherwise continue the last one |
+| **clientside** | **`boolean`**                                                                                        | draw only for local player                        |
 
 Draws a line on the minimap.
 
@@ -15296,14 +15296,14 @@ Draws a line on the minimap.
 
 `MiniMap.DrawCircle(pos, [r], [g], [b], [a], [size]):` **`nil`**
 
-| Name                                                       | Type                                                                                                           | Description                   |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| Name                                                       | Type                                                                                                                                    | Description                   |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | **pos**                                                    | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw circle |
-| **r** **`[?]`**    | **`integer`**                                                               | red color `(default: 255)`    |
-| **g** **`[?]`**    | **`integer`**                                                               | green color `(default: 255)`  |
-| **b** **`[?]`**    | **`integer`**                                                               | blue color `(default: 255)`   |
-| **a** **`[?]`**    | **`integer`**                                                               | alpha color `(default: 255)`  |
-| **size** **`[?]`** | **`number`**                                                                | circle size `(default: 800)`  |
+| **r** **`[?]`**    | **`integer`**                                                                                        | red color `(default: 255)`    |
+| **g** **`[?]`**    | **`integer`**                                                                                        | green color `(default: 255)`  |
+| **b** **`[?]`**    | **`integer`**                                                                                        | blue color `(default: 255)`   |
+| **a** **`[?]`**    | **`integer`**                                                                                        | alpha color `(default: 255)`  |
+| **size** **`[?]`** | **`number`**                                                                                         | circle size `(default: 800)`  |
 
 Draws a circle on the minimap.
 
@@ -15311,15 +15311,15 @@ Draws a circle on the minimap.
 
 `MiniMap.DrawHeroIcon(unitName, pos, [r], [g], [b], [a], [size]):` **`nil`**
 
-| Name                                                       | Type                                                                                                           | Description                                               |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| **unitName**                                               | **`string`**                                                                | unit name to draw icon. Can get it from `NPC.GetUnitName` |
+| Name                                                       | Type                                                                                                                                    | Description                                               |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| **unitName**                                               | **`string`**                                                                                         | unit name to draw icon. Can get it from `NPC.GetUnitName` |
 | **pos**                                                    | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw icon                               |
-| **r** **`[?]`**    | **`integer`**                                                               | red color `(default: 255)`                                |
-| **g** **`[?]`**    | **`integer`**                                                               | green color `(default: 255)`                              |
-| **b** **`[?]`**    | **`integer`**                                                               | blue color `(default: 255)`                               |
-| **a** **`[?]`**    | **`integer`**                                                               | alpha color `(default: 255)`                              |
-| **size** **`[?]`** | **`number`**                                                                | icon size `(default: 800)`                                |
+| **r** **`[?]`**    | **`integer`**                                                                                        | red color `(default: 255)`                                |
+| **g** **`[?]`**    | **`integer`**                                                                                        | green color `(default: 255)`                              |
+| **b** **`[?]`**    | **`integer`**                                                                                        | blue color `(default: 255)`                               |
+| **a** **`[?]`**    | **`integer`**                                                                                        | alpha color `(default: 255)`                              |
+| **size** **`[?]`** | **`number`**                                                                                         | icon size `(default: 800)`                                |
 
 Draws a hero icon on the minimap.
 
@@ -15327,15 +15327,15 @@ Draws a hero icon on the minimap.
 
 `MiniMap.DrawIconByName(iconName, pos, [r], [g], [b], [a], [size]):` **`nil`**
 
-| Name                                                       | Type                                                                                                           | Description                                                             |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| **iconName**                                               | **`string`**                                                                | could get it from game\dota\pak01_dir.vpk (scripts\mod_textures.txt). |
+| Name                                                       | Type                                                                                                                                    | Description                                                             |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **iconName**                                               | **`string`**                                                                                         | could get it from game\dota\pak01_dir.vpk (scripts\mod_textures.txt). |
 | **pos**                                                    | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | world position to draw icon                                             |
-| **r** **`[?]`**    | **`integer`**                                                               | red color `(default: 255)`                                              |
-| **g** **`[?]`**    | **`integer`**                                                               | green color `(default: 255)`                                            |
-| **b** **`[?]`**    | **`integer`**                                                               | blue color `(default: 255)`                                             |
-| **a** **`[?]`**    | **`integer`**                                                               | alpha color `(default: 255)`                                            |
-| **size** **`[?]`** | **`number`**                                                                | icon size `(default: 800)`                                              |
+| **r** **`[?]`**    | **`integer`**                                                                                        | red color `(default: 255)`                                              |
+| **g** **`[?]`**    | **`integer`**                                                                                        | green color `(default: 255)`                                            |
+| **b** **`[?]`**    | **`integer`**                                                                                        | blue color `(default: 255)`                                             |
+| **a** **`[?]`**    | **`integer`**                                                                                        | alpha color `(default: 255)`                                            |
+| **size** **`[?]`** | **`number`**                                                                                         | icon size `(default: 800)`                                              |
 
 Draws a icon on the minimap.
 
@@ -15411,13 +15411,13 @@ Get panel by id.
 
 `Panorama.CreatePanel(type, id, parent, classes, styles):` [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | **`nil`**
 
-| Name        | Type                                                                                                                    | Description                    |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| **type**    | **`string`**                                                                         | panel type to create           |
-| **id**      | **`string`** \| **`nil`**                         | id of the panel                |
+| Name        | Type                                                                                                                                             | Description                    |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
+| **type**    | **`string`**                                                                                                  | panel type to create           |
+| **id**      | **`string`** \| **`nil`**                                                  | id of the panel                |
 | **parent**  | [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | parent panel                   |
-| **classes** | **`string`** \| **`nil`**                         | space separated classes to add |
-| **styles**  | **`string`** \| **`nil`**                         | styles to set                  |
+| **classes** | **`string`** \| **`nil`**                                                  | space separated classes to add |
+| **styles**  | **`string`** \| **`nil`**                                                  | styles to set                  |
 
 Creates a new panorama panel
 
@@ -15486,8 +15486,8 @@ Overload for operator ==.
 
 `:__eq(other):` **`boolean`**
 
-| Name      | Type                                                                                                                    | Description |
-| --------- | ----------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Name      | Type                                                                                                                                             | Description |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
 | **other** | [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) |             |
 
 ##### UIPanel:FindChild
@@ -15593,8 +15593,8 @@ Returns child by path using FindChild.
 
 `:GetChildIndex(child):` **`integer`**
 
-| Name      | Type                                                                                                                    | Description         |
-| --------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| Name      | Type                                                                                                                                             | Description         |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
 | **child** | [**`UIPanel`**](https://uczone.gitbook.io/api-v2.0/game-components/rendering-and-visuals/panorama/uipanel.md) | child panel to find |
 
 Returns index in parent children list. Starts from 0.
@@ -15960,8 +15960,8 @@ Table to work with humanizer.
 
 `Humanizer.IsInServerCameraBounds(pos):` **`boolean`**
 
-| Name    | Type                                                                                                           | Description       |
-| ------- | -------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Name    | Type                                                                                                                                    | Description       |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | **pos** | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | position to check |
 
 Returns `true` if the world position is in server camera bounds.
@@ -15994,8 +15994,8 @@ Returns the current humanizer order queue, or nil when no order is queued.
 
 `Humanizer.IsSafeTarget(entity):` **`boolean`**
 
-| Name       | Type                                                                                         | Description |
-| ---------- | -------------------------------------------------------------------------------------------- | ----------- |
+| Name       | Type                                                                                                                  | Description |
+| ---------- | --------------------------------------------------------------------------------------------------------------------- | ----------- |
 | **entity** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) |             |
 
 Returns information about the current humanizer order queue.
