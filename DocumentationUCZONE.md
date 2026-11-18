@@ -940,7 +940,7 @@ Called after all scripts are loaded.
 
 `Callbacks.OnGameThreadInit():` **`nil`**
 
-Called once on the game thread after all scripts are loaded, after OnScriptsLoaded.
+Called on the game thread after all scripts are loaded, after OnScriptsLoaded.
 
 #### Callbacks.OnDraw
 
@@ -1068,9 +1068,9 @@ This callback is called only in unsafe mode.
 
 `Callbacks.OnFireEventClient(data):` **`nil`**
 
-| Name     | Type                                                                 | Description               |
-| -------- | -------------------------------------------------------------------- | ------------------------- |
-| **data** | **`{name:string, event:CEvent}`** | The data about the event. |
+| Name     | Type                                                                | Description               |
+| -------- | ------------------------------------------------------------------- | ------------------------- |
+| **data** | **`{name:string, event:Event}`** | The data about the event. |
 
 Called when a game event is fired.
 
@@ -1165,7 +1165,7 @@ Called when a target projectile is destroyed.
 |  .**target** **`[?]`** | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                   | The target entity. `(default: nil)` |
 |  .**sourceLoc**                                                | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The source location.                |
 |  .**targetLoc**                                                | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md) | The target location.                |
-|  .**moveSpeed**                                                | **`integer`**                                                                                        | The move speed.                     |
+|  .**movespeed**                                                | **`integer`**                                                                                        | The move speed.                     |
 |  .**original_move_speed**                                    | **`integer`**                                                                                        | The original move speed.            |
 |  .**particleSystemHandle**                                     | **`integer`**                                                                                        | The particle system handle.         |
 |  .**dodgeable**                                                | **`boolean`**                                                                                        | The dodgeable.                      |
@@ -1262,17 +1262,17 @@ Called when particle is updated. Alternative version for some particles.
 
 `Callbacks.OnParticleUpdateEntity(data):` **`nil`**
 
-| Name                                                                   | Type                                                                                                                                             | Description                           |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| **data**                                                               | **`table`**                                                                                                   | The data about the event.             |
-|  .**index**                                                            | **`integer`**                                                                                                 | The index of particle.                |
-|  .**controlPoint**                                                     | **`integer`**                                                                                                 | The control point.                    |
-|  .**entity** **`[?]`**         | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                            | The entity. `(default: nil)`          |
-|  .**entIdx**                                                           | **`integer`**                                                                                                 | The entity id.                        |
-|  .**attachType**                                                       | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                      |
-|  .**attachmentName** **`[?]`** | **`string`**                                                                                                  | The attachment name. `(default: nil)` |
-|  .**position**                                                         | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)          | The position.                         |
-|  .**includeWearables**                                                 | **`boolean`**                                                                                                 | Include wearables.                    |
+| Name                                                               | Type                                                                                                                                             | Description                           |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| **data**                                                           | **`table`**                                                                                                   | The data about the event.             |
+|  .**index**                                                        | **`integer`**                                                                                                 | The index of particle.                |
+|  .**controlPoint**                                                 | **`integer`**                                                                                                 | The control point.                    |
+|  .**entity** **`[?]`**     | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md)                            | The entity. `(default: nil)`          |
+|  .**entIdx**                                                       | **`integer`**                                                                                                 | The entity id.                        |
+|  .**attachType**                                                   | [**`Enum.ParticleAttachment`**](https://uczone.gitbook.io/https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/enums.md#enum.particleattachment) | The attach type.                      |
+|  .**attachment** **`[?]`** | **`string`**                                                                                                  | The attachment name. `(default: nil)` |
+|  .**position**                                                     | [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)          | The position.                         |
+|  .**includeWearables**                                             | **`boolean`**                                                                                                 | Include wearables.                    |
 
 Called when particle is updated on entity.
 
@@ -1437,8 +1437,7 @@ Called after an order has been added to a unit's order queue.
 |  .**binary_buffer_send** **`[?]`** | **`userdata`** | The binary buffer of the send message. `(default: nil)`     |
 |  .**binary_buffer_recv** **`[?]`** | **`userdata`** | The binary buffer of the recieved message. `(default: nil)` |
 
-Called when a game coordinator protobuff message is received. Return false to prevent the message
-from being sent (doesnt work with recieved messages). For more look at GC table description.
+Called when a game coordinator message is sent or received.
 
 ##### Example
 
@@ -1477,8 +1476,7 @@ return {
 |  .**message_id** | **`integer`**       | The message id.                                                     |
 |  .**msg_object** | **`lightuserdata`** | The protobuf message object, borrowed for the duration of the call. |
 
-Called when a net message is sent. Return false to prevent the message from being sent. See
-example
+Called when a net message is sent.
 
 ##### Example
 
@@ -1497,7 +1495,7 @@ return {
         end
 
         -- decode protobuf message to json
-        local json_message = JSON:decode(protobuf.decodeToJSONfromObject(msg.msg_object));
+        local json_message = JSON:decode(protobuf.decodeToJSONfromObject(msg));
         if not json_message then
             return true;
         end
@@ -1536,8 +1534,7 @@ return {
 |  .**message_id** | **`integer`**       | The message id.                                                     |
 |  .**msg_object** | **`lightuserdata`** | The protobuf message object, borrowed for the duration of the call. |
 
-Called when a net message is received. The message has already been processed; the handler
-result is ignored.
+Called after a received net message has been processed. The handler result is ignored.
 
 ##### Example
 
@@ -2585,8 +2582,8 @@ and manual per-color edits via the theme color picker.
 | `MenuThemePicker`    | 18    |
 | `MenuLabel`          | 19    |
 | `MenuCustomBind`     | 22    |
-| `MenuTypesCount`     | 31    |
-| `MenuTypeInvalid`    | 32    |
+| `MenuTypesCount`     | 25    |
+| `MenuTypeInvalid`    | 26    |
 
 #### Enum.GroupSide
 
@@ -3091,7 +3088,7 @@ and manual per-color edits via the theme color picker.
 | `MODIFIER_EVENT_ON_FOW_TEAM_CHANGED`                           | 369   |
 | `MODIFIER_PROPERTY_SUPPRESS_ATTACK_PROCS`                      | 370   |
 | `MODIFIER_EVENT_ON_ABILITY_TOGGLED`                            | 371   |
-| `MODIFIER_FUNCTION_LAST`                                       | 412   |
+| `MODIFIER_FUNCTION_LAST`                                       | 417   |
 | `MODIFIER_FUNCTION_INVALID`                                    | 65535 |
 
 #### Enum.DrunkenBrawlerState
@@ -9173,7 +9170,7 @@ Returns table with `CItem`s available in the neutral stash.
 
 #### Player.GetTeamPlayer
 
-`Player.GetTeamPlayer(player, [output]):` **`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity`** | **`nil, override_selection_entity:CEntity`** | **`nil, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:number, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**
+`Player.GetTeamPlayer(player, [output]):` **`{reliable_gold:integer, unreliable_gold:integer, starting_position:integer, totalearned_gold:integer, totalearned_xp:integer, shared_gold:integer, hero_kill_gold:integer, creep_kill_gold:integer, neutral_kill_gold:integer, courier_gold:integer, bounty_gold:integer, roshan_gold:integer, building_gold:integer, other_gold:integer, comeback_gold:integer, experimental_gold:integer, experimental2_gold:integer, creepdeny_gold:integer, tp_scrolls_purchased:integer, custom_stats:number, income_gold:integer, ward_kill_gold:integer, ability_gold:integer, networth:integer, deny_count:integer, lasthit_count:integer, lasthit_streak:integer, lasthit_multikill:integer, nearby_creep_death_count:integer, claimed_deny_count:integer, claimed_miss_count:integer, miss_count:integer, possible_hero_selection:integer, meta_level:integer, meta_experience:integer, meta_experience_awarded:integer, buyback_cooldown_time:number, buyback_gold_limit_time:number, buyback_cost_time:number, custom_buyback_cooldown:number, stuns:number, healing:number, tower_Kills:integer, roshan_kills:integer, camera_target:CEntity, override_selection_entity:CEntity, observer_wards_placed:integer, sentry_wards_placed:integer, creeps_stacked:integer, camps_stacked:integer, rune_pickups:integer, gold_spent_on_support:integer, hero_damage:integer, wards_purchased:integer, wards_destroyed:integer, commands_issued:integer, gold_spent_on_consumables:integer, gold_spent_on_items:integer, gold_spent_on_buybacks:integer, gold_lost_to_death:integer, is_new_player:boolean, is_guide_player:boolean, acquired_madstone:integer, current_madstone:integer, possible_hero_facet_selection:integer}`**
 
 | Name                                                         | Type                                                                                                                  | Description                                                                         |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -9242,7 +9239,7 @@ Clears player selection.
 | **player** | [**`CPlayer`**](https://uczone.gitbook.io/api-v2.0/game-components/core/player.md) | The target player. |
 
 Returns the player's quick-buy state: the mark-for-buy and buyback-protection flags and the
-quick-buy item slots. Returns nil when the player has no hero or no team data.
+quick-buy item slots. Returns nil when the player has no pawn or no team data.
 
 #### Player.GetCourierControllerInfo
 
@@ -9439,6 +9436,16 @@ Returns the duration of the modifier.
 | **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get expiration time of |
 
 Returns the game time when the modifier will expire.
+
+#### Modifier.GetEffectiveness
+
+`Modifier.GetEffectiveness(modifier):` **`number`**
+
+| Name         | Type                                                                                                                      | Description                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| **modifier** | [**`CModifier`**](https://uczone.gitbook.io/api-v2.0/game-components/core/modifier.md) | modifier to get effectiveness of |
+
+Returns the modifier's raw effectiveness value.
 
 #### Modifier.GetStackCount
 
@@ -10156,6 +10163,21 @@ Returns entity class id. Could be as a optimized way to check entity type.
 | **dbgPrint** **`[?]`** | **`boolean`**                                                                      | print possible errors `(default: false)` |
 
 Returns value of the field.
+ParticleIndex_t fields (for example, m_nFXStunIndex) return signed 32-bit integers.
+
+#### Entity.SetField
+
+`Entity.SetField(entity, fieldName, value, [dbgPrint]):` **`boolean`**
+
+| Name                                                           | Type                                                                                                                  | Description                                              |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **entity**                                                     | [**`CEntity`**](https://uczone.gitbook.io/api-v2.0/game-components/core/entity.md) | entity to modify                                         |
+| **fieldName**                                                  | **`string`**                                                                       | field name                                               |
+| **value**                                                      | **`any`**                                                                          | correctly typed field value; nil clears an entity handle |
+| **dbgPrint** **`[?]`** | **`boolean`**                                                                      | print possible errors `(default: false)`                 |
+
+Writes a supported scalar schema field locally without engine change callbacks.
+Strings, arrays, and unknown types are not writable.
 
 ### 4.4. NPC
 
@@ -10163,6 +10185,16 @@ Returns value of the field.
 > **Навигация:** 4. Game Components - Core Objects → `NPC` | **Источник:** [npc.md](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md)
 
 Table to work with `CNPC`. **`CNPC`** extends **`CEntity`**
+
+#### NPC.GetBuffEffectivenessOverride
+
+`NPC.GetBuffEffectivenessOverride(npc):` **`number`**
+
+| Name    | Type                                                                                                            | Description                               |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | npc to get buff effectiveness override of |
+
+Returns the NPC's raw buff effectiveness override.
 
 #### NPC.GetOwnerNPC
 
@@ -10784,16 +10816,6 @@ Returns the number of attacks per second that the `CNPC` can deal.
 
 Returns the amount of time needed for the `CNPC` to perform an attack.
 
-#### NPC.GetLastAttackTime
-
-`NPC.GetLastAttackTime(npc):` **`number`**
-
-| Name    | Type                                                                                                            | Description |
-| ------- | --------------------------------------------------------------------------------------------------------------- | ----------- |
-| **npc** | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc  |
-
-Returns the game time of the `CNPC`'s last attack point. The value includes the sub-tick fraction of the attack cadence.
-
 #### NPC.GetAttackSpeed
 
 `NPC.GetAttackSpeed(npc, [ignore_temp_attack_speed]):` **`number`**
@@ -11306,23 +11328,6 @@ Returns the attachment position of the `CNPC` by the specified index.
 
 Returns the attachment index of the `CNPC` by the name.
 
-#### NPC.EvaluateAttachmentEmulated
-
-`NPC.EvaluateAttachmentEmulated(npc, name, activity, seq_variant, cycle):` [**`Vector`**](https://uczone.gitbook.io/api-v2.0/cheats-types-and-callbacks/classes/math/vector.md)
-
-| Name             | Type                                                                                                            | Description                                      |
-| ---------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| **npc**          | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                       |
-| **name**         | **`string`**                                                                 | attachment name (e.g. "attach_attack1")         |
-| **activity**     | **`number`**                                                                 | GameActivity int (e.g. 1503 = ACT_DOTA_ATTACK) |
-| **seq_variant** | **`number`**                                                                 | sequence variant index (usually 0)               |
-| **cycle**        | **`number`**                                                                 | sequence cycle 0..1                              |
-
-Returns the world-space position of the attachment `name` on the `CNPC`, evaluated for the
-given animation activity, sequence variant and cycle. The NPC's current animation is not changed.
-If no sequence matches the activity and variant, the position of the attachment in the current
-pose is returned.
-
 #### NPC.GetBountyXP
 
 `NPC.GetBountyXP(npc):` **`integer`**
@@ -11442,26 +11447,6 @@ Returns sequence duration of the npc with the specified sequence index.
 | **bIgnoreTempAttackSpeed** | **`boolean`**                                                                | Ignore temporary attack speed. |
 
 Returns the seconds per attack of the npc.
-
-#### NPC.GetSequence
-
-`NPC.GetSequence(npc, sequenceVariant, activity):` **`integer`**
-
-| Name                | Type                                                                                                            | Description                                                  |
-| ------------------- | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **npc**             | [**`CNPC`**](https://uczone.gitbook.io/api-v2.0/game-components/core/npc.md) | target npc                                                   |
-| **sequenceVariant** | **`integer`**                                                                | 0 by default (most heroes)                                   |
-| **activity**        | **`integer`**                                                                | GameActivity enum (e.g. Enum.GameActivity.ACT_DOTA_ATTACK) |
-
-Returns the sequence (HSequence) the NPC plays for the given activity and sequence variant. The
-lookup uses the activity, not the NPC's current animation.
-
-##### Example
-
-```lua
-local seq = NPC.GetSequence(npc, 0, Enum.GameActivity.ACT_DOTA_ATTACK)
-local dur = NPC.SequenceDuration(npc, seq)
-```
 
 #### NPC.GetBarriers
 
@@ -14193,17 +14178,15 @@ Table to work with HTTP requests.
 
 `HTTP.Request(method, url, [data], callback, [param]):` **`boolean`**
 
-| Name                                                        | Type                                                                                                                                                                       | Description                                                                                         |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| **method**                                                  | **`string`**                                                                                                                            | HTTP method                                                                                         |
-| **url**                                                     | **`string`**                                                                                                                            | URL                                                                                                 |
-| **data** **`[?]`**  | **`{headers: table<string, integer>, data:string`** \| **`table<string, string>, timeout: number}`** | data to send `(default: {})`                                                                        |
-| **callback**                                                | **`fun(tbl: {response: string, code: string, header: string, param: string, error_code: number, error_message: string}):nil`**          | callback function to call when request is done. Take 1 argument - response data table, see example. |
-| **param** **`[?]`** | **`string`**                                                                                                                            | string parameter to pass to callback function to identify request `(default: "")`                   |
+| Name                                                        | Type                                                                                                                                                                                                                                                          | Description                                                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| **method**                                                  | **`string`**                                                                                                                                                                                                               | HTTP method                                                                                         |
+| **url**                                                     | **`string`**                                                                                                                                                                                                               | URL                                                                                                 |
+| **data** **`[?]`**  | **`{headers: table<string, integer>, cookies: string`** \| **`table<string, string>, data:string`** \| **`table<string, string>, timeout: number}`** | data to send `(default: {})`                                                                        |
+| **callback**                                                | **`fun(tbl: {response: string, code: string, header: string, param: string, error_code: number, error_message: string}):nil`**                                                                                             | callback function to call when request is done. Take 1 argument - response data table, see example. |
+| **param** **`[?]`** | **`string`**                                                                                                                                                                                                               | string parameter to pass to callback function to identify request `(default: "")`                   |
 
 Do HTTP request. Returns `true` if request was sent successfully.
-Cookies must be supplied through headers; no automatic cookie jar is available.
-Callback error_code is 0 when the transport succeeds, otherwise a non-zero code identifying the failed stage.
 
 ##### Example
 
@@ -14231,20 +14214,6 @@ HTTP.Request("GET", url, {
 		headers = headers,
 	}, callback, "reqres_get");
 ```
-
-#### HTTP.BuildJWT
-
-`HTTP.BuildJWT(header, payload, password):` **`string`** | **`nil`**
-
-| Name         | Type                                            | Description |
-| ------------ | ----------------------------------------------- | ----------- |
-| **header**   | **`string`** |             |
-| **payload**  | **`string`** |             |
-| **password** | **`string`** |             |
-
-Builds a compact JWT using HS256, HS384 or HS512 and a shared UTF-8 secret.
-The header is a JOSE JSON object or the algorithm name; payload is JSON.
-Returns nil for invalid JSON or unsupported algorithms.
 
 ### 6.3. Steam
 
@@ -15986,7 +15955,7 @@ Returns the server cursor position.
 
 #### Humanizer.GetOrderQueue
 
-`Humanizer.GetOrderQueue():` **`{player: CPlayer, orderType: Enum.UnitOrder, targetIndex: integer, position: Vector, abilityIndex: integer, orderIssuer: Enum.PlayerOrderIssuer, unit: CNPC`** | **`nil, orderQueueBehavior: integer, showEffects: boolean, triggerCallBack: boolean, isByMiniMap: boolean, addTime: number }[]`** | **`nil`**
+`Humanizer.GetOrderQueue():` **`{player: CPlayer, orderType: Enum.UnitOrder, targetIndex: integer, position: Vector, abilityIndex: integer, orderIssuer: Enum.PlayerOrderIssuer, unit: boolean, orderQueueBehavior: integer, showEffects: boolean, triggerCallBack: boolean, isByMiniMap: boolean, addTime: number }[]`** | **`nil`**
 
 Returns the current humanizer order queue, or nil when no order is queued.
 
